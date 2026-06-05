@@ -1,0 +1,502 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout>
+  <!-- ============== NAV ============== -->
+  <nav>
+    <img src="/images/logo.png" alt="BBBwealth" class="logo-img" />
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#planning">Planning</a>
+      <a href="#wealth">Wealth</a>
+      <a href="#training">Training</a>
+      <a href="/tools/retirement-calculator">Calculator</a>
+      <a href="#team">Team</a>
+      <button class="nav-cta" onclick="openWhatsApp()">Book consultation</button>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span class="text">Malaysia · Financial Advisory</span>
+      </div>
+      <h1 class="hero-title display">
+        Build, grow,<br/>
+        &amp; <span class="accent">protect</span><br/>
+        your wealth <span class="arrow-up">↑</span>
+      </h1>
+      <p class="hero-sub">
+        A Malaysian financial advisory practice helping individuals, families, and corporates grow, protect, and pass on what they've earned — through honest planning, disciplined investing, and proper training.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary btn-yellow" onclick="scrollToSection('planning')">
+          Explore plans <span class="arrow">→</span>
+        </button>
+        <button class="btn-ghost" onclick="scrollToSection('services')">Our services</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="dots-grid"></div>
+      <div class="hero-photo">
+        <img src="/images/hero.jpg" alt="Financial planning — written goals over financial charts" />
+      </div>
+      <div class="hero-card float-2">
+        <div class="ft-title">Portfolio growth</div>
+        <div class="ft-big">+12.4%<span class="ft-y">↑</span></div>
+      </div>
+      <div class="hero-card float">
+        <div class="float-icon">🛡️</div>
+        <div class="float-text">
+          <div class="ft-title">Protected &amp; Planned</div>
+          <div class="ft-sub">All 12 topics covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TICKER ============== -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Financial Planning</span>
+      <span class="ticker-item">Wealth Management</span>
+      <span class="ticker-item">Investment</span>
+      <span class="ticker-item">Insurance &amp; Trust</span>
+      <span class="ticker-item">Estate Planning</span>
+      <span class="ticker-item">Tax Planning</span>
+      <span class="ticker-item">HRD Corporate Training</span>
+      <span class="ticker-item">Retirement Calculator</span>
+      <span class="ticker-item">Financial Planning</span>
+      <span class="ticker-item">Wealth Management</span>
+      <span class="ticker-item">Investment</span>
+      <span class="ticker-item">Insurance &amp; Trust</span>
+      <span class="ticker-item">Estate Planning</span>
+      <span class="ticker-item">Tax Planning</span>
+      <span class="ticker-item">HRD Corporate Training</span>
+      <span class="ticker-item">Retirement Calculator</span>
+    </div>
+  </div>
+
+  <!-- ============== SERVICES ============== -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">01 / What we do</span>
+        <h2 class="display">Three services.<br/>One <span class="y">philosophy.</span></h2>
+      </div>
+      <p>We don't sell products — we build clarity. Whether you're starting out, building wealth, or training a team, BBBwealth works the same way: structured, transparent, and grounded in evidence.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service" onclick="scrollToSection('planning')">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="4" y="6" width="20" height="18" rx="2"/>
+            <line x1="4" y1="11" x2="24" y2="11"/>
+            <line x1="9" y1="3" x2="9" y2="8" stroke-linecap="round"/>
+            <line x1="19" y1="3" x2="19" y2="8" stroke-linecap="round"/>
+            <circle cx="9" cy="16" r="1.5" fill="currentColor"/>
+            <circle cx="14" cy="16" r="1.5"/>
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="14" cy="20" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Financial Planning</h3>
+        <p>A structured plan across the 12 key topics every household needs — cash flow, debt, protection, retirement, and beyond. From a single session to a 12-month engagement.</p>
+        <a class="service-link">See plans →</a>
+      </div>
+
+      <div class="service" onclick="scrollToSection('wealth')">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 22 L10 14 L15 18 L24 6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="24" cy="6" r="2" fill="currentColor"/>
+            <circle cx="10" cy="14" r="1.5" fill="currentColor"/>
+            <line x1="4" y1="24" x2="24" y2="24" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Wealth Management</h3>
+        <p>Investment, insurance &amp; trust, debt, tax, and estate — coordinated so each piece supports the others. Built around your goals, not a product sheet.</p>
+        <a class="service-link">See pillars →</a>
+      </div>
+
+      <div class="service" onclick="scrollToSection('training')">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 10 L14 5 L25 10 L14 15 Z" stroke-linejoin="round"/>
+            <path d="M7 12 V19 Q14 22 21 19 V12"/>
+            <line x1="25" y1="10" x2="25" y2="16" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Financial Training</h3>
+        <p>HRD-claimable corporate training programmes that turn financial literacy into a workforce advantage. From investment fundamentals to full wellness curricula.</p>
+        <a class="service-link">View programmes →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT ============== -->
+  <section class="about">
+    <div class="about-grid">
+      <div class="about-content reveal">
+        <span class="section-num">02 / About BBBwealth</span>
+        <h2 class="display">An advisory practice <span class="y">built on trust.</span></h2>
+        <p>BBBwealth is an independent Malaysian financial advisory firm. We help retail clients, families, and corporates make better decisions with their money — without the noise of product-pushing or jargon.</p>
+        <p>Our team brings together planning, wealth management, and training under one roof — so the advice you get is coordinated, evidence-based, and grounded in what's actually right for you.</p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">3<span class="y">+</span></div>
+            <div class="stat-lbl">Service lines</div>
+          </div>
+          <div>
+            <div class="stat-num">12</div>
+            <div class="stat-lbl">Planning topics</div>
+          </div>
+          <div>
+            <div class="stat-num">100<span class="y">%</span></div>
+            <div class="stat-lbl">Independent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-illustration reveal">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff1c2"/>
+              <stop offset="100%" stop-color="#fafbfd"/>
+            </linearGradient>
+            <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#fafbfd"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#bgGrad)"/>
+          <circle cx="340" cy="80" r="70" fill="#f5b800" opacity="0.5"/>
+          <circle cx="60" cy="430" r="90" fill="#1e3a6f" opacity="0.08"/>
+          <g fill="#1e3a6f" opacity="0.18">
+            <circle cx="40" cy="40" r="2"/><circle cx="60" cy="40" r="2"/><circle cx="80" cy="40" r="2"/><circle cx="100" cy="40" r="2"/>
+            <circle cx="40" cy="60" r="2"/><circle cx="60" cy="60" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="100" cy="60" r="2"/>
+            <circle cx="40" cy="80" r="2"/><circle cx="60" cy="80" r="2"/><circle cx="80" cy="80" r="2"/><circle cx="100" cy="80" r="2"/>
+          </g>
+          <g transform="translate(70 140)">
+            <rect width="260" height="180" rx="16" fill="url(#cardGrad)" stroke="#e3e7ef" stroke-width="1"/>
+            <rect x="20" y="22" width="80" height="8" rx="4" fill="#1e3a6f" opacity="0.85"/>
+            <rect x="20" y="36" width="50" height="6" rx="3" fill="#4a5468" opacity="0.4"/>
+            <text x="220" y="38" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#f5b800" text-anchor="end">+12.4%</text>
+            <polyline points="20,140 60,120 100,128 140,95 180,80 220,55 240,40" fill="none" stroke="#1e3a6f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="20,140 60,120 100,128 140,95 180,80 220,55 240,40 240,160 20,160" fill="#1e3a6f" opacity="0.08"/>
+            <circle cx="60" cy="120" r="4" fill="#fff" stroke="#1e3a6f" stroke-width="2"/>
+            <circle cx="140" cy="95" r="4" fill="#fff" stroke="#1e3a6f" stroke-width="2"/>
+            <circle cx="220" cy="55" r="6" fill="#f5b800" stroke="#1e3a6f" stroke-width="2"/>
+            <path d="M 235 35 L 240 25 L 245 35" fill="none" stroke="#f5b800" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g transform="translate(40 350) rotate(-4)">
+            <rect width="170" height="100" rx="14" fill="#1e3a6f"/>
+            <rect x="16" y="18" width="40" height="6" rx="3" fill="#f5b800"/>
+            <rect x="16" y="32" width="100" height="10" rx="5" fill="#ffffff" opacity="0.95"/>
+            <rect x="16" y="48" width="80" height="6" rx="3" fill="#ffffff" opacity="0.5"/>
+            <rect x="16" y="68" width="138" height="6" rx="3" fill="#ffffff" opacity="0.15"/>
+            <rect x="16" y="68" width="100" height="6" rx="3" fill="#f5b800"/>
+            <text x="16" y="92" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#ffffff" opacity="0.7" letter-spacing="1.2">10 / 12 TOPICS</text>
+          </g>
+          <g transform="translate(240 370) rotate(5)">
+            <rect width="130" height="100" rx="14" fill="#ffffff" stroke="#e3e7ef" stroke-width="1"/>
+            <g transform="translate(18 20)">
+              <path d="M 16 4 L 28 9 V 19 Q 28 27 16 32 Q 4 27 4 19 V 9 Z" fill="#fff1c2" stroke="#f5b800" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M 11 18 L 14 21 L 21 14" fill="none" stroke="#1e3a6f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <rect x="62" y="22" width="55" height="8" rx="4" fill="#1e3a6f"/>
+            <rect x="62" y="36" width="40" height="6" rx="3" fill="#4a5468" opacity="0.4"/>
+            <rect x="18" y="68" width="94" height="6" rx="3" fill="#1e3a6f" opacity="0.1"/>
+            <text x="18" y="88" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#1e3a6f" opacity="0.6" letter-spacing="1.2">PROTECTED</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PRICING ============== -->
+  <section class="pricing" id="planning">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">03 / Financial planning</span>
+        <h2 class="display">Plans that fit the <span class="y">question</span> you're asking.</h2>
+      </div>
+      <p>One-off clarity, ongoing partnership, or full-service stewardship. Pick the engagement that matches where you are — and graduate when you're ready.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="plan reveal">
+        <span class="label">Basic</span>
+        <div class="plan-name">Quick Guidance</div>
+        <div class="plan-price"><span class="currency">RM</span>500<span class="period">/ time</span></div>
+        <p class="plan-desc">For individuals seeking quick guidance on a specific financial issue.</p>
+        <ul class="plan-features">
+          <li>1-month validity</li>
+          <li>1 × 1.5-hour session</li>
+          <li>Pick 2 from 12 key topics</li>
+          <li>Suggested steps with follow-up</li>
+          <li>Standard support access</li>
+        </ul>
+        <button class="plan-cta" onclick="openWhatsApp()">Select plan</button>
+      </div>
+
+      <div class="plan featured reveal">
+        <span class="plan-badge">Most popular</span>
+        <span class="label">Complete</span>
+        <div class="plan-name">Ongoing Plan</div>
+        <div class="plan-price"><span class="currency">RM</span>1,999<span class="period">/ year</span></div>
+        <p class="plan-desc">For those looking for ongoing support to improve overall financial health.</p>
+        <ul class="plan-features">
+          <li>12-month validity</li>
+          <li>3 × 1-hour strategy sessions</li>
+          <li>Full plan across all 12 topics</li>
+          <li>Tailored solutions</li>
+          <li>Ongoing advisor access</li>
+        </ul>
+        <button class="plan-cta" onclick="openWhatsApp()">Select plan</button>
+      </div>
+
+      <div class="plan reveal">
+        <span class="label">Complete PLUS</span>
+        <div class="plan-name">Full Stewardship</div>
+        <div class="plan-price"><span class="currency">RM</span>2,999<span class="period">/ year</span></div>
+        <p class="plan-desc">For those who want in-depth financial management and personalised strategies.</p>
+        <ul class="plan-features">
+          <li>12-month validity</li>
+          <li>4 × 1-hour strategy sessions</li>
+          <li>Full plan across all 12 topics</li>
+          <li>Tailored solutions &amp; written report</li>
+          <li>Priority advisor access</li>
+        </ul>
+        <button class="plan-cta" onclick="openWhatsApp()">Select plan</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== WEALTH ============== -->
+  <section class="wealth" id="wealth">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">04 / Wealth management</span>
+        <h2 class="display">Five pillars.<br/>One <span class="y">balance sheet.</span></h2>
+      </div>
+      <p>Most advisors sell one product and call it a strategy. We coordinate the full picture — so growth, protection, and legacy work together instead of against each other.</p>
+    </div>
+
+    <div class="wealth-grid reveal">
+      <div class="wealth-item">
+        <div class="wealth-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 18 L9 11 L13 15 L19 6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="19" cy="6" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="wealth-num">01</div>
+        <h4>Investment</h4>
+        <p>Portfolio construction across equities, fixed income, and alternatives — built on principle, not the trade of the day.</p>
+      </div>
+
+      <div class="wealth-item">
+        <div class="wealth-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 3 L19 6 V12 Q19 17 11 20 Q3 17 3 12 V6 Z" stroke-linejoin="round"/>
+            <path d="M8 11 L10 13 L14 9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="wealth-num">02</div>
+        <h4>Insurance &amp; Trust</h4>
+        <p>Protection that covers the right risks at the right cost, structured through proper trust planning when appropriate.</p>
+      </div>
+
+      <div class="wealth-item">
+        <div class="wealth-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="6" width="16" height="12" rx="2"/>
+            <line x1="3" y1="10" x2="19" y2="10"/>
+            <circle cx="11" cy="14" r="2"/>
+          </svg>
+        </div>
+        <div class="wealth-num">03</div>
+        <h4>Debt Management</h4>
+        <p>Pay off, restructure, or leverage — depending on rate, term, and what the balance sheet actually needs.</p>
+      </div>
+
+      <div class="wealth-item">
+        <div class="wealth-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 4 H17 V20 H5 Z" stroke-linejoin="round"/>
+            <line x1="8" y1="9" x2="14" y2="9" stroke-linecap="round"/>
+            <line x1="8" y1="13" x2="14" y2="13" stroke-linecap="round"/>
+            <line x1="8" y1="17" x2="12" y2="17" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="wealth-num">04</div>
+        <h4>Tax Planning</h4>
+        <p>Legal, structural strategies to keep more of what you earn — for individuals, families, and Sdn Bhd owners.</p>
+      </div>
+
+      <div class="wealth-item">
+        <div class="wealth-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 10 L11 4 L18 10 V19 H4 Z" stroke-linejoin="round"/>
+            <rect x="9" y="13" width="4" height="6"/>
+          </svg>
+        </div>
+        <div class="wealth-num">05</div>
+        <h4>Estate Planning</h4>
+        <p>Wasiat, hibah, and trust structures so what you've built reaches the people you built it for — cleanly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TRAINING ============== -->
+  <section class="training" id="training">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">05 / Corporate training</span>
+        <h2 class="display">HRD-claimable.<br/>Workforce-<span class="y">ready.</span></h2>
+      </div>
+      <p>Financial stress quietly drains productivity. Our training programmes give your team the tools — and the confidence — to handle money well, on and off the clock.</p>
+    </div>
+
+    <div class="training-grid reveal">
+      <div class="training-card">
+        <div class="training-body">
+          <div class="training-meta">
+            <span class="duration-pill">4 Hours · Half-day</span>
+            <span class="hrd-badge">HRD Claimable</span>
+          </div>
+          <h3>Investment Fundamentals</h3>
+          <div class="subtitle">For teams new to investing</div>
+          <ul class="training-list">
+            <li>Understanding different investment types and asset classes</li>
+            <li>Risk assessment and portfolio diversification strategies</li>
+            <li>Market analysis and investment decision-making</li>
+            <li>Building a long-term investment mindset</li>
+            <li>Practical tools for tracking and evaluation</li>
+          </ul>
+          <div class="training-footer">
+            <button class="btn-primary" onclick="openWhatsApp()">Request quote <span class="arrow">→</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-card">
+        <div class="training-body">
+          <div class="training-meta">
+            <span class="duration-pill">8 Hours · Full-day</span>
+            <span class="hrd-badge">HRD Claimable</span>
+          </div>
+          <h3>Financial Wellness Program</h3>
+          <div class="subtitle">Holistic personal finance for employees</div>
+          <ul class="training-list">
+            <li>Personal budgeting and expense management</li>
+            <li>Debt management and elimination strategies</li>
+            <li>Emergency fund planning and savings optimisation</li>
+            <li>Insurance needs analysis and protection planning</li>
+            <li>Retirement planning and goal setting</li>
+          </ul>
+          <div class="training-footer">
+            <button class="btn-primary" onclick="openWhatsApp()">Request quote <span class="arrow">→</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TEAM ============== -->
+  <section class="team" id="team">
+    <div class="section-header reveal">
+      <div>
+        <span class="section-num">06 / The team</span>
+        <h2 class="display">People you'll <span class="y">actually</span> work with.</h2>
+      </div>
+      <p>No call centres, no relationship managers passing you up the chain. The names below are the people you meet — and the people who own the outcome.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/anson.jpg" alt="Anson Tan" />
+        </div>
+        <div class="team-info">
+          <h4>Anson Tan</h4>
+          <span class="role">Wealth Management</span>
+          <p>Leads investment, insurance &amp; trust, and the coordinated balance sheet strategy.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/hubert.png" alt="Hubert Heong" />
+        </div>
+        <div class="team-info">
+          <h4>Hubert Heong</h4>
+          <span class="role">Marketing</span>
+          <p>Drives brand, content, and the client experience across digital channels.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">
+          <img src="/images/priscilla.png" alt="Priscilla Yong" />
+        </div>
+        <div class="team-info">
+          <h4>Priscilla Yong</h4>
+          <span class="role">Financial Planning</span>
+          <p>Leads the financial planning practice — from Basic sessions to Complete PLUS engagements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA ============== -->
+  <section class="cta" id="contact">
+    <div class="cta-inner">
+      <h2>Money is personal.<br/>So is <span class="y">good advice.</span></h2>
+      <p>Book a no-obligation conversation. We'll listen first, scope the work honestly, and quote only when there's a clear fit.</p>
+      <button class="btn-primary btn-yellow" onclick="openWhatsApp()">Book a consultation <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/images/logo-white.png" alt="BBBwealth" class="logo-img" />
+        <p>An independent Malaysian financial advisory practice. Planning, wealth management, and HRD-claimable corporate training — under one roof.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#planning">Financial Planning</a></li>
+          <li><a href="#wealth">Wealth Management</a></li>
+          <li><a href="#training">Corporate Training</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tools</h5>
+        <ul>
+          <li><a href="/tools/retirement-calculator">Retirement Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#team">Our team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BBBwealth. All rights reserved.</span>
+      <span>Independent · Licensed in Malaysia</span>
+    </div>
+  </footer>
+</BaseLayout>

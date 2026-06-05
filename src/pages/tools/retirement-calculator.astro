@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RetirementCalculator from '../../components/RetirementCalculator.jsx';
+---
+<BaseLayout
+  title="Retirement Calculator — BBBwealth"
+  description="Plan smarter, retire better. Calculate your retirement gap with EPF, salary growth, inflation, and investment return assumptions."
+>
+  <nav>
+    <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+      <img src="/images/logo.png" alt="BBBwealth" class="logo-img" />
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a href="/#planning">Planning</a>
+      <a href="/#wealth">Wealth</a>
+      <a href="/#team">Team</a>
+      <button class="nav-cta" onclick="openWhatsApp()">Book consultation</button>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+
+  <main style="padding-top:80px;">
+    <RetirementCalculator client:load />
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/images/logo-white.png" alt="BBBwealth" class="logo-img" />
+        <p>An independent Malaysian financial advisory practice. Planning, wealth management, and HRD-claimable corporate training — under one roof.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="/#planning">Financial Planning</a></li>
+          <li><a href="/#wealth">Wealth Management</a></li>
+          <li><a href="/#training">Corporate Training</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tools</h5>
+        <ul>
+          <li><a href="/tools/retirement-calculator">Retirement Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/#team">Our team</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BBBwealth. All rights reserved.</span>
+      <span>Independent · Licensed in Malaysia</span>
+    </div>
+  </footer>
+</BaseLayout>
