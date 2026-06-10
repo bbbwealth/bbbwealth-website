@@ -714,149 +714,296 @@
 
   /* ---------- RETIREMENT CALCULATOR ---------- */
   .retire{background:var(--paper);}
-  .retire-grid{
-    display:grid;
-    grid-template-columns:1fr 1.15fr;
-    gap:24px;
-    align-items:stretch;
-  }
-  .retire-form{
-    background:var(--cream);
-    border:1px solid var(--gray-200);
-    border-radius:24px;
-    padding:36px 32px;
-  }
-  .retire-fields{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px 16px;
-    margin-top:24px;
-  }
-  .retire-field.full{grid-column:1 / -1;}
-  .retire-field label{
-    display:block;
-    font-size:12px;
-    font-weight:600;
-    color:var(--ink-soft);
-    margin-bottom:7px;
-  }
-  .input-wrap{
-    display:flex;
-    align-items:center;
-    background:#fff;
-    border:1px solid var(--gray-200);
-    border-radius:12px;
-    transition:border-color .25s, box-shadow .25s;
-  }
-  .input-wrap:focus-within{
-    border-color:var(--navy);
-    box-shadow:0 0 0 3px rgba(30,58,111,.10);
-  }
-  .input-wrap .affix{
-    padding-left:14px;
-    font-size:13px;
-    font-weight:600;
-    color:var(--ink-soft);
-    white-space:nowrap;
-  }
-  .input-wrap .affix.suffix{padding:0 14px 0 0;}
-  .input-wrap input{
-    flex:1;
-    width:100%;
-    min-width:0;
-    border:none;
-    background:none;
-    padding:12px 14px;
-    font:inherit;
-    font-size:15px;
-    font-weight:600;
-    color:var(--ink);
-  }
-  .input-wrap input:focus{outline:none;}
-  .retire-results{
-    background:var(--navy);
-    border-radius:24px;
-    padding:36px 32px;
-    color:#fff;
-    position:relative;
+  .rc-card{
+    border-radius:20px;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    gap:22px;
+    border:1px solid var(--gray-200);
+    box-shadow:0 16px 48px rgba(20,42,85,.14);
   }
-  .retire-results::before{
-    content:'';
-    position:absolute;
-    top:-120px;right:-120px;
-    width:380px;height:380px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(245,184,0,0.14), transparent 70%);
+  .rc-card-head{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy), var(--navy-deep));
+    padding:20px 28px;
+    display:flex;align-items:center;gap:12px;
   }
-  .retire-results > *{position:relative;z-index:2;}
-  .retire-status{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:7px 16px;
-    border-radius:999px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    width:fit-content;
+  .rc-head-icon{
+    width:32px;height:32px;border-radius:8px;
+    background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--yellow);
   }
-  .retire-status.ok{
-    background:rgba(61,220,151,0.14);
-    color:#5ee8ab;
-    border:1px solid rgba(61,220,151,0.4);
+  .rc-card-head h3{color:#fff;font-size:16px;font-weight:800;}
+  .rc-card-body{background:#fff;padding:28px;}
+  .rc-sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+  .rc-sec-icon{
+    width:36px;height:36px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg, var(--yellow), var(--yellow-bright));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);
   }
-  .retire-status.short{
-    background:rgba(255,107,107,0.12);
-    color:#ff9a9a;
-    border:1px solid rgba(255,107,107,0.4);
-  }
-  .retire-stats{
+  .rc-sec-head .t{font-weight:800;color:var(--navy-deep);font-size:15px;}
+  .rc-sec-head .s{font-size:11px;color:var(--ink-soft);}
+  .rc-fields{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
     gap:20px 24px;
+    margin-bottom:28px;
   }
-  .retire-stat .stat-label{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:0.14em;
-    font-weight:600;
-    color:rgba(255,255,255,.55);
+  .rc-field label{
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;font-weight:700;
+    color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:0.08em;
     margin-bottom:6px;
   }
-  .retire-stat .stat-val{
-    font-size:clamp(20px, 2.2vw, 28px);
-    font-weight:700;
-    letter-spacing:-0.02em;
+  .rc-input-wrap{position:relative;}
+  .rc-affix{
+    position:absolute;top:50%;transform:translateY(-50%);
+    font-size:13px;font-weight:700;color:var(--ink-soft);
+    pointer-events:none;
   }
-  .retire-stat .stat-val.yellow{color:var(--yellow);}
-  .retire-stat .stat-sub{
-    font-size:12px;
-    color:rgba(255,255,255,.5);
-    margin-top:3px;
+  .rc-affix.pre{left:12px;}
+  .rc-affix.suf{right:12px;}
+  .rc-input{
+    width:100%;height:44px;
+    border:2px solid var(--gray-200);
+    border-radius:10px;
+    font:inherit;font-size:14px;font-weight:700;
+    color:var(--ink);
+    padding:0 12px;
+    background:#fff;
+    outline:none;
+    transition:border-color .15s;
   }
-  .retire-chart{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:16px;
-    padding:18px 16px 12px;
+  .rc-input.has-pre{padding-left:38px;}
+  .rc-input.has-suf{padding-right:48px;}
+  .rc-input:hover:not(:disabled){border-color:var(--yellow);}
+  .rc-input:focus{border-color:var(--navy);}
+  .rc-input:disabled{background:var(--gray-100);color:#8a93a8;}
+  .rc-select{
+    width:100%;height:44px;
+    padding:0 36px 0 12px;
+    border:2px solid var(--gray-200);
+    border-radius:10px;
+    font:inherit;font-size:13px;font-weight:700;
+    color:var(--ink);background:#fff;cursor:pointer;
+    -webkit-appearance:none;appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%234a5468' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    outline:none;
   }
-  .retire-chart svg{display:block;width:100%;height:auto;}
-  .retire-legend{
-    display:flex;
-    flex-wrap:wrap;
-    gap:18px;
-    margin-top:10px;
-    font-size:11px;
-    color:rgba(255,255,255,.6);
+  .rc-select:hover{border-color:var(--yellow);}
+  .rc-range{
+    width:100%;margin-top:8px;height:4px;cursor:pointer;
+    -webkit-appearance:none;appearance:none;
+    background:var(--gray-200);border-radius:4px;
   }
-  .retire-legend span{display:inline-flex;align-items:center;gap:6px;}
-  .retire-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
-  .retire-note{font-size:13px;color:rgba(255,255,255,.7);}
+  .rc-range::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:16px;height:16px;border-radius:50%;
+    background:var(--yellow);cursor:pointer;
+    border:2px solid #fff;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+  }
+  .rc-range::-moz-range-thumb{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--yellow);cursor:pointer;
+    border:2px solid #fff;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+  }
+  .rc-hint{font-size:10px;color:var(--ink-soft);margin-top:5px;}
+  .rc-rate-bar{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy-soft));
+    border-radius:12px;
+    padding:14px 20px;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    margin-bottom:28px;
+    color:rgba(255,255,255,.7);
+    font-size:13px;
+  }
+  .rc-rate-bar .ic{color:var(--yellow);display:flex;}
+  .rc-rate-bar b{color:var(--yellow);font-size:15px;font-weight:800;}
+  .rc-rate-bar .sep{color:rgba(255,255,255,.45);font-weight:800;font-size:15px;}
+  .rc-hr{border:none;border-top:1px solid var(--gray-100);margin-bottom:28px;}
+  .rc-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .rc-calc-btn{
+    flex:1 1 220px;height:52px;
+    border-radius:12px;border:none;cursor:pointer;
+    background:linear-gradient(135deg, var(--yellow), var(--yellow-bright));
+    color:var(--navy-deep);font-weight:800;font-size:15px;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    box-shadow:0 4px 20px rgba(245,184,0,.35);
+    transition:transform .1s, box-shadow .1s;
+  }
+  .rc-calc-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,184,0,.45);}
+  .rc-reset-btn{
+    height:52px;padding:0 24px;
+    border-radius:12px;border:2px solid var(--gray-200);cursor:pointer;
+    background:#fff;color:var(--ink-soft);
+    font-weight:700;font-size:14px;font-family:inherit;
+    display:flex;align-items:center;gap:8px;
+    transition:border-color .15s;
+  }
+  .rc-reset-btn:hover{border-color:var(--yellow);}
+  .rc-form-error{font-size:12px;font-weight:600;color:#ef4444;margin-top:12px;display:none;}
+
+  /* Results */
+  #rcResults{display:none;margin-top:40px;flex-direction:column;gap:24px;}
+  #rcResults.show{display:flex;animation:rcFade .5s ease;}
+  @keyframes rcFade{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+  @keyframes rcBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+  .rc-hint-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--yellow-soft);
+    border:1px solid #f3e0a3;
+    border-radius:20px;padding:8px 20px;
+    font-size:12px;color:#8f7030;font-weight:700;
+  }
+  .rc-bounce{display:inline-flex;animation:rcBounce 1.5s infinite;color:var(--yellow);}
+  .rc-snapshot{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy), var(--navy-deep));
+    border-radius:20px;padding:28px;
+    box-shadow:0 16px 48px rgba(20,42,85,.25);
+    color:#fff;
+  }
+  .rc-snap-eyebrow{font-size:11px;color:var(--yellow);font-weight:800;text-transform:uppercase;letter-spacing:0.15em;}
+  .rc-snap-sub{font-size:13px;color:rgba(255,255,255,.55);margin-top:4px;}
+  .rc-snap-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .rc-snap-stat{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;padding:18px 14px;text-align:center;
+  }
+  .rc-snap-stat .l{font-size:10px;color:rgba(255,255,255,.6);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+  .rc-snap-stat .v{font-size:clamp(16px, 3vw, 26px);font-weight:900;}
+  .rc-snap-stat .s{font-size:10px;color:rgba(255,255,255,.5);margin-top:4px;}
+  .rc-progress-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.6);margin-bottom:6px;}
+  .rc-progress{height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+  .rc-progress i{display:block;height:100%;background:linear-gradient(90deg, var(--yellow), var(--yellow-bright));border-radius:10px;transition:width .8s ease;}
+  .rc-wcard{
+    background:#fff;border-radius:16px;padding:24px;
+    box-shadow:0 8px 30px rgba(20,42,85,.10);
+    border:1px solid var(--gray-100);
+  }
+  .rc-wcard-head{
+    display:flex;align-items:center;gap:10px;margin-bottom:20px;
+    font-weight:800;color:var(--navy-deep);font-size:15px;
+  }
+  .rc-wcard-head .ic{color:var(--yellow);display:flex;}
+  .rc-chart-wrap{position:relative;overflow-x:auto;}
+  .rc-tooltip{
+    position:absolute;top:20px;right:20px;
+    background:var(--navy-deep);color:#fff;
+    border-radius:10px;padding:10px 14px;
+    font-size:11px;line-height:1.7;
+    pointer-events:none;min-width:160px;
+    box-shadow:0 4px 20px rgba(0,0,0,.3);
+    display:none;
+  }
+  .rc-legend{display:flex;gap:20px;justify-content:center;margin-top:12px;flex-wrap:wrap;font-size:11px;color:var(--ink-soft);}
+  .rc-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .rc-step-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:20px;}
+  .rc-step-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:800;color:var(--navy-deep);font-size:14px;}
+  .rc-step-num{
+    width:28px;height:28px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:900;
+  }
+  .rc-step-big{border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+  .rc-step-big .t{font-size:11px;font-weight:700;margin-bottom:4px;}
+  .rc-step-big .v{font-size:24px;font-weight:900;color:var(--navy-deep);}
+  .rc-step-big .v small{font-size:12px;font-weight:600;color:var(--ink-soft);}
+  .rc-mini-row{display:flex;gap:12px;}
+  .rc-mini{flex:1;background:var(--gray-100);border-radius:8px;padding:10px 12px;}
+  .rc-mini .t{font-size:10px;color:var(--ink-soft);font-weight:700;}
+  .rc-mini .v{font-weight:800;color:var(--navy-deep);}
+  .rc-mini .v.sm{font-size:12px;}
+  .rc-step-quote{font-size:11px;color:var(--ink-soft);font-style:italic;margin-top:12px;}
+  .rc-bar{display:flex;height:36px;border-radius:8px;overflow:hidden;gap:2px;}
+  .rc-bar > div{display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .rc-bar span{font-size:10px;color:#fff;font-weight:700;white-space:nowrap;}
+  .rc-bar-legend{display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;font-size:11px;color:var(--ink-soft);}
+  .rc-bar-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .rc-bar-legend i{width:10px;height:10px;border-radius:2px;display:inline-block;}
+  .rc-gap-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+  .rc-gap-stat{background:var(--gray-100);border-radius:10px;padding:10px 12px;}
+  .rc-gap-stat .t{font-size:10px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;}
+  .rc-gap-stat .v{font-size:13px;font-weight:800;color:var(--navy-deep);margin-top:2px;}
+  .rc-gap-callout{margin-top:20px;border-radius:12px;padding:16px 20px;}
+  .rc-gap-callout.short{background:#fff5f5;border:1px solid #fecaca;}
+  .rc-gap-callout.short .t{font-size:12px;color:#ef4444;font-weight:700;margin-bottom:4px;}
+  .rc-gap-callout.short .v{font-size:28px;font-weight:900;color:var(--navy-deep);}
+  .rc-gap-callout.short .v small{font-size:13px;font-weight:600;color:var(--ink-soft);}
+  .rc-gap-callout.short .s{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  .rc-gap-callout.ok{background:#f0fdf4;border:1px solid #bbf7d0;display:flex;align-items:center;gap:12px;color:#4ade80;}
+  .rc-gap-callout.ok .t{font-weight:800;color:#166534;}
+  .rc-gap-callout.ok .s{font-size:12px;color:#16a34a;}
+  .rc-lever-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:20px;}
+  .rc-lever{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy));
+    border-radius:16px;padding:20px 18px;
+  }
+  .rc-lever-icon{
+    width:40px;height:40px;border-radius:50%;
+    border:2px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--yellow);margin-bottom:14px;
+  }
+  .rc-lever .t{font-weight:800;color:#fff;font-size:14px;margin-bottom:8px;}
+  .rc-lever p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:16px;}
+  .rc-lever-btn{
+    width:100%;padding:10px 0;
+    border-radius:8px;border:1px solid var(--yellow);
+    background:transparent;color:var(--yellow);
+    font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;
+    transition:background .15s;
+  }
+  .rc-lever-btn:hover{background:rgba(245,184,0,.12);}
+  .rc-lever-info{
+    background:rgba(255,255,255,.05);border-radius:8px;
+    padding:10px 12px;font-size:11px;color:rgba(255,255,255,.7);line-height:1.5;
+  }
+  .rc-strategy-foot{
+    margin-top:20px;border-top:2px solid var(--yellow);padding-top:16px;
+    text-align:center;font-size:12px;color:var(--ink-soft);font-style:italic;
+  }
+  .rc-plan-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:16px;}
+  .rc-plan-card{
+    background:#fff;border-radius:14px;padding:18px 16px;
+    box-shadow:0 4px 12px rgba(20,42,85,.06);
+    transition:transform .15s;
+  }
+  .rc-plan-card:hover{transform:translateY(-2px);}
+  .rc-plan-card .n{
+    width:32px;height:32px;border-radius:10px;
+    background:var(--navy-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:900;color:var(--yellow);
+    margin-bottom:12px;
+  }
+  .rc-plan-card .t{font-weight:800;color:var(--navy-deep);font-size:13px;margin-bottom:6px;}
+  .rc-plan-card p{font-size:11px;color:var(--ink-soft);line-height:1.6;}
+  .rc-quote{
+    text-align:center;font-size:14px;color:var(--ink-soft);
+    font-style:italic;max-width:500px;margin:0 auto;line-height:1.7;
+  }
+  .rc-contact{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy));
+    border-radius:20px;padding:28px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:24px;flex-wrap:wrap;
+  }
+  .rc-contact .e{font-size:11px;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;}
+  .rc-contact .n{font-size:20px;font-weight:900;color:#fff;}
+  .rc-contact .c{font-size:12px;color:rgba(255,255,255,.6);}
+  .rc-contact-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .rc-contact-actions a{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:10px;
+    text-decoration:none;font-weight:700;font-size:13px;
+  }
+  .rc-contact-actions a.wa{background:#22c55e;color:#fff;}
+  .rc-contact-actions a.tel{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);}
   .retire-disclaimer{
     margin-top:28px;
     font-size:12px;
@@ -1245,7 +1392,6 @@
     .plan.featured{transform:none;}
     .plan.featured:hover{transform:translateY(-6px);}
     .wealth-grid{grid-template-columns:repeat(2,1fr);}
-    .retire-grid{grid-template-columns:1fr;}
     .training-grid{grid-template-columns:1fr;}
     .team-grid{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr; gap:40px;}
@@ -1280,8 +1426,9 @@
     .hero-card.float{width:240px;}
     .hero-card.float-2{width:180px;}
     .about-stats{grid-template-columns:1fr 1fr;}
-    .retire-form,.retire-results{padding:26px 20px;}
-    .retire-fields{gap:14px 12px;}
+    .rc-card-body{padding:20px 16px;}
+    .rc-snap-stats{grid-template-columns:1fr;}
+    .rc-gap-stats{grid-template-columns:1fr 1fr;}
     .training-body{padding:24px;}
     footer{padding:60px 20px 24px;}
     .cta{padding:90px 20px;}
@@ -1679,118 +1826,57 @@
   <div class="section-header reveal">
     <div>
       <span class="section-num">05 / Retirement calculator</span>
-      <h2 class="display">Will your money <span class="y">outlast</span> you?</h2>
+      <h2 class="display">How much do you need to <span class="y">retire?</span></h2>
     </div>
-    <p>Most people guess. Run your real numbers — savings, EPF, returns, inflation — and see in seconds whether you're on track, or what it takes to get there.</p>
+    <p>Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
   </div>
 
-  <div class="retire-grid reveal">
-    <form class="retire-form" id="retireForm" onsubmit="return false;">
-      <span class="label">Your numbers</span>
-      <div class="retire-fields">
-        <div class="retire-field">
-          <label for="rcAge">Current age</label>
-          <div class="input-wrap">
-            <input type="number" id="rcAge" value="30" min="18" max="80" inputmode="numeric">
-            <span class="affix suffix">yrs</span>
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcRetireAge">Retirement age</label>
-          <div class="input-wrap">
-            <input type="number" id="rcRetireAge" value="60" min="35" max="90" inputmode="numeric">
-            <span class="affix suffix">yrs</span>
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcLifeExp">Plan until age</label>
-          <div class="input-wrap">
-            <input type="number" id="rcLifeExp" value="85" min="50" max="110" inputmode="numeric">
-            <span class="affix suffix">yrs</span>
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcInflation">Inflation rate</label>
-          <div class="input-wrap">
-            <input type="number" id="rcInflation" value="3" min="0" max="15" step="0.1" inputmode="decimal">
-            <span class="affix suffix">% p.a.</span>
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcSavings">Current savings (EPF + investments)</label>
-          <div class="input-wrap">
-            <span class="affix">RM</span>
-            <input type="number" id="rcSavings" value="50000" min="0" step="1000" inputmode="numeric">
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcMonthly">Monthly savings &amp; contributions</label>
-          <div class="input-wrap">
-            <span class="affix">RM</span>
-            <input type="number" id="rcMonthly" value="1000" min="0" step="100" inputmode="numeric">
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcReturnPre">Return before retirement</label>
-          <div class="input-wrap">
-            <input type="number" id="rcReturnPre" value="6" min="0" max="20" step="0.1" inputmode="decimal">
-            <span class="affix suffix">% p.a.</span>
-          </div>
-        </div>
-        <div class="retire-field">
-          <label for="rcReturnPost">Return after retirement</label>
-          <div class="input-wrap">
-            <input type="number" id="rcReturnPost" value="4" min="0" max="20" step="0.1" inputmode="decimal">
-            <span class="affix suffix">% p.a.</span>
-          </div>
-        </div>
-        <div class="retire-field full">
-          <label for="rcIncome">Desired monthly retirement income (in today's ringgit)</label>
-          <div class="input-wrap">
-            <span class="affix">RM</span>
-            <input type="number" id="rcIncome" value="5000" min="0" step="100" inputmode="numeric">
-          </div>
-        </div>
-      </div>
-    </form>
+  <div class="rc-card reveal">
+    <div class="rc-card-head">
+      <div class="rc-head-icon" data-rc-icon="wallet"></div>
+      <h3>Your Financial Profile</h3>
+    </div>
+    <div class="rc-card-body">
 
-    <div class="retire-results">
-      <div class="retire-status ok" id="rcStatus">On track</div>
-      <div class="retire-stats">
-        <div class="retire-stat">
-          <div class="stat-label">You'll need at retirement</div>
-          <div class="stat-val yellow" id="rcRequired">RM 0</div>
-          <div class="stat-sub" id="rcRequiredSub">to fund your income goal</div>
-        </div>
-        <div class="retire-stat">
-          <div class="stat-label">You're projected to have</div>
-          <div class="stat-val" id="rcProjected">RM 0</div>
-          <div class="stat-sub" id="rcProjectedSub">at retirement</div>
-        </div>
-        <div class="retire-stat">
-          <div class="stat-label" id="rcGapLabel">Surplus</div>
-          <div class="stat-val" id="rcGap">RM 0</div>
-        </div>
-        <div class="retire-stat">
-          <div class="stat-label">Extra savings needed</div>
-          <div class="stat-val" id="rcExtra">—</div>
-          <div class="stat-sub">per month, to close the gap</div>
-        </div>
+      <div class="rc-sec-head">
+        <div class="rc-sec-icon" data-rc-icon="user"></div>
+        <div><div class="t">Personal Information</div><div class="s">Tell us about yourself</div></div>
       </div>
-      <div class="retire-chart">
-        <div id="rcChart"></div>
-        <div class="retire-legend">
-          <span><i style="background:var(--yellow);"></i> Projected balance</span>
-          <span><i style="background:rgba(255,255,255,.5);"></i> Amount needed at retirement</span>
-        </div>
+      <div class="rc-fields" id="rcFieldsA"></div>
+
+      <hr class="rc-hr">
+
+      <div class="rc-sec-head">
+        <div class="rc-sec-icon" data-rc-icon="briefcase"></div>
+        <div><div class="t">Employment &amp; EPF Setup</div><div class="s">Configure your EPF contribution structure</div></div>
       </div>
-      <p class="retire-note" id="rcNote"></p>
-      <button class="btn-primary btn-yellow" onclick="openWhatsApp()" style="align-self:flex-start;">Review my plan with an advisor <span class="arrow">→</span></button>
+      <div class="rc-fields" id="rcFieldsB"></div>
+      <div class="rc-rate-bar">
+        <span class="ic" data-rc-icon="piggy"></span>
+        <span>Total EPF Contribution Rate:</span>
+        <span id="rcRateBar"></span>
+      </div>
+
+      <hr class="rc-hr">
+
+      <div class="rc-sec-head">
+        <div class="rc-sec-icon" data-rc-icon="percent"></div>
+        <div><div class="t">Assumptions &amp; Goals</div><div class="s">Fine-tune your retirement projections</div></div>
+      </div>
+      <div class="rc-fields" id="rcFieldsC"></div>
+
+      <div class="rc-actions">
+        <button class="rc-calc-btn" id="rcCalcBtn"><span data-rc-icon="calc"></span> Calculate My Retirement Gap</button>
+        <button class="rc-reset-btn" id="rcResetBtn"><span data-rc-icon="reset"></span> Reset</button>
+      </div>
+      <p class="rc-form-error" id="rcFormError">Retirement age must be greater than your current age.</p>
     </div>
   </div>
+
+  <div id="rcResults"></div>
 
   <p class="retire-disclaimer reveal">
-    This calculator gives a simplified projection for educational purposes only — it assumes steady returns, constant inflation, and consistent savings, and does not account for taxes, fees, or market volatility. It is not financial advice. For a plan built around your actual circumstances, speak with our licensed advisors.
+    This calculator is for illustrative purposes only. It does not constitute financial advice. Past returns do not guarantee future results. Please consult a licensed financial advisor before making any investment decisions.
   </p>
 </section>
 
@@ -1968,115 +2054,477 @@
     el.addEventListener('click', ()=> navLinks.classList.remove('open'));
   });
 
-  // ---------- Retirement calculator ----------
-  function rcVal(id){ return parseFloat(document.getElementById(id).value) || 0; }
-  function fmtRM(v){ return 'RM ' + Math.round(v).toLocaleString('en-MY'); }
+  // ---------- Retirement calculator (ported from bbbwealth-retirement-calculator) ----------
+  const RC_DEFAULTS = {
+    currentAge: 30, retirementAge: 55, monthlySalary: 7000, salaryGrowth: 5,
+    currentEpf: 100000, currentSavings: 150000, desiredMonthlyIncome: 6000,
+    inflationRate: 4, epfReturnRate: 5.3, epfContributionRate: 23,
+    investmentReturnRate: 8, withdrawalRate: 4, employmentType: 'employed',
+    employeeEpfRate: 11, employerEpfRate: 12,
+  };
+  let rcInputs = Object.assign({}, RC_DEFAULTS);
 
-  function calcRetirement(){
-    const age       = rcVal('rcAge');
-    const retireAge = Math.max(rcVal('rcRetireAge'), age);
-    const lifeExp   = Math.max(rcVal('rcLifeExp'), retireAge + 1);
-    const savings   = rcVal('rcSavings');
-    const monthly   = rcVal('rcMonthly');
-    const retPre    = rcVal('rcReturnPre') / 100;
-    const retPost   = rcVal('rcReturnPost') / 100;
-    const inf       = rcVal('rcInflation') / 100;
-    const incomeNow = rcVal('rcIncome');
+  const RC_ICON_PATHS = {
+    clock: '<path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM12 6v6l4 2"/>',
+    target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+    wallet: '<path d="M21 12V7H5a2 2 0 0 1 0-4h14v4M21 12a2 2 0 0 1 0 4H5a2 2 0 0 1 0-4h16v4"/>',
+    trending: '<path d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6"/>',
+    piggy: '<path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.3-5.9-1.5-8 0-2.8-1-5 0-5 3 0 2 1 4 3 4.5V15a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2.5c1-.5 2-1.5 2-3.5 0-2-1-3-2-4z"/>',
+    chart: '<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',
+    calc: '<path d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM8 10h8M8 14h4M8 6h8"/>',
+    briefcase: '<path d="M20 7H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
+    user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+    percent: '<line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
+    sparkles: '<path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5zM19 1l.75 2.25L22 4l-2.25.75L19 7l-.75-2.25L16 4l2.25-.75zM4 17l.75 2.25L7 20l-2.25.75L4 23l-.75-2.25L1 20l2.25-.75z"/>',
+    alert: '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/>',
+    check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+    dollar: '<circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/>',
+    down: '<path d="M12 5v14M5 12l7 7 7-7"/>',
+    reset: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5"/>',
+    message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.1 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/>',
+  };
+  function rcIcon(name, size){
+    size = size || 12;
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (RC_ICON_PATHS[name] || '') + '</svg>';
+  }
 
-    const yearsToRetire = retireAge - age;
-    const yearsRetired  = lifeExp - retireAge;
-    const n = Math.round(yearsToRetire * 12);
-    const i = retPre / 12;
+  const rcFmt = n => {
+    if (n === undefined || n === null || isNaN(n)) return '0';
+    if (Math.abs(n) >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+    if (Math.abs(n) >= 1e3) return (n / 1e3).toFixed(0) + 'K';
+    return n.toFixed(0);
+  };
+  const rcRM = n => 'RM ' + Math.round(n || 0).toLocaleString('en-MY');
+  const rcNum = n => Math.round(n || 0).toLocaleString('en-MY');
 
-    // Projected savings at retirement (monthly compounding)
-    const growth = Math.pow(1 + i, n);
-    const projected = savings * growth + (i > 0 ? monthly * (growth - 1) / i : monthly * n);
+  const RC_FIELDS = {
+    currentAge:           {label:'Current Age', icon:'clock', min:18, max:70, step:1, suffix:'yrs'},
+    retirementAge:        {label:'Retirement Age', icon:'target', min:45, max:80, step:1, suffix:'yrs'},
+    monthlySalary:        {label:'Monthly Salary RM', icon:'wallet', min:1000, max:50000, step:100, prefix:'RM'},
+    salaryGrowth:         {label:'Salary Growth / Year %', icon:'trending', min:0, max:20, step:0.5, suffix:'%'},
+    currentEpf:           {label:'Current EPF Balance RM', icon:'piggy', min:0, max:2000000, step:1000, prefix:'RM'},
+    currentSavings:       {label:'Other Savings / Investments RM', icon:'chart', min:0, max:2000000, step:1000, prefix:'RM'},
+    employeeEpfRate:      {label:'Employee EPF Rate', icon:'percent', min:11, max:11, step:1, suffix:'%', disabled:true},
+    employerEpfRate:      {label:'Employer EPF Rate', icon:'briefcase', min:12, max:13, step:1, suffix:'%', hint:true},
+    epfContributionRate:  {label:'Voluntary EPF Contribution %', icon:'percent', min:0, max:100, step:1, suffix:'%'},
+    desiredMonthlyIncome: {label:'Desired Monthly Retirement Income RM', icon:'target', min:1000, max:50000, step:500, prefix:'RM'},
+    inflationRate:        {label:'Inflation Rate %', icon:'trending', min:0, max:10, step:0.1, suffix:'%'},
+    epfReturnRate:        {label:'EPF Annual Return %', icon:'piggy', min:0, max:10, step:0.1, suffix:'%'},
+    investmentReturnRate: {label:'Investment Return Rate %', icon:'chart', min:0, max:15, step:0.5, suffix:'%'},
+    withdrawalRate:       {label:'Withdrawal Rate (4% Rule) %', icon:'calc', min:2, max:6, step:0.5, suffix:'%'},
+  };
 
-    // Income goal in future ringgit, and the nest egg required to fund it
-    // (present value of an inflation-adjusted annuity over the retirement years)
-    const incomeAtRetire = incomeNow * Math.pow(1 + inf, yearsToRetire);
-    const realMonthly = Math.pow((1 + retPost) / (1 + inf), 1 / 12) - 1;
-    const m = Math.round(yearsRetired * 12);
-    const required = Math.abs(realMonthly) > 1e-9
-      ? incomeAtRetire * (1 - Math.pow(1 + realMonthly, -m)) / realMonthly
-      : incomeAtRetire * m;
+  function rcDisplay(key){
+    const c = RC_FIELDS[key];
+    if (c.disabled) return rcInputs[key] + '% — Fixed';
+    return c.prefix ? rcNum(rcInputs[key]) : String(rcInputs[key]);
+  }
 
-    const gap = projected - required;
-    const extra = (gap < 0 && n > 0)
-      ? -gap * (i > 0 ? i / (growth - 1) : 1 / n)
+  function rcFieldHTML(key){
+    const c = RC_FIELDS[key];
+    let h = '<div class="rc-field" data-key="' + key + '"><label>' + rcIcon(c.icon) + ' ' + c.label + '</label><div class="rc-input-wrap">';
+    if (c.prefix) h += '<span class="rc-affix pre">' + c.prefix + '</span>';
+    h += '<input type="text" class="rc-input' + (c.prefix ? ' has-pre' : '') + (c.suffix ? ' has-suf' : '') + '"' + (c.disabled ? ' disabled' : '') + ' value="' + rcDisplay(key) + '" inputmode="decimal">';
+    if (c.suffix) h += '<span class="rc-affix suf">' + c.suffix + '</span>';
+    h += '</div>';
+    if (!c.disabled) h += '<input type="range" class="rc-range" min="' + c.min + '" max="' + c.max + '" step="' + c.step + '" value="' + rcInputs[key] + '">';
+    if (key === 'employerEpfRate') h += '<p class="rc-hint" id="rcEmployerHint"></p>';
+    h += '</div>';
+    return h;
+  }
+
+  function rcSyncField(key){
+    const f = document.querySelector('.rc-field[data-key="' + key + '"]');
+    if (!f) return;
+    f.querySelector('.rc-input').value = rcDisplay(key);
+    const r = f.querySelector('.rc-range');
+    if (r) r.value = rcInputs[key];
+  }
+
+  function rcSet(key, val){
+    rcInputs[key] = val;
+    if (key === 'monthlySalary' && rcInputs.employmentType === 'employed'){
+      rcInputs.employerEpfRate = val < 5000 ? 13 : 12;
+      rcSyncField('employerEpfRate');
+      rcUpdateEmployerHint();
+    }
+    rcUpdateRateBar();
+  }
+
+  function rcWireFields(root){
+    root.querySelectorAll('.rc-field').forEach(f => {
+      const key = f.dataset.key, c = RC_FIELDS[key];
+      if (!c || c.disabled) return;
+      const input = f.querySelector('.rc-input');
+      const range = f.querySelector('.rc-range');
+      let editing = false;
+      input.addEventListener('focus', () => {
+        editing = true;
+        input.value = String(rcInputs[key]);
+        setTimeout(() => input.select(), 0);
+      });
+      input.addEventListener('blur', () => {
+        if (!editing) return;
+        editing = false;
+        const num = parseFloat(String(input.value).replace(/,/g, ''));
+        if (!isNaN(num)){
+          const clamped = Math.min(c.max, Math.max(c.min, num));
+          rcSet(key, parseFloat((Math.round(clamped / c.step) * c.step).toFixed(10)));
+        }
+        rcSyncField(key);
+      });
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') input.blur(); });
+      if (range) range.addEventListener('input', () => {
+        editing = false;
+        rcSet(key, parseFloat(range.value));
+        input.value = rcDisplay(key);
+      });
+    });
+  }
+
+  function rcUpdateEmployerHint(){
+    const el = document.getElementById('rcEmployerHint');
+    if (el) el.textContent = rcInputs.monthlySalary < 5000
+      ? '13% applies (salary < RM 5,000)'
+      : '12% applies (salary ≥ RM 5,000). Adjust if needed.';
+  }
+
+  function rcUpdateRateBar(){
+    const el = document.getElementById('rcRateBar');
+    if (!el) return;
+    el.innerHTML = rcInputs.employmentType === 'employed'
+      ? '<b>' + rcInputs.employeeEpfRate + '%</b><span class="sep"> + </span><b>' + rcInputs.employerEpfRate + '%</b><span class="sep"> = </span><b>' + (rcInputs.employeeEpfRate + rcInputs.employerEpfRate) + '%</b>'
+      : '<b>' + rcInputs.epfContributionRate + '% (Voluntary)</b>';
+  }
+
+  function rcRenderEmployment(){
+    const wrap = document.getElementById('rcFieldsB');
+    let h = '<div class="rc-field"><label>' + rcIcon('briefcase') + ' Employment Type</label>'
+      + '<select id="rcEmpType" class="rc-select">'
+      + '<option value="employed"' + (rcInputs.employmentType === 'employed' ? ' selected' : '') + '>Employed (Employee + Employer)</option>'
+      + '<option value="freelancer"' + (rcInputs.employmentType === 'freelancer' ? ' selected' : '') + '>Freelancer / Self-Employed</option>'
+      + '</select></div>';
+    h += rcInputs.employmentType === 'employed'
+      ? rcFieldHTML('employeeEpfRate') + rcFieldHTML('employerEpfRate')
+      : rcFieldHTML('epfContributionRate');
+    wrap.innerHTML = h;
+    rcWireFields(wrap);
+    document.getElementById('rcEmpType').addEventListener('change', e => {
+      rcInputs.employmentType = e.target.value;
+      if (e.target.value === 'employed') rcInputs.employerEpfRate = rcInputs.monthlySalary < 5000 ? 13 : 12;
+      rcRenderEmployment();
+    });
+    rcUpdateEmployerHint();
+    rcUpdateRateBar();
+  }
+
+  function rcCalc(inp){
+    const n = inp.retirementAge - inp.currentAge;
+    if (n <= 0) return null;
+
+    const inflationMultiplier = Math.pow(1 + inp.inflationRate / 100, n);
+    const futureMonthlyNeed = inp.desiredMonthlyIncome * inflationMultiplier;
+    const purchasingPowerLoss = (1 - 1 / inflationMultiplier) * 100;
+
+    const annualNeedAtRetirement = futureMonthlyNeed * 12;
+    const totalCorpusNeeded = annualNeedAtRetirement / (inp.withdrawalRate / 100);
+
+    const effRate = inp.employmentType === 'employed'
+      ? inp.employeeEpfRate + inp.employerEpfRate
+      : inp.epfContributionRate;
+    const r = inp.epfReturnRate / 100, g = inp.salaryGrowth / 100;
+    const annualContribution = inp.monthlySalary * 12 * (effRate / 100);
+    // FV of EPF contributions on a salary growing at g, compounding at r
+    const contrFV = yr => {
+      if (yr === 0) return 0;
+      if (Math.abs(r - g) < 0.0001) return annualContribution * yr * Math.pow(1 + r, yr - 1);
+      return annualContribution * (Math.pow(1 + r, yr) - Math.pow(1 + g, yr)) / (r - g);
+    };
+    const epfBalanceFV = inp.currentEpf * Math.pow(1 + r, n);
+    const epfContributionsFV = contrFV(n);
+    const totalEpfAtRetirement = epfBalanceFV + epfContributionsFV;
+    const otherSavingsFV = inp.currentSavings * Math.pow(1 + inp.investmentReturnRate / 100, n);
+    const totalProjectedAssets = totalEpfAtRetirement + otherSavingsFV;
+
+    const gap = Math.max(0, totalCorpusNeeded - totalProjectedAssets);
+    const gapPercentage = gap / totalCorpusNeeded * 100;
+    const fundedPercentage = Math.min(100, totalProjectedAssets / totalCorpusNeeded * 100);
+
+    const mr = inp.investmentReturnRate / 100 / 12, months = n * 12;
+    const monthlyInvestmentNeeded = gap > 0
+      ? (mr > 0 ? gap * mr / (Math.pow(1 + mr, months) - 1) : gap / months)
       : 0;
 
-    // Year-by-year balance: accumulate, then draw down an inflating income
-    const pts = [{age: age, bal: savings}];
-    let bal = savings, income = incomeAtRetire, depletedAge = null;
-    const totalMonths = Math.round((lifeExp - age) * 12);
-    for(let mo = 1; mo <= totalMonths; mo++){
-      if(mo <= n){
-        bal = bal * (1 + i) + monthly;
-      } else {
-        bal = bal * (1 + retPost / 12) - income;
-        income *= Math.pow(1 + inf, 1 / 12);
-        if(bal <= 0){
-          if(depletedAge === null) depletedAge = age + mo / 12;
-          bal = 0;
-        }
-      }
-      if(mo % 12 === 0) pts.push({age: age + mo / 12, bal: bal});
+    const timelineData = [];
+    for (let age = inp.currentAge; age <= inp.retirementAge; age += Math.max(1, Math.floor(n / 10))){
+      const yr = age - inp.currentAge;
+      const epfTotal = inp.currentEpf * Math.pow(1 + r, yr) + contrFV(yr);
+      const other = inp.currentSavings * Math.pow(1 + inp.investmentReturnRate / 100, yr);
+      timelineData.push({age, epfTotal, other, total: epfTotal + other, target: totalCorpusNeeded});
+    }
+    if (timelineData[timelineData.length - 1].age !== inp.retirementAge){
+      timelineData.push({age: inp.retirementAge, epfTotal: totalEpfAtRetirement, other: otherSavingsFV, total: totalProjectedAssets, target: totalCorpusNeeded});
     }
 
-    // Update results
-    const ok = gap >= 0;
-    const status = document.getElementById('rcStatus');
-    status.textContent = ok ? '● On track' : '● Shortfall';
-    status.className = 'retire-status ' + (ok ? 'ok' : 'short');
-    document.getElementById('rcRequired').textContent = fmtRM(required);
-    document.getElementById('rcRequiredSub').textContent =
-      fmtRM(incomeAtRetire) + '/mth from age ' + Math.round(retireAge) + ' to ' + Math.round(lifeExp);
-    document.getElementById('rcProjected').textContent = fmtRM(projected);
-    document.getElementById('rcProjectedSub').textContent = 'at age ' + Math.round(retireAge);
-    document.getElementById('rcGapLabel').textContent = ok ? 'Surplus' : 'Shortfall';
-    const gapEl = document.getElementById('rcGap');
-    gapEl.textContent = fmtRM(Math.abs(gap));
-    gapEl.style.color = ok ? '#5ee8ab' : '#ff9a9a';
-    document.getElementById('rcExtra').textContent = ok ? '—' : fmtRM(extra);
-    document.getElementById('rcNote').textContent = depletedAge
-      ? 'At this pace, your funds run out around age ' + Math.floor(depletedAge) + ' — ' +
-        Math.ceil(lifeExp - depletedAge) + ' year(s) earlier than planned.'
-      : 'At this pace, your funds are projected to last beyond age ' + Math.round(lifeExp) + '.';
-
-    drawRetireChart(pts, required, yearsToRetire);
+    return {
+      yearsToRetirement: n, inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
+      annualNeedAtRetirement, totalCorpusNeeded, epfBalanceFV, epfContributionsFV,
+      totalEpfAtRetirement, otherSavingsFV, totalProjectedAssets,
+      gap, gapPercentage, fundedPercentage, monthlyInvestmentNeeded, timelineData,
+    };
   }
 
-  function drawRetireChart(pts, required, retireIdx){
-    const W = 600, H = 230, T = 14, B = 26, L = 8, R = 8;
-    const maxV = Math.max(required, ...pts.map(p => p.bal)) * 1.08 || 1;
-    const x = k => L + (W - L - R) * k / Math.max(pts.length - 1, 1);
-    const y = v => T + (H - T - B) * (1 - v / maxV);
-    const line = pts.map((p, k) => (k ? 'L' : 'M') + x(k).toFixed(1) + ' ' + y(p.bal).toFixed(1)).join(' ');
-    const area = line + ' L' + x(pts.length - 1).toFixed(1) + ' ' + y(0).toFixed(1) +
-                 ' L' + x(0).toFixed(1) + ' ' + y(0).toFixed(1) + ' Z';
-    const rx = x(Math.min(retireIdx, pts.length - 1));
-    const ty = y(required);
-    const lastAge = Math.round(pts[pts.length - 1].age);
-    document.getElementById('rcChart').innerHTML =
-      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected retirement balance over time">' +
-        '<defs><linearGradient id="rcFill" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0%" stop-color="rgba(245,184,0,0.35)"/>' +
-          '<stop offset="100%" stop-color="rgba(245,184,0,0.02)"/>' +
-        '</linearGradient></defs>' +
-        '<line x1="' + L + '" y1="' + y(0) + '" x2="' + (W - R) + '" y2="' + y(0) + '" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
-        '<line x1="' + L + '" y1="' + ty.toFixed(1) + '" x2="' + (W - R) + '" y2="' + ty.toFixed(1) + '" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="5 5"/>' +
-        '<line x1="' + rx.toFixed(1) + '" y1="' + T + '" x2="' + rx.toFixed(1) + '" y2="' + y(0) + '" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="3 4"/>' +
-        '<path d="' + area + '" fill="url(#rcFill)"/>' +
-        '<path d="' + line + '" fill="none" stroke="#f5b800" stroke-width="2.5" stroke-linejoin="round"/>' +
-        '<text x="' + L + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.55)" font-size="11" font-family="Inter,sans-serif">Age ' + Math.round(pts[0].age) + '</text>' +
-        '<text x="' + rx.toFixed(1) + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.75)" font-size="11" font-family="Inter,sans-serif" text-anchor="middle">Retire ' + Math.round(pts[0].age + retireIdx) + '</text>' +
-        '<text x="' + (W - R) + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.55)" font-size="11" font-family="Inter,sans-serif" text-anchor="end">Age ' + lastAge + '</text>' +
-      '</svg>';
+  // Timeline chart geometry shared by render + hover
+  const RC_CHART = {W: 560, H: 260, PL: 60, PR: 20, PT: 20, PB: 40};
+  function rcChartScales(data){
+    const {W, H, PL, PR, PT, PB} = RC_CHART;
+    const iW = W - PL - PR, iH = H - PT - PB;
+    const maxVal = Math.max.apply(null, data.map(d => Math.max(d.total, d.target))) * 1.05 || 1;
+    return {
+      x: i => PL + (i / (data.length - 1)) * iW,
+      y: v => PT + iH - (v / maxVal) * iH,
+      iW, iH, maxVal,
+    };
   }
 
-  document.getElementById('retireForm').addEventListener('input', calcRetirement);
-  calcRetirement();
+  function rcChartHTML(data){
+    const {W, H, PL, PT} = RC_CHART;
+    const s = rcChartScales(data);
+    const path = acc => data.map((d, i) => (i === 0 ? 'M' : 'L') + s.x(i).toFixed(1) + ',' + s.y(acc(d)).toFixed(1)).join(' ');
+    const area = path(d => d.total) + ' L' + s.x(data.length - 1).toFixed(1) + ',' + (PT + s.iH) + ' L' + s.x(0) + ',' + (PT + s.iH) + ' Z';
+    let grid = '';
+    for (let i = 0; i <= 5; i++){
+      const v = s.maxVal / 5 * i, y = s.y(v).toFixed(1);
+      grid += '<line x1="' + PL + '" x2="' + (PL + s.iW) + '" y1="' + y + '" y2="' + y + '" stroke="#e3e7ef" stroke-width="0.5" stroke-dasharray="3,3"/>'
+        + '<text x="' + (PL - 6) + '" y="' + (parseFloat(y) + 4) + '" text-anchor="end" font-size="9" fill="#8a93a8">' + rcFmt(v) + '</text>';
+    }
+    const xlabels = data.map((d, i) => '<text x="' + s.x(i).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="10" fill="#4a5468">' + d.age + '</text>').join('');
+    return '<div class="rc-chart-wrap">'
+      + '<svg id="rcTimelineSvg" viewBox="0 0 ' + W + ' ' + H + '" style="display:block;min-width:320px;width:100%;">'
+      + grid
+      + '<path d="' + area + '" fill="rgba(30,58,111,0.06)"/>'
+      + '<path d="' + path(d => d.target) + '" fill="none" stroke="#f5b800" stroke-width="1.5" stroke-dasharray="6,3"/>'
+      + '<path d="' + path(d => d.epfTotal) + '" fill="none" stroke="#9fb3c8" stroke-width="1.5" stroke-dasharray="3,3"/>'
+      + '<path d="' + path(d => d.total) + '" fill="none" stroke="#142a55" stroke-width="2.5"/>'
+      + '<g id="rcHoverG" style="display:none">'
+      + '<line id="rcHoverLine" y1="' + PT + '" y2="' + (PT + s.iH) + '" stroke="#f5b800" stroke-width="1" stroke-dasharray="3,3"/>'
+      + '<circle id="rcDotTotal" r="4" fill="#142a55" stroke="#fff" stroke-width="2"/>'
+      + '<circle id="rcDotTarget" r="4" fill="#f5b800" stroke="#fff" stroke-width="2"/>'
+      + '<circle id="rcDotEpf" r="3" fill="#9fb3c8" stroke="#fff" stroke-width="1.5"/>'
+      + '</g>'
+      + xlabels
+      + '<text x="' + (PL + s.iW / 2) + '" y="' + H + '" text-anchor="middle" font-size="10" fill="#4a5468">Age</text>'
+      + '<text x="10" y="' + (PT + s.iH / 2) + '" text-anchor="middle" font-size="10" fill="#4a5468" transform="rotate(-90, 10, ' + (PT + s.iH / 2) + ')">Wealth (RM)</text>'
+      + '</svg>'
+      + '<div class="rc-tooltip" id="rcTooltip"></div>'
+      + '<div class="rc-legend">'
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#142a55" stroke-width="2"/></svg> Total Projected</span>'
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#f5b800" stroke-width="2" stroke-dasharray="4,2"/></svg> Target Corpus</span>'
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#9fb3c8" stroke-width="2" stroke-dasharray="4,2"/></svg> EPF Only</span>'
+      + '</div></div>';
+  }
+
+  function rcWireChart(data){
+    const svg = document.getElementById('rcTimelineSvg');
+    if (!svg) return;
+    const s = rcChartScales(data);
+    const tip = document.getElementById('rcTooltip');
+    const g = document.getElementById('rcHoverG');
+    svg.addEventListener('mousemove', e => {
+      const rect = svg.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width * RC_CHART.W;
+      let best = 0, bd = Infinity;
+      data.forEach((d, i) => { const di = Math.abs(s.x(i) - relX); if (di < bd){ bd = di; best = i; } });
+      const d = data[best], x = s.x(best);
+      g.style.display = '';
+      const line = g.querySelector('#rcHoverLine');
+      line.setAttribute('x1', x); line.setAttribute('x2', x);
+      const set = (id, v) => { const el = g.querySelector('#' + id); el.setAttribute('cx', x); el.setAttribute('cy', s.y(v)); };
+      set('rcDotTotal', d.total); set('rcDotTarget', d.target); set('rcDotEpf', d.epfTotal);
+      tip.style.display = 'block';
+      tip.innerHTML = '<div style="font-weight:700;color:#f5b800;margin-bottom:4px;">Age ' + d.age + '</div>'
+        + '<div>Target: <b style="color:#f5b800">' + rcRM(d.target) + '</b></div>'
+        + '<div>Assets: <b>' + rcRM(d.total) + '</b></div>'
+        + '<div>EPF: <b style="color:#9fb3c8">' + rcRM(d.epfTotal) + '</b></div>'
+        + '<div>Other: <b style="color:#8a93a8">' + rcRM(d.other) + '</b></div>';
+    });
+    svg.addEventListener('mouseleave', () => { g.style.display = 'none'; tip.style.display = 'none'; });
+  }
+
+  function rcGapHTML(res){
+    const epfPct = Math.round(res.totalEpfAtRetirement / res.totalCorpusNeeded * 100);
+    const othPct = Math.round(res.otherSavingsFV / res.totalCorpusNeeded * 100);
+    const gapPct = Math.max(0, 100 - epfPct - othPct);
+    const scale = epfPct + othPct > 100 ? 100 / (epfPct + othPct) : 1;
+    let bar = '<div class="rc-bar">'
+      + '<div style="width:' + (epfPct * scale) + '%;background:#334e68;"><span>' + epfPct + '% EPF</span></div>'
+      + '<div style="width:' + (othPct * scale) + '%;background:#627d98;"><span>' + othPct + '% Other</span></div>';
+    if (gapPct > 0) bar += '<div style="flex:1;background:#ef4444;"><span>' + gapPct + '% GAP</span></div>';
+    bar += '</div>'
+      + '<div class="rc-bar-legend">'
+      + '<span><i style="background:#334e68;"></i> EPF Projected</span>'
+      + '<span><i style="background:#627d98;"></i> Other Assets</span>'
+      + '<span><i style="background:#ef4444;"></i> Gap</span>'
+      + '</div>';
+    const stats = [
+      ['Target Corpus', rcRM(res.totalCorpusNeeded), 'var(--yellow)'],
+      ['EPF Projected', rcRM(res.totalEpfAtRetirement), '#334e68'],
+      ['Other Assets', rcRM(res.otherSavingsFV), '#627d98'],
+      ['Gap', rcRM(res.gap), '#ef4444'],
+    ].map(x => '<div class="rc-gap-stat" style="border-top:3px solid ' + x[2] + ';"><div class="t">' + x[0] + '</div><div class="v">' + x[1] + '</div></div>').join('');
+    return bar + '<div class="rc-gap-stats">' + stats + '</div>';
+  }
+
+  function rcSnapStat(label, value, sub, color){
+    return '<div class="rc-snap-stat"><div class="l">' + label + '</div><div class="v" style="color:' + color + ';">' + value + '</div><div class="s">' + sub + '</div></div>';
+  }
+  function rcLever(icon, title, desc, btn, focusKey){
+    return '<div class="rc-lever"><div class="rc-lever-icon">' + rcIcon(icon, 18) + '</div><div class="t">' + title + '</div><p>' + desc + '</p>'
+      + '<button class="rc-lever-btn" data-focus="' + focusKey + '">' + btn + '</button></div>';
+  }
+  function rcLeverInfo(icon, title, desc, info){
+    return '<div class="rc-lever"><div class="rc-lever-icon">' + rcIcon(icon, 18) + '</div><div class="t">' + title + '</div><p>' + desc + '</p>'
+      + '<div class="rc-lever-info">' + rcIcon('check', 12) + ' ' + info + '</div></div>';
+  }
+  function rcPlan(n, title, desc){
+    return '<div class="rc-plan-card"><div class="n">' + n + '</div><div class="t">' + title + '</div><p>' + desc + '</p></div>';
+  }
+
+  function rcRenderResults(res){
+    const i = rcInputs, gapPos = res.gap > 0;
+    const el = document.getElementById('rcResults');
+    el.innerHTML =
+      '<div style="text-align:center;"><div class="rc-hint-pill"><span class="rc-bounce">' + rcIcon('down', 14) + '</span> Scroll to see your full retirement analysis</div></div>'
+
+      + '<div class="rc-snapshot">'
+      + '<div style="text-align:center;margin-bottom:20px;">'
+      + '<div class="rc-snap-eyebrow">Your Retirement Snapshot</div>'
+      + '<div class="rc-snap-sub">Age ' + i.currentAge + ' → ' + i.retirementAge + ' · ' + res.yearsToRetirement + ' years to prepare</div>'
+      + '</div>'
+      + '<div class="rc-snap-stats">'
+      + rcSnapStat('Retirement Magic Number', rcRM(res.totalCorpusNeeded), 'Total Corpus Needed', 'var(--yellow)')
+      + rcSnapStat('Projected Assets', rcRM(res.totalProjectedAssets), 'EPF + Other Savings', '#fff')
+      + rcSnapStat('Retirement Gap', rcRM(res.gap), gapPos ? 'Shortfall to close' : 'Fully funded!', gapPos ? '#f87171' : '#4ade80')
+      + '</div>'
+      + '<div style="margin-top:20px;">'
+      + '<div class="rc-progress-labels"><span>Funded: ' + res.fundedPercentage.toFixed(1) + '%</span><span>Target: 100%</span></div>'
+      + '<div class="rc-progress"><i style="width:' + Math.min(100, res.fundedPercentage) + '%"></i></div>'
+      + '</div></div>'
+
+      + '<div class="rc-wcard"><div class="rc-wcard-head"><span class="ic">' + rcIcon('chart', 18) + '</span><span>Wealth Projection Timeline</span></div>' + rcChartHTML(res.timelineData) + '</div>'
+
+      + '<div class="rc-step-grid">'
+      + '<div class="rc-wcard" style="border-top:4px solid #ef4444;">'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:#fee2e2;color:#ef4444;">01</span><span>Inflation — The Hidden Cost</span></div>'
+      + '<div class="rc-step-big" style="background:#fff5f5;"><div class="t" style="color:#ef4444;">RM ' + rcNum(i.desiredMonthlyIncome) + ' today will feel like...</div><div class="v">' + rcRM(res.futureMonthlyNeed) + '<small>/mo</small></div></div>'
+      + '<div class="rc-mini-row">'
+      + '<div class="rc-mini"><div class="t">Multiplier</div><div class="v">' + res.inflationMultiplier.toFixed(2) + 'x</div></div>'
+      + '<div class="rc-mini"><div class="t">Power Lost</div><div class="v" style="color:#ef4444;">' + res.purchasingPowerLoss.toFixed(1) + '%</div></div>'
+      + '</div>'
+      + '<p class="rc-step-quote">"Retirement planning must account for \'future prices\', not today\'s"</p>'
+      + '</div>'
+
+      + '<div class="rc-wcard" style="border-top:4px solid var(--yellow);">'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--yellow-soft);color:#8f7030;">02</span><span>Your \'Retirement Magic Number\'</span></div>'
+      + '<div class="rc-step-big" style="background:var(--yellow-soft);"><div class="t" style="color:#8f7030;">Corpus Target</div><div class="v">' + rcRM(res.totalCorpusNeeded) + '</div></div>'
+      + '<div class="rc-mini-row">'
+      + '<div class="rc-mini"><div class="t">Annual</div><div class="v sm">' + rcRM(res.annualNeedAtRetirement) + '</div></div>'
+      + '<div class="rc-mini"><div class="t">Monthly</div><div class="v sm">' + rcRM(res.futureMonthlyNeed) + '</div></div>'
+      + '</div>'
+      + '<p class="rc-step-quote">"Corpus = Annual Expenses ÷ ' + i.withdrawalRate + '%"</p>'
+      + '</div>'
+
+      + '<div class="rc-wcard" style="border-top:4px solid var(--navy);">'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--gray-100);color:var(--navy);">03</span><span>EPF Dynamic Growth</span></div>'
+      + '<div class="rc-step-big" style="background:var(--gray-100);"><div class="t" style="color:var(--navy);">Projected EPF</div><div class="v">' + rcRM(res.totalEpfAtRetirement) + '</div></div>'
+      + '<div class="rc-mini-row">'
+      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">Current EPF Growth</div><div class="v sm">' + rcRM(res.epfBalanceFV) + '</div></div>'
+      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">Contributions</div><div class="v sm">' + rcRM(res.epfContributionsFV) + '</div></div>'
+      + '</div>'
+      + '<p class="rc-step-quote">"EPF alone is far from enough — we need extra growth engines"</p>'
+      + '</div>'
+      + '</div>'
+
+      + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
+      + '<div class="rc-wcard-head"><span class="ic" style="color:' + (gapPos ? '#ef4444' : '#4ade80') + ';">' + rcIcon(gapPos ? 'alert' : 'check', 20) + '</span><span>The Hard Truth — The Gap</span></div>'
+      + rcGapHTML(res)
+      + (gapPos
+        ? '<div class="rc-gap-callout short"><div class="t">Monthly Extra Investment Needed to Close the Gap</div><div class="v">' + rcRM(res.monthlyInvestmentNeeded) + '<small>/mo</small></div><div class="s">Gap: ' + res.gapPercentage.toFixed(1) + '% of total corpus needed</div></div>'
+        : '<div class="rc-gap-callout ok">' + rcIcon('check', 24) + '<div><div class="t">You\'re on track! 🎉</div><div class="s">Your projected assets exceed the target corpus.</div></div></div>')
+      + '</div>'
+
+      + '<div class="rc-wcard">'
+      + '<div class="rc-wcard-head"><span class="ic">' + rcIcon('sparkles', 20) + '</span><span>3 Strategies to Shrink the Gap</span></div>'
+      + '<div class="rc-lever-grid">'
+      + rcLever('trending', 'Boost Income', 'Upgrade your skills for promotions and raises, or build side income streams to accelerate your EPF contributions.', 'Adjust Salary Growth', 'salaryGrowth')
+      + rcLeverInfo('dollar', 'Disciplined Investing', 'Build a diversified global portfolio (70% Equities + 30% Fixed Income) to earn higher returns than EPF alone.', 'The gap signals it\'s time to invest beyond EPF. Review your Investment Return Rate in the assumptions above.')
+      + rcLever('clock', 'Delay Retirement', 'Working a few more years gives your EPF and investments extra time to compound, reducing the gap significantly.', 'Adjust Retirement Age', 'retirementAge')
+      + '</div>'
+      + '<div class="rc-strategy-foot">"Understanding the data empowers better decisions — don\'t let the numbers intimidate you"</div>'
+      + '</div>'
+
+      + '<div class="rc-wcard" style="background:linear-gradient(135deg, var(--yellow-soft), #fff);border-top:4px solid var(--yellow);">'
+      + '<div class="rc-wcard-head"><span>Your Action Plan</span></div>'
+      + '<div class="rc-plan-grid">'
+      + rcPlan('01', 'Deep Review', 'Assess your current financial position, EPF, savings, debts, and protection gaps.')
+      + rcPlan('02', 'Asset Allocation', 'Diversify into equities, bonds, and alternative assets for growth beyond EPF.')
+      + rcPlan('03', 'Auto-Pilot', 'Set up automatic transfers to your investment account every payday — consistency wins.')
+      + rcPlan('04', 'Regular Review', 'Revisit this calculator annually. Life changes, and your plan should too.')
+      + '</div>'
+      + '</div>'
+
+      + '<p class="rc-quote">"Retirement planning is not a privilege of the wealthy, but a necessity to avoid future hardship."</p>'
+
+      + '<div class="rc-contact">'
+      + '<div><div class="e">Your Financial Advisor</div><div class="n">Anson Tan</div><div class="c">BBB Advisory Sdn Bhd</div></div>'
+      + '<div class="rc-contact-actions">'
+      + '<a class="wa" href="https://wa.me/601156281541" target="_blank" rel="noreferrer">' + rcIcon('message', 16) + ' WhatsApp</a>'
+      + '<a class="tel" href="tel:+601156281541">' + rcIcon('phone', 16) + ' 011-5628 1541</a>'
+      + '</div></div>';
+
+    el.classList.add('show');
+    rcWireChart(res.timelineData);
+    el.querySelectorAll('[data-focus]').forEach(b => b.addEventListener('click', () => {
+      const f = document.querySelector('.rc-field[data-key="' + b.dataset.focus + '"] .rc-input');
+      if (f){ f.scrollIntoView({behavior: 'smooth', block: 'center'}); setTimeout(() => f.focus(), 400); }
+    }));
+  }
+
+  function rcRenderFields(){
+    document.getElementById('rcFieldsA').innerHTML =
+      ['currentAge', 'retirementAge', 'monthlySalary', 'salaryGrowth', 'currentEpf', 'currentSavings'].map(rcFieldHTML).join('');
+    rcWireFields(document.getElementById('rcFieldsA'));
+    rcRenderEmployment();
+    document.getElementById('rcFieldsC').innerHTML =
+      ['desiredMonthlyIncome', 'inflationRate', 'epfReturnRate', 'investmentReturnRate', 'withdrawalRate'].map(rcFieldHTML).join('');
+    rcWireFields(document.getElementById('rcFieldsC'));
+  }
+
+  function rcInit(){
+    document.querySelectorAll('[data-rc-icon]').forEach(el => {
+      el.innerHTML = rcIcon(el.dataset.rcIcon, el.classList.contains('rc-sec-icon') ? 16 : (el.dataset.rcIcon === 'calc' ? 18 : 16));
+    });
+    rcRenderFields();
+
+    document.getElementById('rcCalcBtn').addEventListener('click', () => {
+      const res = rcCalc(rcInputs);
+      const err = document.getElementById('rcFormError');
+      if (!res){ err.style.display = 'block'; return; }
+      err.style.display = 'none';
+      rcRenderResults(res);
+      setTimeout(() => document.getElementById('rcResults').scrollIntoView({behavior: 'smooth', block: 'start'}), 100);
+    });
+    document.getElementById('rcResetBtn').addEventListener('click', () => {
+      rcInputs = Object.assign({}, RC_DEFAULTS);
+      const results = document.getElementById('rcResults');
+      results.classList.remove('show');
+      results.innerHTML = '';
+      document.getElementById('rcFormError').style.display = 'none';
+      rcRenderFields();
+    });
+  }
+  rcInit();
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries)=>{
