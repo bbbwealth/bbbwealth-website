@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="BBBwealth is an independent Malaysian financial advisory practice offering financial planning, wealth management, HRD-claimable corporate training, and a free retirement calculator." />
 <title>BBBwealth — Financial Planning, Wealth Management & Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -711,6 +712,159 @@
     line-height:1.55;
   }
 
+  /* ---------- RETIREMENT CALCULATOR ---------- */
+  .retire{background:var(--paper);}
+  .retire-grid{
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:24px;
+    align-items:stretch;
+  }
+  .retire-form{
+    background:var(--cream);
+    border:1px solid var(--gray-200);
+    border-radius:24px;
+    padding:36px 32px;
+  }
+  .retire-fields{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 16px;
+    margin-top:24px;
+  }
+  .retire-field.full{grid-column:1 / -1;}
+  .retire-field label{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:7px;
+  }
+  .input-wrap{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:1px solid var(--gray-200);
+    border-radius:12px;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .input-wrap:focus-within{
+    border-color:var(--navy);
+    box-shadow:0 0 0 3px rgba(30,58,111,.10);
+  }
+  .input-wrap .affix{
+    padding-left:14px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .input-wrap .affix.suffix{padding:0 14px 0 0;}
+  .input-wrap input{
+    flex:1;
+    width:100%;
+    min-width:0;
+    border:none;
+    background:none;
+    padding:12px 14px;
+    font:inherit;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .input-wrap input:focus{outline:none;}
+  .retire-results{
+    background:var(--navy);
+    border-radius:24px;
+    padding:36px 32px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .retire-results::before{
+    content:'';
+    position:absolute;
+    top:-120px;right:-120px;
+    width:380px;height:380px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(245,184,0,0.14), transparent 70%);
+  }
+  .retire-results > *{position:relative;z-index:2;}
+  .retire-status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 16px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    width:fit-content;
+  }
+  .retire-status.ok{
+    background:rgba(61,220,151,0.14);
+    color:#5ee8ab;
+    border:1px solid rgba(61,220,151,0.4);
+  }
+  .retire-status.short{
+    background:rgba(255,107,107,0.12);
+    color:#ff9a9a;
+    border:1px solid rgba(255,107,107,0.4);
+  }
+  .retire-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 24px;
+  }
+  .retire-stat .stat-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-weight:600;
+    color:rgba(255,255,255,.55);
+    margin-bottom:6px;
+  }
+  .retire-stat .stat-val{
+    font-size:clamp(20px, 2.2vw, 28px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .retire-stat .stat-val.yellow{color:var(--yellow);}
+  .retire-stat .stat-sub{
+    font-size:12px;
+    color:rgba(255,255,255,.5);
+    margin-top:3px;
+  }
+  .retire-chart{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:16px;
+    padding:18px 16px 12px;
+  }
+  .retire-chart svg{display:block;width:100%;height:auto;}
+  .retire-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:10px;
+    font-size:11px;
+    color:rgba(255,255,255,.6);
+  }
+  .retire-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .retire-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
+  .retire-note{font-size:13px;color:rgba(255,255,255,.7);}
+  .retire-disclaimer{
+    margin-top:28px;
+    font-size:12px;
+    color:var(--ink-soft);
+    max-width:760px;
+    line-height:1.6;
+  }
+
   /* ---------- TRAINING (NO PRICE) ---------- */
   .training{background:var(--cream);}
   .training-grid{
@@ -1091,6 +1245,7 @@
     .plan.featured{transform:none;}
     .plan.featured:hover{transform:translateY(-6px);}
     .wealth-grid{grid-template-columns:repeat(2,1fr);}
+    .retire-grid{grid-template-columns:1fr;}
     .training-grid{grid-template-columns:1fr;}
     .team-grid{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr; gap:40px;}
@@ -1101,6 +1256,20 @@
     nav{padding:14px 20px;}
     .logo-img{height:36px;}
     .nav-links{display:none;}
+    .nav-links.open{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:20px;
+      position:absolute;
+      top:100%;left:0;right:0;
+      background:rgba(255,255,255,0.97);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:24px 20px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 24px 40px -24px rgba(20,40,80,.25);
+    }
     .menu-toggle{display:block;}
     section{padding:80px 20px;}
     .hero{padding:110px 20px 60px;}
@@ -1111,6 +1280,8 @@
     .hero-card.float{width:240px;}
     .hero-card.float-2{width:180px;}
     .about-stats{grid-template-columns:1fr 1fr;}
+    .retire-form,.retire-results{padding:26px 20px;}
+    .retire-fields{gap:14px 12px;}
     .training-body{padding:24px;}
     footer{padding:60px 20px 24px;}
     .cta{padding:90px 20px;}
@@ -1126,6 +1297,7 @@
     <a href="#services">Services</a>
     <a href="#planning">Planning</a>
     <a href="#wealth">Wealth</a>
+    <a href="#retirement">Calculator</a>
     <a href="#training">Training</a>
     <a href="#team">Team</a>
     <button class="nav-cta" onclick="openWhatsApp()">Book consultation</button>
@@ -1502,11 +1674,131 @@
   </div>
 </section>
 
+<!-- ============== RETIREMENT CALCULATOR ============== -->
+<section class="retire" id="retirement">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-num">05 / Retirement calculator</span>
+      <h2 class="display">Will your money <span class="y">outlast</span> you?</h2>
+    </div>
+    <p>Most people guess. Run your real numbers — savings, EPF, returns, inflation — and see in seconds whether you're on track, or what it takes to get there.</p>
+  </div>
+
+  <div class="retire-grid reveal">
+    <form class="retire-form" id="retireForm" onsubmit="return false;">
+      <span class="label">Your numbers</span>
+      <div class="retire-fields">
+        <div class="retire-field">
+          <label for="rcAge">Current age</label>
+          <div class="input-wrap">
+            <input type="number" id="rcAge" value="30" min="18" max="80" inputmode="numeric">
+            <span class="affix suffix">yrs</span>
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcRetireAge">Retirement age</label>
+          <div class="input-wrap">
+            <input type="number" id="rcRetireAge" value="60" min="35" max="90" inputmode="numeric">
+            <span class="affix suffix">yrs</span>
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcLifeExp">Plan until age</label>
+          <div class="input-wrap">
+            <input type="number" id="rcLifeExp" value="85" min="50" max="110" inputmode="numeric">
+            <span class="affix suffix">yrs</span>
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcInflation">Inflation rate</label>
+          <div class="input-wrap">
+            <input type="number" id="rcInflation" value="3" min="0" max="15" step="0.1" inputmode="decimal">
+            <span class="affix suffix">% p.a.</span>
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcSavings">Current savings (EPF + investments)</label>
+          <div class="input-wrap">
+            <span class="affix">RM</span>
+            <input type="number" id="rcSavings" value="50000" min="0" step="1000" inputmode="numeric">
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcMonthly">Monthly savings &amp; contributions</label>
+          <div class="input-wrap">
+            <span class="affix">RM</span>
+            <input type="number" id="rcMonthly" value="1000" min="0" step="100" inputmode="numeric">
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcReturnPre">Return before retirement</label>
+          <div class="input-wrap">
+            <input type="number" id="rcReturnPre" value="6" min="0" max="20" step="0.1" inputmode="decimal">
+            <span class="affix suffix">% p.a.</span>
+          </div>
+        </div>
+        <div class="retire-field">
+          <label for="rcReturnPost">Return after retirement</label>
+          <div class="input-wrap">
+            <input type="number" id="rcReturnPost" value="4" min="0" max="20" step="0.1" inputmode="decimal">
+            <span class="affix suffix">% p.a.</span>
+          </div>
+        </div>
+        <div class="retire-field full">
+          <label for="rcIncome">Desired monthly retirement income (in today's ringgit)</label>
+          <div class="input-wrap">
+            <span class="affix">RM</span>
+            <input type="number" id="rcIncome" value="5000" min="0" step="100" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="retire-results">
+      <div class="retire-status ok" id="rcStatus">On track</div>
+      <div class="retire-stats">
+        <div class="retire-stat">
+          <div class="stat-label">You'll need at retirement</div>
+          <div class="stat-val yellow" id="rcRequired">RM 0</div>
+          <div class="stat-sub" id="rcRequiredSub">to fund your income goal</div>
+        </div>
+        <div class="retire-stat">
+          <div class="stat-label">You're projected to have</div>
+          <div class="stat-val" id="rcProjected">RM 0</div>
+          <div class="stat-sub" id="rcProjectedSub">at retirement</div>
+        </div>
+        <div class="retire-stat">
+          <div class="stat-label" id="rcGapLabel">Surplus</div>
+          <div class="stat-val" id="rcGap">RM 0</div>
+        </div>
+        <div class="retire-stat">
+          <div class="stat-label">Extra savings needed</div>
+          <div class="stat-val" id="rcExtra">—</div>
+          <div class="stat-sub">per month, to close the gap</div>
+        </div>
+      </div>
+      <div class="retire-chart">
+        <div id="rcChart"></div>
+        <div class="retire-legend">
+          <span><i style="background:var(--yellow);"></i> Projected balance</span>
+          <span><i style="background:rgba(255,255,255,.5);"></i> Amount needed at retirement</span>
+        </div>
+      </div>
+      <p class="retire-note" id="rcNote"></p>
+      <button class="btn-primary btn-yellow" onclick="openWhatsApp()" style="align-self:flex-start;">Review my plan with an advisor <span class="arrow">→</span></button>
+    </div>
+  </div>
+
+  <p class="retire-disclaimer reveal">
+    This calculator gives a simplified projection for educational purposes only — it assumes steady returns, constant inflation, and consistent savings, and does not account for taxes, fees, or market volatility. It is not financial advice. For a plan built around your actual circumstances, speak with our licensed advisors.
+  </p>
+</section>
+
 <!-- ============== TRAINING ============== -->
 <section class="training" id="training">
   <div class="section-header reveal">
     <div>
-      <span class="section-num">05 / Corporate training</span>
+      <span class="section-num">06 / Corporate training</span>
       <h2 class="display">HRD-claimable.<br/>Workforce-<span class="y">ready.</span></h2>
     </div>
     <p>Financial stress quietly drains productivity. Our training programmes give your team the tools — and the confidence — to handle money well, on and off the clock.</p>
@@ -1563,7 +1855,7 @@
 <section class="team" id="team">
   <div class="section-header reveal">
     <div>
-      <span class="section-num">06 / The team</span>
+      <span class="section-num">07 / The team</span>
       <h2 class="display">People you'll <span class="y">actually</span> work with.</h2>
     </div>
     <p>No call centres, no relationship managers passing you up the chain. The names below are the people you meet — and the people who own the outcome.</p>
@@ -1629,6 +1921,7 @@
       <ul>
         <li><a href="#planning">Financial Planning</a></li>
         <li><a href="#wealth">Wealth Management</a></li>
+        <li><a href="#retirement">Retirement Calculator</a></li>
         <li><a href="#training">Corporate Training</a></li>
       </ul>
     </div>
@@ -1665,6 +1958,125 @@
   function openWhatsApp(){
     window.open(WA_LINK, '_blank', 'noopener,noreferrer');
   }
+
+  // Mobile menu
+  const navLinks = document.querySelector('.nav-links');
+  document.querySelector('.menu-toggle').addEventListener('click', ()=>{
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a, button').forEach(el=>{
+    el.addEventListener('click', ()=> navLinks.classList.remove('open'));
+  });
+
+  // ---------- Retirement calculator ----------
+  function rcVal(id){ return parseFloat(document.getElementById(id).value) || 0; }
+  function fmtRM(v){ return 'RM ' + Math.round(v).toLocaleString('en-MY'); }
+
+  function calcRetirement(){
+    const age       = rcVal('rcAge');
+    const retireAge = Math.max(rcVal('rcRetireAge'), age);
+    const lifeExp   = Math.max(rcVal('rcLifeExp'), retireAge + 1);
+    const savings   = rcVal('rcSavings');
+    const monthly   = rcVal('rcMonthly');
+    const retPre    = rcVal('rcReturnPre') / 100;
+    const retPost   = rcVal('rcReturnPost') / 100;
+    const inf       = rcVal('rcInflation') / 100;
+    const incomeNow = rcVal('rcIncome');
+
+    const yearsToRetire = retireAge - age;
+    const yearsRetired  = lifeExp - retireAge;
+    const n = Math.round(yearsToRetire * 12);
+    const i = retPre / 12;
+
+    // Projected savings at retirement (monthly compounding)
+    const growth = Math.pow(1 + i, n);
+    const projected = savings * growth + (i > 0 ? monthly * (growth - 1) / i : monthly * n);
+
+    // Income goal in future ringgit, and the nest egg required to fund it
+    // (present value of an inflation-adjusted annuity over the retirement years)
+    const incomeAtRetire = incomeNow * Math.pow(1 + inf, yearsToRetire);
+    const realMonthly = Math.pow((1 + retPost) / (1 + inf), 1 / 12) - 1;
+    const m = Math.round(yearsRetired * 12);
+    const required = Math.abs(realMonthly) > 1e-9
+      ? incomeAtRetire * (1 - Math.pow(1 + realMonthly, -m)) / realMonthly
+      : incomeAtRetire * m;
+
+    const gap = projected - required;
+    const extra = (gap < 0 && n > 0)
+      ? -gap * (i > 0 ? i / (growth - 1) : 1 / n)
+      : 0;
+
+    // Year-by-year balance: accumulate, then draw down an inflating income
+    const pts = [{age: age, bal: savings}];
+    let bal = savings, income = incomeAtRetire, depletedAge = null;
+    const totalMonths = Math.round((lifeExp - age) * 12);
+    for(let mo = 1; mo <= totalMonths; mo++){
+      if(mo <= n){
+        bal = bal * (1 + i) + monthly;
+      } else {
+        bal = bal * (1 + retPost / 12) - income;
+        income *= Math.pow(1 + inf, 1 / 12);
+        if(bal <= 0){
+          if(depletedAge === null) depletedAge = age + mo / 12;
+          bal = 0;
+        }
+      }
+      if(mo % 12 === 0) pts.push({age: age + mo / 12, bal: bal});
+    }
+
+    // Update results
+    const ok = gap >= 0;
+    const status = document.getElementById('rcStatus');
+    status.textContent = ok ? '● On track' : '● Shortfall';
+    status.className = 'retire-status ' + (ok ? 'ok' : 'short');
+    document.getElementById('rcRequired').textContent = fmtRM(required);
+    document.getElementById('rcRequiredSub').textContent =
+      fmtRM(incomeAtRetire) + '/mth from age ' + Math.round(retireAge) + ' to ' + Math.round(lifeExp);
+    document.getElementById('rcProjected').textContent = fmtRM(projected);
+    document.getElementById('rcProjectedSub').textContent = 'at age ' + Math.round(retireAge);
+    document.getElementById('rcGapLabel').textContent = ok ? 'Surplus' : 'Shortfall';
+    const gapEl = document.getElementById('rcGap');
+    gapEl.textContent = fmtRM(Math.abs(gap));
+    gapEl.style.color = ok ? '#5ee8ab' : '#ff9a9a';
+    document.getElementById('rcExtra').textContent = ok ? '—' : fmtRM(extra);
+    document.getElementById('rcNote').textContent = depletedAge
+      ? 'At this pace, your funds run out around age ' + Math.floor(depletedAge) + ' — ' +
+        Math.ceil(lifeExp - depletedAge) + ' year(s) earlier than planned.'
+      : 'At this pace, your funds are projected to last beyond age ' + Math.round(lifeExp) + '.';
+
+    drawRetireChart(pts, required, yearsToRetire);
+  }
+
+  function drawRetireChart(pts, required, retireIdx){
+    const W = 600, H = 230, T = 14, B = 26, L = 8, R = 8;
+    const maxV = Math.max(required, ...pts.map(p => p.bal)) * 1.08 || 1;
+    const x = k => L + (W - L - R) * k / Math.max(pts.length - 1, 1);
+    const y = v => T + (H - T - B) * (1 - v / maxV);
+    const line = pts.map((p, k) => (k ? 'L' : 'M') + x(k).toFixed(1) + ' ' + y(p.bal).toFixed(1)).join(' ');
+    const area = line + ' L' + x(pts.length - 1).toFixed(1) + ' ' + y(0).toFixed(1) +
+                 ' L' + x(0).toFixed(1) + ' ' + y(0).toFixed(1) + ' Z';
+    const rx = x(Math.min(retireIdx, pts.length - 1));
+    const ty = y(required);
+    const lastAge = Math.round(pts[pts.length - 1].age);
+    document.getElementById('rcChart').innerHTML =
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected retirement balance over time">' +
+        '<defs><linearGradient id="rcFill" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="rgba(245,184,0,0.35)"/>' +
+          '<stop offset="100%" stop-color="rgba(245,184,0,0.02)"/>' +
+        '</linearGradient></defs>' +
+        '<line x1="' + L + '" y1="' + y(0) + '" x2="' + (W - R) + '" y2="' + y(0) + '" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>' +
+        '<line x1="' + L + '" y1="' + ty.toFixed(1) + '" x2="' + (W - R) + '" y2="' + ty.toFixed(1) + '" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="5 5"/>' +
+        '<line x1="' + rx.toFixed(1) + '" y1="' + T + '" x2="' + rx.toFixed(1) + '" y2="' + y(0) + '" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="3 4"/>' +
+        '<path d="' + area + '" fill="url(#rcFill)"/>' +
+        '<path d="' + line + '" fill="none" stroke="#f5b800" stroke-width="2.5" stroke-linejoin="round"/>' +
+        '<text x="' + L + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.55)" font-size="11" font-family="Inter,sans-serif">Age ' + Math.round(pts[0].age) + '</text>' +
+        '<text x="' + rx.toFixed(1) + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.75)" font-size="11" font-family="Inter,sans-serif" text-anchor="middle">Retire ' + Math.round(pts[0].age + retireIdx) + '</text>' +
+        '<text x="' + (W - R) + '" y="' + (H - 8) + '" fill="rgba(255,255,255,0.55)" font-size="11" font-family="Inter,sans-serif" text-anchor="end">Age ' + lastAge + '</text>' +
+      '</svg>';
+  }
+
+  document.getElementById('retireForm').addEventListener('input', calcRetirement);
+  calcRetirement();
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries)=>{
