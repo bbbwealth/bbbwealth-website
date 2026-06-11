@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Free financial calculators by BBBwealth — plan your retirement, investments, and more with real Malaysian numbers." />
+<title>Financial Calculators — BBBwealth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1e3a6f;
+    --navy-deep:#142a55;
+    --yellow:#f5b800;
+    --yellow-bright:#ffc91f;
+    --yellow-soft:#fff1c2;
+    --ink:#0f1729;
+    --ink-soft:#4a5468;
+    --cream:#fafbfd;
+    --gray-100:#f1f3f8;
+    --gray-200:#e3e7ef;
+    --line:#e3e7ef;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+  }
+  nav{
+    position:sticky;top:0;z-index:100;
+    padding:14px 48px;
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo-img{height:38px;display:block;}
+  .nav-right{display:flex;gap:24px;align-items:center;}
+  .nav-right a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s;}
+  .nav-right a:hover{color:var(--navy);}
+  .nav-cta{
+    background:var(--navy);color:#fff;
+    padding:10px 20px;border-radius:999px;
+    font-size:13px;font-weight:600;border:none;cursor:pointer;
+    font-family:inherit;
+    transition:transform .3s, background .3s;
+  }
+  .nav-cta:hover{background:var(--navy-deep);transform:translateY(-1px);}
+
+  .page{max-width:960px;margin:0 auto;padding:0 20px 80px;flex:1;width:100%;}
+  .hero{text-align:center;padding:56px 0 40px;}
+  .hero h1{
+    font-size:clamp(28px, 5vw, 44px);
+    font-weight:800;color:var(--navy-deep);
+    line-height:1.12;letter-spacing:-0.03em;
+    margin-bottom:12px;
+  }
+  .hero h1 .y{
+    background:linear-gradient(180deg, transparent 60%, var(--yellow) 60%, var(--yellow) 92%, transparent 92%);
+    padding:0 4px;
+  }
+  .hero p{font-size:15px;color:var(--ink-soft);max-width:480px;margin:0 auto;line-height:1.7;}
+
+  .calc-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:20px;}
+  .calc-card{
+    background:#fff;
+    border:1px solid var(--gray-200);
+    border-radius:20px;
+    padding:32px 28px;
+    text-decoration:none;
+    color:inherit;
+    display:flex;flex-direction:column;
+    transition:transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .calc-card.live:hover{
+    transform:translateY(-4px);
+    box-shadow:0 25px 50px -20px rgba(20,42,85,.2);
+    border-color:var(--yellow);
+  }
+  .calc-icon{
+    width:48px;height:48px;border-radius:12px;
+    background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep);margin-bottom:20px;
+  }
+  .calc-card h3{font-size:18px;font-weight:700;color:var(--navy-deep);margin-bottom:8px;letter-spacing:-0.01em;}
+  .calc-card p{font-size:13px;color:var(--ink-soft);line-height:1.6;flex:1;}
+  .calc-card .go{
+    margin-top:20px;font-size:13px;font-weight:700;color:var(--navy);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .calc-card.live:hover .go{color:var(--yellow);}
+  .calc-card.soon{opacity:.65;cursor:default;}
+  .calc-card.soon .calc-icon{background:var(--gray-100);color:var(--ink-soft);}
+  .soon-pill{
+    display:inline-block;width:fit-content;
+    margin-top:20px;
+    font-size:10px;font-weight:700;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:0.12em;
+    background:var(--gray-100);
+    padding:6px 12px;border-radius:999px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    background:#fff;
+    padding:28px 20px;
+    text-align:center;
+  }
+  footer .brand{font-size:12px;color:var(--ink-soft);font-weight:600;}
+  footer .copy{margin-top:8px;font-size:11px;color:#8a93a8;}
+
+  @media (max-width: 640px){
+    nav{padding:12px 20px;}
+    .logo-img{height:32px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img class="logo-img" src="/bbbwealth-repo/assets/logo.png" alt="BBBwealth"></a>
+  <div class="nav-right">
+    <a href="/">Home</a>
+    <button class="nav-cta" onclick="window.open('https://wa.link/toq8h6','_blank','noopener,noreferrer')">Book consultation</button>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="hero">
+    <h1>Free financial <span class="y">calculators.</span></h1>
+    <p>Real numbers beat guesswork. Use our tools to see exactly where you stand — then talk to us about getting where you want to be.</p>
+  </div>
+
+  <div class="calc-grid">
+    <a class="calc-card live" href="/calculator/retirement/">
+      <div class="calc-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <h3>Retirement Calculator</h3>
+      <p>Find your "Retirement Magic Number" — EPF-aware projections with inflation, salary growth, and the 4% rule. See your gap and what it takes to close it.</p>
+      <span class="go">Open calculator <span>&rarr;</span></span>
+    </a>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+      </div>
+      <h3>More tools on the way</h3>
+      <p>We're building more calculators to help you plan with confidence. Have a request? Let us know on WhatsApp.</p>
+      <span class="soon-pill">Coming soon</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand">BBBwealth — Professional Financial Planning &amp; Investment Advisory Services</div>
+  <div class="copy">&copy; 2026 BBBwealth. All rights reserved. For illustration only — not financial advice.</div>
+</footer>
+
+</body>
+</html>
