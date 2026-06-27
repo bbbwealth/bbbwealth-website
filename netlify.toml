@@ -1,0 +1,9 @@
+# Netlify deploy configuration for www.bbbwealth.com
+# Publishes the repo as-is: a static multi-page site.
+#   /                        -> index.html
+#   /calculator/             -> calculator/index.html
+#   /calculator/retirement/  -> calculator/retirement/index.html
+# Note: no catch-all redirect here — directory index pages must resolve normally.
+
+[build]
+  publish = "."

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="BBBwealth is an independent Malaysian financial advisory practice offering financial planning, wealth management, HRD-claimable corporate training, and a free retirement calculator." />
 <title>BBBwealth — Financial Planning, Wealth Management & Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -711,6 +712,91 @@
     line-height:1.55;
   }
 
+  /* ---------- RETIREMENT CALCULATOR TEASER ---------- */
+  .retire{background:var(--paper);}
+  .retire-banner{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy), var(--navy-deep));
+    border-radius:24px;
+    padding:56px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    color:#fff;
+    box-shadow:0 25px 60px -25px rgba(20,42,85,.45);
+  }
+  .retire-banner::before{
+    content:'';
+    position:absolute;
+    top:-140px;right:-140px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(245,184,0,0.16), transparent 70%);
+  }
+  .retire-banner > *{position:relative;z-index:2;}
+  .retire-banner h3{
+    font-size:clamp(26px, 3vw, 38px);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.15;
+    margin-bottom:14px;
+  }
+  .retire-banner h3 .gold{color:var(--yellow);}
+  .retire-banner .lead{
+    color:rgba(255,255,255,.7);
+    font-size:15px;
+    max-width:480px;
+    margin-bottom:22px;
+  }
+  .retire-feats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+  .retire-feat{
+    font-size:12px;font-weight:600;
+    color:var(--yellow);
+    background:rgba(245,184,0,.10);
+    border:1px solid rgba(245,184,0,.35);
+    padding:7px 14px;
+    border-radius:999px;
+  }
+  .retire-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg, var(--yellow), var(--yellow-bright));
+    color:var(--navy-deep);
+    padding:16px 32px;
+    border-radius:999px;
+    font-size:15px;font-weight:800;
+    text-decoration:none;
+    box-shadow:0 8px 28px -6px rgba(245,184,0,.55);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .retire-cta:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 34px -6px rgba(245,184,0,.65);
+  }
+  .retire-cta .arrow{transition:transform .25s;}
+  .retire-cta:hover .arrow{transform:translateX(4px);}
+  .retire-visual{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;
+    padding:22px 20px 14px;
+    backdrop-filter:blur(8px);
+  }
+  .retire-visual .vt{
+    font-size:11px;font-weight:700;
+    color:rgba(255,255,255,.55);
+    text-transform:uppercase;letter-spacing:0.12em;
+    margin-bottom:12px;
+  }
+  .retire-visual svg{display:block;width:100%;height:auto;}
+  .retire-visual .vl{
+    display:flex;gap:16px;margin-top:10px;
+    font-size:10px;color:rgba(255,255,255,.55);
+  }
+  .retire-visual .vl span{display:inline-flex;align-items:center;gap:5px;}
+  .retire-visual .vl i{width:12px;height:3px;border-radius:2px;display:inline-block;}
+
   /* ---------- TRAINING (NO PRICE) ---------- */
   .training{background:var(--cream);}
   .training-grid{
@@ -1091,6 +1177,7 @@
     .plan.featured{transform:none;}
     .plan.featured:hover{transform:translateY(-6px);}
     .wealth-grid{grid-template-columns:repeat(2,1fr);}
+    .retire-banner{grid-template-columns:1fr;}
     .training-grid{grid-template-columns:1fr;}
     .team-grid{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr; gap:40px;}
@@ -1101,6 +1188,20 @@
     nav{padding:14px 20px;}
     .logo-img{height:36px;}
     .nav-links{display:none;}
+    .nav-links.open{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:20px;
+      position:absolute;
+      top:100%;left:0;right:0;
+      background:rgba(255,255,255,0.97);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      padding:24px 20px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 24px 40px -24px rgba(20,40,80,.25);
+    }
     .menu-toggle{display:block;}
     section{padding:80px 20px;}
     .hero{padding:110px 20px 60px;}
@@ -1111,6 +1212,7 @@
     .hero-card.float{width:240px;}
     .hero-card.float-2{width:180px;}
     .about-stats{grid-template-columns:1fr 1fr;}
+    .retire-banner{padding:32px 24px;}
     .training-body{padding:24px;}
     footer{padding:60px 20px 24px;}
     .cta{padding:90px 20px;}
@@ -1126,6 +1228,7 @@
     <a href="#services">Services</a>
     <a href="#planning">Planning</a>
     <a href="#wealth">Wealth</a>
+    <a href="/calculator/retirement/">Calculator</a>
     <a href="#training">Training</a>
     <a href="#team">Team</a>
     <button class="nav-cta" onclick="openWhatsApp()">Book consultation</button>
@@ -1502,11 +1605,57 @@
   </div>
 </section>
 
+<!-- ============== RETIREMENT CALCULATOR TEASER ============== -->
+<section class="retire" id="retirement">
+  <div class="section-header reveal">
+    <div>
+      <span class="section-num">05 / Retirement calculator</span>
+      <h2 class="display">Will your money <span class="y">outlast</span> you?</h2>
+    </div>
+    <p>Most people guess (<em>agak-agak</em>). Our free calculator runs your real numbers — EPF, salary growth, inflation, the 4% rule — and shows your retirement gap in seconds.</p>
+  </div>
+
+  <div class="retire-banner reveal">
+    <div>
+      <h3>What's your <span class="gold">Retirement Magic Number?</span></h3>
+      <p class="lead">Answer a few questions about your salary, EPF, and savings — and see exactly how much you'll need, how much you're on track to have, and what it takes to close the gap.</p>
+      <div class="retire-feats">
+        <span class="retire-feat">EPF-aware projections</span>
+        <span class="retire-feat">Inflation-adjusted</span>
+        <span class="retire-feat">4% rule corpus target</span>
+        <span class="retire-feat">Free · No sign-up</span>
+      </div>
+      <a class="retire-cta" href="/calculator/retirement/">Let's find out <span class="arrow">&rarr;</span></a>
+    </div>
+
+    <div class="retire-visual">
+      <div class="vt">Wealth Projection</div>
+      <svg viewBox="0 0 300 170" role="img" aria-label="Illustration of projected wealth versus retirement target">
+        <defs>
+          <linearGradient id="tzFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(245,184,0,0.35)"/>
+            <stop offset="100%" stop-color="rgba(245,184,0,0.02)"/>
+          </linearGradient>
+        </defs>
+        <line x1="10" y1="40" x2="290" y2="40" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <path d="M10 150 C 90 145, 150 120, 200 85 C 235 61, 265 45, 290 28 L290 160 L10 160 Z" fill="url(#tzFill)"/>
+        <path d="M10 150 C 90 145, 150 120, 200 85 C 235 61, 265 45, 290 28" fill="none" stroke="#f5b800" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="290" cy="28" r="4" fill="#f5b800" stroke="#142a55" stroke-width="2"/>
+        <text x="14" y="32" font-size="9" fill="rgba(255,255,255,0.6)" font-family="Inter, sans-serif">Target corpus</text>
+      </svg>
+      <div class="vl">
+        <span><i style="background:#f5b800;"></i> Your projection</span>
+        <span><i style="background:rgba(255,255,255,.45);"></i> What you'll need</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============== TRAINING ============== -->
 <section class="training" id="training">
   <div class="section-header reveal">
     <div>
-      <span class="section-num">05 / Corporate training</span>
+      <span class="section-num">06 / Corporate training</span>
       <h2 class="display">HRD-claimable.<br/>Workforce-<span class="y">ready.</span></h2>
     </div>
     <p>Financial stress quietly drains productivity. Our training programmes give your team the tools — and the confidence — to handle money well, on and off the clock.</p>
@@ -1563,7 +1712,7 @@
 <section class="team" id="team">
   <div class="section-header reveal">
     <div>
-      <span class="section-num">06 / The team</span>
+      <span class="section-num">07 / The team</span>
       <h2 class="display">People you'll <span class="y">actually</span> work with.</h2>
     </div>
     <p>No call centres, no relationship managers passing you up the chain. The names below are the people you meet — and the people who own the outcome.</p>
@@ -1629,6 +1778,7 @@
       <ul>
         <li><a href="#planning">Financial Planning</a></li>
         <li><a href="#wealth">Wealth Management</a></li>
+        <li><a href="/calculator/retirement/">Retirement Calculator</a></li>
         <li><a href="#training">Corporate Training</a></li>
       </ul>
     </div>
@@ -1665,6 +1815,15 @@
   function openWhatsApp(){
     window.open(WA_LINK, '_blank', 'noopener,noreferrer');
   }
+
+  // Mobile menu
+  const navLinks = document.querySelector('.nav-links');
+  document.querySelector('.menu-toggle').addEventListener('click', ()=>{
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a, button').forEach(el=>{
+    el.addEventListener('click', ()=> navLinks.classList.remove('open'));
+  });
 
   // Reveal on scroll
   const observer = new IntersectionObserver((entries)=>{
