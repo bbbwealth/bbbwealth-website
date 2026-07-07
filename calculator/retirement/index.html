@@ -506,6 +506,7 @@
     inflationRate: 4, epfReturnRate: 5.3, epfContributionRate: 23,
     investmentReturnRate: 8, withdrawalRate: 4, employmentType: 'employed',
     employeeEpfRate: 11, employerEpfRate: 12,
+    incomeMode: 'sustainable', postRetireInflation: 3, lifeExpectancy: 85, retireReturnRate: 4,
   };
   let rcInputs = Object.assign({}, RC_DEFAULTS);
 
@@ -558,6 +559,9 @@
     epfReturnRate:        {label:'EPF Annual Return %', icon:'piggy', min:0, max:10, step:0.1, suffix:'%'},
     investmentReturnRate: {label:'Investment Return Rate %', icon:'chart', min:0, max:15, step:0.5, suffix:'%'},
     withdrawalRate:       {label:'Withdrawal Rate (4% Rule) %', icon:'calc', min:2, max:6, step:0.5, suffix:'%'},
+    postRetireInflation:  {label:'Post-Retirement Inflation %', icon:'trending', min:0, max:10, step:0.1, suffix:'%'},
+    lifeExpectancy:       {label:'Life Expectancy Age', icon:'clock', min:60, max:110, step:1, suffix:'yrs'},
+    retireReturnRate:     {label:'Return During Retirement %', icon:'chart', min:0, max:12, step:0.5, suffix:'%'},
   };
 
   function rcDisplay(key){
@@ -667,13 +671,35 @@
   function rcCalc(inp){
     const n = inp.retirementAge - inp.currentAge;
     if (n <= 0) return null;
+    const deplete = inp.incomeMode === 'deplete';
+    const yearsRetired = deplete ? (inp.lifeExpectancy - inp.retirementAge) : 0;
+    if (deplete && yearsRetired <= 0) return null;
 
     const inflationMultiplier = Math.pow(1 + inp.inflationRate / 100, n);
     const futureMonthlyNeed = inp.desiredMonthlyIncome * inflationMultiplier;
     const purchasingPowerLoss = (1 - 1 / inflationMultiplier) * 100;
-
     const annualNeedAtRetirement = futureMonthlyNeed * 12;
-    const totalCorpusNeeded = annualNeedAtRetirement / (inp.withdrawalRate / 100);
+
+    // Post-retirement inflation erosion — how the income need keeps rising after retiring
+    const pri = inp.postRetireInflation / 100;
+    const needAtPlus10 = futureMonthlyNeed * Math.pow(1 + pri, 10);
+    const needAtPlus20 = futureMonthlyNeed * Math.pow(1 + pri, 20);
+
+    // Corpus target depends on the chosen income mode
+    let totalCorpusNeeded;
+    if (deplete){
+      // Present value at retirement of a monthly income that rises with post-retirement inflation,
+      // drawn until life expectancy, discounted at the retirement-phase return.
+      // (Growing annuity-due, summed month by month — robust to any rate combination.)
+      const prim = Math.pow(1 + pri, 1 / 12) - 1;
+      const rrm = Math.pow(1 + inp.retireReturnRate / 100, 1 / 12) - 1;
+      const pvMonths = Math.round(yearsRetired * 12);
+      let pv = 0, w = futureMonthlyNeed;
+      for (let k = 0; k < pvMonths; k++){ pv += w / Math.pow(1 + rrm, k); w *= (1 + prim); }
+      totalCorpusNeeded = pv;
+    } else {
+      totalCorpusNeeded = annualNeedAtRetirement / (inp.withdrawalRate / 100);
+    }
 
     const effRate = inp.employmentType === 'employed'
       ? inp.employeeEpfRate + inp.employerEpfRate
@@ -701,8 +727,10 @@
       ? (mr > 0 ? gap * mr / (Math.pow(1 + mr, months) - 1) : gap / months)
       : 0;
 
+    // Timeline — accumulation phase
     const timelineData = [];
-    for (let age = inp.currentAge; age <= inp.retirementAge; age += Math.max(1, Math.floor(n / 10))){
+    const stepAcc = Math.max(1, Math.floor(n / 10));
+    for (let age = inp.currentAge; age <= inp.retirementAge; age += stepAcc){
       const yr = age - inp.currentAge;
       const epfTotal = inp.currentEpf * Math.pow(1 + r, yr) + contrFV(yr);
       const other = inp.currentSavings * Math.pow(1 + inp.investmentReturnRate / 100, yr);
@@ -712,8 +740,30 @@
       timelineData.push({age: inp.retirementAge, epfTotal: totalEpfAtRetirement, other: otherSavingsFV, total: totalProjectedAssets, target: totalCorpusNeeded});
     }
 
+    // Timeline — drawdown phase (deplete mode): spend down the ACTUAL projected assets to see if they last
+    let depletionAge = null;
+    if (deplete){
+      const prim = Math.pow(1 + pri, 1 / 12) - 1;
+      const rrm = Math.pow(1 + inp.retireReturnRate / 100, 1 / 12) - 1;
+      const drawMonths = Math.round(yearsRetired * 12);
+      const stepMonths = Math.max(12, Math.floor(yearsRetired / 6) * 12);
+      let bal = totalProjectedAssets, w = futureMonthlyNeed;
+      for (let k = 1; k <= drawMonths; k++){
+        bal -= w;
+        if (bal <= 0 && depletionAge === null){ depletionAge = inp.retirementAge + (k - 1) / 12; bal = 0; }
+        bal *= (1 + rrm);
+        w *= (1 + prim);
+        if (k % stepMonths === 0 || k === drawMonths){
+          const b = Math.max(0, bal);
+          timelineData.push({age: Math.round(inp.retirementAge + k / 12), epfTotal: b, other: 0, total: b, target: totalCorpusNeeded});
+        }
+      }
+    }
+
     return {
-      yearsToRetirement: n, inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
+      incomeMode: inp.incomeMode, yearsToRetirement: n, yearsRetired, lifeExpectancy: inp.lifeExpectancy,
+      inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
+      postRetireInflation: inp.postRetireInflation, needAtPlus10, needAtPlus20, depletionAge,
       annualNeedAtRetirement, totalCorpusNeeded, epfBalanceFV, epfContributionsFV,
       totalEpfAtRetirement, otherSavingsFV, totalProjectedAssets,
       gap, gapPercentage, fundedPercentage, monthlyInvestmentNeeded, timelineData,
@@ -837,7 +887,7 @@
   }
 
   function rcRenderResults(res){
-    const i = rcInputs, gapPos = res.gap > 0;
+    const i = rcInputs, gapPos = res.gap > 0, deplete = res.incomeMode === 'deplete';
     const el = document.getElementById('rcResults');
     el.innerHTML =
       '<div style="text-align:center;"><div class="rc-hint-pill"><span class="rc-bounce">' + rcIcon('down', 14) + '</span> Scroll to see your full retirement analysis</div></div>'
@@ -845,10 +895,10 @@
       + '<div class="rc-snapshot">'
       + '<div style="text-align:center;margin-bottom:20px;">'
       + '<div class="rc-snap-eyebrow">Your Retirement Snapshot</div>'
-      + '<div class="rc-snap-sub">Age ' + i.currentAge + ' → ' + i.retirementAge + ' · ' + res.yearsToRetirement + ' years to prepare</div>'
+      + '<div class="rc-snap-sub">Age ' + i.currentAge + ' → ' + i.retirementAge + ' · ' + res.yearsToRetirement + ' years to prepare' + (deplete ? ' · income to age ' + i.lifeExpectancy : '') + '</div>'
       + '</div>'
       + '<div class="rc-snap-stats">'
-      + rcSnapStat('Retirement Magic Number', rcRM(res.totalCorpusNeeded), 'Total Corpus Needed', 'var(--yellow)')
+      + rcSnapStat('Retirement Magic Number', rcRM(res.totalCorpusNeeded), deplete ? 'To fund spend-down to age ' + i.lifeExpectancy : 'Total Corpus Needed', 'var(--yellow)')
       + rcSnapStat('Projected Assets', rcRM(res.totalProjectedAssets), 'EPF + Other Savings', '#fff')
       + rcSnapStat('Retirement Gap', rcRM(res.gap), gapPos ? 'Shortfall to close' : 'Fully funded!', gapPos ? '#f87171' : '#4ade80')
       + '</div>'
@@ -857,7 +907,18 @@
       + '<div class="rc-progress"><i style="width:' + Math.min(100, res.fundedPercentage) + '%"></i></div>'
       + '</div></div>'
 
-      + '<div class="rc-wcard"><div class="rc-wcard-head"><span class="ic">' + rcIcon('chart', 18) + '</span><span>Wealth Projection Timeline</span></div>' + rcChartHTML(res.timelineData) + '</div>'
+      + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
+      + '<div class="rc-wcard-head"><span class="ic" style="color:' + (gapPos ? '#ef4444' : '#4ade80') + ';">' + rcIcon(gapPos ? 'alert' : 'check', 20) + '</span><span>The Hard Truth — The Gap</span></div>'
+      + rcGapHTML(res)
+      + (gapPos
+        ? '<div class="rc-gap-callout short"><div class="t">Monthly Extra Investment Needed to Close the Gap</div><div class="v">' + rcRM(res.monthlyInvestmentNeeded) + '<small>/mo</small></div><div class="s">Gap: ' + res.gapPercentage.toFixed(1) + '% of total corpus needed</div></div>'
+        : '<div class="rc-gap-callout ok">' + rcIcon('check', 24) + '<div><div class="t">You\'re on track! 🎉</div><div class="s">Your projected assets exceed the target corpus.</div></div></div>')
+      + (deplete
+        ? '<div class="rc-gap-callout" style="margin-top:12px;background:var(--gray-100);border:1px solid var(--gray-200);"><div class="s" style="font-size:13px;color:var(--ink-soft);">' + (res.depletionAge
+            ? '⚠️ Spending down your <b>projected</b> assets, the money runs out around <b>age ' + Math.floor(res.depletionAge) + '</b> — about ' + Math.max(1, Math.ceil(i.lifeExpectancy - res.depletionAge)) + ' year(s) before your planned age ' + i.lifeExpectancy + '.'
+            : '✅ Spending down your projected assets, your income is covered all the way to age ' + i.lifeExpectancy + '.') + '</div></div>'
+        : '')
+      + '</div>'
 
       + '<div class="rc-step-grid">'
       + '<div class="rc-wcard" style="border-top:4px solid #ef4444;">'
@@ -867,7 +928,7 @@
       + '<div class="rc-mini"><div class="t">Multiplier</div><div class="v">' + res.inflationMultiplier.toFixed(2) + 'x</div></div>'
       + '<div class="rc-mini"><div class="t">Power Lost</div><div class="v" style="color:#ef4444;">' + res.purchasingPowerLoss.toFixed(1) + '%</div></div>'
       + '</div>'
-      + '<p class="rc-step-quote">"Retirement planning must account for \'future prices\', not today\'s"</p>'
+      + '<div style="font-size:11px;color:var(--ink-soft);margin-top:10px;line-height:1.5;">And it keeps rising: at ' + i.postRetireInflation + '%/yr <i>after</i> you retire, you\'d need <b>' + rcRM(res.needAtPlus20) + '/mo</b> by age ' + (i.retirementAge + 20) + '.</div>'
       + '</div>'
 
       + '<div class="rc-wcard" style="border-top:4px solid var(--yellow);">'
@@ -877,7 +938,9 @@
       + '<div class="rc-mini"><div class="t">Annual</div><div class="v sm">' + rcRM(res.annualNeedAtRetirement) + '</div></div>'
       + '<div class="rc-mini"><div class="t">Monthly</div><div class="v sm">' + rcRM(res.futureMonthlyNeed) + '</div></div>'
       + '</div>'
-      + '<p class="rc-step-quote">"Corpus = Annual Expenses ÷ ' + i.withdrawalRate + '%"</p>'
+      + '<p class="rc-step-quote">' + (deplete
+          ? '"Funds ' + rcRM(res.futureMonthlyNeed) + '/mo, rising ' + i.postRetireInflation + '%/yr, to age ' + i.lifeExpectancy + '"'
+          : '"Corpus = Annual Expenses ÷ ' + i.withdrawalRate + '%"') + '</p>'
       + '</div>'
 
       + '<div class="rc-wcard" style="border-top:4px solid var(--navy);">'
@@ -891,13 +954,7 @@
       + '</div>'
       + '</div>'
 
-      + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
-      + '<div class="rc-wcard-head"><span class="ic" style="color:' + (gapPos ? '#ef4444' : '#4ade80') + ';">' + rcIcon(gapPos ? 'alert' : 'check', 20) + '</span><span>The Hard Truth — The Gap</span></div>'
-      + rcGapHTML(res)
-      + (gapPos
-        ? '<div class="rc-gap-callout short"><div class="t">Monthly Extra Investment Needed to Close the Gap</div><div class="v">' + rcRM(res.monthlyInvestmentNeeded) + '<small>/mo</small></div><div class="s">Gap: ' + res.gapPercentage.toFixed(1) + '% of total corpus needed</div></div>'
-        : '<div class="rc-gap-callout ok">' + rcIcon('check', 24) + '<div><div class="t">You\'re on track! 🎉</div><div class="s">Your projected assets exceed the target corpus.</div></div></div>')
-      + '</div>'
+      + '<div class="rc-wcard"><div class="rc-wcard-head"><span class="ic">' + rcIcon('chart', 18) + '</span><span>Wealth Projection Timeline' + (deplete ? ' — accumulation &amp; drawdown' : '') + '</span></div>' + rcChartHTML(res.timelineData) + '</div>'
 
       + '<div class="rc-wcard">'
       + '<div class="rc-wcard-head"><span class="ic">' + rcIcon('sparkles', 20) + '</span><span>3 Strategies to Shrink the Gap</span></div>'
@@ -936,14 +993,31 @@
     }));
   }
 
+  function rcRenderAssumptions(){
+    const wrap = document.getElementById('rcFieldsC');
+    let h = ['desiredMonthlyIncome', 'inflationRate', 'postRetireInflation', 'epfReturnRate', 'investmentReturnRate'].map(rcFieldHTML).join('');
+    h += '<div class="rc-field"><label>' + rcIcon('calc') + ' Retirement Income Mode</label>'
+      + '<select id="rcIncomeMode" class="rc-select">'
+      + '<option value="sustainable"' + (rcInputs.incomeMode === 'sustainable' ? ' selected' : '') + '>Sustainable income (4% rule — capital preserved)</option>'
+      + '<option value="deplete"' + (rcInputs.incomeMode === 'deplete' ? ' selected' : '') + '>Depleting capital (spend down by target age)</option>'
+      + '</select></div>';
+    h += rcInputs.incomeMode === 'deplete'
+      ? rcFieldHTML('lifeExpectancy') + rcFieldHTML('retireReturnRate')
+      : rcFieldHTML('withdrawalRate');
+    wrap.innerHTML = h;
+    rcWireFields(wrap);
+    document.getElementById('rcIncomeMode').addEventListener('change', e => {
+      rcInputs.incomeMode = e.target.value;
+      rcRenderAssumptions();
+    });
+  }
+
   function rcRenderFields(){
     document.getElementById('rcFieldsA').innerHTML =
       ['currentAge', 'retirementAge', 'monthlySalary', 'salaryGrowth', 'currentEpf', 'currentSavings'].map(rcFieldHTML).join('');
     rcWireFields(document.getElementById('rcFieldsA'));
     rcRenderEmployment();
-    document.getElementById('rcFieldsC').innerHTML =
-      ['desiredMonthlyIncome', 'inflationRate', 'epfReturnRate', 'investmentReturnRate', 'withdrawalRate'].map(rcFieldHTML).join('');
-    rcWireFields(document.getElementById('rcFieldsC'));
+    rcRenderAssumptions();
   }
 
   function rcInit(){
@@ -953,9 +1027,17 @@
     rcRenderFields();
 
     document.getElementById('rcCalcBtn').addEventListener('click', () => {
-      const res = rcCalc(rcInputs);
       const err = document.getElementById('rcFormError');
-      if (!res){ err.style.display = 'block'; return; }
+      if (rcInputs.retirementAge <= rcInputs.currentAge){
+        err.textContent = 'Retirement age must be greater than your current age.';
+        err.style.display = 'block'; return;
+      }
+      if (rcInputs.incomeMode === 'deplete' && rcInputs.lifeExpectancy <= rcInputs.retirementAge){
+        err.textContent = 'Life expectancy age must be greater than your retirement age.';
+        err.style.display = 'block'; return;
+      }
+      const res = rcCalc(rcInputs);
+      if (!res){ err.textContent = 'Please review your inputs.'; err.style.display = 'block'; return; }
       err.style.display = 'none';
       rcRenderResults(res);
       setTimeout(() => document.getElementById('rcResults').scrollIntoView({behavior: 'smooth', block: 'start'}), 100);
