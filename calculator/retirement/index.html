@@ -57,6 +57,14 @@
     transition:transform .3s, background .3s;
   }
   .nav-cta:hover{background:var(--navy-deep);transform:translateY(-1px);}
+  .rc-lang{display:inline-flex;border:1px solid var(--gray-200);border-radius:999px;overflow:hidden;background:#fff;}
+  .rc-lang button{
+    border:none;background:none;cursor:pointer;font-family:inherit;
+    font-size:12px;font-weight:700;color:var(--ink-soft);
+    padding:7px 12px;transition:background .2s, color .2s;line-height:1;
+  }
+  .rc-lang button:hover{color:var(--navy);}
+  .rc-lang button.active{background:var(--navy);color:#fff;}
 
   /* ---------- PAGE ---------- */
   .page{max-width:960px;margin:0 auto;padding:0 20px 60px;}
@@ -404,9 +412,12 @@
   footer .copy{margin-top:10px;font-size:11px;color:#8a93a8;}
 
   @media (max-width: 640px){
-    nav{padding:12px 20px;}
+    nav{padding:12px 16px;}
     .logo-img{height:32px;}
-    .nav-right a.home-link{display:none;}
+    .nav-right{gap:12px;}
+    .nav-right a{display:none;}
+    .nav-cta{padding:9px 14px;font-size:12px;white-space:nowrap;}
+    .rc-lang button{padding:6px 10px;}
     .rc-card-body{padding:20px 16px;}
     .rc-snap-stats{grid-template-columns:1fr;}
     .rc-gap-stats{grid-template-columns:1fr 1fr;}
@@ -418,31 +429,35 @@
 <nav>
   <a href="/"><img class="logo-img" src="/bbbwealth-repo/assets/logo.png" alt="BBBwealth"></a>
   <div class="nav-right">
-    <a class="home-link" href="/">Home</a>
-    <a href="/calculator/">Calculators</a>
-    <button class="nav-cta" onclick="openWhatsApp()">Book consultation</button>
+    <a class="home-link" href="/" data-i18n="nav_home">Home</a>
+    <a href="/calculator/" data-i18n="nav_calcs">Calculators</a>
+    <div class="rc-lang" id="rcLang">
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="zh">中文</button>
+    </div>
+    <button class="nav-cta" onclick="openWhatsApp()" data-i18n="nav_book">Book consultation</button>
   </div>
 </nav>
 
 <div class="page">
-  <div class="crumbs"><a href="/">Home</a> / <a href="/calculator/">Calculators</a> / Retirement</div>
+  <div class="crumbs"><a href="/" data-i18n="crumb_home">Home</a> / <a href="/calculator/" data-i18n="crumb_calcs">Calculators</a> / <span data-i18n="crumb_retire">Retirement</span></div>
 
   <div class="hero">
-    <div class="hero-badge">&#10022; Plan Smarter, Retire Better</div>
-    <h1>How much do you need to <span class="y">retire?</span></h1>
-    <p>Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
+    <div class="hero-badge" data-i18n="hero_badge">&#10022; Plan Smarter, Retire Better</div>
+    <h1 data-i18n-html="hero_h1">How much do you need to <span class="y">retire?</span></h1>
+    <p data-i18n-html="hero_sub">Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
   </div>
 
 <div class="rc-card">
     <div class="rc-card-head">
       <div class="rc-head-icon" data-rc-icon="wallet"></div>
-      <h3>Your Financial Profile</h3>
+      <h3 data-i18n="card_profile">Your Financial Profile</h3>
     </div>
     <div class="rc-card-body">
 
       <div class="rc-sec-head">
         <div class="rc-sec-icon" data-rc-icon="user"></div>
-        <div><div class="t">Personal Information</div><div class="s">Tell us about yourself</div></div>
+        <div><div class="t" data-i18n="secA_t">Personal Information</div><div class="s" data-i18n="secA_s">Tell us about yourself</div></div>
       </div>
       <div class="rc-fields" id="rcFieldsA"></div>
 
@@ -450,12 +465,12 @@
 
       <div class="rc-sec-head">
         <div class="rc-sec-icon" data-rc-icon="briefcase"></div>
-        <div><div class="t">Employment &amp; EPF Setup</div><div class="s">Configure your EPF contribution structure</div></div>
+        <div><div class="t" data-i18n="secB_t">Employment &amp; EPF Setup</div><div class="s" data-i18n="secB_s">Configure your EPF contribution structure</div></div>
       </div>
       <div class="rc-fields" id="rcFieldsB"></div>
       <div class="rc-rate-bar">
         <span class="ic" data-rc-icon="piggy"></span>
-        <span>Total EPF Contribution Rate:</span>
+        <span data-i18n="rate_label">Total EPF Contribution Rate:</span>
         <span id="rcRateBar"></span>
       </div>
 
@@ -463,13 +478,13 @@
 
       <div class="rc-sec-head">
         <div class="rc-sec-icon" data-rc-icon="percent"></div>
-        <div><div class="t">Assumptions &amp; Goals</div><div class="s">Fine-tune your retirement projections</div></div>
+        <div><div class="t" data-i18n="secC_t">Assumptions &amp; Goals</div><div class="s" data-i18n="secC_s">Fine-tune your retirement projections</div></div>
       </div>
       <div class="rc-fields" id="rcFieldsC"></div>
 
       <div class="rc-actions">
-        <button class="rc-calc-btn" id="rcCalcBtn"><span data-rc-icon="calc"></span> Calculate My Retirement Gap</button>
-        <button class="rc-reset-btn" id="rcResetBtn"><span data-rc-icon="reset"></span> Reset</button>
+        <button class="rc-calc-btn" id="rcCalcBtn"><span data-rc-icon="calc"></span> <span data-i18n="btn_calc">Calculate My Retirement Gap</span></button>
+        <button class="rc-reset-btn" id="rcResetBtn"><span data-rc-icon="reset"></span> <span data-i18n="btn_reset">Reset</span></button>
       </div>
       <p class="rc-form-error" id="rcFormError">Retirement age must be greater than your current age.</p>
     </div>
@@ -477,20 +492,20 @@
 
   <div id="rcResults"></div>
 
-  <p class="rc-disclaimer">
+  <p class="rc-disclaimer" data-i18n="disclaimer">
     This calculator is for illustrative purposes only. It does not constitute financial advice. Past returns do not guarantee future results. Please consult a licensed financial advisor before making any investment decisions.
   </p>
 
 </div>
 
 <footer>
-  <div class="brand">BBBwealth — Professional Financial Planning &amp; Investment Advisory Services</div>
+  <div class="brand" data-i18n="foot_brand">BBBwealth — Professional Financial Planning &amp; Investment Advisory Services</div>
   <div class="links">
     <a href="/">bbbwealth.com</a>
-    <a href="/calculator/">All calculators</a>
-    <a href="/#contact">Contact</a>
+    <a href="/calculator/" data-i18n="foot_all">All calculators</a>
+    <a href="/#contact" data-i18n="foot_contact">Contact</a>
   </div>
-  <div class="copy">&copy; 2026 BBBwealth. All rights reserved. For illustration only — not financial advice.</div>
+  <div class="copy" data-i18n="foot_copy">&copy; 2026 BBBwealth. All rights reserved. For illustration only — not financial advice.</div>
 </footer>
 
 <script>
@@ -506,8 +521,148 @@
     inflationRate: 4, epfReturnRate: 5.3, epfContributionRate: 23,
     investmentReturnRate: 8, withdrawalRate: 4, employmentType: 'employed',
     employeeEpfRate: 11, employerEpfRate: 12,
+    incomeMode: 'sustainable', postRetireInflation: 3, lifeExpectancy: 85, retireReturnRate: 4,
   };
   let rcInputs = Object.assign({}, RC_DEFAULTS);
+  let rcLang = 'en';
+  let rcLastRes = null;
+
+  const RC_T = {
+    en: {
+      nav_home:'Home', nav_calcs:'Calculators', nav_book:'Book consultation',
+      crumb_home:'Home', crumb_calcs:'Calculators', crumb_retire:'Retirement',
+      hero_badge:'✦ Plan Smarter, Retire Better',
+      hero_h1:'How much do you need to <span class="y">retire?</span>',
+      hero_sub:'Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.',
+      card_profile:'Your Financial Profile',
+      secA_t:'Personal Information', secA_s:'Tell us about yourself',
+      secB_t:'Employment & EPF Setup', secB_s:'Configure your EPF contribution structure',
+      secC_t:'Assumptions & Goals', secC_s:'Fine-tune your retirement projections',
+      rate_label:'Total EPF Contribution Rate:',
+      btn_calc:'Calculate My Retirement Gap', btn_reset:'Reset',
+      disclaimer:'This calculator is for illustrative purposes only. It does not constitute financial advice. Past returns do not guarantee future results. Please consult a licensed financial advisor before making any investment decisions.',
+      foot_brand:'BBBwealth — Professional Financial Planning & Investment Advisory Services',
+      foot_all:'All calculators', foot_contact:'Contact',
+      foot_copy:'© 2026 BBBwealth. All rights reserved. For illustration only — not financial advice.',
+      f_currentAge:'Current Age', f_retirementAge:'Retirement Age', f_monthlySalary:'Monthly Salary RM',
+      f_salaryGrowth:'Salary Growth / Year %', f_currentEpf:'Current EPF Balance RM',
+      f_currentSavings:'Other Savings / Investments RM', f_employeeEpfRate:'Employee EPF Rate',
+      f_employerEpfRate:'Employer EPF Rate', f_epfContributionRate:'Voluntary EPF Contribution %',
+      f_desiredMonthlyIncome:'Desired Monthly Retirement Income RM', f_inflationRate:'Inflation Rate %',
+      f_epfReturnRate:'EPF Annual Return %', f_investmentReturnRate:'Investment Return Rate %',
+      f_withdrawalRate:'Withdrawal Rate (4% Rule) %', f_postRetireInflation:'Post-Retirement Inflation %',
+      f_lifeExpectancy:'Life Expectancy Age', f_retireReturnRate:'Return During Retirement %',
+      u_yrs:'yrs', fixed:'Fixed',
+      hint_lt5000:'13% applies (salary < RM 5,000)', hint_gte5000:'12% applies (salary ≥ RM 5,000). Adjust if needed.',
+      lbl_empType:'Employment Type', opt_employed:'Employed (Employee + Employer)', opt_freelancer:'Freelancer / Self-Employed',
+      rate_voluntary:'{x}% (Voluntary)',
+      lbl_incomeMode:'Retirement Income Mode', opt_sustainable:'Rely on interest — capital untouched', opt_deplete:'Die with zero — spend down capital',
+      err_retire:'Retirement age must be greater than your current age.', err_life:'Life expectancy age must be greater than your retirement age.', err_generic:'Please review your inputs.',
+      res_scrollHint:'Scroll to see your full retirement analysis',
+      snap_eyebrow:'Your Retirement Snapshot', snap_sub:'Age {a} → {b} · {n} years to prepare', snap_sub_life:' · income to age {L}',
+      snap_magic:'Retirement Magic Number', snap_magic_sub:'Total Corpus Needed', snap_magic_sub_dep:'To fund spend-down to age {L}',
+      snap_assets:'Projected Assets', snap_assets_sub:'EPF + Other Savings', snap_gap:'Retirement Gap', snap_gap_short:'Shortfall to close', snap_gap_ok:'Fully funded!',
+      snap_funded:'Funded: {p}%', snap_target:'Target: 100%',
+      hard_title:'The Hard Truth — The Gap',
+      bar_epf:'{p}% EPF', bar_other:'{p}% Other', bar_gap:'{p}% GAP',
+      leg_epf:'EPF Projected', leg_other:'Other Assets', leg_gap:'Gap',
+      stat_target:'Target Corpus', stat_epf:'EPF Projected', stat_other:'Other Assets', stat_gap:'Gap',
+      callout_title:'Monthly Extra Investment Needed to Close the Gap', per_mo:'/mo', callout_sub:'Gap: {p}% of total corpus needed',
+      ontrack_t:"You're on track! 🎉", ontrack_s:'Your projected assets exceed the target corpus.',
+      deplete_short:'⚠️ Spending down your <b>projected</b> assets, the money runs out around <b>age {age}</b> — about {yrs} year(s) before your planned age {life}.',
+      deplete_ok:'✅ Spending down your projected assets, your income is covered all the way to age {life}.',
+      card01_title:'Inflation — The Hidden Cost', card01_feel:'RM {amt} today will feel like...', card01_mult:'Multiplier', card01_lost:'Power Lost',
+      card01_rising:'And it keeps rising: at {rate}%/yr <i>after</i> you retire, you\'d need <b>{amt}/mo</b> by age {age}.',
+      card01_quote:'"Retirement planning must account for \'future prices\', not today\'s"',
+      card02_title:"Your 'Retirement Magic Number'", card02_corpus:'Corpus Target', card02_annual:'Annual', card02_monthly:'Monthly',
+      card02_quote_sus:'"Corpus = Annual Expenses ÷ {w}%"', card02_quote_dep:'"Funds {amt}/mo, rising {rate}%/yr, to age {life}"',
+      card03_title:'EPF Dynamic Growth', card03_proj:'Projected EPF', card03_cur:'Current EPF Growth', card03_contr:'Contributions',
+      card03_quote:'"EPF alone is far from enough — we need extra growth engines"',
+      chart_title:'Wealth Projection Timeline', chart_title_dep:' — accumulation & drawdown', chart_axis_age:'Age', chart_axis_wealth:'Wealth (RM)',
+      chart_leg_total:'Total Projected', chart_leg_target:'Target Corpus', chart_leg_epf:'EPF Only', chart_leg_plan:'Funded plan (to zero)',
+      tip_age:'Age {a}', tip_target:'Target', tip_assets:'Assets', tip_epf:'EPF', tip_other:'Other', tip_plan:'Funded plan',
+      strat_title:'3 Strategies to Shrink the Gap',
+      strat1_t:'Boost Income', strat1_d:'Upgrade your skills for promotions and raises, or build side income streams to accelerate your EPF contributions.', strat1_b:'Adjust Salary Growth',
+      strat2_t:'Disciplined Investing', strat2_d:'Build a diversified global portfolio (70% Equities + 30% Fixed Income) to earn higher returns than EPF alone.', strat2_i:'The gap signals it\'s time to invest beyond EPF. Review your Investment Return Rate in the assumptions above.',
+      strat3_t:'Delay Retirement', strat3_d:'Working a few more years gives your EPF and investments extra time to compound, reducing the gap significantly.', strat3_b:'Adjust Retirement Age',
+      strat_foot:'"Understanding the data empowers better decisions — don\'t let the numbers intimidate you"',
+      plan_title:'Your Action Plan',
+      plan1_t:'Deep Review', plan1_d:'Assess your current financial position, EPF, savings, debts, and protection gaps.',
+      plan2_t:'Asset Allocation', plan2_d:'Diversify into equities, bonds, and alternative assets for growth beyond EPF.',
+      plan3_t:'Auto-Pilot', plan3_d:'Set up automatic transfers to your investment account every payday — consistency wins.',
+      plan4_t:'Regular Review', plan4_d:'Revisit this calculator annually. Life changes, and your plan should too.',
+      closing_quote:'"Retirement planning is not a privilege of the wealthy, but a necessity to avoid future hardship."',
+      contact_advisor:'Your Financial Advisor',
+    },
+    zh: {
+      nav_home:'主页', nav_calcs:'计算器', nav_book:'预约咨询',
+      crumb_home:'主页', crumb_calcs:'计算器', crumb_retire:'退休',
+      hero_badge:'✦ 精明规划，从容退休',
+      hero_h1:'你需要多少钱才能<span class="y">退休？</span>',
+      hero_sub:'打破「退休错觉」— 别再凭感觉（<em>agak-agak</em>）估算，用真实数字开始规划。专为大马人打造：涵盖公积金缴纳、通货膨胀与 4% 法则。',
+      card_profile:'您的财务档案',
+      secA_t:'个人资料', secA_s:'告诉我们您的情况',
+      secB_t:'就业与公积金设置', secB_s:'设置您的公积金缴纳结构',
+      secC_t:'假设与目标', secC_s:'微调您的退休预测',
+      rate_label:'公积金缴纳总比例：',
+      btn_calc:'计算我的退休缺口', btn_reset:'重置',
+      disclaimer:'此计算器仅供参考，不构成任何财务建议。过往回酬不代表未来表现。在做出任何投资决定前，请咨询持牌财务顾问。',
+      foot_brand:'BBBwealth — 专业财务规划与投资咨询服务',
+      foot_all:'所有计算器', foot_contact:'联系我们',
+      foot_copy:'© 2026 BBBwealth. 版权所有。仅供参考 — 不构成财务建议。',
+      f_currentAge:'当前年龄', f_retirementAge:'退休年龄', f_monthlySalary:'月薪 RM',
+      f_salaryGrowth:'年薪增长 %', f_currentEpf:'当前公积金余额 RM',
+      f_currentSavings:'其他储蓄 / 投资 RM', f_employeeEpfRate:'雇员公积金比例',
+      f_employerEpfRate:'雇主公积金比例', f_epfContributionRate:'自愿公积金缴纳 %',
+      f_desiredMonthlyIncome:'期望每月退休收入 RM', f_inflationRate:'通货膨胀率 %',
+      f_epfReturnRate:'公积金年回酬 %', f_investmentReturnRate:'投资回酬率 %',
+      f_withdrawalRate:'提取率（4% 法则）%', f_postRetireInflation:'退休后通货膨胀率 %',
+      f_lifeExpectancy:'预期寿命年龄', f_retireReturnRate:'退休期间回酬 %',
+      u_yrs:'岁', fixed:'固定',
+      hint_lt5000:'适用 13%（月薪 < RM 5,000）', hint_gte5000:'适用 12%（月薪 ≥ RM 5,000），可自行调整。',
+      lbl_empType:'就业类型', opt_employed:'受雇（雇员 + 雇主）', opt_freelancer:'自由职业 / 自雇',
+      rate_voluntary:'{x}%（自愿）',
+      lbl_incomeMode:'退休收入模式', opt_sustainable:'靠利息生活 — 保留本金', opt_deplete:'花光积蓄 — 用尽本金',
+      err_retire:'退休年龄必须大于当前年龄。', err_life:'预期寿命年龄必须大于退休年龄。', err_generic:'请检查您的输入。',
+      res_scrollHint:'向下滚动查看完整退休分析',
+      snap_eyebrow:'您的退休快照', snap_sub:'{a} 岁 → {b} 岁 · {n} 年准备期', snap_sub_life:' · 收入维持至 {L} 岁',
+      snap_magic:'退休魔法数字', snap_magic_sub:'所需退休金总额', snap_magic_sub_dep:'足以支撑至 {L} 岁',
+      snap_assets:'预计资产', snap_assets_sub:'公积金 + 其他储蓄', snap_gap:'退休缺口', snap_gap_short:'需弥补的缺口', snap_gap_ok:'资金充足！',
+      snap_funded:'已达成：{p}%', snap_target:'目标：100%',
+      hard_title:'残酷真相 — 退休缺口',
+      bar_epf:'{p}% 公积金', bar_other:'{p}% 其他', bar_gap:'{p}% 缺口',
+      leg_epf:'公积金预计', leg_other:'其他资产', leg_gap:'缺口',
+      stat_target:'目标退休金', stat_epf:'公积金预计', stat_other:'其他资产', stat_gap:'缺口',
+      callout_title:'弥补缺口所需的每月额外投资', per_mo:'/月', callout_sub:'缺口：占所需退休金总额的 {p}%',
+      ontrack_t:'您已步入正轨！🎉', ontrack_s:'您的预计资产已超过目标退休金。',
+      deplete_short:'⚠️ 按<b>预计</b>资产逐步支出，资金大约在 <b>{age} 岁</b>用尽 — 比您计划的 {life} 岁提早约 {yrs} 年。',
+      deplete_ok:'✅ 按预计资产逐步支出，您的收入可维持至 {life} 岁。',
+      card01_title:'通货膨胀 — 隐藏的成本', card01_feel:'今天的 RM {amt}，未来将相当于……', card01_mult:'倍数', card01_lost:'购买力损失',
+      card01_rising:'而且还会持续上升：退休<i>之后</i>按每年 {rate}%，到 {age} 岁您每月将需要 <b>{amt}</b>。',
+      card01_quote:'「退休规划必须考虑『未来物价』，而非今天的」',
+      card02_title:'您的「退休魔法数字」', card02_corpus:'退休金目标', card02_annual:'每年', card02_monthly:'每月',
+      card02_quote_sus:'「退休金 = 年支出 ÷ {w}%」', card02_quote_dep:'「支撑每月 {amt}，每年递增 {rate}%，直到 {life} 岁」',
+      card03_title:'公积金动态增长', card03_proj:'预计公积金', card03_cur:'现有公积金增长', card03_contr:'缴纳累积',
+      card03_quote:'「单靠公积金远远不够 — 我们需要额外的增长引擎」',
+      chart_title:'财富预测时间线', chart_title_dep:' — 累积与支取', chart_axis_age:'年龄', chart_axis_wealth:'财富 (RM)',
+      chart_leg_total:'预计总额', chart_leg_target:'目标退休金', chart_leg_epf:'仅公积金', chart_leg_plan:'足额计划（归零）',
+      tip_age:'{a} 岁', tip_target:'目标', tip_assets:'资产', tip_epf:'公积金', tip_other:'其他', tip_plan:'足额计划',
+      strat_title:'缩小缺口的 3 大策略',
+      strat1_t:'提高收入', strat1_d:'提升技能以获得升职加薪，或开拓副业收入，加速公积金缴纳。', strat1_b:'调整薪资增长',
+      strat2_t:'纪律投资', strat2_d:'建立多元化的全球投资组合（70% 股票 + 30% 固定收益），获取高于公积金的回酬。', strat2_i:'缺口提示您该在公积金之外进行投资。请检查上方假设中的投资回酬率。',
+      strat3_t:'延迟退休', strat3_d:'多工作几年，让公积金与投资有更多时间复利增长，大幅缩小缺口。', strat3_b:'调整退休年龄',
+      strat_foot:'「理解数据才能做出更好的决定 — 别被数字吓倒」',
+      plan_title:'您的行动计划',
+      plan1_t:'深入检视', plan1_d:'评估您目前的财务状况、公积金、储蓄、债务与保障缺口。',
+      plan2_t:'资产配置', plan2_d:'分散投资于股票、债券及另类资产，实现公积金以外的增长。',
+      plan3_t:'自动执行', plan3_d:'每月发薪日自动转账至投资账户 — 持之以恒是关键。',
+      plan4_t:'定期检视', plan4_d:'每年重新使用此计算器。生活会改变，您的计划也应随之调整。',
+      closing_quote:'「退休规划不是富人的特权，而是避免未来困境的必需。」',
+      contact_advisor:'您的财务顾问',
+    },
+  };
+  function t(k){ const d = RC_T[rcLang] || RC_T.en; return (d[k] !== undefined ? d[k] : (RC_T.en[k] !== undefined ? RC_T.en[k] : k)); }
+  function tf(k, v){ let s = t(k); for (const key in v) s = s.split('{' + key + '}').join(v[key]); return s; }
 
   const RC_ICON_PATHS = {
     clock: '<path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM12 6v6l4 2"/>',
@@ -558,20 +713,24 @@
     epfReturnRate:        {label:'EPF Annual Return %', icon:'piggy', min:0, max:10, step:0.1, suffix:'%'},
     investmentReturnRate: {label:'Investment Return Rate %', icon:'chart', min:0, max:15, step:0.5, suffix:'%'},
     withdrawalRate:       {label:'Withdrawal Rate (4% Rule) %', icon:'calc', min:2, max:6, step:0.5, suffix:'%'},
+    postRetireInflation:  {label:'Post-Retirement Inflation %', icon:'trending', min:0, max:10, step:0.1, suffix:'%'},
+    lifeExpectancy:       {label:'Life Expectancy Age', icon:'clock', min:60, max:110, step:1, suffix:'yrs'},
+    retireReturnRate:     {label:'Return During Retirement %', icon:'chart', min:0, max:12, step:0.5, suffix:'%'},
   };
 
   function rcDisplay(key){
     const c = RC_FIELDS[key];
-    if (c.disabled) return rcInputs[key] + '% — Fixed';
+    if (c.disabled) return rcInputs[key] + '% — ' + t('fixed');
     return c.prefix ? rcNum(rcInputs[key]) : String(rcInputs[key]);
   }
 
   function rcFieldHTML(key){
     const c = RC_FIELDS[key];
-    let h = '<div class="rc-field" data-key="' + key + '"><label>' + rcIcon(c.icon) + ' ' + c.label + '</label><div class="rc-input-wrap">';
+    const suffix = c.suffix === 'yrs' ? t('u_yrs') : c.suffix;
+    let h = '<div class="rc-field" data-key="' + key + '"><label>' + rcIcon(c.icon) + ' ' + t('f_' + key) + '</label><div class="rc-input-wrap">';
     if (c.prefix) h += '<span class="rc-affix pre">' + c.prefix + '</span>';
     h += '<input type="text" class="rc-input' + (c.prefix ? ' has-pre' : '') + (c.suffix ? ' has-suf' : '') + '"' + (c.disabled ? ' disabled' : '') + ' value="' + rcDisplay(key) + '" inputmode="decimal">';
-    if (c.suffix) h += '<span class="rc-affix suf">' + c.suffix + '</span>';
+    if (c.suffix) h += '<span class="rc-affix suf">' + suffix + '</span>';
     h += '</div>';
     if (!c.disabled) h += '<input type="range" class="rc-range" min="' + c.min + '" max="' + c.max + '" step="' + c.step + '" value="' + rcInputs[key] + '">';
     if (key === 'employerEpfRate') h += '<p class="rc-hint" id="rcEmployerHint"></p>';
@@ -630,9 +789,7 @@
 
   function rcUpdateEmployerHint(){
     const el = document.getElementById('rcEmployerHint');
-    if (el) el.textContent = rcInputs.monthlySalary < 5000
-      ? '13% applies (salary < RM 5,000)'
-      : '12% applies (salary ≥ RM 5,000). Adjust if needed.';
+    if (el) el.textContent = rcInputs.monthlySalary < 5000 ? t('hint_lt5000') : t('hint_gte5000');
   }
 
   function rcUpdateRateBar(){
@@ -640,15 +797,15 @@
     if (!el) return;
     el.innerHTML = rcInputs.employmentType === 'employed'
       ? '<b>' + rcInputs.employeeEpfRate + '%</b><span class="sep"> + </span><b>' + rcInputs.employerEpfRate + '%</b><span class="sep"> = </span><b>' + (rcInputs.employeeEpfRate + rcInputs.employerEpfRate) + '%</b>'
-      : '<b>' + rcInputs.epfContributionRate + '% (Voluntary)</b>';
+      : '<b>' + tf('rate_voluntary', {x: rcInputs.epfContributionRate}) + '</b>';
   }
 
   function rcRenderEmployment(){
     const wrap = document.getElementById('rcFieldsB');
-    let h = '<div class="rc-field"><label>' + rcIcon('briefcase') + ' Employment Type</label>'
+    let h = '<div class="rc-field"><label>' + rcIcon('briefcase') + ' ' + t('lbl_empType') + '</label>'
       + '<select id="rcEmpType" class="rc-select">'
-      + '<option value="employed"' + (rcInputs.employmentType === 'employed' ? ' selected' : '') + '>Employed (Employee + Employer)</option>'
-      + '<option value="freelancer"' + (rcInputs.employmentType === 'freelancer' ? ' selected' : '') + '>Freelancer / Self-Employed</option>'
+      + '<option value="employed"' + (rcInputs.employmentType === 'employed' ? ' selected' : '') + '>' + t('opt_employed') + '</option>'
+      + '<option value="freelancer"' + (rcInputs.employmentType === 'freelancer' ? ' selected' : '') + '>' + t('opt_freelancer') + '</option>'
       + '</select></div>';
     h += rcInputs.employmentType === 'employed'
       ? rcFieldHTML('employeeEpfRate') + rcFieldHTML('employerEpfRate')
@@ -667,13 +824,35 @@
   function rcCalc(inp){
     const n = inp.retirementAge - inp.currentAge;
     if (n <= 0) return null;
+    const deplete = inp.incomeMode === 'deplete';
+    const yearsRetired = deplete ? (inp.lifeExpectancy - inp.retirementAge) : 0;
+    if (deplete && yearsRetired <= 0) return null;
 
     const inflationMultiplier = Math.pow(1 + inp.inflationRate / 100, n);
     const futureMonthlyNeed = inp.desiredMonthlyIncome * inflationMultiplier;
     const purchasingPowerLoss = (1 - 1 / inflationMultiplier) * 100;
-
     const annualNeedAtRetirement = futureMonthlyNeed * 12;
-    const totalCorpusNeeded = annualNeedAtRetirement / (inp.withdrawalRate / 100);
+
+    // Post-retirement inflation erosion — how the income need keeps rising after retiring
+    const pri = inp.postRetireInflation / 100;
+    const needAtPlus10 = futureMonthlyNeed * Math.pow(1 + pri, 10);
+    const needAtPlus20 = futureMonthlyNeed * Math.pow(1 + pri, 20);
+
+    // Corpus target depends on the chosen income mode
+    let totalCorpusNeeded;
+    if (deplete){
+      // Present value at retirement of a monthly income that rises with post-retirement inflation,
+      // drawn until life expectancy, discounted at the retirement-phase return.
+      // (Growing annuity-due, summed month by month — robust to any rate combination.)
+      const prim = Math.pow(1 + pri, 1 / 12) - 1;
+      const rrm = Math.pow(1 + inp.retireReturnRate / 100, 1 / 12) - 1;
+      const pvMonths = Math.round(yearsRetired * 12);
+      let pv = 0, w = futureMonthlyNeed;
+      for (let k = 0; k < pvMonths; k++){ pv += w / Math.pow(1 + rrm, k); w *= (1 + prim); }
+      totalCorpusNeeded = pv;
+    } else {
+      totalCorpusNeeded = annualNeedAtRetirement / (inp.withdrawalRate / 100);
+    }
 
     const effRate = inp.employmentType === 'employed'
       ? inp.employeeEpfRate + inp.employerEpfRate
@@ -701,8 +880,10 @@
       ? (mr > 0 ? gap * mr / (Math.pow(1 + mr, months) - 1) : gap / months)
       : 0;
 
+    // Timeline — accumulation phase
     const timelineData = [];
-    for (let age = inp.currentAge; age <= inp.retirementAge; age += Math.max(1, Math.floor(n / 10))){
+    const stepAcc = 1;
+    for (let age = inp.currentAge; age <= inp.retirementAge; age += stepAcc){
       const yr = age - inp.currentAge;
       const epfTotal = inp.currentEpf * Math.pow(1 + r, yr) + contrFV(yr);
       const other = inp.currentSavings * Math.pow(1 + inp.investmentReturnRate / 100, yr);
@@ -712,8 +893,34 @@
       timelineData.push({age: inp.retirementAge, epfTotal: totalEpfAtRetirement, other: otherSavingsFV, total: totalProjectedAssets, target: totalCorpusNeeded});
     }
 
+    // Timeline — drawdown phase (deplete mode):
+    //   total (solid) = spending down your ACTUAL projected assets — shows if/when they run out
+    //   plan  (dashed) = spending down the funded target corpus — glides to zero at life expectancy
+    let depletionAge = null;
+    if (deplete){
+      const prim = Math.pow(1 + pri, 1 / 12) - 1;
+      const rrm = Math.pow(1 + inp.retireReturnRate / 100, 1 / 12) - 1;
+      const drawMonths = Math.round(yearsRetired * 12);
+      const stepMonths = 12;
+      timelineData[timelineData.length - 1].plan = totalCorpusNeeded;   // funded plan starts at the corpus target
+      let balP = totalProjectedAssets, balC = totalCorpusNeeded, w = futureMonthlyNeed;
+      for (let k = 1; k <= drawMonths; k++){
+        balP -= w;
+        if (balP <= 0 && depletionAge === null){ depletionAge = inp.retirementAge + (k - 1) / 12; balP = 0; }
+        balP *= (1 + rrm);
+        balC = Math.max(0, balC - w) * (1 + rrm);
+        w *= (1 + prim);
+        if (k % stepMonths === 0 || k === drawMonths){
+          const bp = Math.max(0, balP), bc = Math.max(0, balC);
+          timelineData.push({age: Math.round(inp.retirementAge + k / 12), total: bp, target: totalCorpusNeeded, plan: bc});
+        }
+      }
+    }
+
     return {
-      yearsToRetirement: n, inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
+      incomeMode: inp.incomeMode, yearsToRetirement: n, yearsRetired, lifeExpectancy: inp.lifeExpectancy,
+      inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
+      postRetireInflation: inp.postRetireInflation, needAtPlus10, needAtPlus20, depletionAge,
       annualNeedAtRetirement, totalCorpusNeeded, epfBalanceFV, epfContributionsFV,
       totalEpfAtRetirement, otherSavingsFV, totalProjectedAssets,
       gap, gapPercentage, fundedPercentage, monthlyInvestmentNeeded, timelineData,
@@ -738,35 +945,51 @@
     const s = rcChartScales(data);
     const path = acc => data.map((d, i) => (i === 0 ? 'M' : 'L') + s.x(i).toFixed(1) + ',' + s.y(acc(d)).toFixed(1)).join(' ');
     const area = path(d => d.total) + ' L' + s.x(data.length - 1).toFixed(1) + ',' + (PT + s.iH) + ' L' + s.x(0) + ',' + (PT + s.iH) + ' Z';
+    const segPath = (acc, stroke, w, dash) => {
+      const seg = [];
+      data.forEach((d, i) => { const v = acc(d); if (v != null) seg.push((seg.length ? 'L' : 'M') + s.x(i).toFixed(1) + ',' + s.y(v).toFixed(1)); });
+      return '<path d="' + seg.join(' ') + '" fill="none" stroke="' + stroke + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="' + dash + '"' : '') + '/>';
+    };
+    const hasPlan = data.some(d => d.plan != null);
+    const planPath = hasPlan ? segPath(d => d.plan, '#16a34a', 2, '5,3') : '';
+    const epfPath = segPath(d => d.epfTotal, '#9fb3c8', 1.5, '3,3');
     let grid = '';
     for (let i = 0; i <= 5; i++){
       const v = s.maxVal / 5 * i, y = s.y(v).toFixed(1);
       grid += '<line x1="' + PL + '" x2="' + (PL + s.iW) + '" y1="' + y + '" y2="' + y + '" stroke="#e3e7ef" stroke-width="0.5" stroke-dasharray="3,3"/>'
         + '<text x="' + (PL - 6) + '" y="' + (parseFloat(y) + 4) + '" text-anchor="end" font-size="9" fill="#8a93a8">' + rcFmt(v) + '</text>';
     }
-    const xlabels = data.map((d, i) => '<text x="' + s.x(i).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="10" fill="#4a5468">' + d.age + '</text>').join('');
+    const labelEvery = Math.max(1, Math.ceil(data.length / 11));
+    const lastI = data.length - 1;
+    const xlabels = data.map((d, i) => {
+      const show = (i === lastI) || (i % labelEvery === 0 && (lastI - i) >= labelEvery);
+      return show ? '<text x="' + s.x(i).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle" font-size="10" fill="#4a5468">' + d.age + '</text>' : '';
+    }).join('');
     return '<div class="rc-chart-wrap">'
       + '<svg id="rcTimelineSvg" viewBox="0 0 ' + W + ' ' + H + '" style="display:block;min-width:320px;width:100%;">'
       + grid
       + '<path d="' + area + '" fill="rgba(30,58,111,0.06)"/>'
       + '<path d="' + path(d => d.target) + '" fill="none" stroke="#f5b800" stroke-width="1.5" stroke-dasharray="6,3"/>'
-      + '<path d="' + path(d => d.epfTotal) + '" fill="none" stroke="#9fb3c8" stroke-width="1.5" stroke-dasharray="3,3"/>'
+      + epfPath
+      + planPath
       + '<path d="' + path(d => d.total) + '" fill="none" stroke="#142a55" stroke-width="2.5"/>'
       + '<g id="rcHoverG" style="display:none">'
       + '<line id="rcHoverLine" y1="' + PT + '" y2="' + (PT + s.iH) + '" stroke="#f5b800" stroke-width="1" stroke-dasharray="3,3"/>'
+      + '<circle id="rcDotPlan" r="3.5" fill="#16a34a" stroke="#fff" stroke-width="1.5" style="display:none"/>'
       + '<circle id="rcDotTotal" r="4" fill="#142a55" stroke="#fff" stroke-width="2"/>'
       + '<circle id="rcDotTarget" r="4" fill="#f5b800" stroke="#fff" stroke-width="2"/>'
       + '<circle id="rcDotEpf" r="3" fill="#9fb3c8" stroke="#fff" stroke-width="1.5"/>'
       + '</g>'
       + xlabels
-      + '<text x="' + (PL + s.iW / 2) + '" y="' + H + '" text-anchor="middle" font-size="10" fill="#4a5468">Age</text>'
-      + '<text x="10" y="' + (PT + s.iH / 2) + '" text-anchor="middle" font-size="10" fill="#4a5468" transform="rotate(-90, 10, ' + (PT + s.iH / 2) + ')">Wealth (RM)</text>'
+      + '<text x="' + (PL + s.iW / 2) + '" y="' + H + '" text-anchor="middle" font-size="10" fill="#4a5468">' + t('chart_axis_age') + '</text>'
+      + '<text x="10" y="' + (PT + s.iH / 2) + '" text-anchor="middle" font-size="10" fill="#4a5468" transform="rotate(-90, 10, ' + (PT + s.iH / 2) + ')">' + t('chart_axis_wealth') + '</text>'
       + '</svg>'
       + '<div class="rc-tooltip" id="rcTooltip"></div>'
       + '<div class="rc-legend">'
-      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#142a55" stroke-width="2"/></svg> Total Projected</span>'
-      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#f5b800" stroke-width="2" stroke-dasharray="4,2"/></svg> Target Corpus</span>'
-      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#9fb3c8" stroke-width="2" stroke-dasharray="4,2"/></svg> EPF Only</span>'
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#142a55" stroke-width="2"/></svg> ' + t('chart_leg_total') + '</span>'
+      + (hasPlan ? '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,2"/></svg> ' + t('chart_leg_plan') + '</span>' : '')
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#f5b800" stroke-width="2" stroke-dasharray="4,2"/></svg> ' + t('chart_leg_target') + '</span>'
+      + '<span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#9fb3c8" stroke-width="2" stroke-dasharray="4,2"/></svg> ' + t('chart_leg_epf') + '</span>'
       + '</div></div>';
   }
 
@@ -786,13 +1009,16 @@
       const line = g.querySelector('#rcHoverLine');
       line.setAttribute('x1', x); line.setAttribute('x2', x);
       const set = (id, v) => { const el = g.querySelector('#' + id); el.setAttribute('cx', x); el.setAttribute('cy', s.y(v)); };
-      set('rcDotTotal', d.total); set('rcDotTarget', d.target); set('rcDotEpf', d.epfTotal);
+      const toggle = (id, v) => { const el = g.querySelector('#' + id); if (v != null){ el.style.display = ''; set(id, v); } else { el.style.display = 'none'; } };
+      set('rcDotTotal', d.total); set('rcDotTarget', d.target);
+      toggle('rcDotEpf', d.epfTotal); toggle('rcDotPlan', d.plan);
       tip.style.display = 'block';
-      tip.innerHTML = '<div style="font-weight:700;color:#f5b800;margin-bottom:4px;">Age ' + d.age + '</div>'
-        + '<div>Target: <b style="color:#f5b800">' + rcRM(d.target) + '</b></div>'
-        + '<div>Assets: <b>' + rcRM(d.total) + '</b></div>'
-        + '<div>EPF: <b style="color:#9fb3c8">' + rcRM(d.epfTotal) + '</b></div>'
-        + '<div>Other: <b style="color:#8a93a8">' + rcRM(d.other) + '</b></div>';
+      tip.innerHTML = '<div style="font-weight:700;color:#f5b800;margin-bottom:4px;">' + tf('tip_age', {a: d.age}) + '</div>'
+        + '<div>' + t('tip_target') + ': <b style="color:#f5b800">' + rcRM(d.target) + '</b></div>'
+        + '<div>' + t('tip_assets') + ': <b>' + rcRM(d.total) + '</b></div>'
+        + (d.plan != null ? '<div>' + t('tip_plan') + ': <b style="color:#16a34a">' + rcRM(d.plan) + '</b></div>' : '')
+        + (d.epfTotal != null ? '<div>' + t('tip_epf') + ': <b style="color:#9fb3c8">' + rcRM(d.epfTotal) + '</b></div>' : '')
+        + (d.other != null ? '<div>' + t('tip_other') + ': <b style="color:#8a93a8">' + rcRM(d.other) + '</b></div>' : '');
     });
     svg.addEventListener('mouseleave', () => { g.style.display = 'none'; tip.style.display = 'none'; });
   }
@@ -803,20 +1029,20 @@
     const gapPct = Math.max(0, 100 - epfPct - othPct);
     const scale = epfPct + othPct > 100 ? 100 / (epfPct + othPct) : 1;
     let bar = '<div class="rc-bar">'
-      + '<div style="width:' + (epfPct * scale) + '%;background:#334e68;"><span>' + epfPct + '% EPF</span></div>'
-      + '<div style="width:' + (othPct * scale) + '%;background:#627d98;"><span>' + othPct + '% Other</span></div>';
-    if (gapPct > 0) bar += '<div style="flex:1;background:#ef4444;"><span>' + gapPct + '% GAP</span></div>';
+      + '<div style="width:' + (epfPct * scale) + '%;background:#334e68;"><span>' + tf('bar_epf', {p: epfPct}) + '</span></div>'
+      + '<div style="width:' + (othPct * scale) + '%;background:#627d98;"><span>' + tf('bar_other', {p: othPct}) + '</span></div>';
+    if (gapPct > 0) bar += '<div style="flex:1;background:#ef4444;"><span>' + tf('bar_gap', {p: gapPct}) + '</span></div>';
     bar += '</div>'
       + '<div class="rc-bar-legend">'
-      + '<span><i style="background:#334e68;"></i> EPF Projected</span>'
-      + '<span><i style="background:#627d98;"></i> Other Assets</span>'
-      + '<span><i style="background:#ef4444;"></i> Gap</span>'
+      + '<span><i style="background:#334e68;"></i> ' + t('leg_epf') + '</span>'
+      + '<span><i style="background:#627d98;"></i> ' + t('leg_other') + '</span>'
+      + '<span><i style="background:#ef4444;"></i> ' + t('leg_gap') + '</span>'
       + '</div>';
     const stats = [
-      ['Target Corpus', rcRM(res.totalCorpusNeeded), 'var(--yellow)'],
-      ['EPF Projected', rcRM(res.totalEpfAtRetirement), '#334e68'],
-      ['Other Assets', rcRM(res.otherSavingsFV), '#627d98'],
-      ['Gap', rcRM(res.gap), '#ef4444'],
+      [t('stat_target'), rcRM(res.totalCorpusNeeded), 'var(--yellow)'],
+      [t('stat_epf'), rcRM(res.totalEpfAtRetirement), '#334e68'],
+      [t('stat_other'), rcRM(res.otherSavingsFV), '#627d98'],
+      [t('stat_gap'), rcRM(res.gap), '#ef4444'],
     ].map(x => '<div class="rc-gap-stat" style="border-top:3px solid ' + x[2] + ';"><div class="t">' + x[0] + '</div><div class="v">' + x[1] + '</div></div>').join('');
     return bar + '<div class="rc-gap-stats">' + stats + '</div>';
   }
@@ -837,92 +1063,100 @@
   }
 
   function rcRenderResults(res){
-    const i = rcInputs, gapPos = res.gap > 0;
+    const i = rcInputs, gapPos = res.gap > 0, deplete = res.incomeMode === 'deplete';
+    rcLastRes = res;
     const el = document.getElementById('rcResults');
     el.innerHTML =
-      '<div style="text-align:center;"><div class="rc-hint-pill"><span class="rc-bounce">' + rcIcon('down', 14) + '</span> Scroll to see your full retirement analysis</div></div>'
+      '<div style="text-align:center;"><div class="rc-hint-pill"><span class="rc-bounce">' + rcIcon('down', 14) + '</span> ' + t('res_scrollHint') + '</div></div>'
 
       + '<div class="rc-snapshot">'
       + '<div style="text-align:center;margin-bottom:20px;">'
-      + '<div class="rc-snap-eyebrow">Your Retirement Snapshot</div>'
-      + '<div class="rc-snap-sub">Age ' + i.currentAge + ' → ' + i.retirementAge + ' · ' + res.yearsToRetirement + ' years to prepare</div>'
+      + '<div class="rc-snap-eyebrow">' + t('snap_eyebrow') + '</div>'
+      + '<div class="rc-snap-sub">' + tf('snap_sub', {a: i.currentAge, b: i.retirementAge, n: res.yearsToRetirement}) + (deplete ? tf('snap_sub_life', {L: i.lifeExpectancy}) : '') + '</div>'
       + '</div>'
       + '<div class="rc-snap-stats">'
-      + rcSnapStat('Retirement Magic Number', rcRM(res.totalCorpusNeeded), 'Total Corpus Needed', 'var(--yellow)')
-      + rcSnapStat('Projected Assets', rcRM(res.totalProjectedAssets), 'EPF + Other Savings', '#fff')
-      + rcSnapStat('Retirement Gap', rcRM(res.gap), gapPos ? 'Shortfall to close' : 'Fully funded!', gapPos ? '#f87171' : '#4ade80')
+      + rcSnapStat(t('snap_magic'), rcRM(res.totalCorpusNeeded), deplete ? tf('snap_magic_sub_dep', {L: i.lifeExpectancy}) : t('snap_magic_sub'), 'var(--yellow)')
+      + rcSnapStat(t('snap_assets'), rcRM(res.totalProjectedAssets), t('snap_assets_sub'), '#fff')
+      + rcSnapStat(t('snap_gap'), rcRM(res.gap), gapPos ? t('snap_gap_short') : t('snap_gap_ok'), gapPos ? '#f87171' : '#4ade80')
       + '</div>'
       + '<div style="margin-top:20px;">'
-      + '<div class="rc-progress-labels"><span>Funded: ' + res.fundedPercentage.toFixed(1) + '%</span><span>Target: 100%</span></div>'
+      + '<div class="rc-progress-labels"><span>' + tf('snap_funded', {p: res.fundedPercentage.toFixed(1)}) + '</span><span>' + t('snap_target') + '</span></div>'
       + '<div class="rc-progress"><i style="width:' + Math.min(100, res.fundedPercentage) + '%"></i></div>'
       + '</div></div>'
 
-      + '<div class="rc-wcard"><div class="rc-wcard-head"><span class="ic">' + rcIcon('chart', 18) + '</span><span>Wealth Projection Timeline</span></div>' + rcChartHTML(res.timelineData) + '</div>'
+      + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
+      + '<div class="rc-wcard-head"><span class="ic" style="color:' + (gapPos ? '#ef4444' : '#4ade80') + ';">' + rcIcon(gapPos ? 'alert' : 'check', 20) + '</span><span>' + t('hard_title') + '</span></div>'
+      + rcGapHTML(res)
+      + (gapPos
+        ? '<div class="rc-gap-callout short"><div class="t">' + t('callout_title') + '</div><div class="v">' + rcRM(res.monthlyInvestmentNeeded) + '<small>' + t('per_mo') + '</small></div><div class="s">' + tf('callout_sub', {p: res.gapPercentage.toFixed(1)}) + '</div></div>'
+        : '<div class="rc-gap-callout ok">' + rcIcon('check', 24) + '<div><div class="t">' + t('ontrack_t') + '</div><div class="s">' + t('ontrack_s') + '</div></div></div>')
+      + (deplete
+        ? '<div class="rc-gap-callout" style="margin-top:12px;background:var(--gray-100);border:1px solid var(--gray-200);"><div class="s" style="font-size:13px;color:var(--ink-soft);">' + (res.depletionAge
+            ? tf('deplete_short', {age: Math.floor(res.depletionAge), yrs: Math.max(1, Math.ceil(i.lifeExpectancy - res.depletionAge)), life: i.lifeExpectancy})
+            : tf('deplete_ok', {life: i.lifeExpectancy})) + '</div></div>'
+        : '')
+      + '</div>'
 
       + '<div class="rc-step-grid">'
       + '<div class="rc-wcard" style="border-top:4px solid #ef4444;">'
-      + '<div class="rc-step-head"><span class="rc-step-num" style="background:#fee2e2;color:#ef4444;">01</span><span>Inflation — The Hidden Cost</span></div>'
-      + '<div class="rc-step-big" style="background:#fff5f5;"><div class="t" style="color:#ef4444;">RM ' + rcNum(i.desiredMonthlyIncome) + ' today will feel like...</div><div class="v">' + rcRM(res.futureMonthlyNeed) + '<small>/mo</small></div></div>'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:#fee2e2;color:#ef4444;">01</span><span>' + t('card01_title') + '</span></div>'
+      + '<div class="rc-step-big" style="background:#fff5f5;"><div class="t" style="color:#ef4444;">' + tf('card01_feel', {amt: rcNum(i.desiredMonthlyIncome)}) + '</div><div class="v">' + rcRM(res.futureMonthlyNeed) + '<small>' + t('per_mo') + '</small></div></div>'
       + '<div class="rc-mini-row">'
-      + '<div class="rc-mini"><div class="t">Multiplier</div><div class="v">' + res.inflationMultiplier.toFixed(2) + 'x</div></div>'
-      + '<div class="rc-mini"><div class="t">Power Lost</div><div class="v" style="color:#ef4444;">' + res.purchasingPowerLoss.toFixed(1) + '%</div></div>'
+      + '<div class="rc-mini"><div class="t">' + t('card01_mult') + '</div><div class="v">' + res.inflationMultiplier.toFixed(2) + 'x</div></div>'
+      + '<div class="rc-mini"><div class="t">' + t('card01_lost') + '</div><div class="v" style="color:#ef4444;">' + res.purchasingPowerLoss.toFixed(1) + '%</div></div>'
       + '</div>'
-      + '<p class="rc-step-quote">"Retirement planning must account for \'future prices\', not today\'s"</p>'
+      + '<div style="font-size:11px;color:var(--ink-soft);margin-top:10px;line-height:1.5;">' + tf('card01_rising', {rate: i.postRetireInflation, amt: rcRM(res.needAtPlus20), age: (i.retirementAge + 20)}) + '</div>'
       + '</div>'
 
       + '<div class="rc-wcard" style="border-top:4px solid var(--yellow);">'
-      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--yellow-soft);color:#8f7030;">02</span><span>Your \'Retirement Magic Number\'</span></div>'
-      + '<div class="rc-step-big" style="background:var(--yellow-soft);"><div class="t" style="color:#8f7030;">Corpus Target</div><div class="v">' + rcRM(res.totalCorpusNeeded) + '</div></div>'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--yellow-soft);color:#8f7030;">02</span><span>' + t('card02_title') + '</span></div>'
+      + '<div class="rc-step-big" style="background:var(--yellow-soft);"><div class="t" style="color:#8f7030;">' + t('card02_corpus') + '</div><div class="v">' + rcRM(res.totalCorpusNeeded) + '</div></div>'
       + '<div class="rc-mini-row">'
-      + '<div class="rc-mini"><div class="t">Annual</div><div class="v sm">' + rcRM(res.annualNeedAtRetirement) + '</div></div>'
-      + '<div class="rc-mini"><div class="t">Monthly</div><div class="v sm">' + rcRM(res.futureMonthlyNeed) + '</div></div>'
+      + '<div class="rc-mini"><div class="t">' + t('card02_annual') + '</div><div class="v sm">' + rcRM(res.annualNeedAtRetirement) + '</div></div>'
+      + '<div class="rc-mini"><div class="t">' + t('card02_monthly') + '</div><div class="v sm">' + rcRM(res.futureMonthlyNeed) + '</div></div>'
       + '</div>'
-      + '<p class="rc-step-quote">"Corpus = Annual Expenses ÷ ' + i.withdrawalRate + '%"</p>'
+      + '<p class="rc-step-quote">' + (deplete
+          ? tf('card02_quote_dep', {amt: rcRM(res.futureMonthlyNeed), rate: i.postRetireInflation, life: i.lifeExpectancy})
+          : tf('card02_quote_sus', {w: i.withdrawalRate})) + '</p>'
       + '</div>'
 
       + '<div class="rc-wcard" style="border-top:4px solid var(--navy);">'
-      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--gray-100);color:var(--navy);">03</span><span>EPF Dynamic Growth</span></div>'
-      + '<div class="rc-step-big" style="background:var(--gray-100);"><div class="t" style="color:var(--navy);">Projected EPF</div><div class="v">' + rcRM(res.totalEpfAtRetirement) + '</div></div>'
+      + '<div class="rc-step-head"><span class="rc-step-num" style="background:var(--gray-100);color:var(--navy);">03</span><span>' + t('card03_title') + '</span></div>'
+      + '<div class="rc-step-big" style="background:var(--gray-100);"><div class="t" style="color:var(--navy);">' + t('card03_proj') + '</div><div class="v">' + rcRM(res.totalEpfAtRetirement) + '</div></div>'
       + '<div class="rc-mini-row">'
-      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">Current EPF Growth</div><div class="v sm">' + rcRM(res.epfBalanceFV) + '</div></div>'
-      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">Contributions</div><div class="v sm">' + rcRM(res.epfContributionsFV) + '</div></div>'
+      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">' + t('card03_cur') + '</div><div class="v sm">' + rcRM(res.epfBalanceFV) + '</div></div>'
+      + '<div class="rc-mini" style="background:#fff;border:1px solid var(--gray-100);"><div class="t">' + t('card03_contr') + '</div><div class="v sm">' + rcRM(res.epfContributionsFV) + '</div></div>'
       + '</div>'
-      + '<p class="rc-step-quote">"EPF alone is far from enough — we need extra growth engines"</p>'
+      + '<p class="rc-step-quote">' + t('card03_quote') + '</p>'
       + '</div>'
       + '</div>'
 
-      + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
-      + '<div class="rc-wcard-head"><span class="ic" style="color:' + (gapPos ? '#ef4444' : '#4ade80') + ';">' + rcIcon(gapPos ? 'alert' : 'check', 20) + '</span><span>The Hard Truth — The Gap</span></div>'
-      + rcGapHTML(res)
-      + (gapPos
-        ? '<div class="rc-gap-callout short"><div class="t">Monthly Extra Investment Needed to Close the Gap</div><div class="v">' + rcRM(res.monthlyInvestmentNeeded) + '<small>/mo</small></div><div class="s">Gap: ' + res.gapPercentage.toFixed(1) + '% of total corpus needed</div></div>'
-        : '<div class="rc-gap-callout ok">' + rcIcon('check', 24) + '<div><div class="t">You\'re on track! 🎉</div><div class="s">Your projected assets exceed the target corpus.</div></div></div>')
-      + '</div>'
+      + '<div class="rc-wcard"><div class="rc-wcard-head"><span class="ic">' + rcIcon('chart', 18) + '</span><span>' + t('chart_title') + (deplete ? t('chart_title_dep') : '') + '</span></div>' + rcChartHTML(res.timelineData) + '</div>'
 
       + '<div class="rc-wcard">'
-      + '<div class="rc-wcard-head"><span class="ic">' + rcIcon('sparkles', 20) + '</span><span>3 Strategies to Shrink the Gap</span></div>'
+      + '<div class="rc-wcard-head"><span class="ic">' + rcIcon('sparkles', 20) + '</span><span>' + t('strat_title') + '</span></div>'
       + '<div class="rc-lever-grid">'
-      + rcLever('trending', 'Boost Income', 'Upgrade your skills for promotions and raises, or build side income streams to accelerate your EPF contributions.', 'Adjust Salary Growth', 'salaryGrowth')
-      + rcLeverInfo('dollar', 'Disciplined Investing', 'Build a diversified global portfolio (70% Equities + 30% Fixed Income) to earn higher returns than EPF alone.', 'The gap signals it\'s time to invest beyond EPF. Review your Investment Return Rate in the assumptions above.')
-      + rcLever('clock', 'Delay Retirement', 'Working a few more years gives your EPF and investments extra time to compound, reducing the gap significantly.', 'Adjust Retirement Age', 'retirementAge')
+      + rcLever('trending', t('strat1_t'), t('strat1_d'), t('strat1_b'), 'salaryGrowth')
+      + rcLeverInfo('dollar', t('strat2_t'), t('strat2_d'), t('strat2_i'))
+      + rcLever('clock', t('strat3_t'), t('strat3_d'), t('strat3_b'), 'retirementAge')
       + '</div>'
-      + '<div class="rc-strategy-foot">"Understanding the data empowers better decisions — don\'t let the numbers intimidate you"</div>'
+      + '<div class="rc-strategy-foot">' + t('strat_foot') + '</div>'
       + '</div>'
 
       + '<div class="rc-wcard" style="background:linear-gradient(135deg, var(--yellow-soft), #fff);border-top:4px solid var(--yellow);">'
-      + '<div class="rc-wcard-head"><span>Your Action Plan</span></div>'
+      + '<div class="rc-wcard-head"><span>' + t('plan_title') + '</span></div>'
       + '<div class="rc-plan-grid">'
-      + rcPlan('01', 'Deep Review', 'Assess your current financial position, EPF, savings, debts, and protection gaps.')
-      + rcPlan('02', 'Asset Allocation', 'Diversify into equities, bonds, and alternative assets for growth beyond EPF.')
-      + rcPlan('03', 'Auto-Pilot', 'Set up automatic transfers to your investment account every payday — consistency wins.')
-      + rcPlan('04', 'Regular Review', 'Revisit this calculator annually. Life changes, and your plan should too.')
+      + rcPlan('01', t('plan1_t'), t('plan1_d'))
+      + rcPlan('02', t('plan2_t'), t('plan2_d'))
+      + rcPlan('03', t('plan3_t'), t('plan3_d'))
+      + rcPlan('04', t('plan4_t'), t('plan4_d'))
       + '</div>'
       + '</div>'
 
-      + '<p class="rc-quote">"Retirement planning is not a privilege of the wealthy, but a necessity to avoid future hardship."</p>'
+      + '<p class="rc-quote">' + t('closing_quote') + '</p>'
 
       + '<div class="rc-contact">'
-      + '<div><div class="e">Your Financial Advisor</div><div class="n">Anson Tan</div><div class="c">BBB Advisory Sdn Bhd</div></div>'
+      + '<div><div class="e">' + t('contact_advisor') + '</div><div class="n">Anson Tan</div><div class="c">BBB Advisory Sdn Bhd</div></div>'
       + '<div class="rc-contact-actions">'
       + '<a class="wa" href="https://wa.me/601156281541" target="_blank" rel="noreferrer">' + rcIcon('message', 16) + ' WhatsApp</a>'
       + '<a class="tel" href="tel:+601156281541">' + rcIcon('phone', 16) + ' 011-5628 1541</a>'
@@ -936,32 +1170,78 @@
     }));
   }
 
+  function rcRenderAssumptions(){
+    const wrap = document.getElementById('rcFieldsC');
+    let h = ['desiredMonthlyIncome', 'inflationRate', 'postRetireInflation', 'epfReturnRate', 'investmentReturnRate'].map(rcFieldHTML).join('');
+    h += '<div class="rc-field"><label>' + rcIcon('calc') + ' ' + t('lbl_incomeMode') + '</label>'
+      + '<select id="rcIncomeMode" class="rc-select">'
+      + '<option value="sustainable"' + (rcInputs.incomeMode === 'sustainable' ? ' selected' : '') + '>' + t('opt_sustainable') + '</option>'
+      + '<option value="deplete"' + (rcInputs.incomeMode === 'deplete' ? ' selected' : '') + '>' + t('opt_deplete') + '</option>'
+      + '</select></div>';
+    h += rcInputs.incomeMode === 'deplete'
+      ? rcFieldHTML('lifeExpectancy') + rcFieldHTML('retireReturnRate')
+      : rcFieldHTML('withdrawalRate');
+    wrap.innerHTML = h;
+    rcWireFields(wrap);
+    document.getElementById('rcIncomeMode').addEventListener('change', e => {
+      rcInputs.incomeMode = e.target.value;
+      rcRenderAssumptions();
+    });
+  }
+
   function rcRenderFields(){
     document.getElementById('rcFieldsA').innerHTML =
       ['currentAge', 'retirementAge', 'monthlySalary', 'salaryGrowth', 'currentEpf', 'currentSavings'].map(rcFieldHTML).join('');
     rcWireFields(document.getElementById('rcFieldsA'));
     rcRenderEmployment();
-    document.getElementById('rcFieldsC').innerHTML =
-      ['desiredMonthlyIncome', 'inflationRate', 'epfReturnRate', 'investmentReturnRate', 'withdrawalRate'].map(rcFieldHTML).join('');
-    rcWireFields(document.getElementById('rcFieldsC'));
+    rcRenderAssumptions();
+  }
+
+  function rcApplyStatic(){
+    document.documentElement.lang = (rcLang === 'zh') ? 'zh' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+    document.querySelectorAll('#rcLang [data-lang]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === rcLang);
+    });
+  }
+
+  function rcSetLang(lang){
+    rcLang = (lang === 'zh') ? 'zh' : 'en';
+    try { localStorage.setItem('rcLang', rcLang); } catch (e) {}
+    rcApplyStatic();
+    rcRenderFields();
+    if (rcLastRes && document.getElementById('rcResults').classList.contains('show')) rcRenderResults(rcLastRes);
   }
 
   function rcInit(){
+    try { const saved = localStorage.getItem('rcLang'); if (saved === 'zh' || saved === 'en') rcLang = saved; } catch (e) {}
     document.querySelectorAll('[data-rc-icon]').forEach(el => {
       el.innerHTML = rcIcon(el.dataset.rcIcon, el.classList.contains('rc-sec-icon') ? 16 : (el.dataset.rcIcon === 'calc' ? 18 : 16));
     });
+    document.querySelectorAll('#rcLang [data-lang]').forEach(btn => {
+      btn.addEventListener('click', () => rcSetLang(btn.getAttribute('data-lang')));
+    });
+    rcApplyStatic();
     rcRenderFields();
 
     document.getElementById('rcCalcBtn').addEventListener('click', () => {
-      const res = rcCalc(rcInputs);
       const err = document.getElementById('rcFormError');
-      if (!res){ err.style.display = 'block'; return; }
+      if (rcInputs.retirementAge <= rcInputs.currentAge){
+        err.textContent = t('err_retire'); err.style.display = 'block'; return;
+      }
+      if (rcInputs.incomeMode === 'deplete' && rcInputs.lifeExpectancy <= rcInputs.retirementAge){
+        err.textContent = t('err_life'); err.style.display = 'block'; return;
+      }
+      const res = rcCalc(rcInputs);
+      if (!res){ err.textContent = t('err_generic'); err.style.display = 'block'; return; }
       err.style.display = 'none';
       rcRenderResults(res);
       setTimeout(() => document.getElementById('rcResults').scrollIntoView({behavior: 'smooth', block: 'start'}), 100);
     });
     document.getElementById('rcResetBtn').addEventListener('click', () => {
       rcInputs = Object.assign({}, RC_DEFAULTS);
+      rcLastRes = null;
       const results = document.getElementById('rcResults');
       results.classList.remove('show');
       results.innerHTML = '';
