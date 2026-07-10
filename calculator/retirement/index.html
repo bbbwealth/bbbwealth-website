@@ -91,6 +91,37 @@
   }
   .hero p{font-size:15px;color:var(--ink-soft);max-width:520px;margin:0 auto;line-height:1.7;}
 
+  /* ---------- Hero journey graphic (A) ---------- */
+  .rc-hero-viz{margin:22px auto 0;max-width:540px;}
+  .rc-hero-viz svg{display:block;width:100%;height:auto;}
+
+  /* ---------- Live retirement pulse (B) ---------- */
+  .rc-pulse{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy-soft));
+    border-radius:14px;padding:16px 18px;margin-bottom:28px;color:#fff;
+  }
+  .rc-pulse-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+  .rc-pulse-stat .l{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:700;}
+  .rc-pulse-stat .v{font-size:19px;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums;line-height:1.2;}
+  .rc-pulse-stat .v small{font-size:10px;color:rgba(255,255,255,.6);font-weight:600;}
+  .rc-pulse-track{position:relative;height:8px;background:rgba(255,255,255,.14);border-radius:8px;margin:16px 8px 8px;}
+  .rc-pulse-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg, var(--yellow), var(--yellow-bright));border-radius:8px;transition:width .5s ease;}
+  .rc-pulse-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--yellow);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:left .5s ease;}
+  .rc-pulse-lbls{display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.55);padding:0 2px;}
+  .rc-pulse-lbls b{color:#fff;font-size:10px;display:block;font-variant-numeric:tabular-nums;}
+
+  /* ---------- Funded gauge (C) ---------- */
+  .rc-gauge-wrap{position:relative;width:200px;max-width:70%;margin:8px auto 0;}
+  .rc-gauge-wrap svg{display:block;width:100%;height:auto;}
+  .rc-gauge-arc{transition:stroke-dashoffset .1s linear;}
+  .rc-gauge-center{position:absolute;left:0;right:0;top:56%;text-align:center;}
+  .rc-gauge-center .p{font-size:30px;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums;line-height:1;}
+  .rc-gauge-center .t{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:700;margin-top:2px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .rc-pulse-fill,.rc-pulse-dot,.rc-gauge-arc,.rc-progress i{transition:none;}
+  }
+
   .rc-card{
     border-radius:20px;
     overflow:hidden;
@@ -428,6 +459,7 @@
     <div class="hero-badge" data-i18n="hero_badge">&#10022; Plan Smarter, Retire Better</div>
     <h1 data-i18n-html="hero_h1">How much do you need to <span class="y">retire?</span></h1>
     <p data-i18n-html="hero_sub">Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
+    <div class="rc-hero-viz" id="rcHeroViz"></div>
   </div>
 
 <div class="rc-card">
@@ -442,6 +474,7 @@
         <div><div class="t" data-i18n="secA_t">Personal Information</div><div class="s" data-i18n="secA_s">Tell us about yourself</div></div>
       </div>
       <div class="rc-fields" id="rcFieldsA"></div>
+      <div class="rc-pulse" id="rcPulse"></div>
 
       <hr class="rc-hr">
 
@@ -535,6 +568,10 @@
       f_withdrawalRate:'Withdrawal Rate (4% Rule) %', f_postRetireInflation:'Post-Retirement Inflation %',
       f_lifeExpectancy:'Life Expectancy Age', f_retireReturnRate:'Return During Retirement %',
       u_yrs:'yrs', fixed:'Fixed', auto:'Auto',
+      viz_today:'Today', viz_retire:'Retire', viz_target:'Target corpus', viz_grow:'EPF + investments compound',
+      pulse_years:'Years to prepare', pulse_epf:'Monthly EPF flow', pulse_used:'Working years used',
+      pulse_start:'start', pulse_retire:'retire',
+      gauge_funded:'Funded',
       hint_withdrawal:'Fixed at 4% based on the 4% Rule.',
       hint_postInflation:'Automatically follows the inflation rate above.',
       hint_lt5000:'13% applies (salary < RM 5,000)', hint_gte5000:'12% applies (salary ≥ RM 5,000). Adjust if needed.',
@@ -603,6 +640,10 @@
       f_withdrawalRate:'提取率（4% 法则）%', f_postRetireInflation:'退休后通货膨胀率 %',
       f_lifeExpectancy:'预期寿命年龄', f_retireReturnRate:'退休期间回酬 %',
       u_yrs:'岁', fixed:'固定', auto:'自动',
+      viz_today:'今天', viz_retire:'退休', viz_target:'目标退休金', viz_grow:'公积金 + 投资复利增长',
+      pulse_years:'准备年数', pulse_epf:'每月公积金流入', pulse_used:'已用工作年数',
+      pulse_start:'起点', pulse_retire:'退休',
+      gauge_funded:'已达成',
       hint_withdrawal:'按 4% 法则固定为 4%。',
       hint_postInflation:'自动跟随上方的通货膨胀率。',
       hint_lt5000:'适用 13%（月薪 < RM 5,000）', hint_gte5000:'适用 12%（月薪 ≥ RM 5,000），可自行调整。',
@@ -743,6 +784,7 @@
       rcSyncField('postRetireInflation');
     }
     rcUpdateRateBar();
+    rcUpdateLiveViz();
   }
 
   function rcWireFields(root){
@@ -783,6 +825,64 @@
       : '<b>' + tf('rate_voluntary', {x: rcInputs.epfContributionRate}) + '</b>';
   }
 
+  function rcAgeLabel(age, key){
+    return rcLang === 'zh' ? (age + t('u_yrs') + ' · ' + t(key)) : ('Age ' + age + ' · ' + t(key));
+  }
+
+  // ---------- Hero journey graphic (A) ----------
+  function rcRenderHeroViz(){
+    const el = document.getElementById('rcHeroViz');
+    if (!el) return;
+    const a = rcInputs.currentAge, b = rcInputs.retirementAge;
+    el.innerHTML =
+      '<svg viewBox="0 0 520 176" role="img" aria-label="' + t('viz_grow') + '">'
+      + '<defs><linearGradient id="rcHeroGrad" x1="0" y1="0" x2="0" y2="1">'
+      + '<stop offset="0" stop-color="#f5b800" stop-opacity=".28"/>'
+      + '<stop offset="1" stop-color="#f5b800" stop-opacity="0"/></linearGradient></defs>'
+      + '<line x1="30" y1="140" x2="500" y2="140" stroke="#e3e7ef" stroke-width="1.5"/>'
+      + '<line x1="30" y1="46" x2="500" y2="46" stroke="#f5b800" stroke-width="1.5" stroke-dasharray="6 4" opacity=".8"/>'
+      + '<text x="500" y="38" text-anchor="end" font-size="10" fill="#8f7030" font-weight="700">' + t('viz_target') + '</text>'
+      + '<path d="M30 138 C 160 132, 260 116, 340 84 S 450 40, 470 34" fill="none" stroke="#142a55" stroke-width="3" stroke-linecap="round"/>'
+      + '<path d="M30 138 C 160 132, 260 116, 340 84 S 450 40, 470 34 L470 140 L30 140 Z" fill="url(#rcHeroGrad)"/>'
+      + '<circle cx="30" cy="138" r="6" fill="#1e3a6f" stroke="#fff" stroke-width="2"/>'
+      + '<text x="34" y="162" text-anchor="middle" font-size="10" fill="#4a5468" font-weight="700">' + rcAgeLabel(a, 'viz_today') + '</text>'
+      + '<circle cx="340" cy="84" r="5" fill="#f5b800" stroke="#fff" stroke-width="2"/>'
+      + '<text x="340" y="106" text-anchor="middle" font-size="9" fill="#8a93a8">' + t('viz_grow') + '</text>'
+      + '<g transform="translate(470,34)">'
+      + '<line x1="0" y1="0" x2="0" y2="-22" stroke="#142a55" stroke-width="2.5"/>'
+      + '<path d="M0 -22 L18 -16 L0 -10 Z" fill="#f5b800" stroke="#142a55" stroke-width="1.5"/>'
+      + '<circle r="6" fill="#f5b800" stroke="#fff" stroke-width="2"/></g>'
+      + '<text x="470" y="60" text-anchor="middle" font-size="10" fill="#142a55" font-weight="800">' + rcAgeLabel(b, 'viz_retire') + '</text>'
+      + '</svg>';
+  }
+
+  // ---------- Live retirement pulse (B) ----------
+  function rcRenderPulse(){
+    const el = document.getElementById('rcPulse');
+    if (!el) return;
+    const a = rcInputs.currentAge, b = rcInputs.retirementAge;
+    const years = Math.max(0, b - a);
+    const effRate = rcInputs.employmentType === 'employed'
+      ? (rcInputs.employeeEpfRate + rcInputs.employerEpfRate)
+      : rcInputs.epfContributionRate;
+    const epfFlow = rcInputs.monthlySalary * effRate / 100;
+    const start = 18;
+    const pct = Math.max(0, Math.min(100, (a - start) / Math.max(1, b - start) * 100));
+    el.innerHTML =
+      '<div class="rc-pulse-top">'
+      + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_years') + '</div><div class="v">' + years + ' <small>' + t('u_yrs') + '</small></div></div>'
+      + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_epf') + '</div><div class="v">RM ' + rcNum(epfFlow) + ' <small>' + t('per_mo') + '</small></div></div>'
+      + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_used') + '</div><div class="v">' + Math.round(pct) + '%</div></div>'
+      + '</div>'
+      + '<div class="rc-pulse-track"><div class="rc-pulse-fill" style="width:' + pct + '%"></div><div class="rc-pulse-dot" style="left:' + pct + '%"></div></div>'
+      + '<div class="rc-pulse-lbls"><span><b>' + start + '</b>' + t('pulse_start') + '</span><span><b>' + b + '</b>' + t('pulse_retire') + '</span></div>';
+  }
+
+  function rcUpdateLiveViz(){
+    rcRenderHeroViz();
+    rcRenderPulse();
+  }
+
   function rcRenderEmployment(){
     const wrap = document.getElementById('rcFieldsB');
     let h = '<div class="rc-field"><label>' + rcIcon('briefcase') + ' ' + t('lbl_empType') + '</label>'
@@ -802,6 +902,7 @@
     });
     rcUpdateEmployerHint();
     rcUpdateRateBar();
+    rcUpdateLiveViz();
   }
 
   function rcCalc(inp){
@@ -1030,8 +1131,40 @@
     return bar + '<div class="rc-gap-stats">' + stats + '</div>';
   }
 
-  function rcSnapStat(label, value, sub, color){
-    return '<div class="rc-snap-stat"><div class="l">' + label + '</div><div class="v" style="color:' + color + ';">' + value + '</div><div class="s">' + sub + '</div></div>';
+  function rcSnapStat(label, value, sub, color, id){
+    return '<div class="rc-snap-stat"><div class="l">' + label + '</div><div class="v"' + (id ? ' id="' + id + '"' : '') + ' style="color:' + color + ';">' + value + '</div><div class="s">' + sub + '</div></div>';
+  }
+
+  function rcAnimateSnapshot(res){
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const arc = document.getElementById('rcGaugeArc');
+    const pctEl = document.getElementById('rcGaugePct');
+    const magic = document.getElementById('rcSnapMagic');
+    const assets = document.getElementById('rcSnapAssets');
+    const gap = document.getElementById('rcSnapGap');
+    const FULL = 264, funded = Math.min(100, res.fundedPercentage) / 100;
+    const pctText = v => (v < 100 ? v.toFixed(1) : '100') + '%';
+    const setFinal = () => {
+      if (arc) arc.style.strokeDashoffset = FULL - FULL * funded;
+      if (pctEl) pctEl.textContent = pctText(res.fundedPercentage);
+      if (magic) magic.textContent = rcRM(res.totalCorpusNeeded);
+      if (assets) assets.textContent = rcRM(res.totalProjectedAssets);
+      if (gap) gap.textContent = rcRM(res.gap);
+    };
+    if (reduced || document.visibilityState === 'hidden'){ setFinal(); return; }
+    if (arc){ arc.style.transition = 'none'; arc.style.strokeDashoffset = FULL; }
+    let t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      const p = Math.min(1, (ts - t0) / 1400), e = 1 - Math.pow(1 - p, 3);
+      if (arc) arc.style.strokeDashoffset = FULL - FULL * funded * e;
+      if (pctEl) pctEl.textContent = pctText(res.fundedPercentage * e);
+      if (magic) magic.textContent = rcRM(res.totalCorpusNeeded * e);
+      if (assets) assets.textContent = rcRM(res.totalProjectedAssets * e);
+      if (gap) gap.textContent = rcRM(res.gap * e);
+      if (p < 1) requestAnimationFrame(step); else setFinal();
+    }
+    requestAnimationFrame(step);
   }
   function rcLever(icon, title, desc, btn, focusKey){
     return '<div class="rc-lever"><div class="rc-lever-icon">' + rcIcon(icon, 18) + '</div><div class="t">' + title + '</div><p>' + desc + '</p>'
@@ -1057,14 +1190,19 @@
       + '<div class="rc-snap-eyebrow">' + t('snap_eyebrow') + '</div>'
       + '<div class="rc-snap-sub">' + tf('snap_sub', {a: i.currentAge, b: i.retirementAge, n: res.yearsToRetirement}) + (deplete ? tf('snap_sub_life', {L: i.lifeExpectancy}) : '') + '</div>'
       + '</div>'
-      + '<div class="rc-snap-stats">'
-      + rcSnapStat(t('snap_magic'), rcRM(res.totalCorpusNeeded), deplete ? tf('snap_magic_sub_dep', {L: i.lifeExpectancy}) : t('snap_magic_sub'), 'var(--yellow)')
-      + rcSnapStat(t('snap_assets'), rcRM(res.totalProjectedAssets), t('snap_assets_sub'), '#fff')
-      + rcSnapStat(t('snap_gap'), rcRM(res.gap), gapPos ? t('snap_gap_short') : t('snap_gap_ok'), gapPos ? '#f87171' : '#4ade80')
+      + '<div class="rc-gauge-wrap">'
+      + '<svg viewBox="0 0 200 118" role="img" aria-label="' + tf('snap_funded', {p: res.fundedPercentage.toFixed(1)}) + '">'
+      + '<path d="M16 108 A 84 84 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="15" stroke-linecap="round"/>'
+      + '<path id="rcGaugeArc" class="rc-gauge-arc" d="M16 108 A 84 84 0 0 1 184 108" fill="none" stroke="' + (gapPos ? 'var(--yellow)' : '#4ade80') + '" stroke-width="15" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264"/>'
+      + '<text x="22" y="117" font-size="9" fill="rgba(255,255,255,.5)">0%</text>'
+      + '<text x="178" y="117" font-size="9" fill="rgba(255,255,255,.5)" text-anchor="end">100%</text>'
+      + '</svg>'
+      + '<div class="rc-gauge-center"><div class="p" id="rcGaugePct" style="color:' + (gapPos ? 'var(--yellow)' : '#4ade80') + '">0%</div><div class="t">' + t('gauge_funded') + '</div></div>'
       + '</div>'
-      + '<div style="margin-top:20px;">'
-      + '<div class="rc-progress-labels"><span>' + tf('snap_funded', {p: res.fundedPercentage.toFixed(1)}) + '</span><span>' + t('snap_target') + '</span></div>'
-      + '<div class="rc-progress"><i style="width:' + Math.min(100, res.fundedPercentage) + '%"></i></div>'
+      + '<div class="rc-snap-stats" style="margin-top:20px;">'
+      + rcSnapStat(t('snap_magic'), rcRM(res.totalCorpusNeeded), deplete ? tf('snap_magic_sub_dep', {L: i.lifeExpectancy}) : t('snap_magic_sub'), 'var(--yellow)', 'rcSnapMagic')
+      + rcSnapStat(t('snap_assets'), rcRM(res.totalProjectedAssets), t('snap_assets_sub'), '#fff', 'rcSnapAssets')
+      + rcSnapStat(t('snap_gap'), rcRM(res.gap), gapPos ? t('snap_gap_short') : t('snap_gap_ok'), gapPos ? '#f87171' : '#4ade80', 'rcSnapGap')
       + '</div></div>'
 
       + '<div class="rc-wcard" style="border-left:4px solid ' + (gapPos ? '#ef4444' : '#4ade80') + ';">'
@@ -1146,6 +1284,7 @@
       + '</div></div>';
 
     el.classList.add('show');
+    rcAnimateSnapshot(res);
     rcWireChart(res.timelineData);
     el.querySelectorAll('[data-focus]').forEach(b => b.addEventListener('click', () => {
       const f = document.querySelector('.rc-field[data-key="' + b.dataset.focus + '"] .rc-input');
@@ -1178,6 +1317,7 @@
     rcWireFields(document.getElementById('rcFieldsA'));
     rcRenderEmployment();
     rcRenderAssumptions();
+    rcUpdateLiveViz();
   }
 
   function rcApplyStatic(){
