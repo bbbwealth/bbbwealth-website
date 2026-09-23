@@ -1070,6 +1070,46 @@
     line-height:1.55;
   }
 
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{background:var(--cream); border-top:1px solid var(--line);}
+  .newsletter-box{
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+    background:#fff; border:1px solid var(--gray-200); border-radius:28px;
+    padding:56px 56px; position:relative; overflow:hidden;
+  }
+  .newsletter-box::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--navy), var(--yellow));
+  }
+  .newsletter h2{
+    font-size:clamp(30px, 3.6vw, 44px); font-weight:600; color:var(--navy-deep);
+    letter-spacing:-0.025em; line-height:1.08; margin-bottom:16px;
+  }
+  .newsletter h2 .y{
+    background:linear-gradient(180deg, transparent 60%, var(--yellow) 60%, var(--yellow) 92%, transparent 92%);
+    padding:0 4px;
+  }
+  .newsletter-copy p{color:var(--ink-soft); font-size:16px; max-width:440px;}
+  .newsletter-form{display:flex; flex-direction:column; gap:12px;}
+  .newsletter-form label.nl-label{font-size:13px; font-weight:600; color:var(--navy); letter-spacing:.02em;}
+  .newsletter-row{display:flex; gap:10px;}
+  .newsletter-row input[type=email]{
+    flex:1; min-width:0; font-family:inherit; font-size:16px; color:var(--ink);
+    padding:15px 18px; border:1.5px solid var(--gray-200); border-radius:999px; background:var(--cream);
+    transition:border-color .2s, box-shadow .2s, background .2s;
+  }
+  .newsletter-row input[type=email]:focus{
+    outline:none; border-color:var(--navy); background:#fff; box-shadow:0 0 0 4px rgba(30,58,111,.12);
+  }
+  .newsletter-row .btn-primary{white-space:nowrap;}
+  .newsletter-row .btn-primary[disabled]{opacity:.6; cursor:wait; transform:none; box-shadow:none;}
+  .nl-note{font-size:12.5px; color:var(--ink-soft); line-height:1.5;}
+  .nl-status{font-size:14px; font-weight:600; min-height:1.4em;}
+  .nl-status.ok{color:#1a7f4b;}
+  .nl-status.err{color:#b42318;}
+  .nl-hp{position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden;}
+
   /* ---------- CTA ---------- */
   .cta{
     background:var(--navy-deep);
@@ -1187,6 +1227,7 @@
     .about-grid{grid-template-columns:1fr; gap:40px;}
     .footer-grid{grid-template-columns:1fr 1fr; gap:40px;}
     .section-header{grid-template-columns:1fr; gap:24px;}
+    .newsletter-box{grid-template-columns:1fr; gap:32px;}
   }
   @media (max-width: 640px){
     nav{padding:14px 20px;}
@@ -1220,6 +1261,9 @@
     .training-body{padding:24px;}
     footer{padding:60px 20px 24px;}
     .cta{padding:90px 20px;}
+    .newsletter-box{padding:36px 22px; border-radius:22px;}
+    .newsletter-row{flex-direction:column;}
+    .newsletter-row .btn-primary{justify-content:center;}
   }
 </style>
 </head>
@@ -1762,6 +1806,29 @@
   </div>
 </section>
 
+<!-- ============== NEWSLETTER ============== -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-box reveal">
+    <div class="newsletter-copy">
+      <span class="section-num" data-i18n="nl_num">08 / Newsletter</span>
+      <h2 class="display" data-i18n-html="nl_title">Clear thinking on money, <span class="y">in your inbox.</span></h2>
+      <p data-i18n="nl_sub">Market views, planning ideas, and updates from the BBBwealth team — written in plain language. No spam, unsubscribe anytime.</p>
+    </div>
+    <form class="newsletter-form" name="newsletter" method="POST" action="/?subscribed=1#newsletter" data-netlify="true" netlify-honeypot="bot-field" id="newsletterForm">
+      <input type="hidden" name="form-name" value="newsletter" />
+      <p class="nl-hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <input type="hidden" name="language" id="nlLang" value="en" />
+      <label class="nl-label" for="nlEmail" data-i18n="nl_label">Email address</label>
+      <div class="newsletter-row">
+        <input type="email" id="nlEmail" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" data-i18n-ph="nl_ph" />
+        <button type="submit" class="btn-primary" id="nlBtn"><span data-i18n="nl_btn">Subscribe</span> <span class="arrow">→</span></button>
+      </div>
+      <p class="nl-status" id="nlStatus" role="status" aria-live="polite"></p>
+      <p class="nl-note" data-i18n="nl_note">By subscribing, you agree to receive emails from BBBwealth. We'll only use your email to send the newsletter and never share it.</p>
+    </form>
+  </div>
+</section>
+
 <!-- ============== CTA ============== -->
 <section class="cta" id="contact">
   <div class="cta-inner">
@@ -1884,6 +1951,11 @@
       tm1_role:'Wealth Management', tm1_p:'Leads investment, insurance & trust, and the coordinated balance sheet strategy.',
       tm2_role:'Marketing', tm2_p:'Drives brand, content, and the client experience across digital channels.',
       tm3_role:'Financial Planning', tm3_p:'Leads the financial planning practice — from Basic sessions to Complete PLUS engagements.',
+      nl_num:'08 / Newsletter', nl_title:'Clear thinking on money, <span class="y">in your inbox.</span>',
+      nl_sub:'Market views, planning ideas, and updates from the BBBwealth team — written in plain language. No spam, unsubscribe anytime.',
+      nl_label:'Email address', nl_ph:'you@example.com', nl_btn:'Subscribe', nl_sending:'Subscribing…',
+      nl_ok:'You\'re in! Thanks for subscribing — watch your inbox for our next issue.', nl_err:'Something went wrong. Please try again in a moment.', nl_invalid:'Please enter a valid email address.',
+      nl_note:'By subscribing, you agree to receive emails from BBBwealth. We\'ll only use your email to send the newsletter and never share it.',
       c_title:'Money is personal.<br>So is <span class="y">good advice.</span>',
       c_sub:'Book a no-obligation conversation. We\'ll listen first, scope the work honestly, and quote only when there\'s a clear fit.', c_btn:'Book a consultation',
       f_brand:'An independent Malaysian financial advisory practice. Planning, wealth management, and HRD-claimable corporate training — under one roof.',
@@ -1944,6 +2016,11 @@
       tm1_role:'财富管理', tm1_p:'主理投资、保险与信托，以及协调统筹的资产负债表策略。',
       tm2_role:'市场营销', tm2_p:'推动品牌、内容与跨数字渠道的客户体验。',
       tm3_role:'财务规划', tm3_p:'主理财务规划业务 —— 从基础咨询到完整 PLUS 服务。',
+      nl_num:'08 / 电子报', nl_title:'把清晰的理财思维，<span class="y">送到你的邮箱。</span>',
+      nl_sub:'市场观点、理财规划心得与 BBBwealth 团队的最新动态 —— 用白话写给你。绝不滥发，可随时取消订阅。',
+      nl_label:'电邮地址', nl_ph:'you@example.com', nl_btn:'订阅', nl_sending:'订阅中…',
+      nl_ok:'订阅成功！谢谢你，下一期电子报会直接送到你的邮箱。', nl_err:'出了点问题，请稍后再试。', nl_invalid:'请输入有效的电邮地址。',
+      nl_note:'订阅即表示你同意接收 BBBwealth 的电邮。我们只会用你的电邮发送电子报，绝不与第三方分享。',
       c_title:'理财很个人，<br>好的建议<span class="y">也一样。</span>',
       c_sub:'预约一次没有义务的交流。我们会先聆听，诚实地界定工作范围，只有在真正契合时才报价。', c_btn:'预约咨询',
       f_brand:'一家独立的马来西亚财务咨询机构。规划、财富管理与可申报 HRD 的企业培训 —— 集于一处。',
@@ -1961,6 +2038,8 @@
     document.title = T('doc_title');
     document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = T(el.getAttribute('data-i18n-html')); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.setAttribute('placeholder', T(el.getAttribute('data-i18n-ph'))); });
+    const nlLang = document.getElementById('nlLang'); if (nlLang) nlLang.value = siteLang;
     document.querySelectorAll('#langToggle [data-lang]').forEach(b => { b.classList.toggle('active', b.getAttribute('data-lang') === siteLang); });
   }
   document.querySelectorAll('#langToggle [data-lang]').forEach(b => {
@@ -1984,5 +2063,32 @@
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 
+<script>
+  /* Newsletter: submit to Netlify Forms without leaving the page */
+  (function(){
+    const form = document.getElementById('newsletterForm');
+    if (!form) return;
+    const status = document.getElementById('nlStatus');
+    const btn = document.getElementById('nlBtn');
+    const email = document.getElementById('nlEmail');
+    const t = k => (typeof T === 'function' ? T(k) : k);
+    const show = (k, cls) => { status.textContent = t(k); status.className = 'nl-status ' + (cls || ''); };
+    if (/[?&]subscribed=1/.test(location.search)) show('nl_ok', 'ok');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!email.checkValidity()) { show('nl_invalid', 'err'); email.focus(); return; }
+      btn.disabled = true; show('nl_sending');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(r => {
+        if (!r.ok) throw new Error(r.status);
+        form.reset(); show('nl_ok', 'ok');
+      }).catch(() => show('nl_err', 'err'))
+        .finally(() => { btn.disabled = false; });
+    });
+  })();
+</script>
 </body>
 </html>
