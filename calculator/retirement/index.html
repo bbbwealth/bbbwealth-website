@@ -535,7 +535,6 @@
   };
   let rcInputs = Object.assign({}, RC_DEFAULTS);
   let rcLang = 'en';
-  let rcLastRes = null;
 
   const RC_T = {
     en: {
@@ -568,7 +567,7 @@
       gauge_funded:'Funded',
       hint_withdrawal:'Fixed at 4% based on the 4% Rule.',
       hint_postInflation:'Automatically follows the inflation rate above.',
-      hint_lt5000:'13% applies (salary < RM 5,000)', hint_gte5000:'12% applies (salary ≥ RM 5,000). Adjust if needed.',
+      hint_lte5000:'13% applies (salary ≤ RM 5,000)', hint_gt5000:'12% applies (salary > RM 5,000). Adjust if needed.',
       lbl_empType:'Employment Type', opt_employed:'Employed (Employee + Employer)', opt_freelancer:'Freelancer / Self-Employed',
       rate_voluntary:'{x}% (Voluntary)',
       lbl_incomeMode:'Retirement Income Mode', opt_sustainable:'Rely on interest — capital untouched', opt_deplete:'Die with zero — spend down capital',
@@ -639,7 +638,7 @@
       gauge_funded:'已达成',
       hint_withdrawal:'按 4% 法则固定为 4%。',
       hint_postInflation:'自动跟随上方的通货膨胀率。',
-      hint_lt5000:'适用 13%（月薪 < RM 5,000）', hint_gte5000:'适用 12%（月薪 ≥ RM 5,000），可自行调整。',
+      hint_lte5000:'适用 13%（月薪 ≤ RM 5,000）', hint_gt5000:'适用 12%（月薪 > RM 5,000），可自行调整。',
       lbl_empType:'就业类型', opt_employed:'受雇（雇员 + 雇主）', opt_freelancer:'自由职业 / 自雇',
       rate_voluntary:'{x}%（自愿）',
       lbl_incomeMode:'退休收入模式', opt_sustainable:'靠利息生活 — 保留本金', opt_deplete:'花光积蓄 — 用尽本金',
@@ -711,6 +710,7 @@
 
   const rcFmt = n => {
     if (n === undefined || n === null || isNaN(n)) return '0';
+    if (Math.abs(n) >= 1e9) return (n / 1e9).toFixed(2) + 'B';
     if (Math.abs(n) >= 1e6) return (n / 1e6).toFixed(2) + 'M';
     if (Math.abs(n) >= 1e3) return (n / 1e3).toFixed(0) + 'K';
     return n.toFixed(0);
@@ -718,25 +718,28 @@
   const rcRM = n => 'RM ' + Math.round(n || 0).toLocaleString('en-MY');
   const rcNum = n => Math.round(n || 0).toLocaleString('en-MY');
 
+  // dp = decimal places kept when the user types a value (no max = uncapped)
   const RC_FIELDS = {
-    currentAge:           {label:'Current Age', icon:'clock', min:18, max:70, step:1, suffix:'yrs'},
-    retirementAge:        {label:'Retirement Age', icon:'target', min:45, max:80, step:1, suffix:'yrs'},
-    monthlySalary:        {label:'Monthly Salary RM', icon:'wallet', min:1000, step:100, prefix:'RM'},
-    salaryGrowth:         {label:'Salary Growth / Year %', icon:'trending', min:0, max:20, step:0.5, suffix:'%'},
-    currentEpf:           {label:'Current EPF Balance RM', icon:'piggy', min:0, step:1000, prefix:'RM'},
-    currentSavings:       {label:'Other Savings / Investments RM', icon:'chart', min:0, step:1000, prefix:'RM'},
-    employeeEpfRate:      {label:'Employee EPF Rate', icon:'percent', min:11, max:11, step:1, suffix:'%', disabled:true},
-    employerEpfRate:      {label:'Employer EPF Rate', icon:'briefcase', min:12, max:13, step:1, suffix:'%', hint:true},
-    epfContributionRate:  {label:'Voluntary EPF Contribution %', icon:'percent', min:0, max:100, step:1, suffix:'%'},
-    desiredMonthlyIncome: {label:'Desired Monthly Retirement Income RM', icon:'target', min:1000, step:500, prefix:'RM'},
-    inflationRate:        {label:'Inflation Rate %', icon:'trending', min:0, max:10, step:0.1, suffix:'%'},
-    epfReturnRate:        {label:'EPF Annual Return %', icon:'piggy', min:0, max:10, step:0.1, suffix:'%'},
-    investmentReturnRate: {label:'Investment Return Rate %', icon:'chart', min:0, max:15, step:0.5, suffix:'%'},
-    withdrawalRate:       {label:'Withdrawal Rate (4% Rule) %', icon:'calc', min:4, max:4, step:0.5, suffix:'%', disabled:true, hintKey:'hint_withdrawal'},
-    postRetireInflation:  {label:'Post-Retirement Inflation %', icon:'trending', min:0, max:10, step:0.1, suffix:'%', disabled:true, follows:'inflationRate', hintKey:'hint_postInflation'},
-    lifeExpectancy:       {label:'Life Expectancy Age', icon:'clock', min:60, max:110, step:1, suffix:'yrs'},
-    retireReturnRate:     {label:'Return During Retirement %', icon:'chart', min:0, max:12, step:0.5, suffix:'%'},
+    currentAge:           {icon:'clock', min:18, max:70, dp:0, suffix:'yrs'},
+    retirementAge:        {icon:'target', min:45, max:80, dp:0, suffix:'yrs'},
+    monthlySalary:        {icon:'wallet', min:1000, dp:0, prefix:'RM'},
+    salaryGrowth:         {icon:'trending', min:0, max:20, dp:2, suffix:'%'},
+    currentEpf:           {icon:'piggy', min:0, dp:0, prefix:'RM'},
+    currentSavings:       {icon:'chart', min:0, dp:0, prefix:'RM'},
+    employeeEpfRate:      {icon:'percent', min:11, max:11, dp:0, suffix:'%', disabled:true},
+    employerEpfRate:      {icon:'briefcase', min:12, max:13, dp:0, suffix:'%'},
+    epfContributionRate:  {icon:'percent', min:0, max:100, dp:0, suffix:'%'},
+    desiredMonthlyIncome: {icon:'target', min:1000, dp:0, prefix:'RM'},
+    inflationRate:        {icon:'trending', min:0, max:10, dp:2, suffix:'%'},
+    epfReturnRate:        {icon:'piggy', min:0, max:10, dp:2, suffix:'%'},
+    investmentReturnRate: {icon:'chart', min:0, max:15, dp:2, suffix:'%'},
+    withdrawalRate:       {icon:'calc', min:4, max:4, dp:2, suffix:'%', disabled:true, hintKey:'hint_withdrawal'},
+    postRetireInflation:  {icon:'trending', min:0, max:10, dp:2, suffix:'%', disabled:true, follows:'inflationRate', hintKey:'hint_postInflation'},
+    lifeExpectancy:       {icon:'clock', min:60, max:110, dp:0, suffix:'yrs'},
+    retireReturnRate:     {icon:'chart', min:0, max:12, dp:2, suffix:'%'},
   };
+  // EPF Third Schedule: employer pays 13% on wages of RM5,000 and below, 12% above
+  const rcEmployerRate = salary => salary <= 5000 ? 13 : 12;
 
   function rcDisplay(key){
     const c = RC_FIELDS[key];
@@ -768,7 +771,7 @@
   function rcSet(key, val){
     rcInputs[key] = val;
     if (key === 'monthlySalary' && rcInputs.employmentType === 'employed'){
-      rcInputs.employerEpfRate = val < 5000 ? 13 : 12;
+      rcInputs.employerEpfRate = rcEmployerRate(val);
       rcSyncField('employerEpfRate');
       rcUpdateEmployerHint();
     }
@@ -797,7 +800,7 @@
         const num = parseFloat(String(input.value).replace(/,/g, ''));
         if (!isNaN(num)){
           const clamped = Math.min(c.max ?? Infinity, Math.max(c.min, num));
-          rcSet(key, parseFloat((Math.round(clamped / c.step) * c.step).toFixed(10)));
+          rcSet(key, parseFloat(clamped.toFixed(c.dp)));
         }
         rcSyncField(key);
       });
@@ -807,7 +810,7 @@
 
   function rcUpdateEmployerHint(){
     const el = document.getElementById('rcEmployerHint');
-    if (el) el.textContent = rcInputs.monthlySalary < 5000 ? t('hint_lt5000') : t('hint_gte5000');
+    if (el) el.textContent = rcEmployerRate(rcInputs.monthlySalary) === 13 ? t('hint_lte5000') : t('hint_gt5000');
   }
 
   function rcUpdateRateBar(){
@@ -842,6 +845,30 @@
 
   function rcUpdateLiveViz(){
     rcRenderPulse();
+    rcRefreshResults();
+  }
+
+  // Returns an error message key, or null when the inputs can be calculated
+  function rcValidate(inp){
+    if (inp.retirementAge <= inp.currentAge) return 'err_retire';
+    if (inp.incomeMode === 'deplete' && inp.lifeExpectancy <= inp.retirementAge) return 'err_life';
+    return null;
+  }
+
+  function rcShowError(key){
+    const err = document.getElementById('rcFormError');
+    if (key){ err.textContent = t(key); err.style.display = 'block'; }
+    else err.style.display = 'none';
+  }
+
+  // Once results are on screen, keep them in sync with every input change
+  function rcRefreshResults(){
+    const results = document.getElementById('rcResults');
+    if (!results || !results.classList.contains('show')) return;
+    const errKey = rcValidate(rcInputs);
+    const res = errKey ? null : rcCalc(rcInputs);
+    rcShowError(errKey || (res ? null : 'err_generic'));
+    if (res) rcRenderResults(res, false);
   }
 
   function rcRenderEmployment(){
@@ -858,7 +885,7 @@
     rcWireFields(wrap);
     document.getElementById('rcEmpType').addEventListener('change', e => {
       rcInputs.employmentType = e.target.value;
-      if (e.target.value === 'employed') rcInputs.employerEpfRate = rcInputs.monthlySalary < 5000 ? 13 : 12;
+      if (e.target.value === 'employed') rcInputs.employerEpfRate = rcEmployerRate(rcInputs.monthlySalary);
       rcRenderEmployment();
     });
     rcUpdateEmployerHint();
@@ -927,15 +954,11 @@
 
     // Timeline — accumulation phase
     const timelineData = [];
-    const stepAcc = 1;
-    for (let age = inp.currentAge; age <= inp.retirementAge; age += stepAcc){
+    for (let age = inp.currentAge; age <= inp.retirementAge; age++){
       const yr = age - inp.currentAge;
       const epfTotal = inp.currentEpf * Math.pow(1 + r, yr) + contrFV(yr);
       const other = inp.currentSavings * Math.pow(1 + inp.investmentReturnRate / 100, yr);
       timelineData.push({age, epfTotal, other, total: epfTotal + other, target: totalCorpusNeeded});
-    }
-    if (timelineData[timelineData.length - 1].age !== inp.retirementAge){
-      timelineData.push({age: inp.retirementAge, epfTotal: totalEpfAtRetirement, other: otherSavingsFV, total: totalProjectedAssets, target: totalCorpusNeeded});
     }
 
     // Timeline — drawdown phase (deplete mode):
@@ -963,6 +986,7 @@
     }
 
     return {
+      inputs: Object.assign({}, inp),   // the exact inputs these results were computed from
       incomeMode: inp.incomeMode, yearsToRetirement: n, yearsRetired, lifeExpectancy: inp.lifeExpectancy,
       inflationMultiplier, futureMonthlyNeed, purchasingPowerLoss,
       postRetireInflation: inp.postRetireInflation, needAtPlus10, needAtPlus20, depletionAge,
@@ -1044,7 +1068,9 @@
     const s = rcChartScales(data);
     const tip = document.getElementById('rcTooltip');
     const g = document.getElementById('rcHoverG');
-    svg.addEventListener('mousemove', e => {
+    // Pointer events cover mouse hover plus tap/drag on touch screens
+    svg.style.touchAction = 'pan-y';
+    const show = e => {
       const rect = svg.getBoundingClientRect();
       const relX = (e.clientX - rect.left) / rect.width * RC_CHART.W;
       let best = 0, bd = Infinity;
@@ -1064,8 +1090,10 @@
         + (d.plan != null ? '<div>' + t('tip_plan') + ': <b style="color:#16a34a">' + rcRM(d.plan) + '</b></div>' : '')
         + (d.epfTotal != null ? '<div>' + t('tip_epf') + ': <b style="color:#9fb3c8">' + rcRM(d.epfTotal) + '</b></div>' : '')
         + (d.other != null ? '<div>' + t('tip_other') + ': <b style="color:#8a93a8">' + rcRM(d.other) + '</b></div>' : '');
-    });
-    svg.addEventListener('mouseleave', () => { g.style.display = 'none'; tip.style.display = 'none'; });
+    };
+    svg.addEventListener('pointermove', show);
+    svg.addEventListener('pointerdown', show);
+    svg.addEventListener('pointerleave', () => { g.style.display = 'none'; tip.style.display = 'none'; });
   }
 
   function rcGapHTML(res){
@@ -1096,8 +1124,8 @@
     return '<div class="rc-snap-stat"><div class="l">' + label + '</div><div class="v"' + (id ? ' id="' + id + '"' : '') + ' style="color:' + color + ';">' + value + '</div><div class="s">' + sub + '</div></div>';
   }
 
-  function rcAnimateSnapshot(res){
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rcAnimateSnapshot(res, animate){
+    const reduced = !animate || matchMedia('(prefers-reduced-motion: reduce)').matches;
     const arc = document.getElementById('rcGaugeArc');
     const pctEl = document.getElementById('rcGaugePct');
     const magic = document.getElementById('rcSnapMagic');
@@ -1139,9 +1167,8 @@
     return '<div class="rc-plan-card"><div class="n">' + n + '</div><div class="t">' + title + '</div><p>' + desc + '</p></div>';
   }
 
-  function rcRenderResults(res){
-    const i = rcInputs, gapPos = res.gap > 0, deplete = res.incomeMode === 'deplete';
-    rcLastRes = res;
+  function rcRenderResults(res, animate){
+    const i = res.inputs, gapPos = res.gap > 0, deplete = res.incomeMode === 'deplete';
     const el = document.getElementById('rcResults');
     el.innerHTML =
       '<div style="text-align:center;"><div class="rc-hint-pill"><span class="rc-bounce">' + rcIcon('down', 14) + '</span> ' + t('res_scrollHint') + '</div></div>'
@@ -1245,7 +1272,7 @@
       + '</div></div>';
 
     el.classList.add('show');
-    rcAnimateSnapshot(res);
+    rcAnimateSnapshot(res, animate);
     rcWireChart(res.timelineData);
     el.querySelectorAll('[data-focus]').forEach(b => b.addEventListener('click', () => {
       const f = document.querySelector('.rc-field[data-key="' + b.dataset.focus + '"] .rc-input');
@@ -1269,6 +1296,7 @@
     document.getElementById('rcIncomeMode').addEventListener('change', e => {
       rcInputs.incomeMode = e.target.value;
       rcRenderAssumptions();
+      rcUpdateLiveViz();
     });
   }
 
@@ -1294,8 +1322,7 @@
     rcLang = (lang === 'zh') ? 'zh' : 'en';
     try { localStorage.setItem('rcLang', rcLang); } catch (e) {}
     rcApplyStatic();
-    rcRenderFields();
-    if (rcLastRes && document.getElementById('rcResults').classList.contains('show')) rcRenderResults(rcLastRes);
+    rcRenderFields();   // also re-renders any visible results in the new language
   }
 
   function rcInit(){
@@ -1310,22 +1337,16 @@
     rcRenderFields();
 
     document.getElementById('rcCalcBtn').addEventListener('click', () => {
-      const err = document.getElementById('rcFormError');
-      if (rcInputs.retirementAge <= rcInputs.currentAge){
-        err.textContent = t('err_retire'); err.style.display = 'block'; return;
-      }
-      if (rcInputs.incomeMode === 'deplete' && rcInputs.lifeExpectancy <= rcInputs.retirementAge){
-        err.textContent = t('err_life'); err.style.display = 'block'; return;
-      }
+      const errKey = rcValidate(rcInputs);
+      if (errKey){ rcShowError(errKey); return; }
       const res = rcCalc(rcInputs);
-      if (!res){ err.textContent = t('err_generic'); err.style.display = 'block'; return; }
-      err.style.display = 'none';
-      rcRenderResults(res);
+      if (!res){ rcShowError('err_generic'); return; }
+      rcShowError(null);
+      rcRenderResults(res, true);
       setTimeout(() => document.getElementById('rcResults').scrollIntoView({behavior: 'smooth', block: 'start'}), 100);
     });
     document.getElementById('rcResetBtn').addEventListener('click', () => {
       rcInputs = Object.assign({}, RC_DEFAULTS);
-      rcLastRes = null;
       const results = document.getElementById('rcResults');
       results.classList.remove('show');
       results.innerHTML = '';
