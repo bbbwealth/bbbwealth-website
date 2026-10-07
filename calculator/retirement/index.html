@@ -721,14 +721,14 @@
   const RC_FIELDS = {
     currentAge:           {label:'Current Age', icon:'clock', min:18, max:70, step:1, suffix:'yrs'},
     retirementAge:        {label:'Retirement Age', icon:'target', min:45, max:80, step:1, suffix:'yrs'},
-    monthlySalary:        {label:'Monthly Salary RM', icon:'wallet', min:1000, max:50000, step:100, prefix:'RM'},
+    monthlySalary:        {label:'Monthly Salary RM', icon:'wallet', min:1000, step:100, prefix:'RM'},
     salaryGrowth:         {label:'Salary Growth / Year %', icon:'trending', min:0, max:20, step:0.5, suffix:'%'},
-    currentEpf:           {label:'Current EPF Balance RM', icon:'piggy', min:0, max:2000000, step:1000, prefix:'RM'},
-    currentSavings:       {label:'Other Savings / Investments RM', icon:'chart', min:0, max:2000000, step:1000, prefix:'RM'},
+    currentEpf:           {label:'Current EPF Balance RM', icon:'piggy', min:0, step:1000, prefix:'RM'},
+    currentSavings:       {label:'Other Savings / Investments RM', icon:'chart', min:0, step:1000, prefix:'RM'},
     employeeEpfRate:      {label:'Employee EPF Rate', icon:'percent', min:11, max:11, step:1, suffix:'%', disabled:true},
     employerEpfRate:      {label:'Employer EPF Rate', icon:'briefcase', min:12, max:13, step:1, suffix:'%', hint:true},
     epfContributionRate:  {label:'Voluntary EPF Contribution %', icon:'percent', min:0, max:100, step:1, suffix:'%'},
-    desiredMonthlyIncome: {label:'Desired Monthly Retirement Income RM', icon:'target', min:1000, max:50000, step:500, prefix:'RM'},
+    desiredMonthlyIncome: {label:'Desired Monthly Retirement Income RM', icon:'target', min:1000, step:500, prefix:'RM'},
     inflationRate:        {label:'Inflation Rate %', icon:'trending', min:0, max:10, step:0.1, suffix:'%'},
     epfReturnRate:        {label:'EPF Annual Return %', icon:'piggy', min:0, max:10, step:0.1, suffix:'%'},
     investmentReturnRate: {label:'Investment Return Rate %', icon:'chart', min:0, max:15, step:0.5, suffix:'%'},
@@ -796,7 +796,7 @@
         editing = false;
         const num = parseFloat(String(input.value).replace(/,/g, ''));
         if (!isNaN(num)){
-          const clamped = Math.min(c.max, Math.max(c.min, num));
+          const clamped = Math.min(c.max ?? Infinity, Math.max(c.min, num));
           rcSet(key, parseFloat((Math.round(clamped / c.step) * c.step).toFixed(10)));
         }
         rcSyncField(key);
