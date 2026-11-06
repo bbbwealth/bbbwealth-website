@@ -16,7 +16,7 @@ function updatePrsImpact(){
  document.getElementById('impact-treats').textContent=Math.floor(p.saving/2).toLocaleString('en-MY');
  const rawOther=Number(document.getElementById('impact-other').value)||0,rawPrs=Number(document.getElementById('impact-prs').value)||0;
  let limits='';if(rawOther<9000)limits+='其他减免已按至少 RM9,000 个人基本减免计算。';if(rawPrs>3000)limits+='PRS 减免已按 RM3,000 上限计算。';
- document.getElementById('impact-explanation').textContent=limits+rm(p.contribution)+' 是此处可计入的 PRS 减免；'+rm(p.saving)+' 是估算税款差额，不是投资回酬。供款的实际投资金额受费用影响。';
+ document.getElementById('impact-explanation').textContent=limits+rm(p.contribution)+' 是这里可以 claim 的 PRS 减免；'+rm(p.saving)+' 是估计少缴的税，不是投资赚到的钱。实际拿去投资的金额，还要看扣了多少费用。';
  return p;
 }
 document.getElementById('prs-impact-form').addEventListener('input',updatePrsImpact);
@@ -27,3 +27,4 @@ if(typeof IntersectionObserver!=='undefined'){
  const sticky=document.querySelector('.mobile-result');
  if(sticky)new IntersectionObserver(entries=>sticky.classList.toggle('in-prs',entries[0].isIntersecting)).observe(document.getElementById('prs-offers'));
 }
+
