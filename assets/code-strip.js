@@ -35,6 +35,24 @@
     bar.innerHTML=`<div class="cs-in"><span class="cs-l">🎟 ${z?'我们的开户优惠码':'Our account-opening codes'}</span><div class="cs-c">${keys.map(k=>{const c=ALL[k];const go=c.download?(z?'下载 ↗':'Get app ↗'):(z?'开户 ↗':'Open ↗');return `<span class="cs-g"><button type="button" data-strip-copy="${c.code}" aria-label="${(z?'复制 ':'Copy ')+c.name+' '+c.code}"><img src="${ROOT+c.logo}" alt="${c.name}"${c.dark?' class="dark"':''}><b>${c.code}</b></button><a class="cs-go" href="${c.url}" target="_blank" rel="noopener noreferrer" data-cta="strip-open-${k}" aria-label="${c.name} ${z?'开户':'open account'}">${go}</a></span>`}).join('')}</div>${more?`<a class="cs-more" href="${more}">${z?'点代码复制 · 条件 ↓':'Tap code to copy · terms ↓'}</a>`:''}</div>`;
   }
   bar.addEventListener('click',async e=>{const b=e.target.closest('[data-strip-copy]');if(!b)return;const c=b.dataset.stripCopy;try{await navigator.clipboard.writeText(c)}catch{}const old=b.innerHTML;b.innerHTML='✓ '+(zh()?'已复制 ':'Copied ')+c;b.classList.add('done');setTimeout(()=>{b.innerHTML=old;b.classList.remove('done')},1800)});
+  /* Versa's link is a plain app-download page that cannot carry our code, so tapping ANY Versa
+     download link on the page also copies VERSAMAD and shows a reminder to paste it at sign-up. */
+  const toast=document.createElement('div');toast.className='bbb-code-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');
+  const tcss=document.createElement('style');tcss.textContent=`.bbb-code-toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;z-index:1200;max-width:min(92vw,420px);background:#fff;color:#122650;border:2px solid #f5b800;border-radius:14px;padding:12px 16px;font:600 14px/1.45 Inter,system-ui,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 14px 34px #0b1b3a59;transition:opacity .2s,transform .2s;pointer-events:none;text-align:center}
+.bbb-code-toast b{color:#9a6b00;letter-spacing:.04em}.bbb-code-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){.bbb-code-toast{transition:none}}`;document.head.append(tcss);
+  let tt;
+  function remind(code){
+    toast.innerHTML=zh()?`✓ 已复制 <b>${code}</b>，注册时贴上就好`:`✓ <b>${code}</b> copied: paste it when you sign up`;
+    if(!toast.isConnected)document.body.append(toast);
+    toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),4200);
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href*="versa.com.my/download"],a[href*="link.versa.com.my"]');if(!a)return;
+    const code=ALL.versa.code;
+    try{navigator.clipboard.writeText(code).catch(()=>{})}catch(x){}
+    remind(code);
+  },true);
   function mount(){
     const anchor=document.querySelector(S.dataset.after||'.hero');
     if(anchor)anchor.after(bar);else (document.querySelector('main')||document.body).prepend(bar);
