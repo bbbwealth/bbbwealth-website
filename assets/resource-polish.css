@@ -327,6 +327,22 @@ body.bbb-resource-page>section.hero:has(.hero-portrait){border-radius:var(--pol-
   body.bbb-resource-page>main#main .footnote{font-size:13px!important}
   body.bbb-resource-page>main#main .teacher-bubble{font-size:13px!important}
 }
+/* Phone layout of three inner blocks that were squeezed or cropped */
+@media (max-width:560px){
+  /* hero portrait: was a 72px crop box with the photo pushed out of frame */
+  body.bbb-resource-page .hero-portrait{width:104px!important;height:118px!important;right:16px!important;bottom:12px!important;top:auto!important}
+  body.bbb-resource-page .hero-portrait img{left:50%!important;right:auto!important;top:auto!important;bottom:-6px!important;width:auto!important;height:124px!important;transform:translateX(-50%)!important;object-fit:contain!important}
+  /* bill scenario: stack the two amounts instead of two cramped columns */
+  body.bbb-resource-page .scenario-values{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+  body.bbb-resource-page .scenario-plus{justify-self:start!important;font-size:18px!important;line-height:1!important;opacity:.6}
+  body.bbb-resource-page .scenario-side{border-top:1px dashed #d5deeb!important;padding-top:10px!important}
+  body.bbb-resource-page .scenario-side strong{color:#4a5468!important;opacity:1!important}
+  body.bbb-resource-page .scenario-main small,body.bbb-resource-page .scenario-side small{display:block!important;max-width:none!important}
+  /* "BBBwealth 的选择": text used only ~200px because 92px was reserved for an image that sits at the bottom */
+  body.bbb-resource-page .reward-advice{grid-template-columns:1fr!important;padding-bottom:0!important}
+  body.bbb-resource-page .reward-advice>*{grid-column:1/-1!important;max-width:none!important}
+  body.bbb-resource-page .reward-advice img{position:static!important;display:block!important;width:120px!important;height:auto!important;margin:12px auto 0!important;transform:none!important}
+}
 
 /* ==========================================================================
    9. Page: cash / short-term money  (resources/cash) — reference page
