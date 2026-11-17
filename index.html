@@ -66,6 +66,7 @@ nav.scrolled{border-color:var(--line);box-shadow:0 4px 18px #0f17290d}
 .lang button{border:0;background:none;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted)}
 .lang button[aria-pressed=true]{background:var(--navy);color:#fff}
 .lang-m{display:none}
+.nav-quick{display:none}
 .nav-cta{padding:10px 18px;min-height:42px;font-size:14px}
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;color:var(--navy)}
 
@@ -352,6 +353,14 @@ footer a:hover{color:#fff}
   .lang-m{flex-shrink:0}
   .lang-m button{min-height:36px;padding:6px 10px;font-size:13px;white-space:nowrap}
   .menu-toggle{flex-shrink:0}
+  .nav-quick{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 var(--gutter) 10px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .nav-quick::-webkit-scrollbar{display:none}
+  .nav-quick a{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:700;color:var(--navy-deep);text-decoration:none;white-space:nowrap}
+  .nav-quick a.q-res{background:var(--yellow-soft);border-color:#f5d36b}
+  .nav-quick a:last-child{margin-right:24px}
+  .nav-links{top:114px}
+  html{scroll-padding-top:124px}
+  .hero{padding-top:140px}
   .nav-links a.nav-res{display:flex;margin:10px 0 2px;border-radius:12px;padding:12px 14px}
   .nav-links a.nav-res .nav-badge{position:static;margin-left:auto}
   .nav-links a.nav-cta{display:flex;justify-content:center;padding:14px 18px;border-bottom:0;color:var(--navy-deep)}
@@ -370,9 +379,12 @@ footer a:hover{color:#fff}
 .swipe-hint{display:none;font-size:12px;color:var(--muted);margin-top:4px}
 @media (max-width:640px){
   .brand img.bbb{height:24px}.brand img.pov{height:22px}.brand{gap:10px}.brand .div{height:22px}
+  .nav-inner{gap:8px}.brand{gap:8px}.brand img.pov{height:20px}
+  .lang-m{margin-right:6px}.lang-m button{padding:6px 9px}
+  .brand{flex-shrink:1;min-width:0}.brand img{max-width:100%}
   .nav-inner{padding-top:10px;padding-bottom:10px}
-  .nav-links{top:64px}
-  .hero{padding-top:96px}
+  .nav-links{top:108px}
+  .hero{padding-top:136px}
   .hero-actions .btn{flex:1 1 100%;justify-content:center}
   .hero-media .frame{border-radius:16px}
   .media-tag{right:10px;top:-20px}
@@ -399,6 +411,7 @@ footer a:hover{color:#fff}
   .f-grid{grid-template-columns:1fr}
   .wa-float{width:52px;height:52px;right:14px;bottom:14px}
 }
+@media (max-width:360px){.brand img.bbb{height:18px}.brand img.pov{height:15px}.brand .div{height:16px}.brand{gap:6px}.lang-m button{padding:6px 7px}}
 </style>
 </head>
 <body>
@@ -422,6 +435,7 @@ footer a:hover{color:#fff}
     <div class="lang lang-m" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
+  <div class="nav-quick" aria-label="Quick links"><a href="resources/" class="q-res"><span aria-hidden="true">🎁</span><span data-i18n="n_resources">Free resources</span></a><a href="calculator/"><span aria-hidden="true">🧮</span><span data-i18n="n_calc">Calculators</span></a><a href="#services" data-i18n="n_services">Services</a><a href="#insights" data-i18n="n_insights">Insights</a><a href="#team" data-i18n="n_team">Team</a></div>
 </nav>
 
 <main id="top">
@@ -736,7 +750,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
   en:{
     doc_title:"BBBwealth — Financial Planning, Wealth Management & Training",
     wa_msg:"Hi BBBwealth, I'd like to arrange a conversation about my finances.",
-    n_services:"Services",n_insights:"Insights",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_free:"FREE",n_book:"WhatsApp us",
+    n_services:"Services",n_insights:"Insights",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_calc:"Calculators",n_free:"FREE",n_book:"WhatsApp us",
     h_kicker:"Malaysia · Financial advisory",
     h_title:'We don\'t sell products.<span class="y">We build clarity.</span>',
     h_sub:"Before any product, we help you see your whole financial picture clearly — cash flow, protection, investing, retirement, tax and estate — then plan the next step with you.",
@@ -821,7 +835,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
   zh:{
     doc_title:"BBBwealth — 财务规划、财富管理与培训",
     wa_msg:"你好 BBBwealth，我想约个时间聊聊我的财务规划。",
-    n_services:"服务",n_insights:"观点",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_free:"免费",n_book:"WhatsApp 联系",
+    n_services:"服务",n_insights:"观点",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_calc:"计算器",n_free:"免费",n_book:"WhatsApp 联系",
     h_kicker:"马来西亚 · 财务咨询",
     h_title:'不卖产品，<span class="y">只帮你把钱看清楚。</span>',
     h_sub:"在谈任何产品之前，我们先陪你把整体财务看清楚：现金流、保障、投资、退休、税务与传承，再一起规划下一步。",
