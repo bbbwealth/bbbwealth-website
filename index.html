@@ -156,6 +156,9 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .ins{background:#ffffff0a;border:1px solid #ffffff1f;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
 .ins .media{aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#1e3a6f,#2f5cab);display:grid;place-items:center;overflow:hidden}
 .ins .media video{width:100%;height:100%;object-fit:cover}
+.ins a.media .play{position:absolute;left:50%;top:50%;width:60px;height:42px;margin:-21px 0 0 -30px;border-radius:12px;background:#ff0000e6;transition:transform .15s}
+.ins a.media .play:after{content:'';position:absolute;left:25px;top:12px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
+.ins a.media:hover .play{transform:scale(1.08)}
 .ins .media .badge{position:absolute;left:14px;top:14px;background:#000000a6;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:4px 8px;z-index:1}
 .ins .media .glyph{font-size:44px;font-weight:800;letter-spacing:-.03em;color:#ffffff2e;text-align:center;line-height:1.1;padding:0 12px}
 .ins.np .media{background:linear-gradient(135deg,#f5b800,#ffd659)}
@@ -365,7 +368,7 @@ footer a:hover{color:#fff}
     <div class="media-label" data-i18n="m_label">As seen on</div>
     <div class="media-item"><b>8TV</b><span data-i18n="m_8tv">Morning news market commentary</span></div>
     <div class="media-item"><b>南洋商报</b><span data-i18n="m_np">《股势先机》 market column</span></div>
-    <div class="media-item"><b>《一股作气》</b><span data-i18n="m_pod">CITY+ finance podcast</span></div>
+    <div class="media-item"><b>YouTube</b><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></div>
     <div class="media-item"><b>Money POV</b><span data-i18n="m_pov">Money education community</span><span class="todo" data-i18n="todo_fans">Follower count — to fill</span></div>
   </div>
 </section>
@@ -407,7 +410,7 @@ footer a:hover{color:#fff}
       <div class="kicker" data-i18n="a_kicker">About BBBwealth</div>
       <h2 data-i18n-html="a_title">Advice you can <span class="y">check us on.</span></h2>
       <p class="lead" data-i18n="a_p1">BBBwealth helps individuals, families and business owners make better money decisions — explained in plain language, without product-pushing.</p>
-      <p class="lead" data-i18n="a_p2">We share our views in public — on TV, in print and on podcasts — so you can see how we think before you ever meet us.</p>
+      <p class="lead" data-i18n="a_p2">We share our views in public — on TV, in print and on YouTube — so you can see how we think before you ever meet us.</p>
       <div class="creds">
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><b data-i18n="cr1_t">8TV market commentary</b><span data-i18n="cr1_p">On 8TV morning news, explaining markets and money for everyday viewers.</span></div></div>
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3"/></svg></div><div><b data-i18n="cr2_t">Nanyang Siang Pau columnist</b><span data-i18n="cr2_p">Writes the 《股势先机》 column on markets, policy and investing.</span></div></div>
@@ -506,7 +509,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="sec-head reveal">
       <div><div class="kicker" data-i18n="i_kicker">Our views</div><h2 data-i18n-html="i_title">See how we think — <span class="y">in public.</span></h2></div>
-      <p class="lead" data-i18n="i_sub">Market commentary on TV, a newspaper column and a podcast. The same plain-language thinking goes into every client plan.</p>
+      <p class="lead" data-i18n="i_sub">Market commentary on TV, a newspaper column and our own YouTube shows. The same plain-language thinking goes into every client plan.</p>
     </div>
     <div class="ins-grid swipe reveal">
       <article class="ins">
@@ -536,12 +539,16 @@ footer a:hover{color:#fff}
         </div>
       </article>
       <article class="ins">
-        <div class="media" data-video="assets/home/clip-podcast.mp4" data-poster="assets/home/clip-podcast.jpg"><span class="badge">Podcast</span><span class="glyph">《一股作气》</span></div>
+        <a class="media" href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener" aria-label="Watch on YouTube"><span class="badge">YouTube</span><img src="https://i.ytimg.com/vi/-u2ngmGUkts/hqdefault.jpg" alt="AirAsia亚航又陷危机 — BBBwealth YouTube" loading="lazy" width="480" height="360" style="width:100%;height:100%;object-fit:cover" /><span class="play" aria-hidden="true"></span></a>
         <div class="body">
-          <div class="src" data-i18n="i3_src">《一股作气》· CITY+ podcast</div>
-          <h3 data-i18n="i3_t">Policy and markets, from two angles</h3>
-          <p data-i18n="i3_p">Each episode separates the political story from the economic numbers, so listeners can judge the facts for themselves.</p>
-          <span class="todo" data-i18n="todo_pod">Latest episode title & link — to fill</span>
+          <div class="src" data-i18n="i3_src">BBBwealth · YouTube</div>
+          <h3 data-i18n="i3_t">Most-watched on our channel</h3>
+          <ul class="col-list">
+            <li><a href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener">AirAsia亚航又陷危机！赚钱股东分，亏钱谁来扛？</a><span data-i18n="i3_v1">48K views</span></li>
+            <li><a href="https://www.youtube.com/watch?v=NWcTB6fv8lg" target="_blank" rel="noopener">全世界股息都在涨，为什么偏偏马来西亚没有？【钱线追击 EP4】</a><span data-i18n="i3_v2">6.1K views</span></li>
+            <li><a href="https://www.youtube.com/watch?v=UurVWA-Q6Sc" target="_blank" rel="noopener">马币跌，到底是谁的锅？【钱线追击 EP02】</a><span data-i18n="i3_v3">3.7K views</span></li>
+          </ul>
+          <div class="col-all"><a href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="i3_all">Subscribe on YouTube →</a></div>
         </div>
       </article>
     </div>
@@ -714,9 +721,8 @@ footer a:hover{color:#fff}
     h_cta:"Talk to us on WhatsApp",h_cta2:"Free guides & calculators",
     h_note:"No obligation. We listen first, then agree the scope before any fee.",
     h_media:"Anson Tan on 8TV Morning Express",
-    m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"CITY+ finance podcast",m_pov:"Money education community",
+    m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"@BBBwealth · 19.9K subscribers",m_pov:"Money education community",
     todo_fans:"Follower count — to fill",todo_reg:"Company registration no. — to fill",
-    todo_pod:"Latest episode title & link — to fill",
     s_kicker:"What we do",s_title:'Three services.<br>One <span class="y">philosophy.</span>',
     s_sub:"Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.",
     s1_t:"Financial Planning",s1_p:"Your whole financial picture — cash flow, debt, protection, investing, retirement, tax and estate — shaped into one plan around your goals.",s1_link:"How planning works →",
@@ -724,7 +730,7 @@ footer a:hover{color:#fff}
     s3_t:"Corporate Training",s3_p:"HRD-claimable financial-literacy programmes, from investment fundamentals to full financial-wellness days.",s3_link:"View programmes →",
     a_kicker:"About BBBwealth",a_title:'Advice you can <span class="y">check us on.</span>',
     a_p1:"BBBwealth helps individuals, families and business owners make better money decisions — explained in plain language, without product-pushing.",
-    a_p2:"We share our views in public — on TV, in print and on podcasts — so you can see how we think before you ever meet us.",
+    a_p2:"We share our views in public — on TV, in print and on YouTube — so you can see how we think before you ever meet us.",
     cr1_t:"8TV market commentary",cr1_p:"On 8TV morning news, explaining markets and money for everyday viewers.",
     cr2_t:"Nanyang Siang Pau columnist",cr2_p:"Writes the 《股势先机》 column on markets, policy and investing.",
     cr3_t:"HRD Corp-claimable trainer",cr3_p:"Corporate financial-literacy programmes that employers can claim under HRD Corp.",
@@ -751,10 +757,10 @@ footer a:hover{color:#fff}
     w4_t:"Tax Planning",w4_p:"Legal, structural strategies for individuals, families and Sdn Bhd owners.",
     w5_t:"Estate Planning",w5_p:"Wasiat, hibah and trusts so what you've built reaches the people you built it for.",
     i_kicker:"Our views",i_title:'See how we think — <span class="y">in public.</span>',
-    i_sub:"Market commentary on TV, a newspaper column and a podcast. The same plain-language thinking goes into every client plan.",
+    i_sub:"Market commentary on TV, a newspaper column and our own YouTube shows. The same plain-language thinking goes into every client plan.",
     i1_src:"8TV · Morning news",i1_t:"Recent 8TV appearances",i1_all:"More from 谭凯俊 →",i1_co_all:"More from 香清发 →",
     i2_src:"Nanyang Siang Pau · 股势先机",i2_t:"Latest from our 《股势先机》 columns",i2_all:"All by 谭凯俊 →",i2_co_all:"All by 香清发 →",
-    i3_src:"《一股作气》· CITY+ podcast",i3_t:"Policy and markets, from two angles",i3_p:"Each episode separates the political story from the economic numbers, so listeners can judge the facts for themselves.",
+    i3_src:"BBBwealth · YouTube",i3_t:"Most-watched on our channel",i3_v1:"48K views",i3_v2:"6.1K views",i3_v3:"3.7K views",i3_all:"Subscribe on YouTube →",
     t_kicker:"Corporate training",t_title:'HRD-claimable.<br>Workforce-<span class="y">ready.</span>',
     t_sub:"Financial stress quietly drains productivity. Our programmes give your team practical tools — and the confidence — to handle money well.",
     tr1_dur:"4 hours · Half-day",tr2_dur:"8 hours · Full-day",tr_hrd:"HRD claimable",tr_quote:"Request a quote →",
@@ -801,9 +807,8 @@ footer a:hover{color:#fff}
     h_cta:"WhatsApp 跟我们聊聊",h_cta2:"免费指南与计算器",
     h_note:"没有义务。我们先聆听，确认服务范围后才谈费用。",
     h_media:"谭凯俊 · 8TV 八度空间早晨新闻",
-    m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"CITY+ 财经播客",m_pov:"理财教育社群",
+    m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"@BBBwealth · 1.99万订阅",m_pov:"理财教育社群",
     todo_fans:"粉丝人数 — 待填",todo_reg:"公司注册编号 — 待填",
-    todo_pod:"最新一集标题与链接 — 待填",
     s_kicker:"我们的服务",s_title:'三项服务，<br>同一个<span class="y">出发点。</span>',
     s_sub:"无论你刚开始理财、正在累积财富，还是想为团队安排培训，我们的做法都一样：先了解，再用白话讲清楚，然后才规划。",
     s1_t:"财务规划",s1_p:"从现金流、债务、保障、投资到退休、税务与传承，把你的整体财务整合成一份围绕目标的规划。",s1_link:"了解规划怎么做 →",
@@ -811,7 +816,7 @@ footer a:hover{color:#fff}
     s3_t:"企业培训",s3_p:"可申报 HRD 的理财培训，从投资入门到全天的员工财务健康课程。",s3_link:"查看课程 →",
     a_kicker:"关于 BBBwealth",a_title:'我们的观点，<span class="y">你随时可以检验。</span>',
     a_p1:"BBBwealth 帮助个人、家庭和企业老板做出更好的理财决定。用白话讲清楚，不靠推销产品。",
-    a_p2:"我们在电视、报章和播客公开分享观点。在见面之前，你就能先了解我们怎么思考。",
+    a_p2:"我们在电视、报章和 YouTube 公开分享观点。在见面之前，你就能先了解我们怎么思考。",
     cr1_t:"8TV 财经评论",cr1_p:"在 8TV 早晨新闻，用一般观众听得懂的方式解读市场与理财。",
     cr2_t:"南洋商报专栏作者",cr2_p:"在南洋商报《股势先机》专栏撰文，谈市场、政策与投资。",
     cr3_t:"HRD Corp 可申报讲师",cr3_p:"企业理财培训课程，雇主可向 HRD Corp 申报。",
@@ -838,10 +843,10 @@ footer a:hover{color:#fff}
     w4_t:"税务规划",w4_p:"在合法范围内做好税务安排，适用于个人、家庭和 Sdn Bhd 股东。",
     w5_t:"遗产规划",w5_p:"通过遗嘱（Wasiat）、赠予（Hibah）和信托，把财富有条理地传给你在意的人。",
     i_kicker:"我们的观点",i_title:'我们怎么思考，<span class="y">都公开给你看。</span>',
-    i_sub:"电视上的市场评论、报章专栏和播客。同样的白话思考，也用在每一份客户规划里。",
+    i_sub:"电视上的市场评论、报章专栏，以及我们自己的 YouTube 节目。同样的白话思考，也用在每一份客户规划里。",
     i1_src:"8TV · 早晨新闻",i1_t:"近期 8TV 访谈",i1_all:"更多谭凯俊访谈 →",i1_co_all:"更多香清发访谈 →",
     i2_src:"南洋商报 · 股势先机",i2_t:"《股势先机》最新专栏",i2_all:"谭凯俊所有专栏 →",i2_co_all:"香清发所有专栏 →",
-    i3_src:"《一股作气》· CITY+ 播客",i3_t:"政策与市场，从两个角度看",i3_p:"每一集把政治叙事和经济数字分开讨论，让听众自己判断事实。",
+    i3_src:"BBBwealth · YouTube",i3_t:"频道最多人看",i3_v1:"4.8万次观看",i3_v2:"6100次观看",i3_v3:"3700次观看",i3_all:"订阅我们的 YouTube →",
     t_kicker:"企业培训",t_title:'可申报 HRD，<br>让团队<span class="y">更从容。</span>',
     t_sub:"财务压力会悄悄影响工作表现。我们的课程提供实用工具，让员工更有信心地处理金钱。",
     tr1_dur:"4 小时 · 半天",tr2_dur:"8 小时 · 全天",tr_hrd:"可申报 HRD",tr_quote:"索取报价 →",
