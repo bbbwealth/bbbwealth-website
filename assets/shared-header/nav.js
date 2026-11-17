@@ -21,7 +21,7 @@
     const old=box.querySelector('.bbb-site-consult');
     const wa=old&&/wa\.me/.test(old.href)&&old.href.includes('text=')?old.href:'https://wa.me/601156281541';
     if(last===lang&&box.dataset.navBuilt)return;last=lang;box.dataset.navBuilt='1';
-    box.innerHTML=items.map(([p,en,cn,cur])=>{const res=p.startsWith('resources/');const cls=[cur&&cur.test(here)?'bbb-site-current':'',res?'bbb-site-res':''].filter(Boolean).join(' ');return `<a href="${root}${p.replace(/(\.html)/,'$1?lang='+lang)}"${cls?` class="${cls}"`:''}${cur&&cur.test(here)?' aria-current="page"':''}>${res?'<span aria-hidden="true">🎁</span> ':''}${zh?cn:en}${res?`<i class="bbb-site-badge">${zh?'免费':'FREE'}</i>`:''}</a>`}).join('')
+    box.innerHTML=items.map(([p,en,cn,cur])=>{const res=p.startsWith('resources/');const cls=[cur&&cur.test(here)?'bbb-site-current':'',res?'bbb-site-res':''].filter(Boolean).join(' ');return `<a href="${root}${p.replace(/(\.html)/,'$1?lang='+lang)}"${cls?` class="${cls}"`:''}${cur&&cur.test(here)?' aria-current="page"':''}>${res?'<span aria-hidden="true">🎁</span> ':''}${zh?cn:en}</a>`}).join('')
       +`<a class="bbb-site-consult" href="${wa}" target="_blank" rel="noopener noreferrer">${zh?'WhatsApp 联系':'WhatsApp us'}</a>`;
   }
   // close the mobile menu after a tap on any rebuilt link
