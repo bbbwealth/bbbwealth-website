@@ -88,9 +88,10 @@ html[lang=zh] .hero h1{font-size:clamp(34px,4.1vw,54px);line-height:1.15;letter-
 
 /* ---------- MEDIA BAR ---------- */
 .media-bar{padding:0;background:var(--navy-deep);color:#fff}
-.media-inner{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch}
+.media-inner{display:grid;grid-template-columns:auto repeat(3,1fr);align-items:stretch}
 .media-label{display:flex;align-items:center;padding:26px 28px 26px 0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ffffffa6;border-right:1px solid #ffffff1f}
-.media-item{padding:22px 24px;border-right:1px solid #ffffff1f;text-decoration:none}
+.media-item{padding:22px 24px;border-right:1px solid #ffffff1f;text-decoration:none;color:#fff}
+a.media-item:hover b{color:var(--yellow)}
 .media-item:last-child{border-right:0}
 .media-item b{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em}
 .media-item span{display:block;font-size:13px;color:#ffffffb3;margin-top:2px}
@@ -127,6 +128,23 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .steps span{font-size:14px;color:#ffffffbf}
 .how .btn{margin-top:auto;align-self:flex-start}
 .how .steps{margin-bottom:22px}
+
+
+/* ---------- OUR BRANDS ---------- */
+.brands{background:var(--cream)}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.brand-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px}
+.brand-card .b-logo{height:52px;display:flex;align-items:center}
+.brand-card .b-logo img{max-height:42px;width:auto}
+.brand-card.pov .b-logo img{max-height:52px}
+.brand-card h3{font-size:20px;font-weight:800;margin:0}
+.brand-card p{color:var(--ink-soft);font-size:15px;margin:0}
+.soc{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:6px}
+.soc a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--navy-deep);font-weight:700;font-size:14px;text-decoration:none;transition:border-color .15s,transform .15s}
+.soc a:hover{border-color:var(--navy);transform:translateY(-2px)}
+.soc svg{width:20px;height:20px;flex-shrink:0}
+.soc a[data-p=fb] svg{color:#1877f2}.soc a[data-p=ig] svg{color:#d6249f}.soc a[data-p=yt] svg{color:#ff0000}.soc a[data-p=tt] svg{color:#111}
+@media(max-width:760px){.brand-grid{grid-template-columns:1fr}.brand-card{padding:20px}}
 
 /* ---------- WHO WE HELP ---------- */
 .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -267,7 +285,7 @@ footer a:hover{color:#fff}
   .nav-links a.hide-md{display:none}
   .res-grid{grid-template-columns:repeat(2,1fr)}
   .pillars{grid-template-columns:repeat(3,1fr)}
-  .media-inner{grid-template-columns:repeat(4,1fr)}
+  .media-inner{grid-template-columns:repeat(3,1fr)}
   .media-label{display:none}
   .media-item:first-of-type{padding-left:0}
 }
@@ -303,14 +321,12 @@ footer a:hover{color:#fff}
   .media-tag{right:10px;top:-20px}
   .hero-media{margin-top:12px}
   .hero-media:before{display:none}
-  .media-inner{grid-template-columns:1fr 1fr}
-  .media-item{padding:16px 14px 16px 0;border-right:0;border-bottom:1px solid #ffffff1f}
-  .media-item:nth-child(odd){padding-left:14px;border-left:1px solid #ffffff1f}
+  .media-inner{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .media-item{padding:16px 10px;border-right:1px solid #ffffff1f}
   .media-item:first-of-type{padding-left:0}
-  .media-item:nth-child(odd){border-left:0}
-  .media-item:nth-last-child(-n+2){border-bottom:0}
-  .media-item:nth-child(even){padding-left:0}
-  .media-item:nth-child(odd){padding-left:14px;border-left:1px solid #ffffff1f}
+  .media-item:last-child{border-right:0;padding-right:0}
+  .media-item b{font-size:15px}
+  .media-item span{font-size:12px}
   .segments{grid-template-columns:1fr 1fr}
   .pillars{grid-template-columns:1fr 1fr}
   .card{padding:24px}
@@ -375,10 +391,9 @@ footer a:hover{color:#fff}
 <section class="media-bar" aria-label="As featured on">
   <div class="wrap media-inner">
     <div class="media-label" data-i18n="m_label">As seen on</div>
-    <div class="media-item"><b>8TV</b><span data-i18n="m_8tv">Morning news market commentary</span></div>
-    <div class="media-item"><b>南洋商报</b><span data-i18n="m_np">《股势先机》 market column</span></div>
-    <div class="media-item"><b>YouTube</b><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></div>
-    <div class="media-item"><b>Money POV</b><span data-i18n="m_pov">Money education community</span><span class="todo" data-i18n="todo_fans">Follower count — to fill</span></div>
+    <a class="media-item" href="#insights"><b>8TV</b><span data-i18n="m_8tv">Morning news market commentary</span></a>
+    <a class="media-item" href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener"><b>南洋商报</b><span data-i18n="m_np">《股势先机》 market column</span></a>
+    <a class="media-item" href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener"><b>YouTube</b><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></a>
   </div>
 </section>
 
@@ -565,6 +580,35 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
+<!-- ============== OUR BRANDS ============== -->
+<section class="brands" id="brands">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker" data-i18n="br_kicker">Our brands</div><h2 data-i18n-html="br_title">Two brands, <span class="y">one mission.</span></h2></div>
+      <p class="lead" data-i18n="br_sub">Follow along for market views, money tips and new free tools.</p>
+    </div>
+    <div class="brand-grid reveal">
+      <article class="brand-card"><div class="b-logo"><img src="assets/home/logo-bbbwealth.png" alt="BBBwealth" width="560" height="137" loading="lazy"></div><h3 data-i18n="br_bbb_t">Financial planning &amp; wealth</h3><p data-i18n="br_bbb_p">Market views on TV, in print and on YouTube, plus planning and wealth management.</p><div class="soc" data-brand="bbb"></div></article>
+      <article class="brand-card pov"><div class="b-logo"><img src="assets/home/logo-moneypov.png" alt="Money POV" width="360" height="164" loading="lazy"></div><h3 data-i18n="br_pov_t">Money education</h3><p data-i18n="br_pov_p">Everyday money topics explained in plain language: saving, cards, tax, investing.</p><div class="soc" data-brand="pov"></div></article>
+    </div>
+  </div>
+</section>
+<script>
+/* Social links per brand. Fill in a URL to show its button; empty ones stay hidden. */
+(()=>{
+const SOCIAL={
+  bbb:{fb:'',ig:'',yt:'https://www.youtube.com/@BBBwealth?sub_confirmation=1',tt:''},
+  pov:{fb:'',ig:'',yt:'',tt:''}
+};
+const NAME={fb:'Facebook',ig:'Instagram',yt:'YouTube',tt:'TikTok'};
+const ICON={fb:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>',
+ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+yt:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg>',
+tt:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.3v13.3a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.3 6.3 0 1 0 5.3 6.2V8.6a8 8 0 0 0 4.7 1.5V6.8a4.7 4.7 0 0 1-4.7-4.8z"/></svg>'};
+document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.dataset.brand]||{};box.innerHTML=['fb','ig','yt','tt'].filter(k=>s[k]).map(k=>'<a href="'+s[k]+'" target="_blank" rel="noopener" data-p="'+k+'" aria-label="'+NAME[k]+'">'+ICON[k]+'<span>'+NAME[k]+'</span></a>').join('');box.hidden=!box.innerHTML});
+})();
+</script>
+
 <!-- ============== TRAINING ============== -->
 <section id="training">
   <div class="wrap">
@@ -729,7 +773,7 @@ footer a:hover{color:#fff}
     h_cta:"Talk to us on WhatsApp",h_cta2:"Free guides & calculators",
     h_note:"No obligation. We listen first, then agree the scope before any fee.",
     h_media:"Anson Tan on 8TV Morning Express",
-    m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"@BBBwealth · 19.9K subscribers",m_pov:"Money education community",
+    m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"@BBBwealth · 19.9K subscribers",m_pov:"Money education community",br_kicker:"Our brands",br_title:"Two brands, <span class=\"y\">one mission.</span>",br_sub:"Follow along for market views, money tips and new free tools.",br_bbb_t:"Financial planning & wealth",br_bbb_p:"Market views on TV, in print and on YouTube, plus planning and wealth management.",br_pov_t:"Money education",br_pov_p:"Everyday money topics explained in plain language: saving, cards, tax, investing.",
     todo_fans:"Follower count — to fill",todo_reg:"Company registration no. — to fill",
     s_kicker:"What we do",s_title:'Three services.<br>One <span class="y">philosophy.</span>',
     s_sub:"Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.",
@@ -814,7 +858,7 @@ footer a:hover{color:#fff}
     h_cta:"WhatsApp 跟我们聊聊",h_cta2:"免费指南与计算器",
     h_note:"没有义务。我们先聆听，确认服务范围后才谈费用。",
     h_media:"谭凯俊 · 8TV 八度空间早晨新闻",
-    m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"@BBBwealth · 1.99万订阅",m_pov:"理财教育社群",
+    m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"@BBBwealth · 1.99万订阅",m_pov:"理财教育社群",br_kicker:"我们的品牌",br_title:"两个品牌，<span class=\"y\">同一个目标。</span>",br_sub:"关注我们，看市场观点、理财小知识和新的免费工具。",br_bbb_t:"理财规划与财富管理",br_bbb_p:"在电视、报章和 YouTube 分享市场观点，提供理财规划与财富管理服务。",br_pov_t:"理财教育",br_pov_p:"用白话讲清楚日常的钱事：储蓄、信用卡、税务、投资。",
     todo_fans:"粉丝人数 — 待填",todo_reg:"公司注册编号 — 待填",
     s_kicker:"我们的服务",s_title:'三项服务，<br>同一个<span class="y">出发点。</span>',
     s_sub:"无论你刚开始理财、正在累积财富，还是想为团队安排培训，我们的做法都一样：先了解，再用白话讲清楚，然后才规划。",
