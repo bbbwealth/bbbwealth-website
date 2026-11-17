@@ -166,11 +166,13 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .ins p{font-size:14px;color:#ffffffb3;flex:1}
 .ins .todo{margin-top:14px;font-size:12px}
 .ins a.more{color:#fff;margin-top:14px}
-.co-col{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff1f;display:grid;gap:4px}
-.co-col .co-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ffffff80}
-.co-col a{color:#fff;font-size:14px;font-weight:600;text-decoration:none;line-height:1.45}
-.co-col a:hover{text-decoration:underline}
-.co-col a.sub{font-size:13px;color:#ffffffb3;font-weight:700}
+.col-list{list-style:none;display:grid;gap:12px;margin:4px 0 0;flex:1}
+.col-list a{color:#fff;font-size:15px;font-weight:600;text-decoration:none;line-height:1.45}
+.col-list a:hover{text-decoration:underline}
+.col-list span{display:block;font-size:12px;color:#ffffff8c;margin-top:2px}
+.col-all{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;padding-top:14px;border-top:1px solid #ffffff1f}
+.col-all a{color:#ffffffcc;font-size:13px;font-weight:700;text-decoration:none}
+.col-all a:hover{color:#fff}
 
 /* ---------- TRAINING ---------- */
 .train-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -511,24 +513,26 @@ footer a:hover{color:#fff}
         <div class="media"><span class="badge">8TV</span><img src="assets/home/still-8tv-geo.jpg" alt="Anson Tan on 8TV discussing geopolitical shifts in asset markets" loading="lazy" width="960" height="540" style="width:100%;height:100%;object-fit:cover" /></div>
         <div class="body">
           <div class="src" data-i18n="i1_src">8TV · Morning news</div>
-          <h3 data-i18n="i1_t">Cross-generation money pressure, and the reshuffle in assets</h3>
-          <p data-i18n="i1_p">Anson on why financial strain is showing up across generations, and how geopolitical shocks move money between asset classes.</p>
-          <span class="todo" data-i18n="todo_8tv">8TV clip link — to fill</span>
+          <h3 data-i18n="i1_t">Recent 8TV appearances</h3>
+          <ul class="col-list">
+            <li><a href="https://www.youtube.com/watch?v=LR3KXxTqs6s" target="_blank" rel="noopener">个人所得税减免提高 纳税人能省多少</a><span>谭凯俊 · 14 Oct 2026</span></li>
+            <li><a href="https://www.youtube.com/watch?v=pRRr7LCDlZI" target="_blank" rel="noopener">摩根大通调降两行评级 金融股领跌拖累马股重创</a><span>香清发 · 8 Oct 2026</span></li>
+            <li><a href="https://www.youtube.com/watch?v=XI9G328bxqc" target="_blank" rel="noopener">中东战事冲击精品市场 各名牌业绩不如预期</a><span>谭凯俊 · 17 Apr 2026</span></li>
+          </ul>
+          <div class="col-all"><a href="https://www.youtube.com/results?search_query=%E8%B0%AD%E5%87%AF%E4%BF%8A+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_all">More from 谭凯俊 →</a><a href="https://www.youtube.com/results?search_query=%E9%A6%99%E6%B8%85%E5%8F%91+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_co_all">More from 香清发 →</a></div>
         </div>
       </article>
       <article class="ins np">
         <div class="media"><span class="badge">南洋商报</span><span class="glyph">南洋商报<br>股势先机</span></div>
         <div class="body">
           <div class="src" data-i18n="i2_src">Nanyang Siang Pau · 股势先机</div>
-          <h3>【股势先机】投资AI不仅看资本支出</h3>
-          <p data-i18n="i2_p">Anson's latest column (5 Nov 2026): when investing in AI, capital spending alone doesn't tell you who wins. Earlier pieces cover the Budget, US Treasury yields and AI valuations.</p>
-          <a class="more" href="https://www.enanyang.my/news/20261105/NYPLUS/1438828" target="_blank" rel="noopener" data-i18n="i2_read">Read the latest column →</a>
-          <a class="more" href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener" data-i18n="i2_all" style="margin-top:6px;color:#ffffffb3">All columns by 谭凯俊 →</a>
-          <div class="co-col">
-            <span class="co-lbl" data-i18n="i2_co">Also in 《股势先机》 · 香清发</span>
-            <a href="https://www.enanyang.my/news/20260924/NYPLUS/1390586" target="_blank" rel="noopener">【股势先机】政府救亚航 散户就有救？</a>
-            <a class="sub" href="https://www.enanyang.my/tag/%E9%A6%99%E6%B8%85%E5%8F%91" target="_blank" rel="noopener" data-i18n="i2_co_all">All columns by 香清发 →</a>
-          </div>
+          <h3 data-i18n="i2_t">Latest from our 《股势先机》 columns</h3>
+          <ul class="col-list">
+            <li><a href="https://www.enanyang.my/news/20261105/NYPLUS/1438828" target="_blank" rel="noopener">投资AI不仅看资本支出</a><span>谭凯俊 · 5 Nov 2026</span></li>
+            <li><a href="https://www.enanyang.my/news/20261008/NYPLUS/1406282" target="_blank" rel="noopener">预算案派糖前 先问谁来买单</a><span>谭凯俊 · 8 Oct 2026</span></li>
+            <li><a href="https://www.enanyang.my/news/20260924/NYPLUS/1390586" target="_blank" rel="noopener">政府救亚航 散户就有救？</a><span>香清发 · 24 Sep 2026</span></li>
+          </ul>
+          <div class="col-all"><a href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener" data-i18n="i2_all">All by 谭凯俊 →</a><a href="https://www.enanyang.my/tag/%E9%A6%99%E6%B8%85%E5%8F%91" target="_blank" rel="noopener" data-i18n="i2_co_all">All by 香清发 →</a></div>
         </div>
       </article>
       <article class="ins">
@@ -712,7 +716,7 @@ footer a:hover{color:#fff}
     h_media:"Anson Tan on 8TV Morning Express",
     m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"CITY+ finance podcast",m_pov:"Money education community",
     todo_fans:"Follower count — to fill",todo_reg:"Company registration no. — to fill",
-    todo_8tv:"8TV clip link — to fill",todo_pod:"Latest episode title & link — to fill",
+    todo_pod:"Latest episode title & link — to fill",
     s_kicker:"What we do",s_title:'Three services.<br>One <span class="y">philosophy.</span>',
     s_sub:"Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.",
     s1_t:"Financial Planning",s1_p:"Your whole financial picture — cash flow, debt, protection, investing, retirement, tax and estate — shaped into one plan around your goals.",s1_link:"How planning works →",
@@ -748,8 +752,8 @@ footer a:hover{color:#fff}
     w5_t:"Estate Planning",w5_p:"Wasiat, hibah and trusts so what you've built reaches the people you built it for.",
     i_kicker:"Our views",i_title:'See how we think — <span class="y">in public.</span>',
     i_sub:"Market commentary on TV, a newspaper column and a podcast. The same plain-language thinking goes into every client plan.",
-    i1_src:"8TV · Morning news",i1_t:"Cross-generation money pressure, and the reshuffle in assets",i1_p:"Anson on why financial strain is showing up across generations, and how geopolitical shocks move money between asset classes.",
-    i2_src:"Nanyang Siang Pau · 股势先机",i2_p:"Anson's latest column (5 Nov 2026): when investing in AI, capital spending alone doesn't tell you who wins. Earlier pieces cover the Budget, US Treasury yields and AI valuations.",i2_read:"Read the latest column →",i2_all:"All columns by 谭凯俊 →",i2_co:"Also in 《股势先机》 · 香清发",i2_co_all:"All columns by 香清发 →",
+    i1_src:"8TV · Morning news",i1_t:"Recent 8TV appearances",i1_all:"More from 谭凯俊 →",i1_co_all:"More from 香清发 →",
+    i2_src:"Nanyang Siang Pau · 股势先机",i2_t:"Latest from our 《股势先机》 columns",i2_all:"All by 谭凯俊 →",i2_co_all:"All by 香清发 →",
     i3_src:"《一股作气》· CITY+ podcast",i3_t:"Policy and markets, from two angles",i3_p:"Each episode separates the political story from the economic numbers, so listeners can judge the facts for themselves.",
     t_kicker:"Corporate training",t_title:'HRD-claimable.<br>Workforce-<span class="y">ready.</span>',
     t_sub:"Financial stress quietly drains productivity. Our programmes give your team practical tools — and the confidence — to handle money well.",
@@ -799,7 +803,7 @@ footer a:hover{color:#fff}
     h_media:"谭凯俊 · 8TV 八度空间早晨新闻",
     m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"CITY+ 财经播客",m_pov:"理财教育社群",
     todo_fans:"粉丝人数 — 待填",todo_reg:"公司注册编号 — 待填",
-    todo_8tv:"8TV 片段链接 — 待填",todo_pod:"最新一集标题与链接 — 待填",
+    todo_pod:"最新一集标题与链接 — 待填",
     s_kicker:"我们的服务",s_title:'三项服务，<br>同一个<span class="y">出发点。</span>',
     s_sub:"无论你刚开始理财、正在累积财富，还是想为团队安排培训，我们的做法都一样：先了解，再用白话讲清楚，然后才规划。",
     s1_t:"财务规划",s1_p:"从现金流、债务、保障、投资到退休、税务与传承，把你的整体财务整合成一份围绕目标的规划。",s1_link:"了解规划怎么做 →",
@@ -835,8 +839,8 @@ footer a:hover{color:#fff}
     w5_t:"遗产规划",w5_p:"通过遗嘱（Wasiat）、赠予（Hibah）和信托，把财富有条理地传给你在意的人。",
     i_kicker:"我们的观点",i_title:'我们怎么思考，<span class="y">都公开给你看。</span>',
     i_sub:"电视上的市场评论、报章专栏和播客。同样的白话思考，也用在每一份客户规划里。",
-    i1_src:"8TV · 早晨新闻",i1_t:"跨世代财务危机浮现，地缘动荡引发资产洗牌",i1_p:"Anson 解读为什么财务压力正在不同世代之间浮现，以及地缘政治冲击如何让资金在各类资产之间流动。",
-    i2_src:"南洋商报 · 股势先机",i2_p:"谭凯俊最新专栏（2026年11月5日）：投资AI，不能只看资本支出。过往文章谈财案、美债收益率与AI估值。",i2_read:"阅读最新专栏 →",i2_all:"谭凯俊所有专栏 →",i2_co:"《股势先机》· 香清发",i2_co_all:"香清发所有专栏 →",
+    i1_src:"8TV · 早晨新闻",i1_t:"近期 8TV 访谈",i1_all:"更多谭凯俊访谈 →",i1_co_all:"更多香清发访谈 →",
+    i2_src:"南洋商报 · 股势先机",i2_t:"《股势先机》最新专栏",i2_all:"谭凯俊所有专栏 →",i2_co_all:"香清发所有专栏 →",
     i3_src:"《一股作气》· CITY+ 播客",i3_t:"政策与市场，从两个角度看",i3_p:"每一集把政治叙事和经济数字分开讨论，让听众自己判断事实。",
     t_kicker:"企业培训",t_title:'可申报 HRD，<br>让团队<span class="y">更从容。</span>',
     t_sub:"财务压力会悄悄影响工作表现。我们的课程提供实用工具，让员工更有信心地处理金钱。",
