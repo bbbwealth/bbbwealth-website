@@ -57,6 +57,11 @@ nav.scrolled{border-color:var(--line);box-shadow:0 4px 18px #0f17290d}
 .nav-links{display:flex;align-items:center;gap:26px}
 .nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-soft)}
 .nav-links a:hover{color:var(--navy)}
+.nav-links a.nav-res{position:relative;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--yellow-soft);border:1.5px solid #f5d36b;color:var(--navy-deep);font-weight:800}
+.nav-links a.nav-res:hover{background:var(--yellow);color:var(--navy-deep)}
+.nav-badge{position:absolute;top:-9px;right:-8px;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.04em;background:#e23b3b;color:#fff;border-radius:999px;padding:2px 6px;line-height:1.3;box-shadow:0 2px 6px #e23b3b55;animation:navPulse 2.4s ease-in-out infinite}
+@keyframes navPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.nav-badge{animation:none}}
 .lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
 .lang button{border:0;background:none;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted)}
 .lang button[aria-pressed=true]{background:var(--navy);color:#fff}
@@ -211,7 +216,8 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .res .type{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .res h3{font-size:17px;margin-bottom:6px}
 .res p{font-size:13.5px;flex:1}
-.res .more{margin-top:12px}
+.res .more{margin-top:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:9px 14px;border-radius:10px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;transition:background .15s,color .15s,transform .15s}
+a.card.res:hover .more{background:var(--yellow);color:var(--navy-deep);transform:translateX(2px)}
 .center{text-align:center;margin-top:30px}
 
 /* ---------- NEWSLETTER ---------- */
@@ -270,6 +276,8 @@ footer a:hover{color:#fff}
   .nav-links.open{display:flex}
   .nav-links a,.nav-links a.hide-md{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
   .nav-links .lang{align-self:flex-start;margin:14px 0}
+  .nav-links a.nav-res{display:flex;margin:10px 0 2px;border-radius:12px;padding:12px 14px}
+  .nav-links a.nav-res .nav-badge{position:static;margin-left:auto}
   .nav-links a.nav-cta{display:flex;justify-content:center;padding:14px 18px;border-bottom:0;color:var(--navy-deep)}
   .hero-grid,.about-grid,.plan-grid,.nl-box,.sec-head,.services-grid{grid-template-columns:1fr}
   .services-grid .card{display:grid;grid-template-columns:48px 1fr;column-gap:16px;padding:22px}
@@ -327,7 +335,7 @@ footer a:hover{color:#fff}
       <a href="#insights" data-i18n="n_insights">Insights</a>
       <a href="#training" class="hide-md" data-i18n="n_training">Training</a>
       <a href="#team" class="hide-md" data-i18n="n_team">Team</a>
-      <a href="#resources" data-i18n="n_resources">Free resources</a>
+      <a href="#resources" class="nav-res"><span aria-hidden="true">🎁</span><span data-i18n="n_resources">Free resources</span><i class="nav-badge" data-i18n="n_free">FREE</i></a>
       <div class="lang" id="langToggle" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="zh" aria-pressed="false">中文</button></div>
       <a class="btn btn-yellow nav-cta wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="n_book">WhatsApp us</a>
     </div>
@@ -615,7 +623,7 @@ footer a:hover{color:#fff}
       <a class="card res" href="calculator/term-coverage/"><div class="cover"><span class="idx">07</span><span class="hook" data-i18n="rh7">Who depends on your income?</span></div><div class="rb"><div class="type" data-i18n="fr_calc">Calculator</div><h3 data-i18n="fr8_t">Term Life Coverage Needs</h3><p data-i18n="fr8_p">Start from an income-based benchmark, then compare it with your existing life cover.</p><span class="more" data-i18n="rcta7">Check my life cover →</span></div></a>
     </div>
     <p class="swipe-hint" data-i18n="swipe">Swipe for more →</p>
-    <div class="center"><a class="btn btn-ghost" href="resources/" data-i18n="fr_all">View all free resources →</a></div>
+    <div class="center"><a class="btn btn-yellow" href="resources/" data-i18n="fr_all">View all free resources →</a></div>
     <p class="note" data-i18n="fr_note">For general information and education. Check each resource's date, assumptions and terms. These tools do not replace advice based on your circumstances.</p>
   </div>
 </section>
@@ -713,7 +721,7 @@ footer a:hover{color:#fff}
   en:{
     doc_title:"BBBwealth — Financial Planning, Wealth Management & Training",
     wa_msg:"Hi BBBwealth, I'd like to arrange a conversation about my finances.",
-    n_services:"Services",n_insights:"Insights",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_book:"WhatsApp us",
+    n_services:"Services",n_insights:"Insights",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_free:"FREE",n_book:"WhatsApp us",
     h_kicker:"Malaysia · Financial advisory",
     h_title:'We don\'t sell products.<span class="y">We build clarity.</span>',
     h_sub:"Before any product, we help you see your whole financial picture clearly — cash flow, protection, investing, retirement, tax and estate — then plan the next step with you.",
@@ -798,7 +806,7 @@ footer a:hover{color:#fff}
   zh:{
     doc_title:"BBBwealth — 财务规划、财富管理与培训",
     wa_msg:"你好 BBBwealth，我想约个时间聊聊我的财务规划。",
-    n_services:"服务",n_insights:"观点",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_book:"WhatsApp 联系",
+    n_services:"服务",n_insights:"观点",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_free:"免费",n_book:"WhatsApp 联系",
     h_kicker:"马来西亚 · 财务咨询",
     h_title:'不卖产品，<span class="y">只帮你把钱看清楚。</span>',
     h_sub:"在谈任何产品之前，我们先陪你把整体财务看清楚：现金流、保障、投资、退休、税务与传承，再一起规划下一步。",

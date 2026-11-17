@@ -2,12 +2,12 @@
 
 (()=>{let selected=0,last='',host;const z=()=>document.documentElement.lang.startsWith('zh');
 const copy={en:{title:'FD or MMF? Compare what matters.',intro:'Three differences, one clear choice at a time.',tabs:['Liquidity','Interest','Structure'],rows:[
-[['Withdraw before maturity','FDs may allow early withdrawal, but some or all interest may be lost. Bank and product rules apply.'],['Redeem when you need cash','Typically no fixed-tenure lock-in. Request redemption; cut-offs, business days and platform settlement determine arrival.']],
+[['Withdraw before maturity','FDs may allow early withdrawal, but some or all interest may be lost. Bank and product rules apply.'],['Redeem when you need cash','No lock-in; money usually arrives in 1–2 working days. Returns are calculated daily, so redeeming never costs you a single day of interest.']],
 [['Agreed rate for a chosen term','The board rate is the bank’s standard published rate. Promotional FD rates may be higher and come with eligibility conditions.'],['Pooled money, negotiating power','A larger fund can negotiate deposit rates. Net MMF returns can compare favourably with standard FD board rates, but vary after fees and are not guaranteed to beat any FD offer.']],
 [['You → bank','You place a deposit directly with the bank. The deposit follows its agreed tenure, rate and withdrawal terms.'],['You → MMF → short-term instruments','Your money buys fund units. The manager pools investors’ money into bank deposits and other short-term money-market instruments. Follow the diagram below.']]
 ],note:['MMFs do not normally impose FD-style interest forfeiture, but income accrual, redemption value and fees follow each fund’s rules. T+2 is not universal.','Compare the same period, currency and conditions, using MMF returns after fees. A rate advantage is not a guaranteed return.','Eligible bank deposits may have PIDM protection. MMF units do not; their capital and returns are not guaranteed.'],cta:'Explore four platforms & our promo codes',ctasub:'Understand the flow first. Then check the platform, offer eligibility and code.'},
 zh:{title:'定存还是 MMF？先看这三个分别。',intro:'不用一次读一大堆，选一个你最关心的重点。',tabs:['流动性','利息与回酬','运作结构'],rows:[
-[['提早拿钱，可能损失利息','定存可按银行规则申请提前提款，但可能损失部分或全部利息。实际安排依银行与产品条款。'],['需要用钱时，申请赎回','通常没有固定锁定期。到账时间要看申请截止时间、工作日及平台结算安排。']],
+[['提早拿钱，可能损失利息','定存可按银行规则申请提前提款，但可能损失部分或全部利息。实际安排依银行与产品条款。'],['需要用钱时，申请赎回','没有锁定期，一般 1–2 个工作日到账。利息每天计算，赎回也不会损失任何一天的利息。']],
 [['先约定利率，再按期限存放','Board rate 是银行平常公布的定存牌价。定存优惠利率可能更高，但通常有金额或资格等条件。'],['集合资金，争取更好的存款利率','基金的资金规模较大，可与银行商谈利率。扣费后回酬可能比一般定存牌价更有竞争力，但会变动，也不保证高过每个定存优惠。']],
 [['你 → 银行','直接把钱存进银行，按约定期限、利率及提款条款处理。'],['你 → MMF → 短期投资工具','你买入基金单位，基金经理把大家的资金集合起来，投向银行存款及其他短期货币市场工具。下面的图带你走一遍。']]
 ],note:['MMF 通常没有定存那种提早提款扣息安排，但收益计算到哪一天、赎回金额和费用仍依基金规则。不是每个平台都 T+2。','比较时要用相同期间、币种及条件，也要看扣费后的 MMF 回酬。利率优势不等于保证回酬。','合资格银行存款可能受 PIDM 保障；MMF 基金单位不受 PIDM 保障，本金和回酬也不保证。'],cta:'查看四个平台和我们的优惠码',ctasub:'先了解运作，再看平台、优惠资格和对应代码。'}};
