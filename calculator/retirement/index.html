@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Free Malaysian retirement calculator by BBBwealth — EPF-aware projections, inflation, the 4% rule, and your retirement gap in seconds." />
 <title>Retirement Calculator — BBBwealth</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
 <style>
   :root{
     --navy:#1e3a6f;
@@ -432,32 +432,42 @@
     .rc-gap-stats{grid-template-columns:1fr 1fr;}
   }
 </style>
-</head>
-<body>
-
-<nav>
-  <a href="/"><img class="logo-img" src="/bbbwealth-repo/assets/logo.png" alt="BBBwealth"></a>
-  <div class="nav-right">
-    <a class="home-link" href="/" data-i18n="nav_home">Home</a>
-    <a href="/calculator/" data-i18n="nav_calcs">Calculators</a>
-    <div class="rc-lang" id="rcLang">
+<style id="bbb-resource-refresh">
+/* Shared BBBwealth resource visual language, preview only. */
+:root{--navy:#17438f;--navy-deep:#102d65;--deep:#102d65;--navy-soft:#2c559c;--blue:#17438f;--green:#17438f;--mint:#17438f;--yellow:#ffcb2d;--yellow-bright:#ffdc4b;--yellow-soft:#fff5ce;--gold:#ffcb2d;--lime:#ffcb2d;--ink:#162b4e;--ink-soft:#536582;--muted:#536582;--soft:#536582;--paper:#fff;--cream:#f5f8fd;--gray-100:#edf3fc;--gray-200:#dce5f2;--line:#dce5f2;--sage:#edf3fc;--serif:Inter,system-ui,'Microsoft YaHei',sans-serif;--font-sans:Inter,system-ui,'Microsoft YaHei',sans-serif}
+body,body.social{font-family:Inter,system-ui,-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;background:#f5f8fd;color:#162b4e;-webkit-font-smoothing:antialiased}h1,h2,h3,h4{font-family:inherit;letter-spacing:-.035em}h1{line-height:1.15}p{line-height:1.85}.bbb-design-trail{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(22px,calc((100vw - 1180px)/2));background:#102d65;color:#fff;font:600 12px/1.5 Inter,system-ui,sans-serif;letter-spacing:.02em}.bbb-design-trail a{color:#fff;text-decoration:none;padding:4px 0}.bbb-design-trail a:last-child{color:#ffcb2d}.bbb-design-trail a:hover{text-decoration:underline;text-underline-offset:4px}
+.topbar{background:#fff!important;border-bottom:1px solid #dce5f2}.topbar .nav,.topbar .wrap{color:#162b4e}.topbar .money-logo,.brand-money{background:#fff}.brand-bar{background:#fff}.hero:not(.rc-hero){border-radius:22px}.bbb-resource-page .hero{background:#102d65;color:#fff;padding:44px;border:1px solid #173d7b;box-shadow:0 18px 40px #102d650a}.bbb-resource-page .hero h1,.bbb-resource-page .hero h2,.bbb-resource-page .hero .intro h1{color:#fff}.bbb-resource-page .hero h1 em,.bbb-resource-page .hero h1 .y,.bbb-resource-page .hero h1 span.accent{color:#ffcb2d}.bbb-resource-page .hero p,.bbb-resource-page .hero .lead,.bbb-resource-page .hero .hero-desc,.bbb-resource-page .hero .intro p{color:#d8e3f7}.bbb-resource-page .hero .eyebrow{color:#ffcb2d!important}.bbb-resource-page .hero .button,.bbb-resource-page .hero .btn{background:#ffcb2d;color:#102d65;border-color:#ffcb2d;box-shadow:none}.bbb-resource-page .hero .secondary,.bbb-resource-page .hero .btn-light{background:transparent;color:#fff;border:1px solid #8da6cd}.bbb-resource-page .hero:after{display:none}.bbb-resource-page .hero .portrait:before{background:#1b4383;border-color:#5378b2}.bbb-resource-page .hero .portrait:after{background:#ffcb2d;color:#102d65}.bbb-resource-page .hero .small-note{color:#d8e3f7}.bbb-resource-page .hero .hero-tags span{background:#ffffff10;color:#fff;border-color:#ffffff33}
+button,.button,.btn,.navbtn,.nav-cta{border-radius:10px;touch-action:manipulation}.button.primary,.btn-primary,.navbtn,.nav-cta{background:#17438f;color:#fff}.button,.btn{min-height:46px}.card,.calc-card,.rc-card,.panel,.income-card,.table-shell,.table-wrap,.product-card,.summary-card,.calc-panel,.calc-form,.highlight{border-radius:16px;border-color:#dce5f2;box-shadow:0 8px 24px #102d6505}.card,.calc-card,.panel,.income-card,.highlight{background:#fff}.calc,.intro-strip,.strip{border-radius:18px}.strip,.intro-strip,.highlights .highlight{border-color:#dce5f2}.strip{background:#edf3fc;color:#17438f}.table-head,thead{background:#edf3fc;color:#17438f}.rate,.highlight b,.tile-icon{color:#17438f}.table-wrap,.table-shell{overflow-x:auto}.row:hover,tbody tr:hover{background:#f5f8fd}.input-wrap,input:not([type=checkbox]):not([type=radio]):not([type=range]),select{border-color:#c7d5e9;border-radius:9px}input,select{accent-color:#17438f}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #e4a800;outline-offset:3px}.button.secondary{border-color:#c7d5e9}.rc-card-head{background:#edf3fc}.rc-head-icon,.calc-icon{background:#fff5ce;color:#17438f}.bbb-resource-page .hero .portrait,.bbb-resource-page .hero .hero-portrait{min-width:0}.bbb-resource-page .hero .portrait img{max-width:100%}
+@media(max-width:700px){.bbb-design-trail{padding:10px 18px;font-size:11px;gap:12px}.bbb-resource-page .hero{padding:28px 22px;border-radius:16px}.bbb-resource-page .hero h1{font-size:clamp(32px,9vw,44px)}.bbb-resource-page .hero p{font-size:15px}.hero-actions{gap:10px}.hero-actions .button,.hero-actions .btn{min-height:48px}.bbb-resource-page .hero .portrait{height:310px}.bbb-resource-page .hero .hero-portrait{max-width:100%}.topnav,.navlinks{gap:12px;flex-wrap:wrap}.table-wrap,.table-shell{-webkit-overflow-scrolling:touch}.bbb-design-trail a{min-height:24px}.bbb-resource-page .hero .hero-inner{gap:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style><style id="bbb-final-contrast">.rc-card-head h3{color:#102d65}.bbb-resource-return{display:none}.bbb-resource-page .hero h1 span{color:#ffcb2d}</style><style id="bbb-shared-header">
+/* Shared two-brand header, identical across resource previews. */
+body.bbb-resource-page{padding-top:80px!important}html{scroll-padding-top:108px}.bbb-site-header{all:initial;box-sizing:border-box;position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:17px max(28px,calc((100vw - 1320px)/2));height:80px;background:#fff;border-bottom:1px solid #dce5f2;box-shadow:0 4px 24px #102d6507;font-family:Inter,system-ui,-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:#162b4e}
+.bbb-site-header *{box-sizing:border-box}.bbb-site-brand{display:flex!important;align-items:center;gap:12px;flex-shrink:0;background:#fff;text-decoration:none!important;margin:0!important;padding:0!important}.bbb-site-divider{width:1px;height:28px;background:#ccd8e9;flex-shrink:0}.bbb-site-logo{position:relative;display:block;width:150px;height:45px;overflow:hidden;flex-shrink:0}.bbb-site-logo img{position:absolute!important;width:164px!important;height:82px!important;max-width:none!important;left:-7px;top:-17px;display:block;margin:0!important;border:0!important;border-radius:0!important;object-fit:fill!important;filter:none!important;box-shadow:none!important}.bbb-site-money{position:relative;display:block;width:106px;height:45px;overflow:hidden;flex-shrink:0;background:#fff}.bbb-site-money img{position:absolute!important;width:176px!important;height:176px!important;max-width:none!important;left:-35px;top:-66px;display:block;margin:0!important;border:0!important;border-radius:0!important;object-fit:fill!important;filter:none!important;box-shadow:none!important;mix-blend-mode:multiply}
+.bbb-site-links{display:flex;align-items:center;gap:20px}.bbb-site-links a{display:inline-block;color:#162b4e!important;background:transparent!important;padding:6px 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;font:600 12px/1.5 Inter,system-ui,'Microsoft YaHei',sans-serif!important;text-decoration:none!important;letter-spacing:0!important;white-space:nowrap}.bbb-site-links a:hover{color:#17438f!important;text-decoration:underline!important;text-underline-offset:5px}.bbb-site-links .bbb-site-current{border-bottom:2px solid #ffcb2d!important;color:#17438f!important}.bbb-site-links .bbb-site-consult{background:#17438f!important;color:#fff!important;border-radius:10px!important;padding:12px 18px!important}.bbb-site-menu{display:none;width:44px;height:44px;align-items:center;justify-content:center;flex-shrink:0;border:0;border-radius:9px;background:#fff;color:#102d65;font:24px/1 system-ui;cursor:pointer}.bbb-site-menu:hover{background:#edf3fc}.bbb-site-header a:focus-visible,.bbb-site-header button:focus-visible{outline:3px solid #e4a800;outline-offset:4px}
+.bbb-context-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1240px;margin:0 auto;padding:16px 28px;border-bottom:1px solid #dce5f2;color:#536582;font:600 12px/1.5 Inter,system-ui,'Microsoft YaHei',sans-serif}.bbb-context-nav .bbb-context-title{font-size:11px;letter-spacing:.06em;text-transform:uppercase}.bbb-context-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.bbb-context-links>a{font:600 12px/1.6 Inter,system-ui,'Microsoft YaHei',sans-serif!important;color:#17438f!important;background:transparent!important;padding:6px 0!important;border:0!important;box-shadow:none!important;text-decoration:none;border-radius:0!important}.bbb-context-links>a:hover{text-decoration:underline}.bbb-context-links .rc-lang{margin:0}.bbb-context-links .rc-lang button{min-width:40px;min-height:32px}.bbb-resource-page .page{padding-top:32px}.bbb-resource-page>.preview{position:relative;top:auto}.bbb-resource-page .bbb-design-trail{display:none}
+@media(max-width:1220px) and (min-width:1025px){.bbb-site-header{padding-inline:22px;gap:14px}.bbb-site-links{gap:12px}.bbb-site-links a{font-size:11px!important}.bbb-site-brand{gap:9px}.bbb-site-logo{width:132px}.bbb-site-logo img{width:146px!important;height:73px!important;top:-14px}.bbb-site-money{width:96px}.bbb-site-money img{width:160px!important;height:160px!important;top:-59px;left:-32px}}
+@media(max-width:1024px){.bbb-site-header{padding:14px 24px}.bbb-site-links{display:none}.bbb-site-menu{display:flex}.bbb-site-links.is-open{display:flex;flex-direction:column;align-items:stretch;gap:8px;position:absolute;top:100%;left:0;right:0;background:#fff;padding:20px 28px;border-bottom:1px solid #dce5f2;box-shadow:0 20px 35px -25px #102d65a0;max-height:calc(100dvh - 80px);overflow:auto}.bbb-site-links.is-open a{font-size:14px!important;padding:10px 0!important}.bbb-site-links.is-open .bbb-site-consult{padding:12px 18px!important;text-align:center;margin-top:8px}.bbb-context-nav{padding:15px 24px;align-items:flex-start}.bbb-context-links{gap:12px}}
+@media(max-width:640px){body.bbb-resource-page{padding-top:65px!important}html{scroll-padding-top:90px}.bbb-site-header{height:65px;padding:10px 16px;gap:8px}.bbb-site-brand{gap:8px}.bbb-site-logo{width:124px;height:41px}.bbb-site-logo img{width:151px!important;height:75.5px!important;left:-7px;top:-16px}.bbb-site-money{width:92px;height:42px}.bbb-site-money img{width:168px!important;height:168px!important;left:-33px;top:-63px}.bbb-site-divider{height:26px}.bbb-site-links.is-open{max-height:calc(100dvh - 65px)}.bbb-context-nav{padding:12px 20px;flex-wrap:wrap;gap:8px}.bbb-context-links{gap:14px}.bbb-context-links>a{font-size:11px!important}.bbb-resource-page .page{padding-top:24px}}
+</style><style>.bbb-resource-page .hero h1 .y{background:none!important;color:#ffcb2d!important;padding:0}</style><link rel="stylesheet" href="../../assets/resource-discovery.css"><link rel="stylesheet" href="../../assets/interactive-visuals.css"><link rel="stylesheet" href="../../assets/sticky-headers.css"><style id="bbb-editorial-hierarchy">body.bbb-resource-page{font-family:Inter,system-ui,-apple-system,'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif;line-height:1.65}.bbb-resource-page .page{max-width:1184px;padding:40px 28px 88px}.bbb-resource-page .hero{position:relative;isolation:isolate;overflow:hidden;text-align:left;padding:64px 60px!important;margin-bottom:48px;border-radius:28px;background:#102c61!important;border:0;box-shadow:0 20px 50px -35px #102c6180}.bbb-resource-page .hero h1{position:relative;z-index:1;font-size:clamp(42px,4.6vw,68px)!important;line-height:1.1;letter-spacing:-.045em;font-weight:850;max-width:15ch;margin:20px 0 26px;color:white;text-wrap:balance}.bbb-resource-page .hero p{position:relative;z-index:1;margin:0;max-width:56ch;font-size:17px!important;line-height:1.85;color:#d9e5f8!important}.bbb-resource-page .hero:after{content:'';position:absolute;z-index:-1;right:-100px;bottom:-150px;width:500px;height:500px;border:70px solid #234c8b;border-radius:50%;opacity:.55;pointer-events:none}.bbb-resource-page .hero:before{content:'';position:absolute;right:54px;top:45px;width:65px;height:10px;background:#ffcb2d;border-radius:9px;transform:rotate(-30deg);pointer-events:none}.bbb-resource-page .hero-badge{display:inline-flex;margin:0;font-size:12px;letter-spacing:.07em;background:#ffffff12;color:#ffda69;border:1px solid #ffffff25;border-radius:6px;padding:7px 12px}.bbb-resource-page .crumbs{font-size:12px;margin:0 0 24px;color:#64748b}.bbb-resource-page .rc-card{border-radius:22px;border:1px solid #d5dfed;box-shadow:0 12px 40px -32px #102d65}.bbb-resource-page .rc-card-head{padding:26px 32px;background:#fff;border-bottom:1px solid #e1e7ef}.bbb-resource-page .rc-card-head h3{font-size:27px;letter-spacing:-.02em}.bbb-resource-page .rc-card-body{padding:32px}.bbb-resource-page .rc-sec-head .t{font-size:19px;font-weight:750}.bbb-resource-page .rc-sec-head .s{font-size:13px;margin-top:4px;color:#52647c}.bbb-resource-page .rc-hr{margin:34px 0}.bbb-resource-page .rc-fields{gap:22px}.bbb-resource-page .calc-grid{gap:24px;grid-template-columns:repeat(2,minmax(0,1fr));counter-reset:tools}.bbb-resource-page .calc-card{position:relative;padding:34px;border-radius:22px;counter-increment:tools;border-color:#d6e0ef;box-shadow:0 10px 35px -30px #143266}.bbb-resource-page .calc-card:before{content:'0' counter(tools);position:absolute;right:30px;top:26px;font-size:44px;line-height:1;font-weight:800;letter-spacing:-.06em;color:#dce6f4}.bbb-resource-page .calc-card h3{font-size:26px;line-height:1.25;max-width:22ch;letter-spacing:-.025em;margin-bottom:16px}.bbb-resource-page .calc-card p{font-size:15px;line-height:1.8}.bbb-resource-page .calc-card .go{font-size:14px;margin-top:28px;padding-top:20px;border-top:1px solid #e3eaf3;justify-content:space-between;color:#17438f!important}.bbb-resource-page .calc-icon{width:54px;height:54px;border-radius:16px;margin-bottom:24px}.bbb-resource-page .calc-card:hover{border-color:#17438f;box-shadow:0 15px 40px -25px #17438f66}.bbb-resource-page .calc-card:focus-visible{outline:3px solid #e9b100;outline-offset:5px}@media(max-width:640px){.bbb-resource-page .page{padding:25px 16px 60px}.bbb-resource-page .hero{padding:34px 25px!important;border-radius:20px;margin-bottom:28px}.bbb-resource-page .hero h1{font-size:38px!important;letter-spacing:-.035em;max-width:100%;line-height:1.16;margin:18px 0 22px}.bbb-resource-page .hero p{font-size:15px!important;line-height:1.8}.bbb-resource-page .hero:before{right:24px;top:26px;width:28px;height:5px}.bbb-resource-page .hero:after{width:300px;height:300px;border-width:42px;right:-160px;bottom:-125px}.bbb-resource-page .rc-card-head,.bbb-resource-page .rc-card-body{padding:24px 20px}.bbb-resource-page .rc-card-head h3{font-size:23px}.bbb-resource-page .rc-sec-head .t{font-size:18px}.bbb-resource-page .calc-grid{grid-template-columns:1fr;gap:18px}.bbb-resource-page .calc-card{padding:28px 24px}.bbb-resource-page .calc-card h3{font-size:25px}.bbb-resource-page .calc-card:before{font-size:38px;right:24px}.bbb-resource-page .crumbs{margin-bottom:18px}}@media(prefers-reduced-motion:reduce){.calc-card{transition:none!important;transform:none!important}}</style><style id="bbb-task-first">.bbb-resource-page .page{padding-top:24px}.bbb-resource-page .crumbs{margin-bottom:16px}.bbb-resource-page .hero{padding:32px 40px!important;margin-bottom:28px}.bbb-resource-page .hero h1{font-size:52px!important;max-width:23ch;margin:16px 0 18px}.bbb-resource-page .hero p{font-size:16px!important;max-width:72ch;line-height:1.7}.bbb-task-actions{display:flex;gap:18px;align-items:center;margin-top:24px;position:relative;z-index:1;flex-wrap:wrap}.bbb-task-actions a{font-size:14px;font-weight:700;color:#fff;text-underline-offset:5px}.bbb-task-actions a:first-child{background:#ffcb2d;color:#123365;border-radius:8px;padding:12px 18px;text-decoration:none}.flow-zh{display:none}html:lang(zh) .flow-zh{display:inline}html:lang(zh) .flow-en{display:none}.bbb-resource-page .rc-card-head{padding:20px 28px}.bbb-resource-page .rc-card-body{padding:26px 28px}@media(max-width:640px){.bbb-resource-page .page{padding-top:20px}.bbb-resource-page .crumbs{display:none}.bbb-resource-page .hero{padding:26px 24px!important;margin-bottom:24px}.bbb-resource-page .hero h1{font-size:34px!important;margin:14px 0 16px}.bbb-resource-page .hero p{font-size:15px!important;line-height:1.65}.bbb-resource-page .hero-badge{font-size:10px}.bbb-task-actions{gap:14px;margin-top:20px}.bbb-task-actions a{font-size:12px}.bbb-resource-page .rc-card-head,.bbb-resource-page .rc-card-body{padding:22px 20px}}</style><link rel="stylesheet" href="../../assets/visual-first.css"><link rel="stylesheet" href="../../assets/resource-experience.css"><link rel="stylesheet" href="../../assets/phone-brand-fix.css"></head>
+<body class="bbb-resource-page"><header class="bbb-site-header"><a class="bbb-site-brand" href="../../index.html" aria-label="BBBwealth and Money POV home"><span class="bbb-site-logo"><img src="../../assets/shared-header/bbbwealth.png" alt="BBBwealth"></span><span class="bbb-site-divider" aria-hidden="true"></span><span class="bbb-site-money"><img src="../../assets/shared-header/money-pov.png" alt="Money POV"></span></a><div id="bbbSiteLinks" class="bbb-site-links" role="navigation" aria-label="Main navigation"><a href="../../index.html#services">Services</a><a href="../../index.html#planning">Planning</a><a href="../../index.html#wealth">Wealth</a><a href="../../calculator/index.html">Calculator</a><a href="../../index.html#training">Training</a><a href="../../index.html#team">Team</a><a class="bbb-site-current" href="../../resources/index.html">Free Resources</a><a class="bbb-site-consult" href="https://wa.me/601156281541" target="_blank" rel="noopener noreferrer">Book consultation</a></div><button class="bbb-site-menu" aria-label="Open navigation" aria-controls="bbbSiteLinks" aria-expanded="false" type="button">&#9776;</button></header><div class="bbb-context-nav"><span class="bbb-context-title">Retirement Calculator</span><div class="bbb-context-links"><div class="rc-lang" id="rcLang">
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="zh">中文</button>
-    </div>
-    <button class="nav-cta" onclick="openWhatsApp()" data-i18n="nav_book">Book consultation</button>
-  </div>
-</nav>
+    </div></div></div>
+
+
 
 <div class="page">
-  <div class="crumbs"><a href="/" data-i18n="crumb_home">Home</a> / <a href="/calculator/" data-i18n="crumb_calcs">Calculators</a> / <span data-i18n="crumb_retire">Retirement</span></div>
+  <div class="crumbs"><a href="../../index.html" data-i18n="crumb_home">Home</a> / <a href="../index.html" data-i18n="crumb_calcs">Calculators</a> / <span data-i18n="crumb_retire">Retirement</span></div>
 
   <div class="hero">
     <div class="hero-badge" data-i18n="hero_badge">&#10022; Plan Smarter, Retire Better</div>
     <h1 data-i18n-html="hero_h1">How much do you need to <span class="y">retire?</span></h1>
-    <p data-i18n-html="hero_sub">Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
+    <p data-i18n-html="hero_sub">Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with estimates. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.</p>
+<div class="bbb-task-actions"><a href="#bbb-retirement-form"><span class="flow-en">Start calculating ↓</span><span class="flow-zh">开始计算 ↓</span></a><a href="#bbb-visual-title"><span class="flow-en">How it works</span><span class="flow-zh">先了解计算方式</span></a></div>
   </div>
 
-<div class="rc-card">
+<div class="rc-card" id="bbb-retirement-form">
     <div class="rc-card-head">
       <div class="rc-head-icon" data-rc-icon="wallet"></div>
       <h3 data-i18n="card_profile">Your Financial Profile</h3>
@@ -511,15 +521,15 @@
 <footer>
   <div class="brand" data-i18n="foot_brand">BBBwealth — Professional Financial Planning &amp; Investment Advisory Services</div>
   <div class="links">
-    <a href="/">bbbwealth.com</a>
-    <a href="/calculator/" data-i18n="foot_all">All calculators</a>
-    <a href="/#contact" data-i18n="foot_contact">Contact</a>
+    <a href="../../index.html">bbbwealth.com</a>
+    <a href="../index.html" data-i18n="foot_all">All calculators</a>
+    <a href="../../index.html#contact" data-i18n="foot_contact">Contact</a>
   </div>
   <div class="copy" data-i18n="foot_copy">&copy; 2026 BBBwealth. All rights reserved. For illustration only — not financial advice.</div>
 </footer>
 
 <script>
-  const WA_LINK = 'https://wa.link/toq8h6';
+  const WA_LINK = 'https://wa.me/601156281541';
   function openWhatsApp(){
     window.open(WA_LINK, '_blank', 'noopener,noreferrer');
   }
@@ -534,7 +544,8 @@
     incomeMode: 'sustainable', postRetireInflation: 4, lifeExpectancy: 85, retireReturnRate: 4,
   };
   let rcInputs = Object.assign({}, RC_DEFAULTS);
-  let rcLang = 'en';
+  let selected='en';try{const q=new URLSearchParams(location.search).get('lang');const saved=localStorage.getItem('bbbwealth-language');selected=['en','zh'].includes(q)?q:(['en','zh'].includes(saved)?saved:'en')}catch(e){} let rcLang=selected;
+function bbbSyncLanguage(lang){try{localStorage.setItem('bbbwealth-language',lang);const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u.href)}catch(e){}document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(!h||h.startsWith('#')||/^(https?:|mailto:|tel:|data:|javascript:)/i.test(h))return;const parts=h.split('#');const base=parts[0].split('?');if(!/\.html?$|\/$/.test(base[0]))return;const q=new URLSearchParams(base[1]||'');q.set('lang',lang);a.setAttribute('href',base[0]+'?'+q.toString()+(parts[1]?'#'+parts[1]:''))})}
 
   const RC_T = {
     en: {
@@ -542,7 +553,7 @@
       crumb_home:'Home', crumb_calcs:'Calculators', crumb_retire:'Retirement',
       hero_badge:'✦ Plan Smarter, Retire Better',
       hero_h1:'How much do you need to <span class="y">retire?</span>',
-      hero_sub:'Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with real numbers. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.',
+      hero_sub:'Break free from the <strong>"Retirement Illusion"</strong> — stop guessing (<em>agak-agak</em>) and start planning with estimates. Built for Malaysians: EPF contributions, inflation, and the 4% rule included.',
       card_profile:'Your Financial Profile',
       secA_t:'Personal Information', secA_s:'Tell us about yourself',
       secB_t:'Employment & EPF Setup', secB_s:'Configure your EPF contribution structure',
@@ -613,7 +624,7 @@
       crumb_home:'主页', crumb_calcs:'计算器', crumb_retire:'退休',
       hero_badge:'✦ 精明规划，从容退休',
       hero_h1:'你需要多少钱才能<span class="y">退休？</span>',
-      hero_sub:'打破「退休错觉」— 别再凭感觉（<em>agak-agak</em>）估算，用真实数字开始规划。专为大马人打造：涵盖公积金缴纳、通货膨胀与 4% 法则。',
+      hero_sub:'打破「退休错觉」— 别再凭感觉（<em>agak-agak</em>）估算，用规划估算开始规划。专为大马人打造：涵盖公积金缴纳、通货膨胀与 4% 法则。',
       card_profile:'您的财务档案',
       secA_t:'个人资料', secA_s:'告诉我们您的情况',
       secB_t:'就业与公积金设置', secB_s:'设置您的公积金缴纳结构',
@@ -680,6 +691,8 @@
       contact_advisor:'您的财务顾问',
     },
   };
+  Object.assign(RC_T.zh, {"hero_sub":"退休要准备多少，别只凭感觉（<em>agak-agak</em>）。把 EPF、薪水和储蓄填进来，再结合通胀与 4% 法则，看看你目前的准备。","card_profile":"先看看你的财务情况","secA_s":"填入你目前的情况","secB_t":"工作情况与 EPF 供款","secB_s":"选择工作类型，再确认 EPF 供款比例","secC_t":"计算假设与退休目标","secC_s":"按你的计划调整，看看结果有什么不同","rate_label":"EPF 总供款比例：","f_currentAge":"现在几岁","f_retirementAge":"打算几岁退休","f_currentEpf":"目前 EPF 余额 RM","f_employeeEpfRate":"雇员 EPF 供款比例","f_employerEpfRate":"雇主 EPF 供款比例","f_epfContributionRate":"自愿 EPF 供款 %","f_desiredMonthlyIncome":"退休后每月想有多少收入 RM","f_lifeExpectancy":"计划把退休金用到几岁","pulse_years":"距离退休还有","pulse_epf":"每月 EPF 供款","pulse_used":"工作期已走过","snap_eyebrow":"你的退休准备，一眼看懂","snap_magic":"退休目标金额","hard_title":"距离退休目标，还差多少？","card02_title":"你要准备的退休金","card03_title":"EPF 预计能累积多少","card03_cur":"现有 EPF 的增长","card03_contr":"未来供款的累积","chart_title":"退休资金变化","strat2_t":"有纪律地投资","ontrack_t":"按目前假设，你已达到目标！🎉","closing_quote":"「退休规划不只是有钱人的事，而是为以后的生活多做一份准备。」"});
+  Object.keys(RC_T.zh).forEach(k=>{if(typeof RC_T.zh[k]==='string') RC_T.zh[k]=RC_T.zh[k].replaceAll('您','你')});
   function t(k){ const d = RC_T[rcLang] || RC_T.en; return (d[k] !== undefined ? d[k] : (RC_T.en[k] !== undefined ? RC_T.en[k] : k)); }
   function tf(k, v){ let s = t(k); for (const key in v) s = s.split('{' + key + '}').join(v[key]); return s; }
 
@@ -835,7 +848,7 @@
     const pct = Math.max(0, Math.min(100, (a - start) / Math.max(1, b - start) * 100));
     el.innerHTML =
       '<div class="rc-pulse-top">'
-      + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_years') + '</div><div class="v">' + years + ' <small>' + t('u_yrs') + '</small></div></div>'
+      + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_years') + '</div><div class="v">' + years + ' <small>' + (rcLang === 'zh' ? '年' : t('u_yrs')) + '</small></div></div>'
       + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_epf') + '</div><div class="v">RM ' + rcNum(epfFlow) + ' <small>' + t('per_mo') + '</small></div></div>'
       + '<div class="rc-pulse-stat"><div class="l">' + t('pulse_used') + '</div><div class="v">' + Math.round(pct) + '%</div></div>'
       + '</div>'
@@ -1310,11 +1323,12 @@
   }
 
   function rcApplyStatic(){
+ bbbSyncLanguage(rcLang);
     document.documentElement.lang = (rcLang === 'zh') ? 'zh' : 'en';
     document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
     document.querySelectorAll('#rcLang [data-lang]').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === rcLang);
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === rcLang); btn.setAttribute('aria-pressed',String(btn.getAttribute('data-lang')===rcLang));
     });
   }
 
@@ -1326,7 +1340,7 @@
   }
 
   function rcInit(){
-    try { const saved = localStorage.getItem('rcLang'); if (saved === 'zh' || saved === 'en') rcLang = saved; } catch (e) {}
+    bbbSyncLanguage(rcLang);
     document.querySelectorAll('[data-rc-icon]').forEach(el => {
       el.innerHTML = rcIcon(el.dataset.rcIcon, el.classList.contains('rc-sec-icon') ? 16 : (el.dataset.rcIcon === 'calc' ? 18 : 16));
     });
@@ -1359,5 +1373,7 @@
 
 </script>
 
-</body>
+
+
+<script id="bbb-shared-header-script">(()=>{const toggle=document.querySelector('.bbb-site-menu'),links=document.querySelector('.bbb-site-links');function close(){links.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation')}toggle.addEventListener('click',()=>{const open=links.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation')});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close()}});document.addEventListener('click',e=>{if(!e.target.closest('.bbb-site-header'))close()});window.matchMedia('(min-width:1025px)').addEventListener('change',close)})();</script><script id="bbb-header-language">(()=>{const en=["Services","Planning","Wealth","Calculator","Training","Team","Free Resources","Book consultation"],zh=["我们的服务","财务规划","财富管理","计算器","企业培训","团队介绍","免费资源","预约聊聊"];function labels(){const chinese=document.documentElement.lang.startsWith('zh');document.querySelectorAll('.bbb-site-links a').forEach((a,i)=>{if(en[i])a.textContent=(chinese?zh:en)[i]});document.querySelector('.bbb-context-title').textContent=chinese?'退休准备计算器':'Retirement Calculator'}new MutationObserver(labels).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});labels()})();</script><script src="../../assets/resource-discovery.js" data-resource-index="0" data-site-root="../../"></script><script src="../../assets/interactive-visuals.js" data-visual-kind="retirement"></script><script src="../../assets/sticky-headers.js"></script><script src="../../assets/visual-first.js" data-root="../../"></script><script src="../../assets/resource-experience.js" data-root="../../"></script></body>
 </html>

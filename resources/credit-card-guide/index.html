@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2232">
+  <title>信用卡怎么用、怎么选｜Money POV</title>
+  <meta name="description" content="看懂信用卡账单，比较 Cash Back 与 Points，再从 9 张马来西亚信用卡中找到适合自己的选择。">
+  <style>
+  :root {
+    --navy:#1d3064;--ink:#1d3064;--blue:#17438f;--mint:#2b9f8d;--gold:#ffd55c;
+    --font-sans:"PingFang SC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif;
+    --paper:#fff;--cream:#f8f7fc;--muted:#778099;--line:#e5e6f2;
+    font-family:var(--font-sans);color:var(--ink);background:var(--cream);
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;line-height:1.5} a{color:inherit} img{max-width:100%;display:block} h1,h2,h3,p,figure{margin:0}
+  html,body,button,input,select,textarea,table,dialog{font-family:var(--font-sans)}
+  .skip{position:absolute;left:-9999px;top:8px;background:#fff;padding:.6rem;z-index:9} .skip:focus{left:8px}
+  .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+  .topbar{background:#fff;border-bottom:1px solid var(--line)} .topbar .wrap{height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-weight:950;letter-spacing:-.07em;font-size:1.3rem;color:var(--navy);white-space:nowrap} .brand i{font-style:normal;color:var(--mint)}
+  .topnav{display:flex;gap:8px;flex-wrap:wrap} .topnav a{text-decoration:none;border-radius:99px;padding:7px 13px;color:#36525d;font-weight:750;font-size:.86rem}
+  .topnav a:hover,.topnav a:focus-visible{background:#e5f5f1;color:#006c5d}
+  .hero{min-height:540px;background:#091d2c;position:relative;overflow:hidden;color:#fff}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+  .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,21,34,.98) 0%,rgba(5,21,34,.78) 38%,rgba(5,21,34,.06) 74%)}
+  .hero .wrap{position:relative;z-index:1;min-height:540px;display:flex;align-items:center}
+  .hero-copy{width:min(600px,56%);padding:58px 0}
+  .eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.78rem;font-weight:850;color:#91e4d4}
+  h1{font-size:clamp(2.8rem,6vw,5.2rem);line-height:1.08;letter-spacing:-.06em;margin:16px 0 18px;text-wrap:balance}
+  .hero-desc{font-size:clamp(1rem,1.6vw,1.22rem);line-height:1.55;color:#e1ecec;max-width:28ch}
+  .hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:30px}
+  .button{display:inline-flex;align-items:center;gap:9px;border-radius:9px;text-decoration:none;font-weight:850;padding:12px 18px;background:var(--gold);color:#142231}
+  .button.secondary{background:#ffffff1e;border:1px solid #ffffff66;color:#fff}
+  .hero-byline{margin-top:26px;color:#b3cbd1;font-size:.82rem}
+  .section{padding:70px 0} .section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+  .kicker{display:block;color:#11836f;font-weight:900;font-size:.78rem;letter-spacing:.14em;margin-bottom:8px}
+  h2{font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.18;letter-spacing:-.05em}
+  .section-note{font-size:.9rem;color:var(--muted);max-width:34ch;line-height:1.5}
+  .overview{background:#fff}
+  .number-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .number-card{min-height:155px;border-radius:18px;padding:22px;position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+  .number-card:after{content:"";position:absolute;width:190px;height:190px;border:25px solid #ffffff24;border-radius:50%;right:-60px;bottom:-100px}
+  .number-card:nth-child(1){background:#126176} .number-card:nth-child(2){background:#164c77} .number-card:nth-child(3){background:#78522d}
+  .number-card b{font-size:2.3rem;line-height:1;font-variant-numeric:tabular-nums} .number-card span{font-size:1.12rem;font-weight:850} .number-card small{font-size:.78rem;opacity:.75}
+  .statement-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+  .statement-panel{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#f8fbfb;min-width:0}
+  .statement-panel .panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#e7f2f3;color:#0c5265;font-weight:850}
+  .statement-panel img{width:100%;height:240px;object-fit:contain;padding:16px;background:#fff}
+  .statement-panel p{padding:0 18px 17px;color:var(--muted);font-size:.86rem}
+  .pay-section{background:#0b2636;color:#fff}
+  .pay-section .kicker{color:#8ce2d0} .pay-section .section-note{color:#c1d1d4}
+  .example-strip{background:#ffffff14;border:1px solid #ffffff30;border-radius:16px;padding:18px 22px;display:flex;gap:20px;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .example-strip strong{font-size:1.3rem} .example-strip span{font-size:.9rem;color:#c6dadd}
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .pay-card{border-radius:16px;padding:23px;min-height:205px;display:flex;flex-direction:column;gap:10px;color:#102a3b}
+  .pay-card:nth-child(1){background:#b7f3df} .pay-card:nth-child(2){background:#ffe8a3} .pay-card:nth-child(3){background:#ffd2cb}
+  .pay-card .icon{width:47px;height:47px;border-radius:13px;display:grid;place-items:center;font-size:1.6rem;background:#ffffff91}
+  .pay-card b{font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+  .pay-card h3{font-size:1.05rem} .pay-card p{font-size:.84rem;color:#3c5660;line-height:1.4}
+  .benefits{background:linear-gradient(135deg,#e7f6f2 0%,#f8fbf7 62%)}
+  .benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .benefit{min-height:255px;border-radius:22px;padding:26px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+  .benefit.cash{background:#133b5b;color:#fff} .benefit.points{background:#e7c265;color:#1b302d}
+  .benefit .symbol{font-size:4.6rem;line-height:1;font-weight:900;letter-spacing:-.09em;opacity:.7}
+  .benefit .tag{font-size:.77rem;letter-spacing:.12em;font-weight:900}
+  .benefit h3{font-size:1.7rem;line-height:1.2;letter-spacing:-.04em}
+  .benefit p{font-size:.9rem;opacity:.82;max-width:35ch}
+  .advisor-note{margin-top:18px;border-radius:16px;padding:22px 26px;background:#fff;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;border:1px solid #cae7de}
+  .advisor-note .circle{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;background:#0e7669;font-size:1.65rem}
+  .advisor-note strong{display:block;font-size:1.15rem} .advisor-note p{color:#47656b;font-size:.91rem;line-height:1.55;margin-top:3px}
+  .cards-section{background:#fff} .bank-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .bank-card{--accent:#164763;--accent2:#0a2b41;background:#f8faf9;border:1px solid #dce7e9;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0;transition:transform .2s,box-shadow .2s}
+  .bank-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px #092c3515}
+  .bank-card.featured{background:#edf7f3;border-color:#a8d6c8}
+  .bank-hlb{--accent:#dc303a;--accent2:#132950} .bank-maybank{--accent:#ffca09;--accent2:#242424} .bank-cimb{--accent:#d42631;--accent2:#5f1028}
+  .bank-uob{--accent:#ed3743;--accent2:#0756a1} .bank-hsbc{--accent:#df2138;--accent2:#2e3338} .bank-sc{--accent:#15a0a3;--accent2:#183c82}
+  .bank-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:45px}
+  .logo-box{height:43px;max-width:175px;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #e4eaeb;border-radius:8px;padding:5px 9px;overflow:hidden}
+  .logo-box img{max-height:32px;max-width:145px;width:auto;height:auto;object-fit:contain} .logo-box .bank-word{font-size:1.15rem;font-weight:950;letter-spacing:-.04em;white-space:nowrap}
+  .bank-maybank .logo-box img{width:30px;height:30px} .bank-cimb .logo-box img{width:25px;height:25px}
+  .bank-sc .logo-box img{max-height:39px} .bank-hlb .logo-box img{max-width:146px}
+  .pick-badge{white-space:nowrap;font-size:.72rem;font-weight:850;color:#006b5c;background:#c5ecdc;padding:6px 9px;border-radius:99px}
+  .plastic{height:145px;width:100%;border-radius:14px;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 18px #18303c1c;padding:17px;display:flex;flex-direction:column;justify-content:space-between}
+  .featured .plastic{height:175px} .plastic-circle{position:absolute;border:1px solid #ffffff4b;border-radius:50%;width:210px;height:210px;right:-54px;top:-77px}
+  .plastic-circle.two{width:160px;height:160px;right:-42px;top:-33px;background:#ffffff0c} .chip{width:34px;height:25px;border-radius:5px;background:linear-gradient(135deg,#fbe7ad,#aa8e59);border:1px solid #fff9;z-index:1}
+  .plastic-label{z-index:1;font-size:1.25rem;font-weight:850;line-height:1.15;max-width:75%} .plastic-mark{z-index:1;font-size:.55rem;letter-spacing:.18em;opacity:.76}
+  .bank-card-bottom{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-top:auto}
+  .reward-badge{display:inline-block;background:#ddf1ec;color:#087262;border-radius:99px;padding:3px 8px;font-size:.71rem;font-weight:850;margin-bottom:7px}
+  .reward-badge.cashback{background:#fff0d8;color:#906015}
+  .bank-card h3{font-size:1.04rem;line-height:1.3} .bank-card p{font-size:.85rem;color:#5d7079;margin-top:4px}
+  .bank-card a{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;background:#e1eeee;text-decoration:none;color:#0c5e65;font-size:1.3rem;font-weight:800}
+  .bank-card a:hover{background:#0c7770;color:#fff}
+  .footnote{color:#65777e;font-size:.82rem;line-height:1.5;margin-top:20px}
+  footer{background:#0b2232;color:#c3d3d6;padding:27px 0;font-size:.85rem} footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap} footer a{color:#d7f0e8}
+  :focus-visible{outline:3px solid #00a689;outline-offset:3px}
+  @media(max-width:900px){.bank-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:650px){
+    .wrap{width:calc(100% - 28px)} .topbar .wrap{height:auto;min-height:60px;align-items:start;padding:12px 0;flex-direction:column;gap:5px}
+    .topnav a{font-size:.76rem;padding:4px 7px}
+    .hero{display:flex;flex-direction:column;min-height:0} .hero:after{display:none} .hero .wrap{order:1;min-height:0}
+    .hero-copy{width:100%;padding:34px 0 28px} .hero-img{position:relative;order:2;height:260px;object-position:71% 30%}
+    h1{font-size:2.65rem} .section{padding:50px 0} .section-title{align-items:start;flex-direction:column;gap:8px}
+    .number-grid,.pay-grid,.benefits-grid,.bank-grid{grid-template-columns:1fr} .number-card{min-height:120px}
+    .statement-grid{grid-template-columns:1fr} .statement-panel img{height:210px}
+    .example-strip{align-items:start;flex-direction:column;gap:4px}
+    .pay-card{min-height:165px} .featured .plastic{height:155px}
+    .benefit{min-height:220px} .advisor-note{grid-template-columns:1fr;gap:10px}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto} .bank-card{transition:none}}
+  @media print{.hero{min-height:0}.hero-img{display:none}.hero .wrap{min-height:0}.hero-copy{width:100%}.bank-grid{grid-template-columns:repeat(2,1fr)}.bank-card{break-inside:avoid}}
+  /* Brand images have transparent backgrounds and fit fully within the header. */
+  .topbar{background:var(--cream);border-bottom:0}
+  .topbar .wrap{height:92px;display:grid;grid-template-columns:190px minmax(0,1fr) 156px;gap:18px}
+  .topnav{justify-content:center}
+  .brand-logo{position:relative;display:block;height:52px;width:100%;overflow:hidden;border-radius:8px;background:#fff;flex:none}
+  .brand-logo img{position:absolute;left:50%;top:50%;height:auto;max-width:none;transform:translate(-50%,-50%)}
+  .bbb-logo img{width:140%} .money-logo{background:#072985} .money-logo img{width:168%}
+  .hero{max-width:1170px;min-height:600px;margin:6px auto 28px;background:#fff0b9;border-radius:25px;display:grid;grid-template-columns:1fr 1fr;align-items:end;padding:38px 48px 0;gap:10px}
+  .hero:after{display:none}
+  .hero-copy{width:100%;align-self:center;padding:28px 0 100px;color:#1b3068;position:relative;z-index:3}
+  .hero .eyebrow{color:#8c7856} .hero .eyebrow:before{content:"●";color:#e87854;margin-right:8px}
+  .hero h1{color:#1b3068;font-size:clamp(2.7rem,5.1vw,4.6rem)} .hero h1 em{font-style:normal;color:#a16b00}
+  .hero-desc{color:#736e5f;max-width:31ch}
+  .hero .button{background:#17438f;color:#fff;border-radius:99px;box-shadow:0 7px 14px #3345bb22}
+  .hero .button.secondary{color:#17438f;border-color:#3043bb55;background:#fff8}
+  .hero-byline{color:#7b755f}
+  .hero-portrait{height:560px;position:relative;display:flex;align-items:end;justify-content:center;min-width:0;overflow:hidden}
+  .chalkboard{position:absolute;left:3%;right:0;bottom:35px;height:425px;border:15px solid #8b6652;border-radius:26px;background:#213d34;box-shadow:0 0 0 16px #fff8d2;overflow:hidden}
+  .chalkboard:before{content:"↗";position:absolute;left:8%;top:10%;font-size:7rem;color:#b9d4c7;font-weight:200;transform:rotate(-10deg);opacity:.58}
+  .chalkboard:after{content:"✦";position:absolute;right:10%;bottom:6%;font-size:3.5rem;color:#d5bb6b;opacity:.75}
+  .hero-portrait img{position:absolute;z-index:2;top:0;left:50%;height:122%;width:auto;max-height:none;max-width:none;object-fit:contain;object-position:top;transform:translateX(-50%);filter:drop-shadow(3px 0 #fff) drop-shadow(-3px 0 #fff) drop-shadow(0 -3px #fff)}
+  .sticker{position:absolute;z-index:3;right:-1%;top:7%;background:#17438f;color:#fff;font-size:.8rem;font-weight:850;padding:12px 16px;border-radius:12px;transform:rotate(8deg);box-shadow:0 8px 18px #20306e2b}
+  .strip{max-width:1170px;margin:0 auto 12px;background:#e8e9fa;border-radius:16px;padding:18px 22px;text-align:center;font-weight:750;color:#40509a;font-size:.9rem}
+  .overview,.cards-section{background:transparent}
+  .pay-section{background:#e8e9fa;color:#1d3064} .pay-section .kicker{color:#4b5ec2} .pay-section .section-note{color:#778099}
+  .example-strip{background:#fff;border-color:#d6d9ef} .example-strip span{color:#7b8295}
+  .benefits{background:#fff7dd} .benefit.points{background:#ffd77a}
+  footer{background:#e9ebfa;color:#6e789a} footer a{color:#17438f}
+  @media(max-width:1220px){.hero,.strip{margin-left:18px;margin-right:18px}}
+  @media(max-width:700px){
+    .topbar .wrap{height:auto;min-height:0;grid-template-columns:1fr 1fr;gap:8px;padding:14px 0}
+    .brand-logo{height:45px} .topnav{grid-column:1/-1;justify-content:space-between;gap:0}
+    .topnav a{font-size:.73rem;padding:6px 4px}
+    .hero{margin:0 14px 18px;min-height:0;display:flex;flex-direction:column;align-items:stretch;padding:24px 22px 0}
+    .hero-copy{padding:8px 0 5px} .hero h1{font-size:clamp(2.45rem,10vw,3rem)}
+    .hero-portrait{height:350px;margin-top:15px}
+    .chalkboard{height:260px;bottom:24px;border-width:10px;box-shadow:0 0 0 9px #fff8d2}
+    .chalkboard:before{font-size:5rem}
+    .sticker{top:3%;right:1%;font-size:.68rem;padding:8px 10px}
+    .strip{margin:0 14px;padding:14px}
+  }
+  .topbar .wrap{height:72px;grid-template-columns:150px minmax(0,1fr) 132px}
+  .brand-logo,.money-logo{width:100%;height:42px;background:transparent;border-radius:0}
+  .brand-logo img{width:185px} .money-logo img{width:165px}
+  .statement-pages{display:grid;gap:20px}
+  .statement-page{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,34px)}
+  .chapter-label{color:#17438f;font-size:.78rem;letter-spacing:.1em;font-weight:850}
+  .statement-page h3{font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;letter-spacing:-.04em;margin:5px 0 6px}
+  .statement-page .intro{color:#63738c;font-size:.95rem;margin-bottom:18px}
+  .figure-link{display:block;width:100%;padding:0;cursor:zoom-in;border:1px solid #dce6ed;border-radius:12px;background:#fff;overflow:hidden}
+  .figure-link img{width:100%;height:auto;object-fit:contain}
+  .statement-page figcaption{font-size:.8rem;color:#7b8295;margin:7px 0 18px}
+  .facts{display:grid;gap:8px;margin:0}
+  .fact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;border-radius:10px;background:#f0f4fb;padding:11px 15px}
+  .fact dt{display:flex;align-items:center;gap:10px;font-weight:800}
+  .fact dt small{display:block;color:#778099;font-size:.76rem;font-weight:500;line-height:1.2}
+  .fact dd{margin:0;text-align:right;color:#17438f;font-weight:850;font-variant-numeric:tabular-nums}
+  .badge{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 5px;background:#17438f;color:#fff;border-radius:7px;font-size:.75rem;flex:none}
+  .fact:nth-child(2) .badge{background:#238d81} .fact:nth-child(3) .badge{background:#bc7843} .fact:nth-child(4) .badge{background:#7653a1}
+  .callout{margin-top:14px;background:#fff3dc;border-left:3px solid #e7a94b;padding:12px 15px;border-radius:6px;font-size:.86rem}
+  .callout strong{display:block} .callout p{color:#596773}
+  .source-link{display:inline-block;margin-top:13px;font-size:.82rem;color:#17438f;font-weight:750}
+  .image-dialog{max-width:min(95vw,1250px);max-height:95vh;padding:0;border:1px solid var(--line);border-radius:12px}
+  .image-dialog::backdrop{background:#101d35b8}
+  .image-dialog form{position:sticky;top:0;z-index:1;text-align:right;background:#fff;padding:7px}
+  .image-dialog button{border:0;background:#17438f;color:#fff;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+  .image-dialog img{max-width:100%;max-height:85vh;margin:auto}
+  .table-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 35px #293e8210}
+  .comparison-table{width:100%;border-collapse:collapse;text-align:left}
+  .comparison-table thead{background:#e9ebfb;color:#293e8b}
+  .comparison-table th{font-size:.78rem;letter-spacing:.04em;padding:16px}
+  .comparison-table td{padding:14px 16px;border-top:1px solid #eef0f6;vertical-align:middle;font-size:.9rem}
+  .comparison-table td:nth-child(2){min-width:240px}
+  .comparison-table td:nth-child(3){min-width:145px}
+  .comparison-table td:nth-child(4){color:#53657b;font-weight:700}
+  .comparison-table .highlight-row{background:#fff9de}
+  .comparison-table .highlight-row td:first-child{box-shadow:inset 4px 0 #edb75b}
+  .table-logo{display:flex;align-items:center;gap:6px;max-width:158px;min-height:34px}
+  .table-logo img{max-width:136px;max-height:34px;width:auto;height:auto;object-fit:contain}
+  .table-logo .bank-word{font-size:.9rem;font-weight:900;color:#192d57;white-space:nowrap}
+  .table-logo:has(.bank-word) img{max-width:30px;max-height:30px}
+  .row-number{font-size:.74rem;color:#95a0bd;margin-right:8px}
+  .comparison-table strong{font-size:.94rem}
+  .comparison-table small{display:block;color:#738098;font-size:.75rem;margin-top:4px}
+  .comparison-table .reward-badge{margin:0}
+  .comparison-table .pick-badge{font-size:.66rem;padding:3px 7px;margin-left:5px}
+  @media(max-width:700px){
+    .topbar .wrap{height:auto;grid-template-columns:1fr 1fr;gap:4px 12px}
+    .bbb-logo{width:138px;grid-column:1;grid-row:1} .money-logo{width:120px;justify-self:end;grid-column:2;grid-row:1}
+    .topnav{grid-column:1/-1;grid-row:2}
+    .brand-logo img{width:164px} .money-logo img{width:147px}
+    .statement-page{padding:17px} .fact{grid-template-columns:1fr;gap:3px} .fact dd{text-align:left;padding-left:38px}
+    .comparison-table,.comparison-table tbody{display:block}
+    .comparison-table thead{display:none}
+    .comparison-table tr{display:grid;grid-template-columns:92px minmax(0,1fr);gap:3px 10px;padding:15px 12px;border-top:1px solid #eef0f6}
+    .comparison-table td{display:block;border:0;padding:0;min-width:0!important}
+    .comparison-table td:first-child{grid-row:1/4;align-self:center}
+    .comparison-table td:not(:first-child){grid-column:2}
+    .table-logo{max-width:90px} .table-logo img{max-width:88px;max-height:32px}
+    .table-logo .bank-word{font-size:.7rem} .table-logo:has(.bank-word) img{max-width:22px;max-height:22px}
+    .row-number{display:none}
+  }
+  /* Final layout refinements */
+  .topbar .wrap{height:82px;grid-template-columns:200px minmax(0,1fr) 170px;gap:16px}
+  .brand-logo,.money-logo{display:flex;align-items:center;justify-content:center;overflow:visible;width:100%;height:64px;background:transparent;border:0;border-radius:0}
+  .brand-logo img,.bbb-logo img,.money-logo img{position:static;transform:none;display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+  .topnav{align-items:center}
+  .pay-section{background:radial-gradient(circle at 92% 10%,#d7dafa 0,transparent 31%),#e8e9fa;position:relative}
+  .pay-lesson{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:18px;align-items:stretch;margin-bottom:20px}
+  .scenario-board{border-radius:24px;background:#fff;padding:24px 28px;box-shadow:0 14px 30px #253a9114;position:relative;overflow:hidden}
+  .scenario-board:before{content:"";position:absolute;width:230px;height:230px;border:32px solid #f2f0fc;border-radius:50%;right:-90px;top:-130px}
+  .scenario-top,.scenario-values,.scenario-foot{position:relative;z-index:1}
+  .scenario-top{display:flex;align-items:center;justify-content:space-between;gap:15px;color:#17438f;font-size:.86rem}
+  .scenario-chip{display:inline-block;padding:6px 11px;border-radius:99px;background:#e8ebff;font-size:.76rem;font-weight:900;letter-spacing:.05em}
+  .scenario-values{display:grid;grid-template-columns:1fr auto .8fr;gap:14px;align-items:center;margin-top:22px}
+  .scenario-values>div:not(.scenario-plus){display:flex;flex-direction:column;gap:2px}
+  .scenario-values span{font-size:.84rem;color:#687591;font-weight:800}
+  .scenario-values strong{font-size:clamp(2.2rem,4vw,3.45rem);line-height:1.12;letter-spacing:-.055em;color:#22367c;font-variant-numeric:tabular-nums}
+  .scenario-values small{font-size:.76rem;color:#8992a6}
+  .scenario-plus{font-size:2rem;color:#b3bbda;font-weight:900}
+  .scenario-side strong{color:#8e96b2;font-size:clamp(1.8rem,3vw,2.55rem)}
+  .scenario-foot{display:flex;align-items:center;gap:13px;margin-top:22px;padding-top:13px;border-top:2px dashed #e0e4f3;color:#606f90;font-size:.8rem}
+  .scenario-foot strong{color:#23398c} .scenario-arrow{color:#edaa49;font-size:1.3rem}
+  .teacher{position:relative;min-height:258px;border-radius:24px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+  .teacher-pay{background:linear-gradient(145deg,#223c87,#4d61bf)}
+  .teacher:before{content:"✦";position:absolute;right:18px;bottom:5px;color:#fff4;font-size:5rem}
+  .teacher img{position:absolute;bottom:-22px;height:100%;max-width:none;width:auto;z-index:1;filter:drop-shadow(0 8px 8px #15274f45)}
+  .teacher-pay img{left:-35px;height:93%}
+  .teacher-bubble{position:absolute;z-index:2;top:15px;right:13px;max-width:155px;padding:10px 12px;border-radius:14px 14px 14px 3px;background:#fff;color:#304075;box-shadow:0 8px 18px #152c5440;font-size:.72rem;line-height:1.35}
+  .teacher-bubble b{display:block;color:#3148af;font-size:.75rem;margin-bottom:3px}
+  .pay-grid{gap:16px}
+  .pay-card{position:relative;min-height:260px;padding:22px;border:1px solid #fff9;box-shadow:0 12px 24px #2e408c13;overflow:hidden}
+  .pay-card:after{content:"";position:absolute;right:-30px;top:-26px;width:130px;height:130px;border:18px solid #fff5;border-radius:50%}
+  .pay-card:nth-child(1){background:#d3f4df} .pay-card:nth-child(2){background:#fff0bd} .pay-card:nth-child(3){background:#ffdfd5}
+  .pay-rank{position:relative;z-index:1;font-size:.73rem;font-weight:900;letter-spacing:.08em;color:#425c65}
+  .pay-card .icon{position:absolute;right:19px;top:18px;width:46px;height:46px;border-radius:50%;font-size:1.35rem;background:#fff9;color:#28488f;font-weight:900}
+  .pay-card h3{position:relative;z-index:1;margin-top:5px;font-size:1.09rem}
+  .pay-card b{font-size:2.3rem;letter-spacing:-.05em;color:#203970}
+  .pay-meter{width:100%;height:8px;border-radius:99px;background:#fff9;overflow:hidden;margin:0 0 4px}
+  .pay-meter span{height:100%;display:block;background:#3664b6;border-radius:99px;min-width:4px}
+  .pay-card p{font-size:.82rem;min-height:2.3em}
+  .pay-result{display:inline-flex;align-self:flex-start;margin-top:auto;padding:5px 9px;border-radius:7px;font-size:.74rem;font-weight:900}
+  .pay-result.good{background:#b6e5c7;color:#186339} .pay-result.caution{background:#f6d980;color:#765313} .pay-result.danger{background:#f6c1b4;color:#903d2c}
+  .lesson-foot{color:#6f78a3;font-size:.76rem;margin-top:13px}
+  .benefits{background:radial-gradient(circle at 5% 12%,#fff8cf 0,transparent 34%),#fff7dd}
+  .benefits-grid{gap:18px}
+  .benefit{min-height:310px;padding:27px 28px;border-radius:25px;box-shadow:0 15px 28px #273c9210}
+  .benefit.cash{background:#243d8c;color:#fff} .benefit.points{background:#ffd779;color:#27366c}
+  .benefit:after{content:"";position:absolute;width:210px;height:210px;border:25px solid #ffffff20;border-radius:50%;right:-70px;top:-74px;pointer-events:none}
+  .benefit-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .benefit-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:#ffffff35;font-size:1.9rem;font-weight:900}
+  .benefit h3{position:relative;z-index:1;font-size:1.65rem;margin-top:14px}
+  .reward-flow{display:flex;align-items:center;gap:6px;position:relative;z-index:1;margin:18px 0 16px}
+  .reward-flow span{padding:7px 9px;background:#ffffff33;border:1px solid #ffffff3b;border-radius:9px;font-size:.77rem;font-weight:850;white-space:nowrap}
+  .points .reward-flow span{background:#fff7dc9c;border-color:#fff8}
+  .reward-flow i{font-style:normal;font-weight:900}
+  .benefit-detail{display:grid;gap:8px;position:relative;z-index:1;border-top:1px solid #ffffff55;padding-top:13px}
+  .benefit-detail p{font-size:.82rem;line-height:1.45;max-width:none;opacity:1}
+  .benefit-detail b{display:inline-block;min-width:4.2em;margin-right:6px;opacity:.75}
+  .reward-bottom{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:18px;margin-top:18px}
+  .advisor-note{display:block;margin:0;border:1px solid #e9dba6;background:#fff;border-radius:24px;padding:28px 32px;box-shadow:0 13px 28px #373b8610}
+  .advisor-label{display:inline-block;background:#e9ebff;color:#3148a6;border-radius:99px;padding:6px 11px;font-size:.72rem;font-weight:900;letter-spacing:.08em}
+  .advisor-note strong{font-size:1.65rem;color:#263c8a;line-height:1.15;margin:13px 0 8px}
+  .advisor-note p{color:#54627e;font-size:.9rem;line-height:1.55;max-width:72ch}
+  .advisor-formula{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:13px;border-top:1px dashed #d9dded;font-size:.78rem}
+  .advisor-formula span{color:#8591aa} .advisor-formula b{color:#17438f;font-size:.9rem}
+  .teacher-rewards{background:linear-gradient(145deg,#ffe6a2,#f7b95c)}
+  .teacher-rewards img{height:102%;bottom:-46px;left:-20px}
+  .teacher-rewards .teacher-bubble{top:13px;right:9px;max-width:144px}
+  .reward-caveat{margin-top:15px;color:#686f91;font-size:.83rem}
+  .comparison-table td:nth-child(2){min-width:208px}
+  .comparison-table td:nth-child(3){min-width:112px}
+  .comparison-table td:nth-child(4){min-width:252px;color:#40537b;font-weight:750;line-height:1.42}
+  .comparison-table td:nth-child(5){color:#6c7895;font-size:.82rem;font-weight:750}
+  @media(max-width:900px){
+    .pay-lesson{grid-template-columns:minmax(0,1fr) 205px}
+    .teacher-pay img{left:-43px}
+    .reward-bottom{grid-template-columns:minmax(0,1fr) 220px}
+    .reward-flow{flex-wrap:wrap}
+    .comparison-table,.comparison-table tbody{display:block}
+    .comparison-table thead{display:none}
+    .comparison-table tr{display:grid;grid-template-columns:118px minmax(0,1fr);gap:5px 12px;padding:15px 16px;border-top:1px solid #eef0f6}
+    .comparison-table td{display:block;border:0;padding:0;min-width:0!important}
+    .comparison-table td:first-child{grid-row:1/5;align-self:center}
+    .comparison-table td:not(:first-child){grid-column:2}
+    .comparison-table td:nth-child(4):before{content:"好处  ";color:#8893aa;font-weight:500}
+    .comparison-table td:nth-child(5):before{content:"适合  ";color:#8893aa;font-weight:500}
+  }
+  @media(max-width:700px){
+    .topbar .wrap{height:auto;grid-template-columns:1fr 1fr;padding:8px 0 10px;gap:3px 10px}
+    .bbb-logo{width:145px;height:48px;grid-column:1;grid-row:1;justify-self:start}
+    .money-logo{width:125px;height:48px;grid-column:2;grid-row:1;justify-self:end}
+    .topnav{grid-column:1/-1;grid-row:2;justify-content:space-between;gap:1px}
+    .topnav a{padding:5px 3px;font-size:.67rem}
+    .pay-lesson,.reward-bottom{grid-template-columns:1fr}
+    .scenario-board{padding:20px}
+    .scenario-values{grid-template-columns:1fr auto 1fr;gap:5px}
+    .scenario-values strong{font-size:1.82rem} .scenario-side strong{font-size:1.57rem}
+    .scenario-values small{line-height:1.25}
+    .scenario-plus{font-size:1.2rem}
+    .scenario-foot{flex-wrap:wrap;gap:8px}
+    .teacher{min-height:190px}
+    .teacher-pay img{height:112%;left:5%}
+    .teacher-rewards img{height:138%;left:7%;bottom:-38px}
+    .teacher-bubble{max-width:180px;right:10px;top:14px}
+    .pay-grid,.benefits-grid{grid-template-columns:1fr}
+    .pay-card{min-height:220px}
+    .benefit{min-height:275px;padding:23px}
+    .reward-flow span{font-size:.73rem}
+    .advisor-note{padding:23px}
+    .comparison-table tr{grid-template-columns:78px minmax(0,1fr);gap:5px 10px}
+    .comparison-table td:first-child{grid-row:1/5}
+    .comparison-table td:nth-child(4):before{content:"好处  ";color:#8893aa;font-weight:500}
+    .comparison-table td:nth-child(5):before{content:"适合  ";color:#8893aa;font-weight:500}
+    .table-logo{max-width:77px} .table-logo img{max-width:76px}
+  }
+  /* Compact comparison layout for the repayment lesson on phones. */
+  @media(max-width:700px){
+    .pay-lesson{gap:10px;margin-bottom:12px}
+    .teacher-pay{min-height:112px;border-radius:18px;background:#dfe5fb;border:1px solid #c8d2f1;box-shadow:0 8px 18px #344a9010}
+    .teacher-pay:before{display:none}
+    .teacher-pay img{height:145px;left:2px;bottom:-25px}
+    .teacher-pay .teacher-bubble{left:104px;right:10px;top:11px;bottom:11px;max-width:none;padding:9px 12px;border-radius:12px;background:#fff;box-shadow:none;font-size:.72rem;display:flex;flex-direction:column;justify-content:center}
+    .teacher-pay .teacher-bubble b{margin-bottom:2px;font-size:.75rem}
+    .pay-grid{display:block;background:#fff;border:1px solid #dfe3f4;border-radius:20px;overflow:hidden;box-shadow:0 12px 24px #2c448c0e}
+    .pay-card,.pay-card:nth-child(1),.pay-card:nth-child(2),.pay-card:nth-child(3){display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;align-items:center;gap:3px 9px;min-height:0;padding:16px 17px;border:0;border-radius:0;background:#fff;box-shadow:none}
+    .pay-card+ .pay-card{border-top:1px solid #e9ecf5}
+    .pay-card:nth-child(1){border-left:5px solid #59b883}
+    .pay-card:nth-child(2){border-left:5px solid #e5b94e}
+    .pay-card:nth-child(3){border-left:5px solid #e99884}
+    .pay-card:after,.pay-card .icon,.pay-meter{display:none}
+    .pay-rank{grid-column:1/-1;grid-row:1;font-size:.67rem;letter-spacing:.05em}
+    .pay-card h3{grid-column:1;grid-row:2;margin:0;font-size:1rem;line-height:1.2}
+    .pay-card b{grid-column:2;grid-row:2;font-size:1.55rem;white-space:nowrap}
+    .pay-card p{grid-column:1;grid-row:3;min-height:0;font-size:.75rem;line-height:1.3}
+    .pay-result{grid-column:2;grid-row:3;justify-self:end;align-self:center;margin:0;padding:4px 7px;font-size:.68rem;white-space:nowrap}
+    .lesson-foot{margin-top:10px}
+  }
+  @media(max-width:390px){
+    .teacher-pay .teacher-bubble{left:91px;font-size:.68rem}
+    .teacher-pay img{left:-7px;height:135px}
+    .pay-card h3{font-size:.91rem}
+    .pay-card b{font-size:1.37rem}
+    .pay-card p{font-size:.7rem}
+    .pay-result{font-size:.61rem;padding:3px 5px}
+  }
+  /* Rewards: one tidy comparison board and a short adviser feature. */
+  .benefits{background:radial-gradient(circle at 95% 5%,#fff1bc 0,transparent 25%),#fffaf0}
+  .reward-board{background:#fff;border:1px solid #e7e9f2;border-radius:24px;overflow:hidden;box-shadow:0 15px 34px #263b8010}
+  .reward-option{display:grid;grid-template-columns:80px minmax(0,1fr) minmax(215px,.55fr);gap:20px;align-items:center;padding:24px 30px}
+  .reward-option+.reward-option{border-top:1px solid #e9ebf3}
+  .points-option{background:#fff9e9}
+  .reward-illustration{display:grid;place-items:center;width:76px;height:76px;border-radius:21px;background:#e8eeff;color:#2c49ac;flex:none}
+  .points-option .reward-illustration{background:#ffe8a9;color:#a46a1c}
+  .reward-illustration svg{width:47px;height:47px;display:block}
+  .reward-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .reward-number{display:inline-grid;place-items:center;min-width:29px;height:29px;border-radius:9px;background:#e9edfa;color:#3a50a2;font-size:.75rem;font-weight:950}
+  .points-option .reward-number{background:#ffe6a0;color:#905d19}
+  .reward-heading h3{font-size:1.35rem;line-height:1.15;letter-spacing:-.035em;color:#203872}
+  .reward-heading h3 small{font-size:.82rem;color:#697994;font-weight:750;margin-left:3px;letter-spacing:0}
+  .reward-option-copy p{color:#51617e;font-size:.9rem;margin-top:7px}
+  .reward-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .reward-tags span{display:inline-block;background:#edf2ff;color:#3455a3;padding:4px 9px;border-radius:7px;font-size:.71rem;font-weight:850}
+  .points-option .reward-tags span{background:#fff0bf;color:#8b671e}
+  .reward-favourite{display:inline-block;border-radius:99px;background:#263e8d;color:#fff;padding:5px 9px;font-size:.68rem;font-weight:900;white-space:nowrap}
+  .reward-check{display:grid;gap:11px;padding-left:21px;border-left:1px dashed #d9deea}
+  .reward-check div{display:grid;gap:2px}
+  .reward-check small{font-size:.69rem;color:#8490a7;font-weight:850;letter-spacing:.07em}
+  .reward-check strong{font-size:.85rem;line-height:1.35;color:#33466e}
+  .reward-advice{display:grid;grid-template-columns:minmax(0,1fr) 225px;align-items:center;gap:14px;position:relative;min-height:232px;margin-top:18px;padding:24px 28px;background:linear-gradient(115deg,#263f92,#465bc2);color:#fff;border-radius:22px;overflow:hidden}
+  .reward-advice:before{content:"";position:absolute;right:-50px;top:-110px;width:310px;height:310px;border:35px solid #ffffff12;border-radius:50%}
+  .reward-advice-copy{position:relative;z-index:2}
+  .reward-advice .advisor-label{background:#ffffff2b;color:#fff}
+  .reward-advice h3{font-size:clamp(1.35rem,2.7vw,2rem);line-height:1.2;letter-spacing:-.035em;margin:11px 0 7px}
+  .reward-advice p{font-size:.87rem;line-height:1.48;color:#e6ebff;max-width:68ch}
+  .reward-advice-note{display:inline-block;background:#ffe196;color:#263c7d;border-radius:9px;padding:7px 10px;margin-top:12px;font-size:.77rem}
+  .reward-advice-note strong{font-weight:950}
+  .reward-advice-copy>small{display:block;color:#cbd4f9;font-size:.72rem;margin-top:8px;line-height:1.3}
+  .reward-advice-person{position:relative;z-index:1;align-self:stretch;min-height:180px}
+  .reward-advice-person img{position:absolute;height:230px;width:auto;max-width:none;right:24px;bottom:-49px;filter:drop-shadow(0 6px 10px #11236655)}
+  @media(max-width:900px){
+    .reward-option{grid-template-columns:65px minmax(0,1fr) minmax(180px,.55fr);gap:14px;padding:20px}
+    .reward-illustration{width:64px;height:64px;border-radius:17px}
+    .reward-illustration svg{width:39px;height:39px}
+  }
+  @media(max-width:700px){
+    .reward-board{border-radius:19px}
+    .reward-option{grid-template-columns:59px minmax(0,1fr);gap:8px 12px;padding:17px}
+    .reward-illustration{width:58px;height:58px;grid-column:1;grid-row:1/3;border-radius:15px}
+    .reward-illustration svg{width:34px;height:34px}
+    .reward-option-copy{grid-column:2;grid-row:1}
+    .reward-heading{gap:5px}
+    .reward-heading h3{font-size:1.13rem}
+    .reward-heading h3 small{font-size:.73rem}
+    .reward-option-copy p{font-size:.78rem;margin-top:5px}
+    .reward-tags{margin-top:7px;gap:5px}
+    .reward-tags span{font-size:.64rem;padding:3px 6px}
+    .reward-favourite{font-size:.58rem;padding:3px 6px}
+    .reward-check{grid-column:2;grid-row:2;border-left:0;border-top:1px dashed #dfe3ed;padding:7px 0 0;gap:4px}
+    .reward-check div{display:flex;align-items:baseline;gap:7px}
+    .reward-check small{min-width:2.3em;font-size:.64rem}
+    .reward-check strong{font-size:.72rem}
+    .reward-advice{grid-template-columns:minmax(0,1fr) 135px;min-height:215px;padding:20px 16px 18px 20px;gap:5px}
+    .reward-advice h3{font-size:1.35rem;margin:9px 0 6px}
+    .reward-advice p{font-size:.78rem;line-height:1.4}
+    .reward-advice-note{font-size:.68rem;margin-top:9px;padding:6px 8px}
+    .reward-advice-copy>small{font-size:.65rem}
+    .reward-advice-person{min-height:185px}
+    .reward-advice-person img{height:185px;right:0;bottom:-24px}
+  }
+  @media(max-width:420px){
+    .reward-option{grid-template-columns:49px minmax(0,1fr);gap:7px;padding:14px}
+    .reward-illustration{width:47px;height:47px}
+    .reward-illustration svg{width:29px;height:29px}
+    .reward-heading h3{font-size:1rem}
+    .reward-number{min-width:23px;height:23px;font-size:.67rem}
+    .reward-advice{grid-template-columns:minmax(0,1fr) 92px;padding:17px 10px 16px 17px}
+    .reward-advice h3{font-size:1.16rem}
+    .reward-advice-person img{height:140px;right:-8px;bottom:-12px}
+  }
+  /* Keep Anson's head and upper body inside the repayment note at every width. */
+  .reward-advice-copy>small{font-size:.78rem;line-height:1.48}
+  @media(min-width:901px){
+    .pay-lesson{grid-template-columns:minmax(0,1fr) 300px}
+    .teacher-pay img{top:0;bottom:auto;left:-8px;height:100%}
+    .teacher-pay .teacher-bubble{right:10px;top:18px;max-width:128px}
+  }
+  @media(min-width:701px) and (max-width:900px){
+    .pay-lesson{grid-template-columns:1fr;gap:10px}
+    .teacher-pay{min-height:134px;background:#dfe5fb;border:1px solid #c8d2f1}
+    .teacher-pay:before{display:none}
+    .teacher-pay img{top:0;bottom:auto;left:2px;height:190px}
+    .teacher-pay .teacher-bubble{left:132px;right:12px;top:11px;bottom:11px;max-width:none;background:#fff;color:#304075;display:flex;flex-direction:column;justify-content:center}
+  }
+  @media(max-width:700px){
+    .teacher-pay{min-height:134px}
+    .teacher-pay img{top:0;bottom:auto;left:2px;height:190px}
+    .teacher-pay .teacher-bubble{left:132px;right:11px;top:11px;bottom:11px;max-width:none}
+    .reward-advice-copy>small{font-size:.72rem;line-height:1.4}
+  }
+  @media(max-width:390px){
+    .teacher-pay{min-height:128px}
+    .teacher-pay img{top:0;bottom:auto;left:-4px;height:172px}
+    .teacher-pay .teacher-bubble{left:116px}
+    .reward-advice-copy>small{font-size:.68rem}
+  }
+  @media(max-width:420px){
+    .reward-advice{display:block;padding:18px 18px 0}
+    .reward-advice-person{min-height:138px}
+    .reward-advice-person img{height:145px;right:2px;bottom:-16px}
+  }
+  </style>
+<style>.bbb-resource-return{background:#f1f6ff;padding:12px 24px;border-bottom:1px solid #d8e3f4;font:14px/1.5 Arial,sans-serif}.bbb-resource-return a{color:#17438f;text-decoration:none;font-weight:600}.bbb-resource-return a:focus-visible{outline:3px solid #ffcb2d;outline-offset:4px}</style><style id="bbb-resource-refresh">
+/* Shared BBBwealth resource visual language, preview only. */
+:root{--navy:#17438f;--navy-deep:#102d65;--deep:#102d65;--navy-soft:#2c559c;--blue:#17438f;--green:#17438f;--mint:#17438f;--yellow:#ffcb2d;--yellow-bright:#ffdc4b;--yellow-soft:#fff5ce;--gold:#ffcb2d;--lime:#ffcb2d;--ink:#162b4e;--ink-soft:#536582;--muted:#536582;--soft:#536582;--paper:#fff;--cream:#f5f8fd;--gray-100:#edf3fc;--gray-200:#dce5f2;--line:#dce5f2;--sage:#edf3fc;--serif:Inter,system-ui,'Microsoft YaHei',sans-serif;--font-sans:Inter,system-ui,'Microsoft YaHei',sans-serif}
+body,body.social{font-family:Inter,system-ui,-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;background:#f5f8fd;color:#162b4e;-webkit-font-smoothing:antialiased}h1,h2,h3,h4{font-family:inherit;letter-spacing:-.035em}h1{line-height:1.15}p{line-height:1.85}.bbb-design-trail{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(22px,calc((100vw - 1180px)/2));background:#102d65;color:#fff;font:600 12px/1.5 Inter,system-ui,sans-serif;letter-spacing:.02em}.bbb-design-trail a{color:#fff;text-decoration:none;padding:4px 0}.bbb-design-trail a:last-child{color:#ffcb2d}.bbb-design-trail a:hover{text-decoration:underline;text-underline-offset:4px}
+.topbar{background:#fff!important;border-bottom:1px solid #dce5f2}.topbar .nav,.topbar .wrap{color:#162b4e}.topbar .money-logo,.brand-money{background:#fff}.brand-bar{background:#fff}.hero:not(.rc-hero){border-radius:22px}.bbb-resource-page .hero{background:#102d65;color:#fff;padding:44px;border:1px solid #173d7b;box-shadow:0 18px 40px #102d650a}.bbb-resource-page .hero h1,.bbb-resource-page .hero h2,.bbb-resource-page .hero .intro h1{color:#fff}.bbb-resource-page .hero h1 em,.bbb-resource-page .hero h1 .y,.bbb-resource-page .hero h1 span.accent{color:#ffcb2d}.bbb-resource-page .hero p,.bbb-resource-page .hero .lead,.bbb-resource-page .hero .hero-desc,.bbb-resource-page .hero .intro p{color:#d8e3f7}.bbb-resource-page .hero .eyebrow{color:#ffcb2d!important}.bbb-resource-page .hero .button,.bbb-resource-page .hero .btn{background:#ffcb2d;color:#102d65;border-color:#ffcb2d;box-shadow:none}.bbb-resource-page .hero .secondary,.bbb-resource-page .hero .btn-light{background:transparent;color:#fff;border:1px solid #8da6cd}.bbb-resource-page .hero:after{display:none}.bbb-resource-page .hero .portrait:before{background:#1b4383;border-color:#5378b2}.bbb-resource-page .hero .portrait:after{background:#ffcb2d;color:#102d65}.bbb-resource-page .hero .small-note{color:#d8e3f7}.bbb-resource-page .hero .hero-tags span{background:#ffffff10;color:#fff;border-color:#ffffff33}
+button,.button,.btn,.navbtn,.nav-cta{border-radius:10px;touch-action:manipulation}.button.primary,.btn-primary,.navbtn,.nav-cta{background:#17438f;color:#fff}.button,.btn{min-height:46px}.card,.calc-card,.rc-card,.panel,.income-card,.table-shell,.table-wrap,.product-card,.summary-card,.calc-panel,.calc-form,.highlight{border-radius:16px;border-color:#dce5f2;box-shadow:0 8px 24px #102d6505}.card,.calc-card,.panel,.income-card,.highlight{background:#fff}.calc,.intro-strip,.strip{border-radius:18px}.strip,.intro-strip,.highlights .highlight{border-color:#dce5f2}.strip{background:#edf3fc;color:#17438f}.table-head,thead{background:#edf3fc;color:#17438f}.rate,.highlight b,.tile-icon{color:#17438f}.table-wrap,.table-shell{overflow-x:auto}.row:hover,tbody tr:hover{background:#f5f8fd}.input-wrap,input:not([type=checkbox]):not([type=radio]):not([type=range]),select{border-color:#c7d5e9;border-radius:9px}input,select{accent-color:#17438f}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #e4a800;outline-offset:3px}.button.secondary{border-color:#c7d5e9}.rc-card-head{background:#edf3fc}.rc-head-icon,.calc-icon{background:#fff5ce;color:#17438f}.bbb-resource-page .hero .portrait,.bbb-resource-page .hero .hero-portrait{min-width:0}.bbb-resource-page .hero .portrait img{max-width:100%}
+@media(max-width:700px){.bbb-design-trail{padding:10px 18px;font-size:11px;gap:12px}.bbb-resource-page .hero{padding:28px 22px;border-radius:16px}.bbb-resource-page .hero h1{font-size:clamp(32px,9vw,44px)}.bbb-resource-page .hero p{font-size:15px}.hero-actions{gap:10px}.hero-actions .button,.hero-actions .btn{min-height:48px}.bbb-resource-page .hero .portrait{height:310px}.bbb-resource-page .hero .hero-portrait{max-width:100%}.topnav,.navlinks{gap:12px;flex-wrap:wrap}.table-wrap,.table-shell{-webkit-overflow-scrolling:touch}.bbb-design-trail a{min-height:24px}.bbb-resource-page .hero .hero-inner{gap:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style><style id="bbb-final-contrast">.rc-card-head h3{color:#102d65}.bbb-resource-return{display:none}.bbb-resource-page .hero h1 span{color:#ffcb2d}</style><style id="bbb-shared-header">
+/* Shared two-brand header, identical across resource previews. */
+body.bbb-resource-page{padding-top:80px!important}html{scroll-padding-top:108px}.bbb-site-header{all:initial;box-sizing:border-box;position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:17px max(28px,calc((100vw - 1320px)/2));height:80px;background:#fff;border-bottom:1px solid #dce5f2;box-shadow:0 4px 24px #102d6507;font-family:Inter,system-ui,-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:#162b4e}
+.bbb-site-header *{box-sizing:border-box}.bbb-site-brand{display:flex!important;align-items:center;gap:12px;flex-shrink:0;background:#fff;text-decoration:none!important;margin:0!important;padding:0!important}.bbb-site-divider{width:1px;height:28px;background:#ccd8e9;flex-shrink:0}.bbb-site-logo{position:relative;display:block;width:150px;height:45px;overflow:hidden;flex-shrink:0}.bbb-site-logo img{position:absolute!important;width:164px!important;height:82px!important;max-width:none!important;left:-7px;top:-17px;display:block;margin:0!important;border:0!important;border-radius:0!important;object-fit:fill!important;filter:none!important;box-shadow:none!important}.bbb-site-money{position:relative;display:block;width:106px;height:45px;overflow:hidden;flex-shrink:0;background:#fff}.bbb-site-money img{position:absolute!important;width:176px!important;height:176px!important;max-width:none!important;left:-35px;top:-66px;display:block;margin:0!important;border:0!important;border-radius:0!important;object-fit:fill!important;filter:none!important;box-shadow:none!important;mix-blend-mode:multiply}
+.bbb-site-links{display:flex;align-items:center;gap:20px}.bbb-site-links a{display:inline-block;color:#162b4e!important;background:transparent!important;padding:6px 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;font:600 12px/1.5 Inter,system-ui,'Microsoft YaHei',sans-serif!important;text-decoration:none!important;letter-spacing:0!important;white-space:nowrap}.bbb-site-links a:hover{color:#17438f!important;text-decoration:underline!important;text-underline-offset:5px}.bbb-site-links .bbb-site-current{border-bottom:2px solid #ffcb2d!important;color:#17438f!important}.bbb-site-links .bbb-site-consult{background:#17438f!important;color:#fff!important;border-radius:10px!important;padding:12px 18px!important}.bbb-site-menu{display:none;width:44px;height:44px;align-items:center;justify-content:center;flex-shrink:0;border:0;border-radius:9px;background:#fff;color:#102d65;font:24px/1 system-ui;cursor:pointer}.bbb-site-menu:hover{background:#edf3fc}.bbb-site-header a:focus-visible,.bbb-site-header button:focus-visible{outline:3px solid #e4a800;outline-offset:4px}
+.bbb-context-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1240px;margin:0 auto;padding:16px 28px;border-bottom:1px solid #dce5f2;color:#536582;font:600 12px/1.5 Inter,system-ui,'Microsoft YaHei',sans-serif}.bbb-context-nav .bbb-context-title{font-size:11px;letter-spacing:.06em;text-transform:uppercase}.bbb-context-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.bbb-context-links>a{font:600 12px/1.6 Inter,system-ui,'Microsoft YaHei',sans-serif!important;color:#17438f!important;background:transparent!important;padding:6px 0!important;border:0!important;box-shadow:none!important;text-decoration:none;border-radius:0!important}.bbb-context-links>a:hover{text-decoration:underline}.bbb-context-links .rc-lang{margin:0}.bbb-context-links .rc-lang button{min-width:40px;min-height:32px}.bbb-resource-page .page{padding-top:32px}.bbb-resource-page>.preview{position:relative;top:auto}.bbb-resource-page .bbb-design-trail{display:none}
+@media(max-width:1220px) and (min-width:1025px){.bbb-site-header{padding-inline:22px;gap:14px}.bbb-site-links{gap:12px}.bbb-site-links a{font-size:11px!important}.bbb-site-brand{gap:9px}.bbb-site-logo{width:132px}.bbb-site-logo img{width:146px!important;height:73px!important;top:-14px}.bbb-site-money{width:96px}.bbb-site-money img{width:160px!important;height:160px!important;top:-59px;left:-32px}}
+@media(max-width:1024px){.bbb-site-header{padding:14px 24px}.bbb-site-links{display:none}.bbb-site-menu{display:flex}.bbb-site-links.is-open{display:flex;flex-direction:column;align-items:stretch;gap:8px;position:absolute;top:100%;left:0;right:0;background:#fff;padding:20px 28px;border-bottom:1px solid #dce5f2;box-shadow:0 20px 35px -25px #102d65a0;max-height:calc(100dvh - 80px);overflow:auto}.bbb-site-links.is-open a{font-size:14px!important;padding:10px 0!important}.bbb-site-links.is-open .bbb-site-consult{padding:12px 18px!important;text-align:center;margin-top:8px}.bbb-context-nav{padding:15px 24px;align-items:flex-start}.bbb-context-links{gap:12px}}
+@media(max-width:640px){body.bbb-resource-page{padding-top:65px!important}html{scroll-padding-top:90px}.bbb-site-header{height:65px;padding:10px 16px;gap:8px}.bbb-site-brand{gap:8px}.bbb-site-logo{width:124px;height:41px}.bbb-site-logo img{width:151px!important;height:75.5px!important;left:-7px;top:-16px}.bbb-site-money{width:92px;height:42px}.bbb-site-money img{width:168px!important;height:168px!important;left:-33px;top:-63px}.bbb-site-divider{height:26px}.bbb-site-links.is-open{max-height:calc(100dvh - 65px)}.bbb-context-nav{padding:12px 20px;flex-wrap:wrap;gap:8px}.bbb-context-links{gap:14px}.bbb-context-links>a{font-size:11px!important}.bbb-resource-page .page{padding-top:24px}}
+</style><style>.bbb-resource-page .hero h1 .y{background:none!important;color:#ffcb2d!important;padding:0}</style><style id="bbb-bilingual-style">.bbb-language{display:flex;flex-shrink:0;gap:3px;padding:3px;border:1px solid #c7d5e9;border-radius:9px;background:white}.bbb-language button{border:0;background:transparent;color:#536582;padding:7px 10px;min-width:40px;font:600 12px/1.3 system-ui;cursor:pointer}.bbb-language button.active{background:#17438f;color:white;border-radius:6px}.bbb-context-nav{flex-wrap:wrap}.bbb-context-links{flex:1}html[lang=en] .hero h1{font-size:clamp(30px,4vw,52px)}html[lang=en] .hero .sticker{font-size:14px}html[lang=en] .partner .amount small{display:block;line-height:1.5}html[lang=en] .comparison-table td{overflow-wrap:anywhere}@media(max-width:640px){.bbb-language{margin-left:auto}.bbb-context-title{width:100%}html[lang=en] .hero h1{font-size:34px}.bbb-context-links{gap:10px}}</style><link rel="stylesheet" href="../../assets/resource-discovery.css"><link rel="stylesheet" href="../../assets/interactive-visuals.css"><link rel="stylesheet" href="../../assets/sticky-headers.css"><style id="bbb-editorial-hierarchy">
+/* Editorial hierarchy: one unmistakable title, spacious chapters, quieter supporting copy. */
+.bbb-resource-page section.hero{width:min(1240px,calc(100% - 56px));max-width:1240px;margin:30px auto 0;padding:64px 60px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.85fr);gap:38px;align-items:center;border-radius:28px;background:radial-gradient(ellipse at 100% 0%,#2450a1 0,transparent 58%),#102d65;overflow:hidden;min-height:620px}
+.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:clamp(54px,5.3vw,76px);line-height:1.04;letter-spacing:-.055em;font-weight:850;max-width:none;margin:22px 0 24px;text-wrap:balance}
+.bbb-resource-page section.hero #hero-title em{font-style:normal;color:#ffcb2d}.bbb-resource-page section.hero .eyebrow{font-size:10px;line-height:1.5;letter-spacing:.14em;font-weight:750;display:block;max-width:100%}.bbb-resource-page section.hero .hero-desc{font-size:18px;line-height:1.7;max-width:34ch;font-weight:400;margin:0}.bbb-resource-page section.hero .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 0}.bbb-resource-page section.hero .hero-actions .button{font-size:14px;font-weight:750;border-radius:10px;padding:15px 22px;display:inline-flex;align-items:center;min-height:50px}.bbb-resource-page section.hero .hero-byline{font-size:12px;line-height:1.6;color:#abc1e5;margin:20px 0 0}.bbb-resource-page section.hero .hero-portrait{width:100%;min-width:0;height:440px;align-self:end;margin:0}.bbb-resource-page section.hero .hero-portrait img{max-width:none;width:auto;height:110%;object-fit:contain;bottom:-25px;left:50%;transform:translateX(-50%)}.bbb-resource-page section.hero .chalkboard{inset:58px -10px 0;border-radius:110px 24px 24px 24px;border-width:10px;opacity:.92}.bbb-resource-page section.hero .sticker{top:0;right:0;left:auto;max-width:95%;font-size:12px!important;line-height:1.5;transform:rotate(5deg);padding:9px 13px;border-radius:8px}
+.bbb-resource-page .wrap{width:min(1180px,calc(100% - 56px))}.bbb-resource-page .section{padding:84px 0}.bbb-resource-page .section-title{display:grid;grid-template-columns:minmax(0,1fr) 280px;align-items:end;gap:44px;margin-bottom:34px}.bbb-resource-page .section-title h2{font-size:clamp(32px,3.4vw,46px);font-weight:780;line-height:1.12;letter-spacing:-.04em;max-width:24ch;margin:12px 0 0}.bbb-resource-page .section-title .kicker{font-size:10px;line-height:1.4;letter-spacing:.13em;font-weight:750;color:#17438f}.bbb-resource-page .section-note{font-size:14px;line-height:1.8;color:#63718a;max-width:34ch}.bbb-resource-page .statement-pages{display:grid;gap:28px}.bbb-resource-page .statement-page{padding:32px;border-radius:20px;border:1px solid #dce5f2;box-shadow:0 12px 32px #102d6505}.bbb-resource-page .statement-page h3{font-size:27px;line-height:1.2;letter-spacing:-.035em;margin:10px 0}.bbb-resource-page .statement-page .chapter-label{font-size:10px;letter-spacing:.1em;color:#17438f;font-weight:750}.bbb-resource-page .statement-page .intro{font-size:15px;line-height:1.7;color:#536582;margin-bottom:20px}.bbb-resource-page .statement-page figure{margin:0}.bbb-resource-page .statement-page figcaption{font-size:11px;line-height:1.65;margin-top:10px}.bbb-resource-page .facts{display:grid;gap:12px}.bbb-resource-page .fact{padding:14px;border-radius:10px;background:#f0f5fc}.bbb-resource-page .fact dt{font-size:14px;line-height:1.5}.bbb-resource-page .fact dt small{font-size:11px;font-weight:400;line-height:1.4}.bbb-resource-page .fact dd{font-size:15px;line-height:1.5}.bbb-resource-page .source-link{font-size:12px;line-height:1.7;margin-top:18px;display:inline-block}.bbb-resource-page .callout{padding:15px;font-size:14px;line-height:1.65}.bbb-resource-page .callout p{font-size:13px;line-height:1.7}.bbb-resource-page .strip{width:min(1180px,calc(100% - 56px));margin:32px auto 0;padding:20px 26px;font-size:13px;line-height:1.75;text-align:left;border-left:4px solid #ffcb2d;border-radius:0 12px 12px 0}
+.bbb-resource-page .pay-section{background:#edf2fb}.bbb-resource-page .scenario-board{padding:30px;border:1px solid #dce5f2;border-radius:20px}.bbb-resource-page .pay-card h3{font-size:18px;line-height:1.4}.bbb-resource-page .pay-card p{font-size:14px;line-height:1.65}.bbb-resource-page .pay-card b{font-size:34px;letter-spacing:-.04em}.bbb-resource-page .lesson-foot,.bbb-resource-page .footnote{font-size:12px;line-height:1.8}.bbb-resource-page .reward-heading h3{font-size:25px;line-height:1.2}.bbb-resource-page .reward-option-copy p{font-size:15px;line-height:1.7}.bbb-resource-page .reward-check strong{font-size:14px;line-height:1.5}.bbb-resource-page .reward-option{padding:28px}.bbb-resource-page .reward-advice{padding:32px;margin-top:26px;border-radius:20px;background:#17438f}.bbb-resource-page .reward-advice h3{font-size:32px;line-height:1.15;margin:16px 0}.bbb-resource-page .reward-advice p{font-size:15px;line-height:1.8}.bbb-resource-page .reward-advice-copy>small{font-size:12px;line-height:1.7}.bbb-resource-page .comparison-table td{padding:20px 16px;font-size:13px;line-height:1.7}.bbb-resource-page .comparison-table td:nth-child(4){font-weight:500;color:#405370}.bbb-resource-page .comparison-table th{padding:17px 16px;background:#17438f;color:white;font-size:12px;letter-spacing:.03em}.bbb-resource-page .comparison-table td:nth-child(2) strong{font-size:15px;line-height:1.5}
+@media(min-width:1000px){.bbb-resource-page .statement-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:0 28px;align-items:start}.bbb-resource-page .statement-page>.chapter-label,.bbb-resource-page .statement-page>h3,.bbb-resource-page .statement-page>.intro,.bbb-resource-page .statement-page>.source-link{grid-column:1/-1}.bbb-resource-page .statement-page>figure{grid-column:1;grid-row:4/span 2}.bbb-resource-page .statement-page>.facts{grid-column:2;grid-row:4;margin:0}.bbb-resource-page .statement-page>.callout{grid-column:2;grid-row:5;margin-top:14px}.bbb-resource-page .statement-page .fact{display:block}.bbb-resource-page .statement-page .fact dd{margin:8px 0 0 38px;font-size:19px;font-weight:750}}
+@media(max-width:1000px){.bbb-resource-page section.hero{padding:44px 36px;gap:22px;min-height:540px;grid-template-columns:1.2fr .8fr}.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:54px}.bbb-resource-page section.hero .hero-portrait{height:340px}.bbb-resource-page .section-title{grid-template-columns:1fr;gap:16px}.bbb-resource-page .section-note{max-width:60ch}.bbb-resource-page .comparison-table td{padding:0}}
+@media(max-width:700px){.bbb-resource-page section.hero{width:calc(100% - 32px);margin-top:20px;grid-template-columns:1fr;padding:34px 26px 0;gap:30px;border-radius:20px;min-height:0}.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:clamp(40px,11.8vw,54px);line-height:1.06;letter-spacing:-.045em;margin:20px 0}.bbb-resource-page section.hero .hero-desc{font-size:16px;line-height:1.75;max-width:32ch}.bbb-resource-page section.hero .hero-actions{margin-top:24px;gap:9px}.bbb-resource-page section.hero .hero-actions .button{padding:12px 15px;font-size:12px}.bbb-resource-page section.hero .hero-byline{font-size:11px;line-height:1.5;margin:18px 0 0}.bbb-resource-page section.hero .hero-portrait{height:300px;max-width:390px;margin:auto}.bbb-resource-page section.hero .hero-portrait img{height:108%;bottom:-22px}.bbb-resource-page section.hero .chalkboard{inset:45px 0 0;border-radius:80px 20px 0 0}.bbb-resource-page section.hero .sticker{font-size:11px!important;max-width:90%;right:0;top:4px}.bbb-resource-page .wrap{width:calc(100% - 36px)}.bbb-resource-page .section{padding:56px 0}.bbb-resource-page .section-title{gap:14px;margin-bottom:26px}.bbb-resource-page .section-title h2{font-size:31px;line-height:1.15;margin-top:10px}.bbb-resource-page .section-note{font-size:14px;line-height:1.75}.bbb-resource-page .statement-page{padding:22px 18px}.bbb-resource-page .statement-page h3{font-size:23px}.bbb-resource-page .statement-page .intro{font-size:14px}.bbb-resource-page .facts{margin-top:18px;gap:10px}.bbb-resource-page .fact{padding:12px;gap:12px}.bbb-resource-page .fact dt{font-size:13px}.bbb-resource-page .fact dd{font-size:14px}.bbb-resource-page .strip{width:calc(100% - 36px);padding:18px 20px;font-size:13px}.bbb-resource-page .scenario-board{padding:22px 18px}.bbb-resource-page .pay-card h3{font-size:15px}.bbb-resource-page .pay-card p{font-size:12px;line-height:1.55}.bbb-resource-page .pay-card b{font-size:26px}.bbb-resource-page .pay-result{font-size:10px;white-space:normal;text-align:right;max-width:100px}.bbb-resource-page .reward-option{padding:22px 18px;grid-template-columns:42px minmax(0,1fr);gap:12px}.bbb-resource-page .reward-illustration{width:42px;height:42px;border-radius:12px}.bbb-resource-page .reward-heading h3{font-size:22px}.bbb-resource-page .reward-option-copy p{font-size:14px;line-height:1.7}.bbb-resource-page .reward-check strong{font-size:12px}.bbb-resource-page .reward-check small{font-size:10px}.bbb-resource-page .reward-tags span{font-size:10px}.bbb-resource-page .reward-advice{padding:25px 24px 0;display:block}.bbb-resource-page .reward-advice h3{font-size:28px}.bbb-resource-page .reward-advice p{font-size:14px;line-height:1.8}.bbb-resource-page .reward-advice-copy>small{font-size:11px;line-height:1.7}.bbb-resource-page .reward-advice-person{min-height:155px}.bbb-resource-page .reward-advice-person img{height:170px;bottom:-16px;right:8px}.bbb-resource-page .comparison-table tr{padding:22px 16px;gap:8px 12px;grid-template-columns:68px minmax(0,1fr)}.bbb-resource-page .comparison-table td{font-size:12px;line-height:1.6}.bbb-resource-page .comparison-table td:nth-child(2) strong{font-size:15px}.bbb-resource-page .comparison-table td:nth-child(4),.bbb-resource-page .comparison-table td:nth-child(5){font-size:12px}.bbb-resource-page .table-logo{max-width:65px}.bbb-resource-page .table-logo img{max-width:65px}}
+@media(max-width:360px){.bbb-resource-page section.hero{padding:30px 20px 0}.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:39px}.bbb-resource-page .fact{display:block}.bbb-resource-page .fact dd{margin:7px 0 0 35px}.bbb-resource-page .reward-option{grid-template-columns:1fr}.bbb-resource-page .reward-illustration{display:none}.bbb-resource-page .reward-option-copy,.bbb-resource-page .reward-check{grid-column:1}.bbb-resource-page .pay-card{grid-template-columns:minmax(0,1fr) 84px;gap:7px}.bbb-resource-page .pay-card b{font-size:23px}}
+</style><style id="bbb-task-first">
+.bbb-resource-page section.hero{min-height:0;padding:36px 42px;grid-template-columns:minmax(0,1.5fr) minmax(220px,.65fr);gap:30px;margin-top:22px;border-radius:22px;align-items:center}
+.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:clamp(42px,4.2vw,60px);line-height:1.04;margin:15px 0 18px}
+.bbb-resource-page section.hero .hero-copy{padding:0}.bbb-resource-page section.hero .hero-desc{font-size:17px;max-width:45ch;line-height:1.6}.bbb-resource-page section.hero .hero-actions{margin-top:20px}.bbb-resource-page section.hero .hero-byline{margin-top:18px}.bbb-resource-page section.hero .hero-portrait{height:285px;align-self:end}.bbb-resource-page section.hero .hero-portrait img{height:118%}.bbb-resource-page section.hero .sticker{font-size:10px}.bbb-resource-page section.hero .eyebrow{font-size:10px}
+@media(max-width:700px){.bbb-resource-page section.hero{position:relative;display:block;width:calc(100% - 32px);padding:26px 24px 22px;margin-top:18px}.bbb-resource-page section.hero #hero-title,html[lang=en] .bbb-resource-page section.hero #hero-title{font-size:clamp(34px,10vw,42px);margin:14px 0 16px;line-height:1.05}.bbb-resource-page section.hero .hero-desc{font-size:15px;line-height:1.6}.bbb-resource-page section.hero .hero-actions{margin-top:18px;gap:9px}.bbb-resource-page section.hero .hero-actions a{min-height:46px;padding:12px 14px;font-size:12px}.bbb-resource-page section.hero .hero-byline{min-height:36px;padding-right:90px;margin-top:24px;font-size:11px;max-width:none}.bbb-resource-page section.hero .hero-portrait{position:absolute;right:24px;bottom:17px;width:72px;height:78px;border-radius:18px;background:#234e88;margin:0;overflow:hidden}.bbb-resource-page section.hero .hero-portrait img{height:175%;top:1px}.bbb-resource-page section.hero .chalkboard,.bbb-resource-page section.hero .sticker{display:none}}
+</style><link rel="stylesheet" href="../../assets/visual-first.css"><link rel="stylesheet" href="../../assets/resource-experience.css"><link rel="stylesheet" href="../../assets/phone-brand-fix.css"></head>
+<body id="top" class="bbb-resource-page"><header class="bbb-site-header"><a class="bbb-site-brand" href="../../index.html" aria-label="BBBwealth and Money POV home"><span class="bbb-site-logo"><img src="../../assets/shared-header/bbbwealth.png" alt="BBBwealth"></span><span class="bbb-site-divider" aria-hidden="true"></span><span class="bbb-site-money"><img src="../../assets/shared-header/money-pov.png" alt="Money POV"></span></a><div id="bbbSiteLinks" class="bbb-site-links" role="navigation" aria-label="Main navigation"><a href="../../index.html#services">我们的服务</a><a href="../../index.html#planning">财务规划</a><a href="../../index.html#wealth">财富管理</a><a href="../../calculator/index.html">计算器</a><a href="../../index.html#training">企业培训</a><a href="../../index.html#team">团队介绍</a><a class="bbb-site-current" href="../../resources/index.html">免费资源</a><a class="bbb-site-consult" href="https://wa.me/601156281541" target="_blank" rel="noopener noreferrer">预约聊聊</a></div><button class="bbb-site-menu" aria-label="Open navigation" aria-controls="bbbSiteLinks" aria-expanded="false" type="button">&#9776;</button></header><div class="bbb-context-nav"><span class="bbb-context-title">信用卡怎么用、怎么选</span><div class="bbb-context-links"><a href="#statement">看账单</a><a href="#repay">怎么还</a><a href="#benefits">Cash Back / Points</a><a href="#card-list">9 张卡</a></div></div>
+<a class="skip" href="#main">跳至正文</a>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <span class="eyebrow">Anson 的信用卡小课堂 · Malaysia</span>
+    <h1 id="hero-title">信用卡，<br><em>刷得聪明。</em><br>还得明白。</h1>
+    <p class="hero-desc">账单、回扣、积分，Anson 陪你一次看清。</p>
+    <div class="hero-actions"><a class="button" href="#statement">开始看 ↓</a><a class="button secondary" href="#card-list">直接选卡 ↗</a></div>
+    <p class="hero-byline">Anson · Money POV 理财向导</p>
+  </div>
+  <div class="hero-portrait"><div class="chalkboard" aria-hidden="true"></div><span class="sticker">刷卡，也要做功课！</span><img src="img/4c5c9481dc.webp" alt="Anson 穿西装，一手拿着多张银行卡，另一手抱手，俏皮地讲解信用卡"></div>
+</section>
+<div class="strip">先看懂账单，再谈回扣和积分。每月全额还款，奖励才有意义。</div>
+<main id="main">
+  <section class="section overview" id="statement" aria-labelledby="statement-title">
+    <div class="wrap">
+      <div class="section-title"><div><span class="kicker">01 / 看懂账单</span><h2 id="statement-title">账单总览 &amp; 交易明细</h2></div><p class="section-note">结合完整账单示意图，逐项看懂编号说明。</p></div>
+      <div class="statement-pages"><section class="statement-page" id="read-statement" aria-labelledby="read-statement-title">
+      <p class="chapter-label">01 / 看账单</p>
+      <h3 id="read-statement-title">信用卡账单先看这三格</h3>
+      <p class="intro">看图上的 01、02、03，找出几时还、要还多少。</p>
+      <figure>
+      <button type="button" class="figure-link" aria-label="放大账单总览示意图" aria-haspopup="dialog">
+        <img src="img/8633beb1f5.webp" width="1209" height="753" alt="UOB 示例账单，01 标示还款到期日，02 标示应付全额，03 标示最低还款额。">
+      </button>
+      <figcaption>图片来自 UOB 官网的账单例子 · 点击图片可放大</figcaption>
+    </figure><dl class="facts">
+<div class="fact"><dt><span class="badge" aria-hidden="true">01</span><span>最迟哪天还<small lang="en">Payment Due Date</small></span></dt><dd>2025 年 4 月 24 日</dd></div>
+<div class="fact"><dt><span class="badge" aria-hidden="true">02</span><span>这期一共要还多少<small lang="en">Total Balance Due</small></span></dt><dd>RM25,281.45</dd></div>
+<div class="fact"><dt><span class="badge" aria-hidden="true">03</span><span>这期至少要还多少<small lang="en">Minimum Payment Due</small></span></dt><dd>RM2,510.04</dd></div>
+</dl><a class="source-link" href="https://www.uob.com.my/personal/cards/tools-tips/reading-your-statement.page" target="_blank" rel="noopener noreferrer">看完整账单例子 / UOB Malaysia 官网 <span aria-hidden="true">↗</span></a>
+    </section>
+<section class="statement-page" id="read-transactions" aria-labelledby="read-transactions-title">
+      <p class="chapter-label">02 / 看每一笔钱</p>
+      <h3 id="read-transactions-title">这几笔钱是什么？</h3>
+      <p class="intro">翻到同一张账单的明细，看银行收到多少钱、收了哪些费用。</p>
+      <figure>
+      <button type="button" class="figure-link" aria-label="放大账单明细示意图" aria-haspopup="dialog">
+        <img src="img/935f90e932.webp" width="1209" height="307" alt="UOB 账单明细，01 标示已收到的还款，02 标示主卡服务税，03 标示年费，04 标示刷卡利息。">
+      </button>
+      <figcaption>图片来自同一张 UOB 账单例子 · 点击图片可放大</figcaption>
+    </figure><dl class="facts">
+<div class="fact"><dt><span class="badge" aria-hidden="true">01</span><span>银行收到你的还款<small lang="en">Payment Received / CR</small></span></dt><dd>RM706.11</dd></div>
+<div class="fact"><dt><span class="badge" aria-hidden="true">02</span><span>这张主卡的服务税<small lang="en">Service Tax - Principal</small></span></dt><dd>RM25.00</dd></div>
+<div class="fact"><dt><span class="badge" aria-hidden="true">03</span><span>这张卡的年费<small lang="en">Annual Fee</small></span></dt><dd>RM600.00</dd></div>
+<div class="fact"><dt><span class="badge" aria-hidden="true">04</span><span>银行收的刷卡利息<small lang="en">Retail Interest</small></span></dt><dd>RM136.11</dd></div>
+</dl><aside class="callout"><strong>还钱前，先看两样东西</strong><p>看看上次还的钱有没有算进去。看到不懂的收费，就问银行这笔钱是什么。</p></aside><a class="source-link" href="https://www.uob.com.my/personal/cards/tools-tips/reading-your-statement.page" target="_blank" rel="noopener noreferrer">看完整账单例子 / UOB Malaysia 官网 <span aria-hidden="true">↗</span></a>
+    </section></div>
+    </div>
+  </section>
+  <section class="section pay-section" id="repay" aria-labelledby="repay-title">
+    <div class="wrap">
+      <div class="section-title"><div><span class="kicker">02 / 还款要清楚</span><h2 id="repay-title">同一张账单，3 种结果</h2></div><p class="section-note">先认清本期要还多少，再决定付款金额。</p></div>
+      <div class="pay-lesson">
+        <div class="scenario-board">
+          <div class="scenario-top"><span class="scenario-chip">模拟账单</span><strong>11 月 21 日到期</strong></div>
+          <div class="scenario-values">
+            <div class="scenario-main"><span>本期账单全额</span><strong>RM1,200</strong><small>要避免本期未清余额，先看这个数字</small></div>
+            <div class="scenario-plus" aria-hidden="true">≠</div>
+            <div class="scenario-side"><span>App 显示总欠款</span><strong>RM1,500</strong><small>含结单后新刷的 RM300</small></div>
+          </div>
+          <div class="scenario-foot"><span>最低还款 <strong>RM60</strong></span><span class="scenario-arrow" aria-hidden="true">→</span><span>本期全额 <strong>RM1,200</strong></span></div>
+        </div>
+        <aside class="teacher teacher-pay"><div class="teacher-bubble"><b>Anson 提醒</b><span>App 总欠款和本期账单不同。到期前先处理本期应付全额。</span></div><img src="img/85f3f132f7.webp" alt="卡通版 Anson 拿着银行卡讲解还款"></aside>
+      </div>
+      <div class="pay-grid">
+        <div class="pay-card"><span class="pay-rank">01 / 推荐</span><span class="icon" aria-hidden="true">✓</span><h3>按时还清本期账单</h3><b>RM1,200</b><div class="pay-meter"><span style="width:100%"></span></div><p>合资格消费通常可享免息期。</p><span class="pay-result good">本期清零</span></div>
+        <div class="pay-card"><span class="pay-rank">02 / 要小心</span><span class="icon" aria-hidden="true">≈</span><h3>只还最低额</h3><b>RM60</b><div class="pay-meter"><span style="width:5%"></span></div><p>其余 RM1,140 未还，可能计息。</p><span class="pay-result caution">余额继续滚</span></div>
+        <div class="pay-card"><span class="pay-rank">03 / 避免</span><span class="icon" aria-hidden="true">!</span><h3>少于最低额</h3><b>&lt; RM60</b><div class="pay-meter"><span style="width:3%"></span></div><p>可能产生迟还费和利息。</p><span class="pay-result danger">费用可能增加</span></div>
+      </div>
+      <p class="lesson-foot">示例仅说明账单概念；免息期与费用依发卡银行条款和交易类型而定。</p>
+    </div>
+  </section>
+  <span id="payment-checklist" aria-hidden="true"></span>
+  <section class="section benefits" id="benefits" aria-labelledby="benefits-title">
+    <div class="wrap">
+      <div class="section-title"><div><span class="kicker">03 / 回扣与积分</span><h2 id="benefits-title">信用卡怎么选？</h2></div><p class="section-note">先选现金回扣还是积分，再看哪种更适合自己。</p></div>
+      <div class="reward-board" aria-label="现金回扣与积分比较">
+        <article class="reward-option cash-option">
+          <div class="reward-illustration" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="20" width="44" height="32" rx="7"/><path d="M43 31h11v11H43a5.5 5.5 0 0 1 0-11Z"/><circle cx="47" cy="36.5" r="1" fill="currentColor" stroke="none"/><path d="M44 13H21m0 0 6-6m-6 6 6 6"/></svg></div>
+          <div class="reward-option-copy"><div class="reward-heading"><span class="reward-number">01</span><h3>Cash Back <small>现金回扣</small></h3></div><p>合资格消费后，现金回扣入账。</p><div class="reward-tags"><span>直接抵账单</span><span>容易计算</span></div></div>
+          <div class="reward-check"><div><small>适合</small><strong>想省心、看得见回报</strong></div><div><small>先查</small><strong>类别・门槛・月上限</strong></div></div>
+        </article>
+        <article class="reward-option points-option">
+          <div class="reward-illustration" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="23" width="38" height="30" rx="4"/><path d="M10 23h44v-8H10zM32 15v38M32 15c-10-1-13-3-12-7 1-5 9-4 12 7Zm0 0c10-1 13-3 12-7-1-5-9-4-12 7Z"/></svg></div>
+          <div class="reward-option-copy"><div class="reward-heading"><span class="reward-number">02</span><h3>Points <small>积分</small></h3><span class="reward-favourite">BBBwealth 偏爱</span></div><p>累积积分，再换里程、酒店或礼券。</p><div class="reward-tags"><span>兑换选择多</span><span>可为旅行累积</span></div></div>
+          <div class="reward-check"><div><small>适合</small><strong>愿意规划兑换</strong></div><div><small>先查</small><strong>兑换率・有效期・年费</strong></div></div>
+        </article>
+      </div>
+      <div class="reward-advice"><div class="reward-advice-copy"><span class="advisor-label">BBBwealth 的选择</span><h3>为什么更偏向 Points？</h3><p>日常消费集中累积，兑换旅行或其他奖励时选择更多。若实际兑换价值高于回扣及相关成本，回报可能更好。</p><div class="reward-advice-note"><strong>先算清楚：</strong>兑换价值 − 年费与相关成本</div><small>高比例 Cash Back 常设上限；Hong Leong Infinite 的合资格 Enrich Points 无月度上限，积分累积空间更大。</small></div><div class="reward-advice-person"><img src="img/b905c5f306.webp" alt="卡通版 Anson 手持积分与回扣图标"></div></div>
+    </div>
+  </section>
+  <section class="section cards-section" id="card-list" aria-labelledby="cards-title">
+    <div class="wrap">
+      <div class="section-title"><div><span class="kicker">04 / 信用卡对照</span><h2 id="cards-title">9 张卡，一眼对照</h2></div><p class="section-note">先看奖励类型，再对照常用消费场景。</p></div>
+      <div class="table-wrap"><table class="comparison-table">
+        <thead><tr><th scope="col">银行</th><th scope="col">信用卡</th><th scope="col">奖励</th><th scope="col">主要好处</th><th scope="col">适合</th></tr></thead>
+        <tbody>
+      <tr class="highlight-row">
+        <td data-label="银行"><span class="table-logo"><img src="img/ab96385704.png" alt="Hong Leong Bank 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">01</span><strong>Hong Leong Infinite Credit Card</strong> <span class="pick-badge">重点</span></td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>Enrich Points</small></td>
+        <td data-label="主要好处" class="benefit-cell">合资格餐饮 RM1＝1 Enrich Point；可换机票、终身免年费及每年 4 次贵宾室</td>
+        <td data-label="适合">想换机票・常旅行</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/ab96385704.png" alt="Hong Leong Bank 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">02</span><strong>Hong Leong Sutera Platinum</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>HLB Reward Points</small></td>
+        <td data-label="主要好处" class="benefit-cell">指定网购／餐饮／杂货赚 8X 积分；可换航空里程、酒店及餐饮礼券</td>
+        <td data-label="适合">想换里程・日常消费</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/6a45c9ba8d.png" alt="Maybank 标志"><span class="bank-word">Maybank</span></span></td>
+        <td data-label="信用卡"><span class="row-number">03</span><strong>Maybank 2 Cards Premier</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>TreatsPoints</small></td>
+        <td data-label="主要好处" class="benefit-cell">Amex 海外 10X、本地餐饮 5X 积分；Visa 有贵宾室礼遇</td>
+        <td data-label="适合">海外・餐饮</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNC4wLjIsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHdpZHRoPSIyNS43cHgiIGhlaWdodD0iMjUuOHB4IiB2aWV3Qm94PSIwIDAgMjUuNyAyNS44IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNS43IDI1Ljg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNGRkZGRkY7fQ0KCS5zdDF7ZmlsbDojREMyNDFGO30NCjwvc3R5bGU+DQo8cGF0aCBpZD0iUGF0aF83NjUiIGNsYXNzPSJzdDAiIGQ9Ik0xNi43LDQuOUgzbDYuMSw4aDEzLjdMMTYuNyw0Ljl6Ii8+DQo8cGF0aCBpZD0iUGF0aF83NjYiIGNsYXNzPSJzdDEiIGQ9Ik0yMi43LDEyLjlIOS4xbC02LjEsOGgxMy43TDIyLjcsMTIuOXoiLz4NCjwvc3ZnPg0K" alt="CIMB 标志"><span class="bank-word">CIMB</span></span></td>
+        <td data-label="信用卡"><span class="row-number">04</span><strong>CIMB e Credit Card</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>Bonus Points</small></td>
+        <td data-label="主要好处" class="benefit-cell">每月 28 日指定消费 12X 积分；积分可抵消费</td>
+        <td data-label="适合">网购・感应支付</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/ca0d344b0e.svg" alt="UOB 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">05</span><strong>UOB PRVI Miles Elite</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>UNIRinggit</small></td>
+        <td data-label="主要好处" class="benefit-cell">指定海外最高 12X、航空 5X UNIRM；每年 8 次贵宾室</td>
+        <td data-label="适合">海外・旅行</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/5e0d0c118e.svg" alt="HSBC 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">06</span><strong>HSBC TravelOne</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>Reward Points</small></td>
+        <td data-label="主要好处" class="benefit-cell">积分可转多个航空和酒店伙伴；App 内兑换</td>
+        <td data-label="适合">换航空・酒店奖励</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/08349f328a.svg" alt="Standard Chartered 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">07</span><strong>Standard Chartered Journey</strong> </td>
+        <td data-label="奖励"><span class="reward-badge ">积分</span><small>Miles</small></td>
+        <td data-label="主要好处" class="benefit-cell">餐饮／旅行／海外消费 5X Miles；合资格贵宾室礼遇</td>
+        <td data-label="适合">Priority 客户・常旅行</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/ab96385704.png" alt="Hong Leong Bank 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">08</span><strong>Hong Leong WISE</strong> </td>
+        <td data-label="奖励"><span class="reward-badge cashback">回扣</span><small>Cash Back</small></td>
+        <td data-label="主要好处" class="benefit-cell">每月消费满 RM1,000，指定类别最高 15% 回扣（类别有上限）</td>
+        <td data-label="适合">餐饮・杂货・油费</td>
+      </tr>
+
+      <tr class="">
+        <td data-label="银行"><span class="table-logo"><img src="img/ca0d344b0e.svg" alt="UOB 标志"></span></td>
+        <td data-label="信用卡"><span class="row-number">09</span><strong>UOB ONE Platinum</strong> </td>
+        <td data-label="奖励"><span class="reward-badge cashback">回扣</span><small>Cash Back</small></td>
+        <td data-label="主要好处" class="benefit-cell">每期满 RM1,500，指定四类 10% 回扣（每类最多 RM15）</td>
+        <td data-label="适合">油费・超市・Grab</td>
+      </tr></tbody>
+      </table>
+      </div>
+      <p class="footnote">银行标志仅用于识别发卡银行；本页并非银行合作或申请页面。资料核对：<time datetime="2026-11-13">2026 年 11 月 13 日</time>。奖励、年费、门槛和兑换规则以银行官网为准。</p>
+    </div>
+  </section>
+</main>
+<dialog class="image-dialog" aria-label="账单示意图"><form method="dialog"><button>关闭</button></form><img alt=""></dialog>
+<footer><div class="wrap"><span>Money POV · 信用卡实用指南</span><a href="#top">回到顶部 ↑</a></div></footer>
+<script>
+  const imageDialog = document.querySelector('.image-dialog');
+  const enlargedImage = imageDialog.querySelector('img');
+  for (const button of document.querySelectorAll('.figure-link')) {
+    button.addEventListener('click', () => {
+      const image = button.querySelector('img');
+      enlargedImage.src = image.src;
+      enlargedImage.alt = image.alt;
+      imageDialog.showModal();
+      imageDialog.scrollTo(0, 0);
+    });
+  }
+</script>
+
+
+<script id="bbb-shared-header-script">(()=>{const toggle=document.querySelector('.bbb-site-menu'),links=document.querySelector('.bbb-site-links');function close(){links.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation')}toggle.addEventListener('click',()=>{const open=links.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation')});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close()}});document.addEventListener('click',e=>{if(!e.target.closest('.bbb-site-header'))close()});window.matchMedia('(min-width:1025px)').addEventListener('change',close)})();</script><script id="bbb-resource-bilingual">
+(()=>{
+const D={"我们的服务":"Services","财务规划":"Planning","财富管理":"Wealth","计算器":"Calculators","企业培训":"Training","团队介绍":"Our team","免费资源":"Free resources","预约聊聊":"Book a consultation","页内导航":"On this page","短期闲钱与 MMF":"Short-term cash & MMFs","信用卡怎么用、怎么选":"Using and choosing a credit card","信用卡怎么用、怎么选｜Money POV":"Using and choosing a credit card | Money POV","看懂信用卡账单，比较 Cash Back 与 Points，再从 9 张马来西亚信用卡中找到适合自己的选择。":"Understand your credit card statement, compare cash back and points, and explore nine Malaysian credit cards.","看账单":"Read your statement","怎么还":"Repayments","9 张卡":"9 cards","跳至正文":"Skip to content","Anson 的信用卡小课堂 · Malaysia":"Credit cards with Anson · Malaysia","信用卡，":"Credit cards.","刷得聪明。":"Spend smart.","还得明白。":"Repay with clarity.","账单、回扣、积分，Anson 陪你一次看清。":"Understand statements, cash back and points with Anson.","开始看 ↓":"Start here ↓","直接选卡 ↗":"Compare cards ↗","Anson · Money POV 理财向导":"Anson · Your Money POV guide","刷卡，也要做功课！":"Know your card before you spend!","Anson 穿西装，一手拿着多张银行卡，另一手抱手，俏皮地讲解信用卡":"Anson in a suit, holding several bank cards while explaining how credit cards work","先看懂账单，再谈回扣和积分。每月全额还款，奖励才有意义。":"Understand your statement before chasing cash back or points. Rewards make sense when you pay your statement in full each month.","账单总览 & 交易明细":"Statement overview & transactions","结合完整账单示意图，逐项看懂编号说明。":"Use the numbered explanations alongside the full statement examples.","01 / 看账单":"01 / Read your statement","信用卡账单先看这三格":"Start with these three statement figures","看图上的 01、02、03，找出几时还、要还多少。":"Look for 01, 02 and 03 to find when payment is due and how much to pay.","放大账单总览示意图":"Enlarge statement overview example","UOB 示例账单，01 标示还款到期日，02 标示应付全额，03 标示最低还款额。":"UOB sample statement: 01 marks the payment due date, 02 the total balance due, and 03 the minimum payment due.","图片来自 UOB 官网的账单例子 · 点击图片可放大":"Sample statement from UOB’s official website · Select the image to enlarge","最迟哪天还":"When payment is due","2025 年 4 月 24 日":"24 April 2025","这期一共要还多少":"The full amount due this statement","这期至少要还多少":"The minimum due this statement","看完整账单例子 / UOB Malaysia 官网":"Full statement example / UOB Malaysia website","02 / 看每一笔钱":"02 / Review each transaction","这几笔钱是什么？":"What are these entries?","翻到同一张账单的明细，看银行收到多少钱、收了哪些费用。":"Check the transaction section of the same statement to see payments received and fees charged.","放大账单明细示意图":"Enlarge transaction example","UOB 账单明细，01 标示已收到的还款，02 标示主卡服务税，03 标示年费，04 标示刷卡利息。":"UOB transaction details: 01 marks payment received, 02 principal-card service tax, 03 annual fee, and 04 retail interest.","图片来自同一张 UOB 账单例子 · 点击图片可放大":"From the same UOB sample statement · Select the image to enlarge","银行收到你的还款":"Your payment received by the bank","这张主卡的服务税":"Service tax on the principal card","这张卡的年费":"This card’s annual fee","银行收的刷卡利息":"Interest charged on retail spending","还钱前，先看两样东西":"Two things to check before paying","看看上次还的钱有没有算进去。看到不懂的收费，就问银行这笔钱是什么。":"Check that your last payment has been credited. Ask your bank about any charge you do not recognise.","同一张账单，3 种结果":"One statement, three outcomes","先认清本期要还多少，再决定付款金额。":"Identify the amount due for this statement before deciding how much to pay.","模拟账单":"Illustrative statement","11 月 21 日到期":"Due on 21 November","本期账单全额":"Full statement balance","要避免本期未清余额，先看这个数字":"Use this figure to avoid leaving an unpaid balance for this statement","App 显示总欠款":"Total outstanding shown in the app","含结单后新刷的 RM300":"Includes RM300 spent after the statement date","最低还款":"Minimum payment","本期全额":"Full statement amount","Anson 提醒":"Anson’s reminder","App 总欠款和本期账单不同。到期前先处理本期应付全额。":"Your total outstanding in the app differs from your statement balance. Pay attention to the full statement amount before its due date.","卡通版 Anson 拿着银行卡讲解还款":"Cartoon Anson holding bank cards and explaining repayments","01 / 推荐":"01 / Recommended","按时还清本期账单":"Pay the statement in full, on time","合资格消费通常可享免息期。":"Eligible spending usually enjoys an interest-free period.","本期清零":"Statement paid in full","02 / 要小心":"02 / Take care","只还最低额":"Pay only the minimum","其余 RM1,140 未还，可能计息。":"The remaining RM1,140 is unpaid and may incur interest.","余额继续滚":"Balance carries forward","03 / 避免":"03 / Avoid","少于最低额":"Pay less than the minimum","可能产生迟还费和利息。":"Late-payment charges and interest may apply.","费用可能增加":"Charges may increase","示例仅说明账单概念；免息期与费用依发卡银行条款和交易类型而定。":"This example explains statement concepts only. Interest-free periods and charges depend on the issuing bank’s terms and transaction type.","信用卡怎么选？":"How do you choose a credit card?","先选现金回扣还是积分，再看哪种更适合自己。":"Start with cash back or points, then consider which fits your spending and preferences.","现金回扣与积分比较":"Cash back and points comparison","现金回扣":"Cash back","合资格消费后，现金回扣入账。":"Cash back is credited after eligible spending.","直接抵账单":"Offsets your bill","容易计算":"Easy to calculate","适合":"Best for","想省心、看得见回报":"Simple, visible savings","先查":"Check first","类别・门槛・月上限":"Categories · thresholds · monthly caps","积分":"Points","BBBwealth 偏爱":"BBBwealth’s preference","累积积分，再换里程、酒店或礼券。":"Collect points to redeem for miles, hotels or vouchers.","兑换选择多":"More redemption options","可为旅行累积":"Save towards travel","愿意规划兑换":"Planning your redemptions","兑换率・有效期・年费":"Conversion rates · expiry · annual fees","BBBwealth 的选择":"BBBwealth’s choice","为什么更偏向 Points？":"Why do we lean towards points?","日常消费集中累积，兑换旅行或其他奖励时选择更多。若实际兑换价值高于回扣及相关成本，回报可能更好。":"Consolidating everyday spending can give you more options for travel and other rewards. Points may offer better value if their actual redemption value exceeds cash back and the associated costs.","先算清楚：":"Do the maths first:","兑换价值 − 年费与相关成本":"Redemption value − annual fees and related costs","高比例 Cash Back 常设上限；Hong Leong Infinite 的合资格 Enrich Points 无月度上限，积分累积空间更大。":"High cash-back rates often have caps. Eligible Enrich Points earned on Hong Leong Infinite have no monthly cap, allowing more room to accumulate points.","卡通版 Anson 手持积分与回扣图标":"Cartoon Anson holding points and cash-back icons","9 张卡，一眼对照":"Compare nine cards at a glance","先看奖励类型，再对照常用消费场景。":"Start with the reward type, then match it to your usual spending.","银行":"Bank","信用卡":"Credit card","奖励":"Rewards","主要好处":"Key benefits","重点":"Featured","回扣":"Cash back","合资格餐饮 RM1＝1 Enrich Point；可换机票、终身免年费及每年 4 次贵宾室":"Eligible dining: RM1 = 1 Enrich Point; redeem for flights, lifetime annual-fee waiver and 4 lounge visits per year","想换机票・常旅行":"Flight redemptions · frequent travel","指定网购／餐饮／杂货赚 8X 积分；可换航空里程、酒店及餐饮礼券":"8X points on specified online, dining and grocery spending; redeem for airline miles, hotel and dining vouchers","想换里程・日常消费":"Miles redemptions · everyday spending","Amex 海外 10X、本地餐饮 5X 积分；Visa 有贵宾室礼遇":"Amex: 10X points overseas and 5X on local dining; Visa includes lounge benefits","海外・餐饮":"Overseas spending · dining","每月 28 日指定消费 12X 积分；积分可抵消费":"12X points on specified spending on the 28th of each month; points can offset purchases","网购・感应支付":"Online shopping · contactless payments","指定海外最高 12X、航空 5X UNIRM；每年 8 次贵宾室":"Up to 12X UNIRM on specified overseas spending and 5X on airline spending; 8 lounge visits per year","海外・旅行":"Overseas spending · travel","积分可转多个航空和酒店伙伴；App 内兑换":"Transfer points to multiple airline and hotel partners; redeem in the app","换航空・酒店奖励":"Airline and hotel redemptions","餐饮／旅行／海外消费 5X Miles；合资格贵宾室礼遇":"5X Miles on dining, travel and overseas spending; eligible lounge benefits","Priority 客户・常旅行":"Priority customers · frequent travel","每月消费满 RM1,000，指定类别最高 15% 回扣（类别有上限）":"Spend RM1,000 a month for up to 15% cash back in specified categories (category caps apply)","餐饮・杂货・油费":"Dining · groceries · petrol","每期满 RM1,500，指定四类 10% 回扣（每类最多 RM15）":"Spend RM1,500 per statement cycle for 10% cash back in four specified categories (up to RM15 each)","油费・超市・Grab":"Petrol · supermarkets · Grab","银行标志仅用于识别发卡银行；本页并非银行合作或申请页面。资料核对：":"Bank logos identify the card issuers only; this is not a bank partnership or application page. Information checked: ","2026 年 11 月 13 日":"13 November 2026","。奖励、年费、门槛和兑换规则以银行官网为准。":". Refer to the banks’ official websites for rewards, annual fees, thresholds and redemption rules.","账单示意图":"Statement example","关闭":"Close","Money POV · 信用卡实用指南":"Money POV · Practical credit card guide","回到顶部 ↑":"Back to top ↑","Hong Leong Bank 标志":"Hong Leong Bank logo","Maybank 标志":"Maybank logo","CIMB 标志":"CIMB logo","UOB 标志":"UOB logo","HSBC 标志":"HSBC logo","Standard Chartered 标志":"Standard Chartered logo","01 / 看懂账单":"01 / READ YOUR STATEMENT","02 / 还款要清楚":"02 / PAY SMART","03 / 回扣与积分":"03 / REWARDS","04 / 信用卡对照":"04 / CARD SHORTLIST"}, nodes=[],attrs=[], norm=s=>s.trim();
+const walker=document.createTreeWalker(document.documentElement,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&!n.parentElement.closest('script,style')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT});
+while(walker.nextNode()){const n=walker.currentNode,k=norm(n.nodeValue);if(D[k])nodes.push([n,n.nodeValue,k]);}
+for(const el of document.querySelectorAll('*')) for(const a of ['alt','title','aria-label','data-label','placeholder','content']){const v=el.getAttribute(a);if(v&&D[norm(v)])attrs.push([el,a,v,norm(v)]);}
+const box=document.createElement('div');box.className='bbb-language';box.setAttribute('role','group');box.setAttribute('aria-label','Page language');box.innerHTML='<button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="zh" lang="zh-Hans">中文</button>';document.querySelector('.bbb-context-nav').append(box);
+const originals=new Map([...document.querySelectorAll('a[href]')].map(a=>[a,a.getAttribute('href')]));
+let lang='en';try{lang=localStorage.getItem('bbbwealth-language')==='zh'?'zh':'en'}catch{};const query=new URLSearchParams(location.search).get('lang');if(query==='en'||query==='zh')lang=query;
+function apply(l){lang=l;document.documentElement.lang=l==='zh'?'zh-Hans':'en';for(const[n,v,k]of nodes)n.nodeValue=l==='en'?v.replace(k,D[k]):v;for(const[e,a,v,k]of attrs)e.setAttribute(a,l==='en'?D[k]:v);try{localStorage.setItem('bbbwealth-language',l)}catch{};for(const b of box.querySelectorAll('button')){b.classList.toggle('active',b.dataset.lang===l);b.setAttribute('aria-pressed',String(b.dataset.lang===l))}for(const[a,h]of originals){if(!h||h.startsWith('#')||/^(?:https?:|mailto:|tel:|javascript:)/i.test(h))continue;const [base,hash]=h.split('#'),[path,search]=base.split('?');if(!/\.html$|\/$/.test(path))continue;const q=new URLSearchParams(search||'');q.set('lang',l);a.setAttribute('href',path+'?'+q+(hash?'#'+hash:''))}const menu=document.querySelector('.bbb-site-menu');menu.setAttribute('aria-label',l==='zh'?(menu.getAttribute('aria-expanded')==='true'?'收起导航':'打开导航'):(menu.getAttribute('aria-expanded')==='true'?'Close navigation':'Open navigation'));window.bbbResourceLanguage=l;}
+box.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(!b)return;apply(b.dataset.lang);try{const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u)}catch{}});
+new MutationObserver(()=>{const menu=document.querySelector('.bbb-site-menu');const label=lang==='zh'?(menu.getAttribute('aria-expanded')==='true'?'收起导航':'打开导航'):(menu.getAttribute('aria-expanded')==='true'?'Close navigation':'Open navigation');if(menu.getAttribute('aria-label')!==label)menu.setAttribute('aria-label',label)}).observe(document.querySelector('.bbb-site-menu'),{attributes:true,attributeFilter:['aria-expanded','aria-label']});
+apply(lang);
+})();</script><script src="../../assets/resource-discovery.js" data-resource-index="4" data-site-root="../../"></script><script src="../../assets/interactive-visuals.js" data-visual-kind="statement"></script><script src="../../assets/sticky-headers.js"></script><script src="../../assets/visual-first.js" data-root="../../"></script><script src="../../assets/resource-experience.js" data-root="../../"></script></body>
+</html>

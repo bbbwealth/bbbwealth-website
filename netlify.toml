@@ -1,9 +1,27 @@
-# Netlify deploy configuration for www.bbbwealth.com
-# Publishes the repo as-is: a static multi-page site.
-#   /                        -> index.html
-#   /calculator/             -> calculator/index.html
-#   /calculator/retirement/  -> calculator/retirement/index.html
+# Netlify deploy configuration for bbbwealth.com
+# Publishes the repo as-is: a static multi-page site (no build step).
 # Note: no catch-all redirect here — directory index pages must resolve normally.
 
 [build]
   publish = "."
+
+# The cash & savings guide and the MMF guide were merged into one page.
+# Old links (including ones shared on social media) forward permanently; query strings such as ?lang= are kept.
+[[redirects]]
+  from = "/cash-savings-2026/*"
+  to = "/resources/cash/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resources/mmf/*"
+  to = "/resources/cash/"
+  status = 301
+  force = true
+
+# Retired duplicate critical-illness calculator.
+[[redirects]]
+  from = "/calculator/ci-coverage/*"
+  to = "/calculator/critical-illness/"
+  status = 301
+  force = true
