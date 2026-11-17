@@ -107,7 +107,7 @@ h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
 .pc-code{flex:1;font-size:13px}
 .pc-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px;border:1.5px solid #c9d3e6;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;color:var(--navy)}
 .pc:not(.has-code) .pc-link{flex:1}
-.pc-more summary{font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none}
+.pc-more summary{font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none;padding:8px 0;margin-bottom:-8px}
 .pc-more summary::after{content:' ▾'}.pc-more[open] summary::after{content:' ▴'}
 .pc-more p{margin:6px 0 0;font-size:12.5px;color:var(--soft)}
 @media(max-width:560px){
@@ -115,10 +115,10 @@ h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
   .pc{padding:12px;gap:5px;position:relative}
   .pc-top{flex-direction:column;align-items:flex-start;gap:6px;padding-right:34px}
   .pc-logo.img{width:56px;height:34px}.pc-logo{min-width:34px;height:34px;font-size:13px}
-  .pc-name b{font-size:14px}.pc-name small{white-space:normal;font-size:11.5px}
-  .pc-rate{font-size:20px}.pc-rate small{font-size:11.5px}
+  .pc-name b{font-size:14px}.pc-name small{white-space:normal;font-size:12px}
+  .pc-rate{font-size:20px}.pc-rate small{font-size:12px}
   .pc-short{font-size:12px}
-  .pc.has-code .pc-link{position:absolute;top:10px;right:10px;min-height:34px;min-width:34px;padding:0;border-radius:10px}
+  .pc.has-code .pc-link{position:absolute;top:8px;right:8px;min-height:40px;min-width:40px;padding:0;border-radius:10px}
   .pc-code{font-size:12.5px;letter-spacing:0;padding:6px 4px;width:100%}
 }
 /* three types: scorecard */
