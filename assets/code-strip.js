@@ -8,7 +8,7 @@
   const ALL={
     moomoo:{code:'MAD6',logo:'assets/brand/moomoo.svg',name:'moomoo',url:'https://start.moomoo.com/00Jox1'},
     versa:{code:'VERSAMAD',logo:'assets/brand/versa.png',name:'Versa',url:'https://versa.com.my/download/',download:true},
-    webull:{code:'BBB1234',logo:'assets/brand/webull.svg',name:'Webull',dark:true,url:'https://www.webull.com.my/k/bbb1234'},
+    webull:{code:'bbb1234',logo:'assets/brand/webull.svg',name:'Webull',dark:true,url:'https://www.webull.com.my/k/bbb1234'},
     fsmone:{code:'WELCOME',logo:'assets/brand/fsmone.png',name:'FSMOne',url:'https://www.fsmone.com.my/referral/WELCOME'}
   };
   const keys=(S.dataset.codes||'moomoo,versa,webull,fsmone').split(',').map(s=>s.trim()).filter(k=>ALL[k]);
