@@ -16,8 +16,22 @@
 body{margin:0;background:#fff;color:var(--ink);font:16px/1.65 'Inter',system-ui,-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--blue)}button,input{font:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
-section{padding:clamp(48px,7vw,84px) 0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+section{padding:clamp(44px,5.5vw,72px) 0}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,4vw,56px);align-items:center}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 20px 44px #12265018}
+.hc-k{font-size:15px;font-weight:800;color:var(--navy-deep);margin-bottom:16px}
+.hc-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;color:var(--soft);margin-top:12px}
+.hc-row b{font-size:22px;font-weight:800;color:var(--navy-deep)}
+.hc-row.mmf b{color:#b07d00}
+.hc-bar{height:10px;border-radius:999px;background:#eef2f8;margin-top:8px;overflow:hidden}
+.hc-bar i{display:block;height:100%;border-radius:999px;background:#9fb0cc}
+.hc-bar.mmf i{background:var(--yellow)}
+.hc-diff{margin:16px 0 0;font-size:15px;color:var(--ink)}
+.hc-diff b{color:#b07d00}
+.hc-note{margin:8px 0 16px;font-size:12px;color:var(--muted)}
+.hero-card .btn{width:100%}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
 h1,h2,h3{letter-spacing:-.02em;line-height:1.18;margin:0}
 h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
 .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
@@ -138,7 +152,8 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
 
 <main>
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+   <div class="hero-copy">
     <div class="kicker" data-i18n="h_kicker">BBBwealth · 短期闲钱指南</div>
     <h1 data-i18n-html="h_title">闲钱放哪里？<span>储蓄、MMF 与定存，一页比较。</span></h1>
     <p class="lead" data-i18n="h_sub">数字银行储蓄、电子钱包理财、货币市场基金和定存，各有不同的回酬、取用时间和保障。先看清楚，再决定这笔钱放哪里。</p>
@@ -146,8 +161,19 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
       <a class="btn btn-yellow" href="#why-mmf" data-i18n="h_cta" data-cta="cash-hero-start">看看我的闲钱适合放哪里 ↓</a>
       <a class="btn-text" href="#partners" data-i18n="h_cta2" data-cta="cash-hero-partners">直接看平台与推荐码 →</a>
     </div>
-    <p class="hero-risk" data-i18n="h_risk">MMF：回酬浮动 · 本金不保证 · 不受 PIDM 保障</p>
+    <p class="hero-risk" data-i18n="h_risk">MMF 回酬通常比银行定存牌告利率高 · 每天计算收益</p>
     <div class="chips"><span class="chip" data-i18n="chip1">数字银行</span><span class="chip" data-i18n="chip2">电子钱包</span><span class="chip" data-i18n="chip3">货币市场基金</span><span class="chip" data-i18n="chip4">定期存款</span></div>
+   </div>
+   <aside class="hero-card" aria-label="RM10,000 for one year">
+    <div class="hc-k" data-i18n="hc_k">放 RM10,000 一年，大约能赚多少？</div>
+    <div class="hc-row"><span data-i18n="hc_fd">银行定存牌告利率 1.80%</span><b>≈ RM180</b></div>
+    <div class="hc-bar"><i style="width:56%"></i></div>
+    <div class="hc-row mmf"><span data-i18n="hc_mmf">MMF 历史年化约 3.2%</span><b>≈ RM320</b></div>
+    <div class="hc-bar mmf"><i style="width:100%"></i></div>
+    <p class="hc-diff" data-i18n-html="hc_diff">一年大约多赚 <b>RM140</b>，而且利息每天计算、随时可以拿回。</p>
+    <p class="hc-note" data-i18n="hc_note">按 Maybank 12 个月牌告利率（2026 年 10 月 20 日起）和 Versa Cash 2026 年 9 月历史年化简单估算。</p>
+    <a class="btn btn-navy" href="#calculator" data-i18n="hc_cta" data-cta="cash-hero-calc">用我的金额算一算 ↓</a>
+   </aside>
   </div>
 </section>
 
@@ -163,10 +189,10 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     </div>
     <div class="wm-grid">
       <article><span class="wm-n">01</span><h3 data-i18n="wm1_t">回酬通常比定存牌告高</h3><p data-i18n="wm1_p">底层同样是银行存款，但以批发利率存放，历来收益通常高于银行定存牌告利率。定存优惠利率虽然更高，但多数要新资金、有最低金额和锁定期，到期后也会按牌告利率续存。</p></article>
-      <article><span class="wm-n">02</span><h3 data-i18n="wm2_t">要用钱，1–2 个工作日到账</h3><p data-i18n="wm2_p">一般申请赎回后 1–2 个工作日回到银行户口，部分产品截单前申请当天到账。收益按天计算，提早拿出来也不会像定存那样损失已累积的利息。</p></article>
+      <article><span class="wm-n">02</span><h3 data-i18n="wm2_t">要用钱，1–2 个工作日到账</h3><p data-i18n="wm2_p">一般申请赎回后 1–2 个工作日回到银行户口，部分产品截单前申请当天到账。利息每天计算，提早拿出来也不会像定存那样损失已累积的利息。</p></article>
       <article><span class="wm-n">03</span><h3 data-i18n="wm3_t">小额就能开始</h3><p data-i18n="wm3_p">RM0.01 到 RM100 就能起投，没有锁定期，也不需要一次放一大笔。</p></article>
     </div>
-    <p class="wm-risk" data-i18n="wm_risk">须知：MMF 回酬浮动、本金不保证、不受 PIDM 保障；过往表现不代表未来回酬。要锁定确定利率、或需要 PIDM 保障的钱，定存仍是合适的选择。</p>
+    <p class="wm-risk" data-i18n="wm_risk">要锁定确定利率、或需要 PIDM 保障的钱，定存仍是合适的选择。</p>
     <div class="hero-actions" style="margin-top:20px"><a class="btn btn-yellow" href="#partners" data-i18n="wm_cta" data-cta="cash-whymmf-partners">看 MMF 平台与优惠码 ↓</a><a class="btn-text" href="#compare" data-i18n="wm_cta2" data-cta="cash-whymmf-compare">先比较全部 11 个选择 →</a></div>
   </div>
 </section>
@@ -178,7 +204,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <p class="lead" data-i18n="t_sub">先想清楚：这笔钱什么时候要用？需要多确定的收益？能不能接受本金有风险？</p>
     <div class="types">
       <article class="type"><h3 data-i18n="ty1_t">储蓄户口 / 储蓄袋</h3><div class="sub" data-i18n="ty1_s">数字银行、银行储蓄</div><dl><dt data-i18n="k_ret">回酬</dt><dd data-i18n="ty1_ret">按银行利率，常有分段与上限</dd><dt data-i18n="k_acc">取用</dt><dd class="good" data-i18n="ty1_acc">一般随时可用</dd><dt>PIDM</dt><dd class="good" data-i18n="ty1_pidm">合资格存款受保障</dd></dl></article>
-      <article class="type type-pick"><span class="pick" data-i18n="ty2_pick">BBBwealth 首选</span><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><div class="sub" data-i18n="ty2_s">Moomoo、Versa、Webull、FSMOne、GO+ 等</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="warn" data-i18n="ty2_ret">浮动，本金不保证</dd><dt data-i18n="k_acc">取用</dt><dd data-i18n="ty2_acc">赎回需看截止时间，通常 0–3 个工作日</dd><dt>PIDM</dt><dd class="warn" data-i18n="ty2_pidm">不受 PIDM 保障</dd></dl></article>
+      <article class="type type-pick"><span class="pick" data-i18n="ty2_pick">BBBwealth 首选</span><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><div class="sub" data-i18n="ty2_s">Moomoo、Versa、Webull、FSMOne、GO+ 等</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="good" data-i18n="ty2_ret">通常高于定存牌告利率，每天计算</dd><dt data-i18n="k_acc">取用</dt><dd data-i18n="ty2_acc">赎回需看截止时间，通常 0–3 个工作日</dd><dt>PIDM</dt><dd class="warn" data-i18n="ty2_pidm">不受 PIDM 保障</dd></dl></article>
       <article class="type"><h3 data-i18n="ty3_t">定期存款（FD）</h3><div class="sub" data-i18n="ty3_s">银行定存，约定期限</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="good" data-i18n="ty3_ret">约定利率，到期领取</dd><dt data-i18n="k_acc">取用</dt><dd class="warn" data-i18n="ty3_acc">提早取出可能少拿或没有利息</dd><dt>PIDM</dt><dd class="good" data-i18n="ty3_pidm">合资格存款受保障</dd></dl></article>
     </div>
     <p class="note" style="margin-top:14px" data-i18n="t_note">PIDM 保障：每位存款人、每家成员银行最高 RM250,000，须符合相关条件。想看各家银行的定存利率，请看我们的定存指南。</p>
@@ -193,7 +219,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <p class="checked" data-checked="2026-11-12" data-stale-days="21"><span data-i18n="c_checked">资料核对：2026 年 11 月 12 日。</span></p>
     <div class="filters" role="group" aria-label="Filter"><button type="button" data-filter="all" aria-pressed="true" data-i18n="f_all">全部</button><button type="button" data-filter="bank" aria-pressed="false" data-i18n="f_bank">储蓄（受 PIDM 保障）</button><button type="button" data-filter="fund" aria-pressed="false" data-i18n="f_fund">基金 / MMF</button><button type="button" data-filter="wallet" aria-pressed="false" data-i18n="f_wallet">电子钱包</button></div>
     <div class="ptable" id="ptable"></div>
-    <p class="table-note" data-i18n="c_note">年化百分比；活动加码和基金收益可能随时调整，基金收益与本金不保证。并非每个平台都每天派息。开户前请到官方页面确认最新条款。</p>
+    <p class="table-note" data-i18n="c_note">年化百分比；活动加码和基金收益可能随时调整。并非每个平台都每天派息。开户前请到官方页面确认最新条款。</p>
   </div>
 </section>
 
@@ -224,7 +250,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <h2 data-i18n="fl_title">定存和 MMF，钱去了哪里？</h2>
     <div class="flow">
       <article><h3 data-i18n="fl_fd">定期存款</h3><ol><li data-i18n="fl_fd1">选好金额和期限，把钱存进银行。</li><li data-i18n="fl_fd2">银行按约定利率计息，期限内钱放着不动。</li><li data-i18n="fl_fd3">到期领回本金加利息，或按指示续存。</li></ol><span class="pill ok" data-i18n="fl_fd_p">合资格存款受 PIDM 保障</span></article>
-      <article><h3 data-i18n="fl_mmf">货币市场基金</h3><ol><li data-i18n="fl_mmf1">你的钱买入基金单位，不是存进银行。</li><li data-i18n="fl_mmf2">基金经理把大家的钱投资短期存款和货币市场工具。</li><li data-i18n="fl_mmf3">申请赎回后结算，钱回到你的银行户口，须看截止时间和工作日。</li></ol><span class="pill no" data-i18n="fl_mmf_p">回酬浮动 · 本金不保证 · 不受 PIDM 保障</span></article>
+      <article><h3 data-i18n="fl_mmf">货币市场基金</h3><ol><li data-i18n="fl_mmf1">你的钱买入基金单位，不是存进银行。</li><li data-i18n="fl_mmf2">基金经理把大家的钱投资短期存款和货币市场工具。</li><li data-i18n="fl_mmf3">申请赎回后结算，钱回到你的银行户口，须看截止时间和工作日。</li></ol><span class="pill ok" data-i18n="fl_mmf_p">回酬通常高于定存牌告 · 每天计算收益</span></article>
     </div>
   </div>
 </section>
@@ -241,7 +267,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
       <article class="pcard"><img src="../../assets/brand/fsmone.png" alt="FSMOne"><h3>FSMOne</h3><p class="min" data-i18n="pf_min">RHB Cash Management Fund 2（RM 类）：RM100 起投，追加 RM100。</p><div class="code"><strong>WELCOME</strong><button type="button" data-copy="WELCOME" data-i18n="copy">复制</button></div><a class="more" href="https://www.fsmone.com.my/referral/welcome" target="_blank" rel="noopener noreferrer" data-i18n="pf_more">推荐链接开户 ↗</a></article>
     </div>
     <p class="copied" id="copied" role="status" aria-live="polite"></p>
-    <div class="disclose"><strong data-i18n="d_t">合作披露：</strong> <span data-i18n="d_p">通过推荐码或链接注册，BBBwealth 可能获得佣金或推荐奖励。代码不保证目前一定有奖励；奖励、资格和适用产品以平台当时的条款为准。除 FSMOne 专属推荐链接外，其他是产品介绍页，不会自动带入代码，注册时请手动填写。MMF 回酬浮动、本金不保证、不受 PIDM 保障。</span></div>
+    <div class="disclose"><strong data-i18n="d_t">合作披露：</strong> <span data-i18n="d_p">通过推荐码或链接注册，BBBwealth 可能获得佣金或推荐奖励。代码不保证目前一定有奖励；奖励、资格和适用产品以平台当时的条款为准。除 FSMOne 专属推荐链接外，其他是产品介绍页，不会自动带入代码，注册时请手动填写。过往表现不代表未来回酬；MMF 不受 PIDM 保障。</span></div>
   </div>
 </section>
 
@@ -278,19 +304,20 @@ const P=[
 ];
 const T={
  en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_why:'Why MMFs',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
+  hc_k:'RM10,000 for a year: roughly how much could it earn?',hc_fd:'Bank FD board rate 1.80%',hc_mmf:'MMF historical ~3.2% a year',hc_diff:'About <b>RM140</b> more a year, with returns calculated daily and money you can take out any time.',hc_note:'Simple estimate using the Maybank 12-month board rate (from 20 October 2026) and Versa Cash’s September 2026 historical annualised return.',hc_cta:'Try my own amount ↓',
   wm_kicker:'Our view',wm_title:'For short-term cash, we usually start with an MMF.',wm_sub:'Many people think of MMFs as risky investments. In fact their money also sits mainly in bank deposits and short-term money-market instruments; the fund simply places it as an institution, at better rates than retail board rates.',
   wm_fd_l:'Bank FD board rate (12 months)',wm_fd_s:'Maybank, from 20 October 2026',wm_mmf_l:'MMF historical annualised return',wm_mmf_s:'e.g. Versa Cash 3.22%, Cash-i 3.28% (September 2026)',
   wm1_t:'Usually above FD board rates',wm1_p:'The underlying is still bank deposits, placed at wholesale rates, so returns have historically been above FD board rates. Promotional FD rates can be higher, but most need fresh funds, a minimum amount and a lock-in, and renew at the board rate on maturity.',
-  wm2_t:'Need the money? 1–2 working days',wm2_p:'Redemptions usually reach your bank account in 1–2 working days, and some products pay out the same day if you request before the cut-off. Returns accrue daily, so taking money out early does not cost you interest already earned, unlike breaking an FD.',
+  wm2_t:'Need the money? 1–2 working days',wm2_p:'Redemptions usually reach your bank account in 1–2 working days, and some products pay out the same day if you request before the cut-off. Returns are calculated every day, so taking money out early does not cost you interest already earned, unlike breaking an FD.',
   wm3_t:'Start small',wm3_p:'Start from RM0.01 to RM100, with no lock-in period and no need to put in a large sum at once.',
-  wm_risk:'Note: MMF returns vary, capital is not guaranteed and MMFs are not PIDM-protected; past performance does not indicate future returns. For money that needs a fixed rate or PIDM protection, a fixed deposit is still the right choice.',
+  wm_risk:'For money that needs a fixed rate or PIDM protection, a fixed deposit is still the right choice.',
   wm_cta:'See MMF platforms & promo codes ↓',wm_cta2:'Compare all 11 options first →',ty2_pick:'BBBwealth pick',
-  h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Find where my spare cash fits ↓',h_cta2:'Skip to platforms & codes →',h_risk:'MMF: variable returns · capital not guaranteed · not PIDM-protected',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
-  t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Ask yourself: when will you need this money, how certain must the return be, and can you accept any risk to the capital?',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Variable; capital not guaranteed',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM protection: up to RM250,000 per depositor per member bank, subject to conditions. For bank-by-bank FD rates, see our fixed deposit guide.',t_fd:'See the November FD guide →',
-  c_kicker:'Compare your options',c_title:'11 options at a glance.',c_checked:'Information checked: 12 November 2026.',f_all:'All',f_bank:'Savings (PIDM-protected)',f_fund:'Funds / MMF',f_wallet:'E-wallets',c_note:'Rates are annualised. Campaign boosts and fund returns can change at any time; fund returns and capital are not guaranteed. Not every platform pays daily. Check the official page for the latest terms before opening an account.',open:'Official page ↗',copy:'Copy',copyCode:'Copy code',tag_bank:'Bank savings',tag_fund:'Fund',tag_wallet:'E-wallet',
+  h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Find where my spare cash fits ↓',h_cta2:'Skip to platforms & codes →',h_risk:'MMF returns are usually above bank FD board rates · returns accrue daily',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
+  t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Ask yourself: when will you need this money, how certain must the return be, and can you accept any risk to the capital?',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Usually above FD board rates, calculated daily',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM protection: up to RM250,000 per depositor per member bank, subject to conditions. For bank-by-bank FD rates, see our fixed deposit guide.',t_fd:'See the November FD guide →',
+  c_kicker:'Compare your options',c_title:'11 options at a glance.',c_checked:'Information checked: 12 November 2026.',f_all:'All',f_bank:'Savings (PIDM-protected)',f_fund:'Funds / MMF',f_wallet:'E-wallets',c_note:'Rates are annualised. Campaign boosts and fund returns can change at any time. Not every platform pays daily. Check the official page for the latest terms before opening an account.',open:'Official page ↗',copy:'Copy',copyCode:'Copy code',tag_bank:'Bank savings',tag_fund:'Fund',tag_wallet:'E-wallet',
   k_kicker:'Quick estimate',k_title:'What could your spare cash earn?',k_sub:'Enter the amount, annual return and number of days. Formula: amount × annual return ÷ 365 × days.',k_amt:'Amount',k_rate:'Annual return',k_days:'Days',k_daysu:'days',k_res:'Estimated earnings',k_res_note:'A simple estimate: excludes compounding, fees and sign-up rewards, and ignores promotion periods, tiered rates and caps. Actual returns depend on the provider.',k_cta:'Not sure where to put it? WhatsApp us',
-  fl_kicker:'How the money moves',fl_title:'Fixed deposit vs MMF: where does the money go?',fl_fd:'Fixed deposit',fl_fd1:'Choose an amount and tenure and deposit it with the bank.',fl_fd2:'The bank pays the agreed rate; the money stays put for the tenure.',fl_fd3:'At maturity you receive principal plus interest, or renew as instructed.',fl_fd_p:'Eligible deposits PIDM-protected',fl_mmf:'Money market fund',fl_mmf1:'Your money buys fund units; it is not a bank deposit.',fl_mmf2:'The fund manager invests pooled money in short-term deposits and money-market instruments.',fl_mmf3:'After you redeem, settlement returns the money to your bank account, subject to cut-offs and working days.',fl_mmf_p:'Variable returns · capital not guaranteed · not PIDM-protected',
-  p_kicker:'Open an account',p_title:'Ready to open an account? Copy the code, then go to the official page.',p_sub:'Compare access time, eligibility and risk before looking at sign-up offers. Do not let a referral reward decide where your money goes.',pm_min:'From RM0.01; several money market funds available. Ringgit transfers to your bank usually take 1–3 working days.',pv_min:'From RM10, minimum withdrawal RM50; Cash-i requests before 10am on a working day usually arrive the same day.',pw_min:'From RM0.01; optional auto-sweep of idle ringgit, one redemption a day.',pf_min:'RHB Cash Management Fund 2 (RM class): RM100 initial, RM100 top-up.',p_more:'Platform details ↗',pf_more:'Open via referral link ↗',copied:'Copied {c}. Enter it when you sign up and check the eligible offer.',copyFail:'Please copy manually: {c}',d_t:'Partner disclosure:',d_p:'If you sign up with a referral code or link, BBBwealth may receive a commission or referral reward. A code does not guarantee a current reward; rewards, eligibility and eligible products follow the platform’s terms at the time. Apart from the dedicated FSMOne referral link, these are product pages that do not apply the code automatically, so enter it manually. MMF returns vary, capital is not guaranteed and MMFs are not PIDM-protected.',
+  fl_kicker:'How the money moves',fl_title:'Fixed deposit vs MMF: where does the money go?',fl_fd:'Fixed deposit',fl_fd1:'Choose an amount and tenure and deposit it with the bank.',fl_fd2:'The bank pays the agreed rate; the money stays put for the tenure.',fl_fd3:'At maturity you receive principal plus interest, or renew as instructed.',fl_fd_p:'Eligible deposits PIDM-protected',fl_mmf:'Money market fund',fl_mmf1:'Your money buys fund units; it is not a bank deposit.',fl_mmf2:'The fund manager invests pooled money in short-term deposits and money-market instruments.',fl_mmf3:'After you redeem, settlement returns the money to your bank account, subject to cut-offs and working days.',fl_mmf_p:'Usually above FD board rates · returns calculated daily',
+  p_kicker:'Open an account',p_title:'Ready to open an account? Copy the code, then go to the official page.',p_sub:'Compare access time, eligibility and risk before looking at sign-up offers. Do not let a referral reward decide where your money goes.',pm_min:'From RM0.01; several money market funds available. Ringgit transfers to your bank usually take 1–3 working days.',pv_min:'From RM10, minimum withdrawal RM50; Cash-i requests before 10am on a working day usually arrive the same day.',pw_min:'From RM0.01; optional auto-sweep of idle ringgit, one redemption a day.',pf_min:'RHB Cash Management Fund 2 (RM class): RM100 initial, RM100 top-up.',p_more:'Platform details ↗',pf_more:'Open via referral link ↗',copied:'Copied {c}. Enter it when you sign up and check the eligible offer.',copyFail:'Please copy manually: {c}',d_t:'Partner disclosure:',d_p:'If you sign up with a referral code or link, BBBwealth may receive a commission or referral reward. A code does not guarantee a current reward; rewards, eligibility and eligible products follow the platform’s terms at the time. Apart from the dedicated FSMOne referral link, these are product pages that do not apply the code automatically, so enter it manually. Past performance does not indicate future returns; MMFs are not PIDM-protected.',
   fn_title:'Still not sure?',fn_sub:'Tell us roughly how much it is and when you will need it, and we will help you sort out the options. No obligation, and no product push.',fn_cta:'WhatsApp us',r_kicker:'Keep exploring',r1_t:'November FD guide',r1_p:'Fixed-deposit offers from 8 banks, with an interest estimator.',r2_t:'2026 tax relief guide',r2_p:'22 reliefs and a PRS tax-saving calculator.',r3_t:'Retirement calculator',r3_p:'See how far you are from your retirement target.',r_all:'View all free resources →',foot:'For general information and education only; not personal investment advice. © 2026 BBBwealth.',
   wa:'Hi BBBwealth, I read your short-term cash guide and would like help deciding where to keep my money.',waCalc:'Hi BBBwealth, I have about RM{a} of spare cash for around {d} days. Could you help me compare where to keep it?'},
  zh:{doc:'短期闲钱放哪里：储蓄、MMF 与定存 | BBBwealth',copy:'复制',copyCode:'复制代码',open:'官方页面 ↗',tag_bank:'银行储蓄',tag_fund:'基金',tag_wallet:'电子钱包',copied:'已复制 {c}。注册时记得填写，并确认适用优惠。',copyFail:'请手动复制：{c}',wa:'你好 BBBwealth，我看了短期闲钱指南，想请你们帮我看看钱放哪里比较适合。',waCalc:'你好 BBBwealth，我有大约 RM{a} 闲钱，大概放 {d} 天，可以帮我比较放哪里比较好吗？'}
