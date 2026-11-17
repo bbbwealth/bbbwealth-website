@@ -537,3 +537,10 @@ body.bbb-tax-guide #prs-offers{margin-top:64px!important}
 @media (prefers-reduced-motion:reduce){
   body.bbb-resource-page .bbb-related-grid a{transition:none!important;transform:none!important}
 }
+
+/* ==========================================================================
+   12. Fewer words (owner direction): headlines carry the point
+   ========================================================================== */
+/* Tax: "why PRS" cards keep tag + headline, drop the body paragraph */
+body.bbb-resource-page .prs-reasons .reason-card>p{display:none!important}
+body.bbb-resource-page .prs-reasons .reason-card{padding-bottom:20px!important}
