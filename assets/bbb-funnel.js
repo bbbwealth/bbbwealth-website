@@ -205,7 +205,7 @@ const bar=(()=>{
   function measure(){
     const vh=innerHeight||document.documentElement.clientHeight;
     // the bar waits until the visitor has scrolled past the hero CTA (also when the CTA starts below the fold)
-    if(heroEl&&heroEl.isConnected){const r=heroEl.getBoundingClientRect();heroSeen=r.bottom>60}else heroSeen=false;
+    if(heroEl&&heroEl.isConnected){const r=heroEl.getBoundingClientRect();heroSeen=r.height?r.bottom>60:scrollY<Math.max(400,vh*.6)}else heroSeen=scrollY<Math.max(400,vh*.6);
     coverOn=new Set(covers.filter(n=>{if(!n.isConnected)return false;const r=n.getBoundingClientRect();if(!r.height)return false;const seen=Math.min(r.bottom,vh)-Math.max(r.top,0);return seen>0&&(seen>=r.height*.25||seen>=vh*.5)}));
   }
   function watch(){

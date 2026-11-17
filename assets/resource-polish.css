@@ -1,0 +1,523 @@
+/* BBBwealth resource pages: visual polish layer (alignment + colour).
+ * Loaded last on every free-resource page so it can override page-level styles.
+ * Edit this file only; page HTML/JS stay untouched.
+ *
+ * Layout system
+ *   One content column: 1120px wide, centred, with a 24px side gutter (16px <= 640px).
+ *   Header brand, context nav, every boxed section, the funnel CTA and the related panel
+ *   all share the same left/right edge. Full-bleed bands (cream / navy) keep their colour
+ *   edge-to-edge but their content snaps to the same column.
+ *   .bbb-cta-bar (mobile sticky bar) is intentionally NOT touched here.
+ */
+
+/* ==========================================================================
+   1. Global tokens
+   ========================================================================== */
+body.bbb-resource-page{
+  --pol-col:1120px;
+  --pol-gut:24px;
+  --pol-wrap:calc(var(--pol-col) + 2 * var(--pol-gut));
+  --pol-navy:#1e3a6f;
+  --pol-navy-deep:#122650;
+  --pol-navy-ink:#13294f;
+  --pol-yellow:#f5b800;
+  --pol-yellow-soft:#fff3cc;
+  --pol-cream:#f7f9fc;
+  --pol-tint:#eef3fa;
+  --pol-line:#dfe6f0;
+  --pol-ink:#0f1729;
+  --pol-ink-soft:#4a5468;
+  --pol-radius:20px;
+  --pol-radius-sm:16px;
+  --pol-shadow:0 12px 32px -24px rgba(18,38,80,.35);
+  background:var(--pol-cream);
+  overflow-x:clip;
+}
+@media (max-width:640px){
+  body.bbb-resource-page{--pol-gut:16px}
+}
+
+/* ==========================================================================
+   2. Shared chrome: site header + context nav share the content column
+   ========================================================================== */
+body.bbb-resource-page .bbb-site-header{
+  padding-left:max(var(--pol-gut),calc(50% - var(--pol-col) / 2))!important;
+  padding-right:max(var(--pol-gut),calc(50% - var(--pol-col) / 2))!important;
+}
+body.bbb-resource-page .bbb-context-nav.bbb-unified-context{
+  padding-left:max(var(--pol-gut),calc(50% - var(--pol-col) / 2))!important;
+  padding-right:max(var(--pol-gut),calc(50% - var(--pol-col) / 2))!important;
+}
+
+/* Mobile: collapse the two-row context nav (100px) into one 52px row so the
+   fixed header stack drops from ~165px to ~117px of a 812px screen.
+   The page title is already in the hero, so it is hidden here; hub link,
+   section links (scrollable) and the language switch stay reachable. */
+@media (max-width:640px){
+  body.bbb-resource-page .bbb-context-nav.bbb-unified-context{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    grid-template-rows:52px!important;
+    align-items:center!important;
+    column-gap:10px!important;
+    row-gap:0!important;
+    height:52px!important;min-height:52px!important;max-height:52px!important;
+    padding-top:0!important;padding-bottom:0!important;
+  }
+  body.bbb-resource-page .bbb-context-top,
+  body.bbb-resource-page .bbb-context-bottom{display:contents!important}
+  body.bbb-resource-page .bbb-context-top>.bbb-context-title{display:none!important}
+  body.bbb-resource-page .bbb-context-hub{grid-column:1;grid-row:1;height:34px!important;font-size:12px!important}
+  body.bbb-resource-page .bbb-context-bottom>.bbb-context-links{
+    grid-column:2;grid-row:1;height:52px!important;gap:16px!important;
+    -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);
+  }
+  body.bbb-resource-page .bbb-context-bottom>.bbb-context-links>a{font-size:13px!important;padding:15px 0!important}
+  body.bbb-resource-page .bbb-unified-language{grid-column:3;grid-row:1}
+  body.bbb-resource-page .bbb-unified-language button{min-width:38px!important;height:34px!important;min-height:34px!important;line-height:34px!important}
+}
+
+/* ==========================================================================
+   3. Shared components
+   ========================================================================== */
+
+/* 3a. Final funnel block: outer box on the column edge (was inset 40px) */
+body.bbb-resource-page .bbb-final-wrap{
+  box-sizing:border-box;width:100%; /* calculator hub body is a flex column: stop shrink-to-fit */
+  max-width:var(--pol-wrap);
+  padding-left:var(--pol-gut);padding-right:var(--pol-gut);
+  margin-top:56px;margin-bottom:56px;
+}
+body.bbb-resource-page .bbb-final-cta{border-radius:var(--pol-radius);box-shadow:0 24px 48px -32px rgba(18,38,80,.6)}
+body.bbb-resource-page .bbb-proof{border-color:var(--pol-line)}
+@media (max-width:640px){
+  body.bbb-resource-page .bbb-final-wrap{margin-top:40px;margin-bottom:40px}
+  body.bbb-resource-page .bbb-final-cta{padding:28px 20px}
+  body.bbb-resource-page .bbb-final-cta h2{font-size:24px}
+  body.bbb-resource-page .bbb-final-cta p{font-size:15px}
+  body.bbb-resource-page .bbb-final-cta .bbb-cta-legal{font-size:13px}
+  body.bbb-resource-page .bbb-proof{gap:4px 20px}
+}
+
+/* 3b. Related-resources panel (injected). Also restyles it on pages that do not
+   load resource-discovery.css (calculator hub), where it was rendering unstyled. */
+body.bbb-resource-page .bbb-related-resources{
+  box-sizing:border-box;
+  max-width:var(--pol-col);
+  width:calc(100% - 2 * var(--pol-gut));
+  margin:56px auto 72px!important;
+  padding:32px!important;
+  background:var(--pol-tint)!important;
+  border:1px solid #d6e1f0;border-radius:var(--pol-radius);
+  color:#173966;
+}
+body.bbb-resource-page .bbb-related-top{display:flex;gap:24px;justify-content:space-between;align-items:center}
+body.bbb-resource-page .bbb-related-resources h2{color:var(--pol-navy-deep);margin:6px 0 8px;line-height:1.25;letter-spacing:-.02em}
+body.bbb-resource-page .bbb-related-resources p{color:var(--pol-ink-soft);line-height:1.6}
+body.bbb-resource-page .bbb-related-all{
+  flex-shrink:0;display:inline-flex;align-items:center;min-height:48px;
+  background:var(--pol-navy)!important;color:#fff!important;border-radius:12px;
+  padding:12px 18px;text-decoration:none;font-weight:700;font-size:14px;
+}
+body.bbb-resource-page .bbb-related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px!important;margin-top:24px}
+body.bbb-resource-page .bbb-related-grid a{
+  display:flex;flex-direction:column;height:100%;box-sizing:border-box;
+  text-decoration:none!important;background:#fff;border:1px solid #d6e1f0;
+  border-radius:var(--pol-radius-sm);padding:20px!important;color:#153569!important;
+  box-shadow:var(--pol-shadow);
+}
+body.bbb-resource-page .bbb-related-grid a>strong{margin-top:auto}
+body.bbb-resource-page .bbb-related-grid span{display:block;font-size:18px;font-weight:750;line-height:1.3;margin-bottom:8px}
+@media (max-width:640px){
+  body.bbb-resource-page .bbb-related-resources{margin:40px auto 48px!important;padding:22px 18px!important}
+  body.bbb-resource-page .bbb-related-top{display:block}
+  body.bbb-resource-page .bbb-related-all{margin-top:8px}
+  body.bbb-resource-page .bbb-related-grid{grid-template-columns:1fr}
+  body.bbb-resource-page .bbb-related-grid a>p{font-size:14px!important}
+  body.bbb-resource-page .bbb-related-grid a>strong{font-size:14px!important}
+}
+
+/* 3c. Injected affiliate / referral panel (fd, tax): sits on the column */
+body.bbb-resource-page .bbb-affiliate{
+  box-sizing:border-box;
+  max-width:var(--pol-col)!important;
+  width:calc(100% - 2 * var(--pol-gut))!important;
+  margin-left:auto!important;margin-right:auto!important;
+  border-radius:var(--pol-radius)!important;
+  background:#fff!important;
+  border:1px solid var(--pol-line)!important;
+}
+body.bbb-resource-page .bbb-affiliate-links{align-items:stretch}
+body.bbb-resource-page .bbb-referral-platform{display:flex;flex-direction:column;border-radius:var(--pol-radius-sm)!important}
+
+/* 3d. Injected "visual-first" strip: full column width, no extra inset */
+body.bbb-resource-page .bbb-visual-first{
+  box-sizing:border-box;
+  max-width:var(--pol-col)!important;
+  width:auto!important;
+  margin-left:auto!important;margin-right:auto!important;
+  border-radius:var(--pol-radius)!important;
+}
+body.bbb-resource-page>.bbb-visual-first{width:calc(100% - 2 * var(--pol-gut))!important}
+body.bbb-resource-page .bbb-visual-first .vf-track{align-items:stretch}
+
+/* 3e. Result CTA uses the shared card radius */
+body.bbb-resource-page .bbb-result-cta{border-radius:var(--pol-radius-sm)}
+
+/* 3f. Mobile readability + tap targets (shared) */
+@media (max-width:640px){
+  body.bbb-resource-page .bbb-btn{min-height:48px}
+  body.bbb-resource-page .bbb-cta-micro{font-size:13px}
+  body.bbb-resource-page .bbb-affiliate{padding:20px 16px!important}
+  body.bbb-resource-page .bbb-affiliate-intro{font-size:15px!important;line-height:1.6!important}
+  body.bbb-resource-page .bbb-affiliate-status,
+  body.bbb-resource-page .bbb-referral-offer-note,
+  body.bbb-resource-page .bbb-fund-minimum,
+  body.bbb-resource-page .bbb-affiliate-card p{font-size:13px!important;line-height:1.55!important}
+  body.bbb-resource-page .bbb-affiliate-disclosure,
+  body.bbb-resource-page .vf-risk{font-size:13px!important;line-height:1.55!important}
+  body.bbb-resource-page .bbb-visual-first{padding:20px 16px!important}
+  /* long tables scroll inside their own box, never the page */
+  body.bbb-resource-page .table-wrap,
+  body.bbb-resource-page .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+}
+
+/* ==========================================================================
+   4. Page: resources hub  (resources/index.html, .hub-main)
+   ========================================================================== */
+body.bbb-resource-page .hub-main{
+  max-width:var(--pol-wrap)!important;
+  padding-left:var(--pol-gut)!important;padding-right:var(--pol-gut)!important;
+  box-sizing:border-box;
+}
+body.bbb-resource-page .hub-main .free-resources{background:#fff;border-color:var(--pol-line)!important;box-shadow:var(--pol-shadow)}
+body.bbb-resource-page .hub-main .resource-grid{align-items:stretch}
+body.bbb-resource-page .hub-main .resource-grid>*{height:100%}
+body.bbb-resource-page .hub-next{background:var(--pol-navy-deep)!important;border-radius:var(--pol-radius)!important}
+body.bbb-resource-page .hub-next a{border-radius:12px!important;min-height:48px;display:inline-flex;align-items:center;background:var(--pol-yellow)!important;color:var(--pol-navy-deep)!important}
+body.bbb-resource-page .hub-footer{background:transparent;border-top:1px solid var(--pol-line)}
+body.bbb-resource-page .hub-footer p{max-width:var(--pol-col);margin-left:auto;margin-right:auto}
+@media (max-width:640px){
+  body.bbb-resource-page .hub-main{margin-top:16px!important;padding-top:16px!important}
+  body.bbb-resource-page .hub-main .free-resources{padding:24px 16px!important}
+  body.bbb-resource-page .hub-main .resource-body p,
+  body.bbb-resource-page .hub-main .section-header p{font-size:15px!important;line-height:1.65!important}
+  body.bbb-resource-page .hub-main .resources-note{font-size:13px!important}
+  body.bbb-resource-page .hub-main .resource-body h3{margin-top:8px!important}
+  body.bbb-resource-page .hub-main .resource-open{margin-top:12px!important}
+  body.bbb-resource-page .hub-next{padding:24px 20px!important}
+  body.bbb-resource-page .hub-next a{width:100%;justify-content:center;box-sizing:border-box}
+}
+
+/* ==========================================================================
+   5. Calculator pages  (.page on hub + retirement, main on CI + term)
+   ========================================================================== */
+body.bbb-resource-page>.page,
+body.bbb-resource-page.ux-calculator>main{
+  max-width:var(--pol-wrap)!important;
+  padding-left:var(--pol-gut)!important;padding-right:var(--pol-gut)!important;
+  box-sizing:border-box;
+}
+body.bbb-resource-page>.page>.hero,
+body.bbb-resource-page.ux-calculator>main>.hero{border-radius:var(--pol-radius)!important}
+body.bbb-resource-page .calc-grid{align-items:stretch}
+body.bbb-resource-page>.page>.bbb-hero-wa{margin:0 0 24px!important}
+body.bbb-resource-page .calc-card{display:flex;flex-direction:column;border-radius:var(--pol-radius)!important;box-shadow:var(--pol-shadow)}
+body.bbb-resource-page .calc-card .go{margin-top:auto!important}
+body.bbb-resource-page .rc-card{border-radius:var(--pol-radius)!important;overflow:hidden;box-shadow:var(--pol-shadow)}
+body.bbb-resource-page.ux-calculator .layout{align-items:start}
+body.bbb-resource-page.ux-calculator .card{border-radius:var(--pol-radius)!important;border-color:var(--pol-line)!important}
+body.bbb-resource-page.ux-calculator .ux-result-card{background:linear-gradient(180deg,#fff 0,#fff 60%,var(--pol-cream) 100%)!important}
+@media (max-width:640px){
+  body.bbb-resource-page>.page,
+  body.bbb-resource-page.ux-calculator>main{padding-top:20px!important}
+  body.bbb-resource-page>.page>.hero,
+  body.bbb-resource-page.ux-calculator>main>.hero{padding:28px 20px!important;margin-bottom:20px!important}
+  body.bbb-resource-page>.page>.hero p,
+  body.bbb-resource-page.ux-calculator>main>.hero p{font-size:15px!important}
+  body.bbb-resource-page .rc-hint{font-size:13px!important}
+  body.bbb-resource-page .rc-disclaimer{font-size:13px!important}
+  body.bbb-resource-page.ux-calculator .card{padding:22px 16px!important}
+  body.bbb-resource-page.ux-calculator .notice,
+  body.bbb-resource-page.ux-calculator .notice span{font-size:14px!important}
+  body.bbb-resource-page .calc-card{padding:24px 20px!important}
+}
+
+/* ==========================================================================
+   6. Page: fixed-deposit guide  (fd-november-2026, body.ux-fd)
+   ========================================================================== */
+body.ux-fd>header>.hero,
+body.ux-fd>.strip,
+body.ux-fd main.container{
+  box-sizing:border-box;
+  max-width:var(--pol-col)!important;
+  width:calc(100% - 2 * var(--pol-gut))!important;
+  margin-left:auto!important;margin-right:auto!important;
+}
+body.ux-fd main.container{padding-left:0!important;padding-right:0!important}
+body.ux-fd main.container>section,
+body.ux-fd main.container>div,
+body.ux-fd main.container>.calc{box-sizing:border-box;max-width:none!important;width:auto!important;margin-left:0!important;margin-right:0!important}
+body.ux-fd>.strip{background:var(--pol-tint)!important;color:#2f4570!important}
+body.ux-fd .footer{background:var(--pol-navy-deep)!important;color:#c9d5ea!important}
+body.ux-fd .footer a{color:#fff!important}
+@media (max-width:640px){
+  body.ux-fd>.strip{font-size:13px!important;padding:14px 16px!important;margin-top:16px!important;margin-bottom:16px!important}
+  body.ux-fd main.container p{font-size:15px}
+  body.ux-fd .fd-qualification-details p,
+  body.ux-fd .compare-topic-note,
+  body.ux-fd .money-risk,
+  body.ux-fd .money-note{font-size:13px!important;line-height:1.55!important}
+  body.ux-fd .cash-comparison-tabs,
+  body.ux-fd .mmf-money-flow{padding:22px 16px!important;border-radius:var(--pol-radius-sm)!important}
+  body.ux-fd .calc{padding:22px 16px!important}
+}
+
+/* ==========================================================================
+   7. Page: tax relief + PRS guide  (taxrelief2026, body.bbb-tax-guide)
+   ========================================================================== */
+body.bbb-tax-guide main.wrap,
+body.bbb-tax-guide footer.footer.wrap{
+  box-sizing:border-box;
+  max-width:var(--pol-wrap)!important;
+  padding-left:var(--pol-gut)!important;padding-right:var(--pol-gut)!important;
+}
+body.bbb-tax-guide .intro-strip{align-items:stretch}
+body.bbb-tax-guide .intro-strip>a{border-radius:var(--pol-radius-sm)!important}
+@media (max-width:640px){
+  body.bbb-tax-guide main.wrap{padding-left:var(--pol-gut)!important;padding-right:var(--pol-gut)!important;margin-left:0!important;margin-right:0!important;width:auto!important;max-width:none!important}
+  body.bbb-tax-guide main.wrap>section,
+  body.bbb-tax-guide main.wrap>div{margin-left:0!important;margin-right:0!important}
+  body.bbb-tax-guide .item-detail p,
+  body.bbb-tax-guide .reason-card p,
+  body.bbb-tax-guide .income-card p,
+  body.bbb-tax-guide .hero-copy .small-note{font-size:15px!important;line-height:1.65!important}
+  body.bbb-tax-guide .calc-foot,
+  body.bbb-tax-guide .summary-note,
+  body.bbb-tax-guide .bridge-copy p,
+  body.bbb-tax-guide .offer-note,
+  body.bbb-tax-guide .ux-photo-credits p,
+  body.bbb-tax-guide .tax-all-credits p{font-size:13px!important;line-height:1.55!important}
+}
+
+/* ==========================================================================
+   8. Page: credit-card guide  (resources/credit-card-guide)
+   ========================================================================== */
+body.bbb-resource-page>main#main{max-width:none!important;width:100%!important;margin-left:0!important;margin-right:0!important}
+body.bbb-resource-page>main#main>.section>.wrap{
+  box-sizing:border-box;
+  max-width:var(--pol-wrap)!important;
+  padding-left:var(--pol-gut)!important;padding-right:var(--pol-gut)!important;
+  margin-left:auto!important;margin-right:auto!important;
+}
+body.bbb-resource-page>section.hero:has(.hero-portrait),
+body.bbb-resource-page>.strip{
+  box-sizing:border-box;
+  max-width:var(--pol-col)!important;
+  width:calc(100% - 2 * var(--pol-gut))!important;
+  margin-left:auto!important;margin-right:auto!important;
+}
+body.bbb-resource-page>section.hero:has(.hero-portrait){border-radius:var(--pol-radius)!important}
+@media (max-width:640px){
+  body.bbb-resource-page>main#main .benefit-cell{font-size:13px!important}
+  body.bbb-resource-page>main#main .intro,
+  body.bbb-resource-page>main#main .callout p,
+  body.bbb-resource-page>main#main .reward-advice-copy p{font-size:15px!important;line-height:1.65!important}
+  body.bbb-resource-page>main#main .lesson-foot,
+  body.bbb-resource-page>main#main .footnote{font-size:13px!important}
+  body.bbb-resource-page>main#main .teacher-bubble{font-size:13px!important}
+}
+
+/* ==========================================================================
+   9. Page: cash / short-term money  (resources/cash) — reference page
+   Only snap its 40px-inset wrap onto the shared column.
+   ========================================================================== */
+body.bbb-resource-page>main>section>.wrap,
+body.bbb-resource-page>footer.mini>.wrap{
+  box-sizing:border-box;
+  max-width:var(--pol-wrap);
+  padding-left:var(--pol-gut);padding-right:var(--pol-gut);
+}
+@media (max-width:640px){
+  body.bbb-resource-page>main>section>.wrap .pcard .min,
+  body.bbb-resource-page>main>section>.wrap .hero-risk,
+  body.bbb-resource-page>main>section>.wrap .note,
+  body.bbb-resource-page>main>section>.wrap .table-note{font-size:13px}
+}
+
+/* ==========================================================================
+   9b. Desktop density: vertical rhythm 56-72px, no stacked double gaps
+   ========================================================================== */
+/* page wrappers no longer add their own 60-88px bottom padding on top of the
+   final CTA's 56px margin (gap was 144-168px) */
+body.bbb-resource-page>.page,
+body.bbb-resource-page.ux-calculator>main{padding-bottom:0!important}
+/* final CTA -> related panel: one 56px gap, not 112px (flex-column bodies don't collapse margins) */
+body.bbb-resource-page .bbb-final-wrap+.bbb-related-resources{margin-top:0!important}
+/* first block sits 24-32px under the fixed nav */
+body.bbb-resource-page>.page>.hero,
+body.bbb-resource-page.ux-calculator>main>.hero{margin-bottom:28px!important}
+
+/* FD: hero had min-height 640px with ~100px of empty navy above the headline */
+@media (min-width:901px){
+  body.ux-fd>header>.hero{min-height:0!important;padding-top:48px!important;align-items:center!important}
+  body.ux-fd>header>.hero .intro{padding-bottom:48px!important}
+  body.ux-fd>header>.hero .portrait{align-self:end}
+  body.ux-fd>header>.hero .portrait img{max-height:420px!important;width:auto!important}
+}
+body.ux-fd main.container{margin-top:0!important;padding-top:40px!important;padding-bottom:0!important}
+body.ux-fd main.container>.calc{margin-top:48px!important}
+body.ux-fd .bbb-affiliate{margin-top:56px!important;margin-bottom:0!important}
+/* "next: platforms" prompt floated centred in a 146px white gap -> compact tinted bar */
+body.ux-fd #flow-platform-next{
+  display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;
+  text-align:left!important;margin:24px 0 40px!important;padding:20px 28px!important;
+  background:var(--pol-yellow-soft);border:1px solid #f3dc8f;border-radius:var(--pol-radius-sm);
+}
+body.ux-fd #flow-platform-next p{margin:0!important;color:var(--pol-navy-ink);font-weight:600}
+body.ux-fd #flow-platform-next a{margin:0!important;border-radius:12px!important}
+@media (max-width:640px){
+  body.ux-fd #flow-platform-next{padding:18px 16px!important}
+  body.ux-fd #flow-platform-next a{width:100%;justify-content:center;text-align:center;box-sizing:border-box}
+}
+
+/* Tax: hero 575px tall for ~320px of content */
+@media (min-width:901px){
+  body.bbb-tax-guide main.wrap>.hero{min-height:0!important;padding-top:44px!important;padding-bottom:44px!important;align-items:center!important}
+}
+body.bbb-tax-guide #prs-offers{margin-top:64px!important}
+
+/* Credit-card: 84px section padding -> 64px */
+@media (min-width:641px){
+  body.bbb-resource-page>main#main>.section{padding-top:64px!important;padding-bottom:64px!important}
+}
+
+/* ==========================================================================
+   10. Mobile type floor (<= 640px)
+   Several ChatGPT-era layers shrink text to 8-11px on phones. Floor:
+   body copy 15px, notes/fine print 13px, labels/kickers/badges 12px,
+   buttons 15px. Matches the cash page, which already reads well.
+   ========================================================================== */
+@media (max-width:640px){
+  /* shared injected pieces */
+  body.bbb-resource-page .bbb-visual-first .vf-head span{font-size:12px!important}
+  body.bbb-resource-page .bbb-visual-first .vf-track span{font-size:13px!important}
+  body.bbb-resource-page .bbb-affiliate-kicker,
+  body.bbb-resource-page .bbb-related-kicker,
+  body.bbb-resource-page .bbb-result-cta__label{font-size:12px!important}
+  body.bbb-resource-page .ux-filter button{font-size:13px!important}
+
+  /* resources hub */
+  body.bbb-resource-page .hub-main .section-num,
+  body.bbb-resource-page .hub-main .resource-type{font-size:12px!important}
+
+  /* calculators */
+  body.bbb-resource-page>.page .hero-badge{font-size:12px!important}
+  body.bbb-resource-page>.page .bbb-task-actions .flow-zh{font-size:13px!important}
+  body.bbb-resource-page .rc-field label{font-size:13px!important}
+  body.bbb-resource-page .rc-pulse-stat .l,
+  body.bbb-resource-page .rc-pulse-stat small,
+  body.bbb-resource-page .rc-pulse-lbls b,
+  body.bbb-resource-page .rc-pulse-lbls span{font-size:12px!important}
+  body.bbb-resource-page.ux-calculator .field .zh,
+  body.bbb-resource-page.ux-calculator .chart-kicker .zh,
+  body.bbb-resource-page.ux-calculator .chart-badge .zh{font-size:13px!important}
+
+  /* fixed-deposit guide */
+  body.ux-fd .hero .eyebrow,
+  body.ux-fd .section-head .eyebrow,
+  body.ux-fd .calc .eyebrow{font-size:12px!important}
+  body.ux-fd .hero .button,
+  body.ux-fd .hero .btn{font-size:15px!important;min-height:48px}
+  body.ux-fd .compare-topic-tabs button,
+  body.ux-fd .money-mode-tabs button{font-size:14px!important;min-height:44px}
+  body.ux-fd .compare-product{font-size:13px!important}
+  body.ux-fd .money-arrow span,
+  body.ux-fd .money-return-line small,
+  body.ux-fd .fd-thumbnail small{font-size:12px!important}
+
+  /* tax relief + PRS guide */
+  body.bbb-tax-guide .hero-actions .button{font-size:15px!important;min-height:52px}
+  body.bbb-tax-guide .intro-strip b{font-size:14px!important}
+  body.bbb-tax-guide .intro-strip small,
+  body.bbb-tax-guide .intro-strip span{font-size:12px!important}
+  body.bbb-tax-guide .section-head p{font-size:15px!important;line-height:1.65!important}
+  body.bbb-tax-guide .step,
+  body.bbb-tax-guide .eyebrow,
+  body.bbb-tax-guide .reason-tag,
+  body.bbb-tax-guide .group-count,
+  body.bbb-tax-guide .limit,
+  body.bbb-tax-guide .impact-form-note,
+  body.bbb-tax-guide .impact-scope,
+  body.bbb-tax-guide .offer .tag,
+  body.bbb-tax-guide .sources small,
+  body.bbb-tax-guide .saving-life small,
+  body.bbb-tax-guide .savings small{font-size:12px!important}
+  body.bbb-tax-guide .income-card label,
+  body.bbb-tax-guide .prs-impact-form label,
+  body.bbb-tax-guide .amount-label,
+  body.bbb-tax-guide .input-wrap span,
+  body.bbb-tax-guide .home-price{font-size:13px!important}
+  body.bbb-tax-guide .text-button,
+  body.bbb-tax-guide .show-all,
+  body.bbb-tax-guide .method summary,
+  body.bbb-tax-guide .ux-photo-credits summary,
+  body.bbb-tax-guide .tax-all-credits summary,
+  body.bbb-tax-guide .tax-all-credits li,
+  body.bbb-tax-guide .tax-all-credits a,
+  body.bbb-tax-guide .source-link,
+  body.bbb-tax-guide .reward-caption,
+  body.bbb-tax-guide .reward-total{font-size:13px!important}
+  body.bbb-tax-guide .text-button,
+  body.bbb-tax-guide .show-all{min-height:40px}
+  body.bbb-tax-guide .category-tab b{font-size:13px!important}
+  body.bbb-tax-guide .category-tab small{font-size:12px!important}
+  body.bbb-tax-guide .item-title{font-size:15px!important}
+  body.bbb-tax-guide .savings p,
+  body.bbb-tax-guide .saving-life p,
+  body.bbb-tax-guide .impact-explanation,
+  body.bbb-tax-guide .prs-fit-note p,
+  body.bbb-tax-guide .prs-fit-note a,
+  body.bbb-tax-guide .sources p,
+  body.bbb-tax-guide .offer li{font-size:14px!important;line-height:1.6!important}
+  body.bbb-tax-guide .summary-bottom .button{font-size:15px!important}
+  body.bbb-tax-guide .case-profile p,
+  body.bbb-tax-guide .case-lines dt,
+  body.bbb-tax-guide .case-tax span,
+  body.bbb-tax-guide .case-vs,
+  body.bbb-tax-guide .prs-saving-banner span{font-size:12px!important}
+  body.bbb-tax-guide .reward-seal span,
+  body.bbb-tax-guide .reward-seal small{font-size:11px!important}
+
+  /* credit-card guide */
+  body.bbb-resource-page>section.hero .eyebrow,
+  body.bbb-resource-page>main#main .kicker,
+  body.bbb-resource-page>main#main .chapter-label,
+  body.bbb-resource-page>main#main .pay-rank,
+  body.bbb-resource-page>main#main .pay-result,
+  body.bbb-resource-page>main#main .reward-number,
+  body.bbb-resource-page>main#main .reward-tags span,
+  body.bbb-resource-page>main#main .reward-check small,
+  body.bbb-resource-page>main#main .reward-favourite,
+  body.bbb-resource-page>main#main .reward-badge,
+  body.bbb-resource-page>main#main .bank-word,
+  body.bbb-resource-page>main#main .advisor-label{font-size:12px!important}
+  body.bbb-resource-page>section.hero .hero-actions .button{font-size:15px!important;min-height:48px}
+  body.bbb-resource-page>main#main figcaption,
+  body.bbb-resource-page>main#main .reward-heading small,
+  body.bbb-resource-page>main#main .reward-advice-note,
+  body.bbb-resource-page>main#main .reward-advice-note strong,
+  body.bbb-resource-page>main#main .reward-advice-copy small,
+  body.bbb-resource-page>main#main .scenario-values small,
+  body.bbb-resource-page>main#main .fact small,
+  body.bbb-resource-page>main#main .source-link,
+  body.bbb-resource-page>main#main .source-link span{font-size:13px!important}
+  body.bbb-resource-page>main#main .pay-card p{font-size:14px!important;line-height:1.6!important}
+}
+
+/* ==========================================================================
+   11. Motion
+   ========================================================================== */
+@media (prefers-reduced-motion:reduce){
+  body.bbb-resource-page .bbb-related-grid a{transition:none!important;transform:none!important}
+}
