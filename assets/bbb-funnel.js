@@ -166,12 +166,26 @@ const bar=(()=>{
   const key='bbb-bar-closed:'+location.pathname;let closed=false;try{closed=sessionStorage.getItem(key)==='1'}catch(e){}
   const mq=matchMedia('(max-width:767px)');
   let heroSeen=true,coverOn=new Set(),focus=false;
+  /* Layout: [page action — wide] [compact WhatsApp] [✕]. The page action is the promo-code / tool CTA;
+     on calculators it turns into the live result once there is one. */
+  const PRIMARY={
+    hub:()=>[L('Browse all resources ↓','浏览全部资源 ↓'),'.resource-grid'],
+    'calc-hub':()=>[L('Pick a calculator ↓','选一个计算器 ↓'),'.calc-grid'],
+    retirement:()=>[L('Calculate my gap ↓','算算我的退休缺口 ↓'),'#bbb-retirement-form'],
+    ci:()=>[L('Start calculating ↓','开始计算 ↓'),'#calc'],
+    term:()=>[L('Start calculating ↓','开始计算 ↓'),'#calc'],
+    fd:()=>[L('Get our MMF promo codes','领取 MMF 优惠码'),'offer'],
+    tax:()=>[L('Get our PRS promo codes ↓','领取 PRS 优惠码 ↓'),'#prs-offers'],
+    cards:()=>[L('Compare 9 cards ↓','比较 9 张卡 ↓'),'#card-list'],
+    cash:()=>[L('Get our promo codes ↓','领取我们的优惠码 ↓'),'#partners']
+  };
   function render(){
-    let ctx='';
-    if(result&&cfg.readout){const [lab,val]=cfg.readout(result);ctx=`<button type="button" class="bbb-cta-bar__readout" data-cta="${PAGE}-bar-readout"><small>${lab}</small><b>${val}</b></button>`}
-    else if(cfg.ctx){const [lab,target]=cfg.ctx();ctx=`<a class="bbb-btn bbb-btn--ghost" href="${target==='offer'?'#bbb-affiliate-details':target}" data-bar-target="${target}" data-cta="${PAGE}-bar-ctx">${lab}</a>`}
-    const label=result?L('WhatsApp us','WhatsApp 聊聊'):L('Ask us','WhatsApp 问我们');
-    const html=(ctx?`<div class="bbb-cta-bar__ctx">${ctx}</div>`:'')+`<div class="bbb-cta-bar__main">${waBtn(label,currentMsg(),PAGE+'-bar-wa')}</div><button type="button" class="bbb-cta-bar__close" aria-label="${L('Hide','隐藏')}">✕</button>`;
+    let main='';
+    const usesReadout=result&&cfg.readout&&['retirement','ci','term'].includes(PAGE);
+    if(usesReadout){const [lab,val]=cfg.readout(result);main=`<button type="button" class="bbb-cta-bar__readout" data-cta="${PAGE}-bar-readout"><small>${lab}</small><b>${val} →</b></button>`}
+    else if(PRIMARY[PAGE]){const [lab,target]=PRIMARY[PAGE]();main=`<a class="bbb-btn bbb-btn--primary" href="${target==='offer'?'#bbb-affiliate-details':(target.startsWith('#')?target:'#')}" data-bar-target="${target}" data-cta="${PAGE}-bar-primary">${lab}</a>`}
+    const wa=`<a class="bbb-cta-bar__wa" href="${waHref(currentMsg())}" target="_blank" rel="noopener" data-cta="${PAGE}-bar-wa" aria-label="${L('Ask us on WhatsApp','WhatsApp 问我们')}">${WA_ICON}<span>WhatsApp</span></a>`;
+    const html=`<div class="bbb-cta-bar__main">${main}</div>${wa}<button type="button" class="bbb-cta-bar__close" aria-label="${L('Hide','隐藏')}">✕</button>`;
     if(el.dataset.sig!==html){el.innerHTML=html;el.dataset.sig=html}
   }
   function visible(){
@@ -182,7 +196,9 @@ const bar=(()=>{
     if(e.target.closest('.bbb-cta-bar__close')){closed=true;try{sessionStorage.setItem(key,'1')}catch(x){}update();return}
     if(e.target.closest('.bbb-cta-bar__readout')){const a=cfg.anchor&&cfg.anchor();(a||document.body).scrollIntoView({behavior:'smooth',block:'start'});return}
     const t=e.target.closest('[data-bar-target]');
-    if(t&&t.dataset.barTarget==='offer'&&typeof window.bbbOpenOffer==='function'){e.preventDefault();if(!window.bbbOpenOffer()){const d=$('#bbb-affiliate-details');if(d)d.scrollIntoView({behavior:'smooth'})}}
+    if(!t)return;const tg=t.dataset.barTarget;
+    if(tg==='offer'){e.preventDefault();if(!(typeof window.bbbOpenOffer==='function'&&window.bbbOpenOffer())){const d=$('#bbb-affiliate-details')||$('.bbb-affiliate');if(d)d.scrollIntoView({behavior:'smooth'})}return}
+    if(!tg.startsWith('#')){e.preventDefault();const d=$(tg);if(d)d.scrollIntoView({behavior:'smooth',block:'start'})}
   });
   /* Position checks on scroll/resize (works even where IntersectionObserver is throttled). */
   let heroEl=null,covers=[];

@@ -40,6 +40,27 @@ h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
 .hero-risk{display:inline-block;margin:16px 0 0;font-size:13px;font-weight:600;color:#7a4b00;background:var(--yellow-soft);border-radius:8px;padding:6px 12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .chip{font-size:13px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--navy-deep)}
+/* why MMF */
+.why-mmf{background:var(--navy-deep);color:#fff}
+.why-mmf h2,.why-mmf .kicker{color:#fff}.why-mmf .lead{color:#ffffffc9}
+.rate-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:26px 0}
+.rc-item{border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.rc-item.fd{background:#ffffff14;border:1px solid #ffffff2b}
+.rc-item.mmf{background:var(--yellow);color:var(--navy-deep)}
+.rc-label{font-size:13px;font-weight:700}
+.rc-item b{font-size:clamp(34px,6vw,46px);font-weight:800;line-height:1.05}
+.rc-item small{font-size:12px;opacity:.8}
+.rc-vs{align-self:center;font-weight:800;color:#ffffff99}
+.wm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.wm-grid article{background:#ffffff0f;border:1px solid #ffffff21;border-radius:16px;padding:18px}
+.wm-grid h3{color:#fff;font-size:17px;margin:6px 0 6px}
+.wm-grid p{margin:0;font-size:14px;color:#ffffffc4}
+.wm-n{font-size:12px;font-weight:800;color:var(--yellow);letter-spacing:.1em}
+.wm-risk{margin:16px 0 0;font-size:13px;color:#ffe9a6;background:#ffffff12;border-radius:10px;padding:10px 14px}
+.why-mmf .btn-text{color:#fff}
+.type-pick{position:relative;border:2px solid var(--yellow)!important;box-shadow:0 10px 26px #f5b80026}
+.pick{position:absolute;top:-12px;left:18px;background:var(--yellow);color:var(--navy-deep);font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px}
+@media(max-width:900px){.rate-compare{grid-template-columns:1fr}.rc-vs{display:none}.wm-grid{grid-template-columns:1fr}}
 /* three types */
 .types{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
 .type{border:1px solid var(--line);border-radius:18px;padding:22px;background:#fff}
@@ -113,7 +134,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
 </head>
 <body class="bbb-resource-page">
 <header class="bbb-site-header"><a class="bbb-site-brand" href="../../index.html" aria-label="BBBwealth and Money POV home"><span class="bbb-site-logo"><img src="../../assets/shared-header/bbbwealth.png" alt="BBBwealth"></span><span class="bbb-site-divider" aria-hidden="true"></span><span class="bbb-site-money"><img src="../../assets/shared-header/money-pov.png" alt="Money POV"></span></a><div id="bbbSiteLinks" class="bbb-site-links" role="navigation" aria-label="Main navigation"><a href="../../index.html#services" data-i18n="nav_services">服务</a><a href="../../index.html#insights" data-i18n="nav_insights">观点</a><a href="../../calculator/index.html" data-i18n="nav_calc">计算器</a><a href="../../index.html#training" data-i18n="nav_training">企业培训</a><a href="../../index.html#team" data-i18n="nav_team">团队</a><a class="bbb-site-current" href="../index.html" data-i18n="nav_res">免费资源</a><a class="bbb-site-consult" href="https://wa.me/601156281541" target="_blank" rel="noopener noreferrer" data-i18n="nav_wa">WhatsApp 联系</a></div><button class="bbb-site-menu" aria-label="Open navigation" aria-controls="bbbSiteLinks" aria-expanded="false" type="button">&#9776;</button></header>
-<div class="bbb-context-nav"><span class="bbb-context-title" data-i18n="ctx_title">短期闲钱放哪里</span><div class="bbb-context-links"><a href="#types" data-i18n="ctx_types">三类怎么选</a><a href="#compare" data-i18n="ctx_compare">11 个选择</a><a href="#calculator" data-i18n="ctx_calc">收益计算</a><a href="#partners" data-i18n="ctx_partners">优惠码</a></div><div class="bbb-language" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div></div>
+<div class="bbb-context-nav"><span class="bbb-context-title" data-i18n="ctx_title">短期闲钱放哪里</span><div class="bbb-context-links"><a href="#why-mmf" data-i18n="ctx_why">为什么选 MMF</a><a href="#types" data-i18n="ctx_types">三类怎么选</a><a href="#compare" data-i18n="ctx_compare">11 个选择</a><a href="#calculator" data-i18n="ctx_calc">收益计算</a><a href="#partners" data-i18n="ctx_partners">优惠码</a></div><div class="bbb-language" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div></div>
 
 <main>
 <section class="hero">
@@ -122,11 +143,31 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <h1 data-i18n-html="h_title">闲钱放哪里？<span>储蓄、MMF 与定存，一页比较。</span></h1>
     <p class="lead" data-i18n="h_sub">数字银行储蓄、电子钱包理财、货币市场基金和定存，各有不同的回酬、取用时间和保障。先看清楚，再决定这笔钱放哪里。</p>
     <div class="hero-actions">
-      <a class="btn btn-yellow" href="#types" data-i18n="h_cta" data-cta="cash-hero-start">看看我的闲钱适合放哪里 ↓</a>
+      <a class="btn btn-yellow" href="#why-mmf" data-i18n="h_cta" data-cta="cash-hero-start">看看我的闲钱适合放哪里 ↓</a>
       <a class="btn-text" href="#partners" data-i18n="h_cta2" data-cta="cash-hero-partners">直接看平台与推荐码 →</a>
     </div>
     <p class="hero-risk" data-i18n="h_risk">MMF：回酬浮动 · 本金不保证 · 不受 PIDM 保障</p>
     <div class="chips"><span class="chip" data-i18n="chip1">数字银行</span><span class="chip" data-i18n="chip2">电子钱包</span><span class="chip" data-i18n="chip3">货币市场基金</span><span class="chip" data-i18n="chip4">定期存款</span></div>
+  </div>
+</section>
+
+<section id="why-mmf" class="why-mmf">
+  <div class="wrap">
+    <div class="kicker" data-i18n="wm_kicker">我们的看法</div>
+    <h2 data-i18n="wm_title">短期闲钱，我们通常首选 MMF。</h2>
+    <p class="lead" data-i18n="wm_sub">很多人以为 MMF 是“高风险投资”。其实它的钱主要也是放在银行定存和短期货币市场工具里，只是由基金以机构身份去存，所以能拿到比零售定存牌告利率更好的利率。</p>
+    <div class="rate-compare" role="group" aria-label="Rate comparison">
+      <div class="rc-item fd"><span class="rc-label" data-i18n="wm_fd_l">银行定存牌告利率（12 个月）</span><b>1.80%</b><small data-i18n="wm_fd_s">Maybank，2026 年 10 月 20 日起</small></div>
+      <div class="rc-vs" aria-hidden="true">vs</div>
+      <div class="rc-item mmf"><span class="rc-label" data-i18n="wm_mmf_l">MMF 历史年化收益</span><b>~3.2%</b><small data-i18n="wm_mmf_s">例：Versa Cash 3.22%、Cash-i 3.28%（2026 年 9 月）</small></div>
+    </div>
+    <div class="wm-grid">
+      <article><span class="wm-n">01</span><h3 data-i18n="wm1_t">回酬通常比定存牌告高</h3><p data-i18n="wm1_p">底层同样是银行存款，但以批发利率存放，历来收益通常高于银行定存牌告利率。定存优惠利率虽然更高，但多数要新资金、有最低金额和锁定期，到期后也会按牌告利率续存。</p></article>
+      <article><span class="wm-n">02</span><h3 data-i18n="wm2_t">要用钱，1–2 个工作日到账</h3><p data-i18n="wm2_p">一般申请赎回后 1–2 个工作日回到银行户口，部分产品截单前申请当天到账。收益按天计算，提早拿出来也不会像定存那样损失已累积的利息。</p></article>
+      <article><span class="wm-n">03</span><h3 data-i18n="wm3_t">小额就能开始</h3><p data-i18n="wm3_p">RM0.01 到 RM100 就能起投，没有锁定期，也不需要一次放一大笔。</p></article>
+    </div>
+    <p class="wm-risk" data-i18n="wm_risk">须知：MMF 回酬浮动、本金不保证、不受 PIDM 保障；过往表现不代表未来回酬。要锁定确定利率、或需要 PIDM 保障的钱，定存仍是合适的选择。</p>
+    <div class="hero-actions" style="margin-top:20px"><a class="btn btn-yellow" href="#partners" data-i18n="wm_cta" data-cta="cash-whymmf-partners">看 MMF 平台与优惠码 ↓</a><a class="btn-text" href="#compare" data-i18n="wm_cta2" data-cta="cash-whymmf-compare">先比较全部 11 个选择 →</a></div>
   </div>
 </section>
 
@@ -137,7 +178,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <p class="lead" data-i18n="t_sub">先想清楚：这笔钱什么时候要用？需要多确定的收益？能不能接受本金有风险？</p>
     <div class="types">
       <article class="type"><h3 data-i18n="ty1_t">储蓄户口 / 储蓄袋</h3><div class="sub" data-i18n="ty1_s">数字银行、银行储蓄</div><dl><dt data-i18n="k_ret">回酬</dt><dd data-i18n="ty1_ret">按银行利率，常有分段与上限</dd><dt data-i18n="k_acc">取用</dt><dd class="good" data-i18n="ty1_acc">一般随时可用</dd><dt>PIDM</dt><dd class="good" data-i18n="ty1_pidm">合资格存款受保障</dd></dl></article>
-      <article class="type"><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><div class="sub" data-i18n="ty2_s">Moomoo、Versa、Webull、FSMOne、GO+ 等</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="warn" data-i18n="ty2_ret">浮动，本金不保证</dd><dt data-i18n="k_acc">取用</dt><dd data-i18n="ty2_acc">赎回需看截止时间，通常 0–3 个工作日</dd><dt>PIDM</dt><dd class="warn" data-i18n="ty2_pidm">不受 PIDM 保障</dd></dl></article>
+      <article class="type type-pick"><span class="pick" data-i18n="ty2_pick">BBBwealth 首选</span><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><div class="sub" data-i18n="ty2_s">Moomoo、Versa、Webull、FSMOne、GO+ 等</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="warn" data-i18n="ty2_ret">浮动，本金不保证</dd><dt data-i18n="k_acc">取用</dt><dd data-i18n="ty2_acc">赎回需看截止时间，通常 0–3 个工作日</dd><dt>PIDM</dt><dd class="warn" data-i18n="ty2_pidm">不受 PIDM 保障</dd></dl></article>
       <article class="type"><h3 data-i18n="ty3_t">定期存款（FD）</h3><div class="sub" data-i18n="ty3_s">银行定存，约定期限</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="good" data-i18n="ty3_ret">约定利率，到期领取</dd><dt data-i18n="k_acc">取用</dt><dd class="warn" data-i18n="ty3_acc">提早取出可能少拿或没有利息</dd><dt>PIDM</dt><dd class="good" data-i18n="ty3_pidm">合资格存款受保障</dd></dl></article>
     </div>
     <p class="note" style="margin-top:14px" data-i18n="t_note">PIDM 保障：每位存款人、每家成员银行最高 RM250,000，须符合相关条件。想看各家银行的定存利率，请看我们的定存指南。</p>
@@ -236,7 +277,14 @@ const P=[
  {name:"Touch 'n Go",type:['GO+','GO+'],kind:'wallet',rate:'~3.1%+',rnote:['historical, variable','历史参考，收益浮动'],desc:['From RM10, balance up to RM20,000; about 3.18% historically (28 Oct 2026). Actual returns shown in the app.','RM10 起，余额最高 RM20,000；历史参考约 3.18%（2026 年 10 月 28 日），实际收益以 App 为准。'],url:'https://www.touchngo.com.my/ewallet/'}
 ];
 const T={
- en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
+ en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_why:'Why MMFs',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
+  wm_kicker:'Our view',wm_title:'For short-term cash, we usually start with an MMF.',wm_sub:'Many people think of MMFs as risky investments. In fact their money also sits mainly in bank deposits and short-term money-market instruments; the fund simply places it as an institution, at better rates than retail board rates.',
+  wm_fd_l:'Bank FD board rate (12 months)',wm_fd_s:'Maybank, from 20 October 2026',wm_mmf_l:'MMF historical annualised return',wm_mmf_s:'e.g. Versa Cash 3.22%, Cash-i 3.28% (September 2026)',
+  wm1_t:'Usually above FD board rates',wm1_p:'The underlying is still bank deposits, placed at wholesale rates, so returns have historically been above FD board rates. Promotional FD rates can be higher, but most need fresh funds, a minimum amount and a lock-in, and renew at the board rate on maturity.',
+  wm2_t:'Need the money? 1–2 working days',wm2_p:'Redemptions usually reach your bank account in 1–2 working days, and some products pay out the same day if you request before the cut-off. Returns accrue daily, so taking money out early does not cost you interest already earned, unlike breaking an FD.',
+  wm3_t:'Start small',wm3_p:'Start from RM0.01 to RM100, with no lock-in period and no need to put in a large sum at once.',
+  wm_risk:'Note: MMF returns vary, capital is not guaranteed and MMFs are not PIDM-protected; past performance does not indicate future returns. For money that needs a fixed rate or PIDM protection, a fixed deposit is still the right choice.',
+  wm_cta:'See MMF platforms & promo codes ↓',wm_cta2:'Compare all 11 options first →',ty2_pick:'BBBwealth pick',
   h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Find where my spare cash fits ↓',h_cta2:'Skip to platforms & codes →',h_risk:'MMF: variable returns · capital not guaranteed · not PIDM-protected',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
   t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Ask yourself: when will you need this money, how certain must the return be, and can you accept any risk to the capital?',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Variable; capital not guaranteed',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM protection: up to RM250,000 per depositor per member bank, subject to conditions. For bank-by-bank FD rates, see our fixed deposit guide.',t_fd:'See the November FD guide →',
   c_kicker:'Compare your options',c_title:'11 options at a glance.',c_checked:'Information checked: 12 November 2026.',f_all:'All',f_bank:'Savings (PIDM-protected)',f_fund:'Funds / MMF',f_wallet:'E-wallets',c_note:'Rates are annualised. Campaign boosts and fund returns can change at any time; fund returns and capital are not guaranteed. Not every platform pays daily. Check the official page for the latest terms before opening an account.',open:'Official page ↗',copy:'Copy',copyCode:'Copy code',tag_bank:'Bank savings',tag_fund:'Fund',tag_wallet:'E-wallet',
@@ -285,5 +333,5 @@ window.addEventListener('bbb-rows',()=>{});
 })();
 </script>
 <script src="../../assets/sticky-headers.js"></script>
-<script src="../../assets/shared-header/nav.js"></script><script src="../../assets/bbb-funnel.js" data-funnel="cash" data-root="../../"></script></body>
+<script src="../../assets/shared-header/nav.js"></script><script src="../../assets/bbb-funnel.js" data-funnel="cash" data-root="../../"></script><link rel="stylesheet" href="../../assets/resource-polish.css" data-polish></body>
 </html>
