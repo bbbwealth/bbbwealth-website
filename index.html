@@ -7,7 +7,7 @@
 <meta name="description" content="BBBwealth is a Malaysian financial advisory practice led by Anson Tan, 8TV market commentator and Nanyang Siang Pau columnist. Financial planning, wealth management, HRD-claimable training and free money guides." />
 <meta property="og:title" content="BBBwealth — We don't sell products. We build clarity." />
 <meta property="og:description" content="Financial planning, wealth management and HRD-claimable training in Malaysia. Free guides and calculators." />
-<meta property="og:image" content="assets/home/anson.jpg" />
+<meta property="og:image" content="assets/home/clip-8tv.jpg" />
 <link rel="icon" type="image/png" href="assets/home/logo-bbbwealth.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,23 +65,21 @@ nav.scrolled{border-color:var(--line);box-shadow:0 4px 18px #0f17290d}
 
 /* ---------- HERO ---------- */
 .hero{padding:clamp(110px,14vw,150px) 0 clamp(48px,7vw,80px);background:radial-gradient(1200px 500px at 85% 0%,#eef3fc 0%,transparent 60%),linear-gradient(180deg,#fff 0%,var(--cream) 100%)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(40px,5.6vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin-bottom:22px}
 .hero h1 .y{display:block}
-html[lang=zh] .hero h1{font-size:clamp(36px,5vw,62px);line-height:1.15;letter-spacing:-.01em}
+html[lang=zh] .hero h1{font-size:clamp(34px,4.1vw,54px);line-height:1.15;letter-spacing:-.01em}
 .hero .lead{margin-bottom:30px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .hero-note{margin-top:18px;font-size:13px;color:var(--muted)}
-.hero-photo{position:relative;max-width:440px;justify-self:end;width:100%}
-.hero-photo .frame{aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#dfe5ef;box-shadow:0 30px 60px #12265033}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.hero-photo:before{content:'';position:absolute;inset:-18px -18px auto auto;width:120px;height:120px;border-radius:50%;background:var(--yellow);z-index:-1}
-.media-tag{position:absolute;left:-22px;bottom:34px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 30px #12265026;display:flex;align-items:center;gap:12px;max-width:90%}
+.hero-media{position:relative;width:100%}
+.hero-media .frame{aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#f3d9c4;box-shadow:0 30px 60px #12265033}
+.hero-media video{width:100%;height:100%;object-fit:cover}
+.hero-media:before{content:'';position:absolute;left:-18px;bottom:-18px;width:110px;height:110px;border-radius:50%;background:var(--yellow);z-index:-1}
+.media-tag{position:absolute;right:-14px;top:-22px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 30px #12265026;display:flex;align-items:center;gap:12px;max-width:90%}
 .media-tag .live{width:10px;height:10px;border-radius:50%;background:#e23b3b;box-shadow:0 0 0 4px #e23b3b26;flex-shrink:0}
 .media-tag strong{display:block;font-size:14px;color:var(--navy-deep)}
 .media-tag span{display:block;font-size:12px;color:var(--muted)}
-.name-tag{position:absolute;right:16px;top:16px;background:#122650d9;color:#fff;border-radius:10px;padding:8px 12px;font-size:12px;line-height:1.35}
-.name-tag b{display:block;font-size:14px}
 
 /* ---------- MEDIA BAR ---------- */
 .media-bar{padding:0;background:var(--navy-deep);color:#fff}
@@ -267,7 +265,7 @@ footer a:hover{color:#fff}
   .services-grid .card{display:grid;grid-template-columns:48px 1fr;column-gap:16px;padding:22px}
   .services-grid .icon{grid-row:span 3;margin:0}
   .sec-head{gap:6px;margin-bottom:30px}
-  .hero-photo{justify-self:start;max-width:360px}
+  .hero-media{max-width:620px;margin-bottom:22px}
   .f-grid{grid-template-columns:1fr 1fr}
   /* swipeable card rows */
   .swipe{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:min(78%,340px);overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(-1 * var(--gutter));padding:4px var(--gutter) 14px;scrollbar-width:none;overscroll-behavior-x:contain}
@@ -282,10 +280,10 @@ footer a:hover{color:#fff}
   .nav-links{top:64px}
   .hero{padding-top:96px}
   .hero-actions .btn{flex:1 1 100%;justify-content:center}
-  .hero-photo{max-width:none}
-  .hero-photo .frame{aspect-ratio:5/4}
-  .media-tag{left:12px;bottom:12px}
-  .hero-photo:before{display:none}
+  .hero-media .frame{border-radius:16px}
+  .media-tag{right:10px;top:-20px}
+  .hero-media{margin-top:12px}
+  .hero-media:before{display:none}
   .media-inner{grid-template-columns:1fr 1fr}
   .media-item{padding:16px 14px 16px 0;border-right:0;border-bottom:1px solid #ffffff1f}
   .media-item:nth-child(odd){padding-left:14px;border-left:1px solid #ffffff1f}
@@ -345,11 +343,12 @@ footer a:hover{color:#fff}
       </div>
       <p class="hero-note" data-i18n="h_note">No obligation. We listen first, then agree the scope before any fee.</p>
     </div>
-    <div class="hero-photo">
-      <div class="frame"><img src="assets/home/anson.jpg" alt="Anson Tan, BBBwealth" width="720" height="720" fetchpriority="high" /></div>
-      <div class="name-tag"><b>Anson Tan</b><span data-i18n="h_name_role">Director · Business Development</span></div>
-      <div class="media-tag"><span class="live" aria-hidden="true"></span><div><strong>8TV · 南洋商报</strong><span data-i18n="h_media">Market commentator & columnist</span></div></div>
-    </div>
+    <figure class="hero-media">
+      <div class="frame">
+        <video src="assets/home/clip-8tv.mp4" poster="assets/home/clip-8tv.jpg" muted loop playsinline preload="metadata" aria-label="Anson Tan on 8TV Morning Express"></video>
+      </div>
+      <figcaption class="media-tag"><span class="live" aria-hidden="true"></span><div><strong>8TV · 南洋商报</strong><span data-i18n="h_media">Anson Tan on 8TV Morning Express</span></div></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -406,7 +405,7 @@ footer a:hover{color:#fff}
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><b data-i18n="cr1_t">8TV market commentary</b><span data-i18n="cr1_p">On 8TV morning news, explaining markets and money for everyday viewers.</span></div></div>
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3"/></svg></div><div><b data-i18n="cr2_t">Nanyang Siang Pau columnist</b><span data-i18n="cr2_p">A bi-weekly personal-finance column for Malaysian Chinese readers.</span></div></div>
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></div><div><b data-i18n="cr3_t">HRD Corp-claimable trainer</b><span data-i18n="cr3_p">Corporate financial-literacy programmes that employers can claim under HRD Corp.</span></div></div>
-        <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div><b data-i18n="cr4_t">Licensed & qualified</b><span>CFP<sup>CERT™</sup> · CMSRL · FAR</span><span class="todo" data-i18n="todo_licence">Licence type & number — to fill</span></div></div>
+        <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div><b data-i18n="cr4_t">Licensed & qualified</b><span>CFP<sup>CERT™</sup> · CMSRL · FAR</span></div></div>
       </div>
     </div>
     <div class="how reveal">
@@ -504,7 +503,7 @@ footer a:hover{color:#fff}
     </div>
     <div class="ins-grid swipe reveal">
       <article class="ins">
-        <div class="media" data-video="assets/home/clip-8tv.mp4" data-poster="assets/home/clip-8tv.jpg"><span class="badge">8TV</span><span class="glyph">8TV<br>早晨新闻</span></div>
+        <div class="media"><span class="badge">8TV</span><img src="assets/home/still-8tv-geo.jpg" alt="Anson Tan on 8TV discussing geopolitical shifts in asset markets" loading="lazy" width="960" height="540" style="width:100%;height:100%;object-fit:cover" /></div>
         <div class="body">
           <div class="src" data-i18n="i1_src">8TV · Morning news</div>
           <h3 data-i18n="i1_t">Cross-generation money pressure, and the reshuffle in assets</h3>
@@ -676,7 +675,6 @@ footer a:hover{color:#fff}
     </div>
     <div class="legal">
       <div><b style="color:#fff">BBB Advisory Sdn Bhd</b> · <span class="todo" data-i18n="todo_reg">Company registration no. — to fill</span></div>
-      <div><span data-i18n="f_licence">Licence:</span> <span class="todo" data-i18n="todo_licence">Licence type & number — to fill</span></div>
       <p data-i18n="f_disc">Disclaimer: Content on this website, including guides, calculators, commentary and media appearances, is for general information and education only. It does not take into account your objectives, financial situation or needs, and is not a recommendation to buy or sell any product. Past performance is not indicative of future results. Investments involve risk, including possible loss of principal. Please seek advice based on your own circumstances before acting.</p>
       <div class="bottom"><span data-i18n="f_copy">© 2026 BBBwealth. All rights reserved.</span><span>Money POV × BBBwealth</span></div>
     </div>
@@ -700,9 +698,9 @@ footer a:hover{color:#fff}
     h_sub:"Before any product, we help you see your whole financial picture clearly — cash flow, protection, investing, retirement, tax and estate — then plan the next step with you.",
     h_cta:"Talk to us on WhatsApp",h_cta2:"Free guides & calculators",
     h_note:"No obligation. We listen first, then agree the scope before any fee.",
-    h_name_role:"Director · Business Development",h_media:"Market commentator & columnist",
+    h_media:"Anson Tan on 8TV Morning Express",
     m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"Bi-weekly personal-finance column",m_pod:"CITY+ finance podcast",m_pov:"Money education community",
-    todo_fans:"Follower count — to fill",todo_licence:"Licence type & number — to fill",todo_reg:"Company registration no. — to fill",
+    todo_fans:"Follower count — to fill",todo_reg:"Company registration no. — to fill",
     todo_8tv:"8TV clip link — to fill",todo_np:"Latest column title & link — to fill",todo_pod:"Latest episode title & link — to fill",
     s_kicker:"What we do",s_title:'Three services.<br>One <span class="y">philosophy.</span>',
     s_sub:"Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.",
@@ -775,7 +773,6 @@ footer a:hover{color:#fff}
     f_brand:"A Malaysian financial advisory practice. Financial planning, wealth management and HRD-claimable corporate training.",
     f_h_services:"Services",f_l_planning:"Financial Planning",f_l_wealth:"Wealth Management",f_l_training:"Corporate Training",f_l_calc:"Retirement Calculator",
     f_h_company:"Company",f_l_about:"About",f_l_team:"Our team",f_l_insights:"Insights",f_l_res:"Free Resources",f_h_contact:"Contact",
-    f_licence:"Licence:",
     f_disc:"Disclaimer: Content on this website, including guides, calculators, commentary and media appearances, is for general information and education only. It does not take into account your objectives, financial situation or needs, and is not a recommendation to buy or sell any product. Past performance is not indicative of future results. Investments involve risk, including possible loss of principal. Please seek advice based on your own circumstances before acting.",
     f_copy:"© 2026 BBBwealth. All rights reserved."
   },
@@ -788,9 +785,9 @@ footer a:hover{color:#fff}
     h_sub:"在谈任何产品之前，我们先陪你把整体财务看清楚：现金流、保障、投资、退休、税务与传承，再一起规划下一步。",
     h_cta:"WhatsApp 跟我们聊聊",h_cta2:"免费指南与计算器",
     h_note:"没有义务。我们先聆听，确认服务范围后才谈费用。",
-    h_name_role:"董事 · 业务发展",h_media:"财经评论员 · 专栏作者",
+    h_media:"谭凯俊 · 8TV 八度空间早晨新闻",
     m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"双周理财专栏",m_pod:"CITY+ 财经播客",m_pov:"理财教育社群",
-    todo_fans:"粉丝人数 — 待填",todo_licence:"牌照类型与编号 — 待填",todo_reg:"公司注册编号 — 待填",
+    todo_fans:"粉丝人数 — 待填",todo_reg:"公司注册编号 — 待填",
     todo_8tv:"8TV 片段链接 — 待填",todo_np:"最新专栏标题与链接 — 待填",todo_pod:"最新一集标题与链接 — 待填",
     s_kicker:"我们的服务",s_title:'三项服务，<br>同一个<span class="y">出发点。</span>',
     s_sub:"无论你刚开始理财、正在累积财富，还是想为团队安排培训，我们的做法都一样：先了解，再用白话讲清楚，然后才规划。",
@@ -863,7 +860,6 @@ footer a:hover{color:#fff}
     f_brand:"马来西亚财务咨询机构，提供财务规划、财富管理，以及可申报 HRD 的企业培训。",
     f_h_services:"服务",f_l_planning:"财务规划",f_l_wealth:"财富管理",f_l_training:"企业培训",f_l_calc:"退休计算器",
     f_h_company:"公司",f_l_about:"关于我们",f_l_team:"我们的团队",f_l_insights:"观点",f_l_res:"免费资源",f_h_contact:"联系方式",
-    f_licence:"牌照：",
     f_disc:"免责声明：本网站内容，包括指南、计算器、评论与媒体访谈，仅供一般资讯与教育用途，并未考虑你的目标、财务状况或需要，也不构成买卖任何产品的建议。过往表现不代表未来回报。投资涉及风险，包括可能损失本金。行动前，请根据你的个人情况寻求建议。",
     f_copy:"© 2026 BBBwealth. 版权所有。"
   }};
@@ -927,6 +923,10 @@ footer a:hover{color:#fff}
       if(!reduce){new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?v.play().catch(()=>{}):v.pause()),{threshold:.4}).observe(v)}
     }).catch(()=>{});
   });
+
+  // ---- hero clip ----
+  const hv=document.querySelector('.hero-media video');
+  if(hv&&!reduce){new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?hv.play().catch(()=>{}):hv.pause()),{threshold:.3}).observe(hv)}
 
   // ---- newsletter: submit to Netlify Forms without leaving the page ----
   const form=document.getElementById('newsletterForm');
