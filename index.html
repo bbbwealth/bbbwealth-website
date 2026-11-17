@@ -65,6 +65,7 @@ nav.scrolled{border-color:var(--line);box-shadow:0 4px 18px #0f17290d}
 .lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
 .lang button{border:0;background:none;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted)}
 .lang button[aria-pressed=true]{background:var(--navy);color:#fff}
+.lang-m{display:none}
 .nav-cta{padding:10px 18px;min-height:42px;font-size:14px}
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;color:var(--navy)}
 
@@ -129,6 +130,58 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .how .btn{margin-top:auto;align-self:flex-start}
 .how .steps{margin-bottom:22px}
 
+
+
+/* partner marquee inside the navy media band */
+.partners{border-top:1px solid #ffffff1f;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:0 24px}
+.partners-label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ffffffa6;padding:18px 28px 18px 0;border-right:1px solid #ffffff1f;line-height:1.4}
+.partners-label b{display:block;font-size:15px;letter-spacing:0;text-transform:none;color:#fff}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee ul{display:flex;width:max-content;list-style:none;margin:0;padding:18px 0;animation:mq 50s linear infinite}
+.marquee:hover ul{animation-play-state:paused}
+.marquee li{flex:0 0 auto;font-size:14px;font-weight:800;letter-spacing:.08em;color:#ffffffd9;white-space:nowrap;padding:0 22px;position:relative}
+.marquee li:after{content:'';position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--yellow);transform:translateY(-50%)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee ul{animation:none;flex-wrap:wrap;width:auto}}
+
+
+/* ---------- START HERE ---------- */
+.start{background:var(--cream)}
+.start-head{text-align:center;margin-bottom:26px}.start-head .kicker{justify-content:center}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.goal{position:relative;display:grid;grid-template-columns:48px 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 44px 16px 16px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s;min-height:84px}
+.goal:hover{transform:translateY(-3px);border-color:#f5d36b;box-shadow:0 14px 28px #1226501a}
+.g-ico{grid-row:span 2;width:48px;height:48px;border-radius:14px;background:var(--yellow-soft);display:grid;place-items:center;font-size:24px}
+.goal b{font-size:16px;line-height:1.35;color:var(--navy-deep)}
+.g-type{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.g-go{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--navy)}
+.persona{margin-top:18px;background:var(--navy-deep);color:#fff;border-radius:20px;padding:20px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.pz-l{flex:1 1 380px;display:grid;gap:10px}.pz-l b{font-size:15px}
+.pz-r{flex:1 1 360px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.pz-r ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;flex:1 1 100%}
+.pz-r li{font-size:13px;font-weight:600;background:#ffffff14;border:1px solid #ffffff26;border-radius:999px;padding:6px 12px;color:#ffffffe6}
+.col-all a{display:inline-flex;align-items:center;min-height:44px}
+/* ---------- TABS ---------- */
+[role=tabpanel][hidden]{display:none!important}
+.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:5px}
+.tabs button{min-height:44px;padding:8px 16px;border:0;border-radius:10px;background:none;font:inherit;font-size:14px;font-weight:700;color:var(--ink-soft);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--navy);color:#fff;box-shadow:0 6px 14px #12265026}
+.tabs.light{background:#ffffff14;border-color:#ffffff26}.tabs.light button{color:#ffffffcc}.tabs.light button[aria-selected=true]{background:var(--yellow);color:var(--navy-deep)}
+.insights .tabs{background:#ffffff0f;border-color:#ffffff26;margin-top:6px}.insights .tabs button{color:#ffffffcc}.insights .tabs button[aria-selected=true]{background:var(--yellow);color:var(--navy-deep)}
+.svc-panel{animation:fadeUp .25s ease-out}
+.svc-panel .lead{margin-bottom:18px}
+.svc-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:20px}
+.svc-cta small{font-size:13px;color:var(--muted)}
+.svc .pillar p{display:none}
+.svc .train-grid .card{padding:22px}
+.ins-grid.tabbed{display:block}
+.ins-grid.tabbed .ins{display:grid;grid-template-columns:1.1fr 1fr;animation:fadeUp .25s ease-out}
+.ins-grid.tabbed .ins[hidden]{display:none}
+.ins-grid.tabbed .ins .media{aspect-ratio:auto;min-height:260px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.goals{grid-template-columns:1fr 1fr}.ins-grid.tabbed .ins{grid-template-columns:1fr}.ins-grid.tabbed .ins .media{aspect-ratio:16/9;min-height:0}.sec-head .tabs{justify-self:start}}
+@media(max-width:560px){.goals{grid-template-columns:1fr 1fr;gap:10px}.goal{grid-template-columns:1fr;grid-template-rows:auto;padding:14px;gap:8px;min-height:0;align-items:start}.g-ico{grid-row:auto;width:40px;height:40px;font-size:20px}.goal b{font-size:15px}.g-go{display:none}.tabs{display:flex;width:100%}.tabs button{flex:1 1 0;padding:8px 6px;font-size:13px}.persona{padding:18px}}
+@media (prefers-reduced-motion:reduce){.svc-panel,.ins-grid.tabbed .ins{animation:none}.goal{transition:none}}
 
 /* ---------- OUR BRANDS ---------- */
 .brands{background:var(--cream)}
@@ -294,7 +347,11 @@ footer a:hover{color:#fff}
   .nav-links{position:fixed;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px #0f17291a;padding:8px var(--gutter) 18px;display:none}
   .nav-links.open{display:flex}
   .nav-links a,.nav-links a.hide-md{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
-  .nav-links .lang{align-self:flex-start;margin:14px 0}
+  .nav-links .lang{display:none}
+  .lang-m{display:flex;margin-left:auto;margin-right:10px}
+  .lang-m{flex-shrink:0}
+  .lang-m button{min-height:36px;padding:6px 10px;font-size:13px;white-space:nowrap}
+  .menu-toggle{flex-shrink:0}
   .nav-links a.nav-res{display:flex;margin:10px 0 2px;border-radius:12px;padding:12px 14px}
   .nav-links a.nav-res .nav-badge{position:static;margin-left:auto}
   .nav-links a.nav-cta{display:flex;justify-content:center;padding:14px 18px;border-bottom:0;color:var(--navy-deep)}
@@ -322,6 +379,10 @@ footer a:hover{color:#fff}
   .hero-media{margin-top:12px}
   .hero-media:before{display:none}
   .media-inner{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .partners{grid-template-columns:1fr}
+  .partners-label{border-right:0;padding:14px 0 0}
+  .marquee ul{padding:10px 0 16px}
+  .marquee li{font-size:13px;padding:0 16px}
   .media-item{padding:16px 10px;border-right:1px solid #ffffff1f}
   .media-item:first-of-type{padding-left:0}
   .media-item:last-child{border-right:0;padding-right:0}
@@ -356,6 +417,7 @@ footer a:hover{color:#fff}
       <div class="lang" id="langToggle" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="zh" aria-pressed="false">中文</button></div>
       <a class="btn btn-yellow nav-cta wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="n_book">WhatsApp us</a>
     </div>
+    <div class="lang lang-m" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </nav>
@@ -374,7 +436,7 @@ footer a:hover{color:#fff}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
           <span data-i18n="h_cta">Talk to us on WhatsApp</span>
         </a>
-        <a class="btn btn-ghost" href="#resources" data-i18n="h_cta2">Free guides & calculators</a>
+        <a class="btn btn-ghost" href="#start" data-i18n="h_cta2">Free guides & calculators</a>
       </div>
       <p class="hero-note" data-i18n="h_note">No obligation. We listen first, then agree the scope before any fee.</p>
     </div>
@@ -395,34 +457,57 @@ footer a:hover{color:#fff}
     <a class="media-item" href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener"><b>南洋商报</b><span data-i18n="m_np">《股势先机》 market column</span></a>
     <a class="media-item" href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener"><b>YouTube</b><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></a>
   </div>
+  <div class="wrap partners" aria-label="Brands we have worked with">
+    <div class="partners-label"><span data-i18n="pt_label">Brands we've worked with</span><b data-i18n="pt_count">30+ financial brands</b></div>
+    <div class="marquee"><ul><li>Maybank</li><li>Bursa Malaysia</li><li>moomoo</li><li>Webull</li><li>RHB Investment Bank</li><li>Kenanga Investment Bank</li><li>SGX</li><li>Phillip Capital</li><li>UOB Kay Hian</li><li>FSMOne</li><li>iFAST</li><li>Alliance Bank</li><li>Versa</li><li>CapBay</li><li>Credit Bureau Malaysia</li><li aria-hidden="true">Maybank</li><li aria-hidden="true">Bursa Malaysia</li><li aria-hidden="true">moomoo</li><li aria-hidden="true">Webull</li><li aria-hidden="true">RHB Investment Bank</li><li aria-hidden="true">Kenanga Investment Bank</li><li aria-hidden="true">SGX</li><li aria-hidden="true">Phillip Capital</li><li aria-hidden="true">UOB Kay Hian</li><li aria-hidden="true">FSMOne</li><li aria-hidden="true">iFAST</li><li aria-hidden="true">Alliance Bank</li><li aria-hidden="true">Versa</li><li aria-hidden="true">CapBay</li><li aria-hidden="true">Credit Bureau Malaysia</li></ul></div>
+  </div>
 </section>
 
-<!-- ============== SERVICES ============== -->
+<!-- ============== START HERE (goal router + persona) ============== -->
+<section id="start" class="start">
+  <div class="wrap">
+    <div class="start-head reveal"><div class="kicker" data-i18n="g_kicker">Start here</div><h2 data-i18n="g_title">What do you want to sort out first?</h2></div>
+    <div class="goals reveal"><a class="goal" href="calculator/retirement/"><span class="g-ico" aria-hidden="true">🏖</span><b data-i18n="g1">Will my retirement money last?</b><span class="g-type" data-i18n="g_calc">Calculator</span><span class="g-go" aria-hidden="true">→</span></a><a class="goal" href="calculator/term-coverage/"><span class="g-ico" aria-hidden="true">🛡️</span><b data-i18n="g2">Is my family protected?</b><span class="g-type" data-i18n="g_calc">Calculator</span><span class="g-go" aria-hidden="true">→</span></a><a class="goal" href="calculator/critical-illness/"><span class="g-ico" aria-hidden="true">🩺</span><b data-i18n="g3">Could I cope with a serious illness?</b><span class="g-type" data-i18n="g_calc">Calculator</span><span class="g-go" aria-hidden="true">→</span></a><a class="goal" href="resources/cash/"><span class="g-ico" aria-hidden="true">💰</span><b data-i18n="g4">Where should spare cash go?</b><span class="g-type" data-i18n="g_guide">Guide</span><span class="g-go" aria-hidden="true">→</span></a><a class="goal" href="taxrelief2026/"><span class="g-ico" aria-hidden="true">🧾</span><b data-i18n="g5">How can I pay less tax legally?</b><span class="g-type" data-i18n="g_guide">Guide</span><span class="g-go" aria-hidden="true">→</span></a><a class="goal" href="resources/credit-card-guide/"><span class="g-ico" aria-hidden="true">💳</span><b data-i18n="g6">Which credit card suits me?</b><span class="g-type" data-i18n="g_guide">Guide</span><span class="g-go" aria-hidden="true">→</span></a></div>
+    <div class="persona reveal">
+      <div class="pz-l"><b data-i18n="pz_t">Or tell us who you are</b>
+        <div class="tabs light" role="tablist" aria-label="Who you are" data-tabs="pz"><button type="button" role="tab" aria-selected="true" data-tab="0" data-i18n="wh1_t">Salaried professionals</button><button type="button" role="tab" aria-selected="false" data-tab="1" data-i18n="wh2_t">Young families</button><button type="button" role="tab" aria-selected="false" data-tab="2" data-i18n="wh3_t">Business owners</button></div></div>
+      <div class="pz-r" data-panels="pz">
+        <ul role="tabpanel"><li data-i18n="wh1_a">Cash-flow and emergency-fund check</li><li data-i18n="wh1_b">EPF-aware retirement gap</li><li data-i18n="wh1_c">Simple, regular investing plan</li></ul>
+        <ul role="tabpanel" hidden><li data-i18n="wh2_a">Protection review</li><li data-i18n="wh2_b">Education and home-buying goals</li><li data-i18n="wh2_c">Wills, hibah and nominations</li></ul>
+        <ul role="tabpanel" hidden><li data-i18n="wh3_a">Salary, dividend and tax structure</li><li data-i18n="wh3_b">Keyman and business protection</li><li data-i18n="wh3_c">Succession and estate planning</li></ul>
+        <a class="btn btn-yellow" id="pzWa" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="pz_btn">Talk about my situation</a>
+      </div>
+    </div>
+    <div class="center" style="margin-top:22px"><a class="btn btn-ghost" href="resources/" data-i18n="g_all">All free resources →</a></div>
+  </div>
+</section>
+
+<!-- ============== SERVICES (tabs: planning / wealth / training) ============== -->
 <section id="services">
   <div class="wrap">
     <div class="sec-head reveal">
       <div><div class="kicker" data-i18n="s_kicker">What we do</div><h2 data-i18n-html="s_title">Three services.<br>One <span class="y">philosophy.</span></h2></div>
-      <p class="lead" data-i18n="s_sub">Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.</p>
+      <div class="tabs" role="tablist" aria-label="Services" data-tabs="svc"><button type="button" role="tab" aria-selected="true" data-tab="0" data-i18n="s1_t">Financial Planning</button><button type="button" role="tab" aria-selected="false" data-tab="1" data-i18n="s2_t">Wealth Management</button><button type="button" role="tab" aria-selected="false" data-tab="2" data-i18n="s3_t">Corporate Training</button></div>
     </div>
-    <div class="services-grid reveal">
-      <a class="card" href="#planning">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div>
-        <h3 data-i18n="s1_t">Financial Planning</h3>
-        <p data-i18n="s1_p">Your whole financial picture — cash flow, debt, protection, investing, retirement, tax and estate — shaped into one plan around your goals.</p>
-        <span class="more" data-i18n="s1_link">How planning works →</span>
-      </a>
-      <a class="card" href="#wealth">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l5-6 4 3 6-8"/></svg></div>
-        <h3 data-i18n="s2_t">Wealth Management</h3>
-        <p data-i18n="s2_p">Investment, insurance & trust, debt, tax and estate — coordinated so each piece supports the others.</p>
-        <span class="more" data-i18n="s2_link">See the five pillars →</span>
-      </a>
-      <a class="card" href="#training">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></div>
-        <h3 data-i18n="s3_t">Corporate Training</h3>
-        <p data-i18n="s3_p">HRD-claimable financial-literacy programmes, from investment fundamentals to full financial-wellness days.</p>
-        <span class="more" data-i18n="s3_link">View programmes →</span>
-      </a>
+    <div class="svc reveal" data-panels="svc">
+      <div class="svc-panel" role="tabpanel" id="planning">
+        <p class="lead" data-i18n="s1_p">x</p>
+        <div class="segments"><div class="segment" data-i18n="fp_cash">x</div><div class="segment" data-i18n="fp_debt">x</div><div class="segment" data-i18n="fp_protect">x</div><div class="segment" data-i18n="fp_invest">x</div><div class="segment" data-i18n="fp_retire">x</div><div class="segment" data-i18n="fp_legacy">x</div></div>
+        <div class="svc-cta"><a class="btn btn-yellow wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="fp_cta">Arrange a conversation →</a><small data-i18n="fp_note">Scope and fees are agreed before work begins.</small></div>
+      </div>
+      <div class="svc-panel" role="tabpanel" id="wealth" hidden>
+        <p class="lead" data-i18n="s2_p">x</p>
+        <div class="pillars"><div class="pillar"><div class="n">01</div><h4 data-i18n="w1_t">x</h4></div><div class="pillar"><div class="n">02</div><h4 data-i18n="w2_t">x</h4></div><div class="pillar"><div class="n">03</div><h4 data-i18n="w3_t">x</h4></div><div class="pillar"><div class="n">04</div><h4 data-i18n="w4_t">x</h4></div><div class="pillar"><div class="n">05</div><h4 data-i18n="w5_t">x</h4></div></div>
+        <div class="svc-cta"><a class="btn btn-yellow wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="fp_cta">Arrange a conversation →</a></div>
+      </div>
+      <div class="svc-panel" role="tabpanel" id="training" hidden>
+        <p class="lead" data-i18n="s3_p">x</p>
+        <div class="train-grid">
+          <div class="card"><div class="pills"><span class="pill" data-i18n="tr1_dur">x</span><span class="pill hrd" data-i18n="tr_hrd">x</span></div><h3 data-i18n="tr1_t">x</h3><div class="subtitle" data-i18n="tr1_sub">x</div></div>
+          <div class="card"><div class="pills"><span class="pill" data-i18n="tr2_dur">x</span><span class="pill hrd" data-i18n="tr_hrd">x</span></div><h3 data-i18n="tr2_t">x</h3><div class="subtitle" data-i18n="tr2_sub">x</div></div>
+        </div>
+        <div class="svc-cta"><a class="btn btn-yellow wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="tr_quote">Request a quote →</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -434,7 +519,6 @@ footer a:hover{color:#fff}
       <div class="kicker" data-i18n="a_kicker">About BBBwealth</div>
       <h2 data-i18n-html="a_title">Advice you can <span class="y">check us on.</span></h2>
       <p class="lead" data-i18n="a_p1">BBBwealth helps individuals, families and business owners make better money decisions — explained in plain language, without product-pushing.</p>
-      <p class="lead" data-i18n="a_p2">We share our views in public — on TV, in print and on YouTube — so you can see how we think before you ever meet us.</p>
       <div class="creds">
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div><b data-i18n="cr1_t">8TV market commentary</b><span data-i18n="cr1_p">Morning news market views</span></div></div>
         <div class="cred"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3"/></svg></div><div><b data-i18n="cr2_t">Nanyang Siang Pau columnist</b><span data-i18n="cr2_p">《股势先机》 column</span></div></div>
@@ -455,88 +539,15 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<!-- ============== WHO WE HELP ============== -->
-<section id="who">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div><div class="kicker" data-i18n="wh_kicker">Who we help</div><h2 data-i18n-html="wh_title">Does this <span class="y">sound like you?</span></h2></div>
-      <p class="lead" data-i18n="wh_sub">Most people come to us with one question. We help them see how it connects to everything else.</p>
-    </div>
-    <div class="who-grid swipe reveal">
-      <div class="card who">
-        <span class="tag" data-i18n="wh_ex">Example</span>
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3 data-i18n="wh1_t">Salaried professionals</h3>
-        <p class="q" data-i18n="wh1_q">"I earn decently, but I'm not sure where it all goes — or whether I'll have enough to retire."</p>
-        <ul><li data-i18n="wh1_a">Cash-flow and emergency-fund check</li><li data-i18n="wh1_b">EPF-aware retirement gap</li><li data-i18n="wh1_c">Simple, regular investing plan</li></ul>
-      </div>
-      <div class="card who">
-        <span class="tag" data-i18n="wh_ex">Example</span>
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20v-2a5 5 0 0 1 10 0v2M14 20v-1a4 4 0 0 1 7-2.6"/></svg></div>
-        <h3 data-i18n="wh2_t">Young families</h3>
-        <p class="q" data-i18n="wh2_q">"We just had a child. Are we properly protected, and how do we start saving for education?"</p>
-        <ul><li data-i18n="wh2_a">Protection review — no overlaps, no gaps</li><li data-i18n="wh2_b">Education and home-buying goals</li><li data-i18n="wh2_c">Wills, hibah and nominations</li></ul>
-      </div>
-      <div class="card who">
-        <span class="tag" data-i18n="wh_ex">Example</span>
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
-        <h3 data-i18n="wh3_t">Business owners</h3>
-        <p class="q" data-i18n="wh3_q">"My money is tied up in the company. How do I pay myself, cut tax legally and plan succession?"</p>
-        <ul><li data-i18n="wh3_a">Salary, dividend and tax structure</li><li data-i18n="wh3_b">Keyman and business protection</li><li data-i18n="wh3_c">Succession and estate planning</li></ul>
-      </div>
-    </div>
-    <p class="swipe-hint" data-i18n="swipe">Swipe for more →</p>
-    <p class="note" data-i18n="wh_note">These are illustrative examples, not real client cases. Every plan depends on your own circumstances.</p>
-  </div>
-</section>
-
-<!-- ============== PLANNING + WEALTH ============== -->
-<section class="planning" id="planning">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div><div class="kicker" data-i18n="p_kicker">Financial planning</div><h2 data-i18n-html="p_title">Your whole financial picture.<br>One <span class="y">personal plan.</span></h2></div>
-      <p class="lead" data-i18n="p_sub">Your finances are connected. We bring the pieces together, identify what needs attention first and build a plan that fits your life.</p>
-    </div>
-    <div class="plan-grid reveal">
-      <div class="card">
-        <h3 data-i18n="p_cover">What a plan covers</h3>
-        <div class="segments">
-          <div class="segment" data-i18n="fp_cash">Cash flow & savings</div>
-          <div class="segment" data-i18n="fp_debt">Debt management</div>
-          <div class="segment" data-i18n="fp_protect">Insurance & protection</div>
-          <div class="segment" data-i18n="fp_invest">Investment planning</div>
-          <div class="segment" data-i18n="fp_retire">Retirement planning</div>
-          <div class="segment" data-i18n="fp_legacy">Tax & estate planning</div>
-        </div>
-      </div>
-      <div class="card meet">
-        <h3 data-i18n="fp_meet">Let's meet face to face</h3>
-        <p data-i18n="fp_scope">Fees depend on the agreed scope and the planning work involved. We talk first, then define the work and quote.</p>
-        <a class="btn btn-navy wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="fp_cta">Arrange a conversation →</a>
-        <small data-i18n="fp_note">Scope and fees are agreed before work begins.</small>
-      </div>
-    </div>
-
-    <h3 class="sub-h reveal" id="wealth" data-i18n-html="w_title">Wealth management: five pillars, <span class="y">one balance sheet.</span></h3>
-    <div class="pillars swipe reveal">
-      <div class="pillar"><div class="n">01</div><h4 data-i18n="w1_t">Investment</h4><p data-i18n="w1_p">Portfolios across equities, fixed income and alternatives — built on principle, not the trade of the day.</p></div>
-      <div class="pillar"><div class="n">02</div><h4 data-i18n="w2_t">Insurance & Trust</h4><p data-i18n="w2_p">The right risks covered at the right cost, with trust planning where appropriate.</p></div>
-      <div class="pillar"><div class="n">03</div><h4 data-i18n="w3_t">Debt Management</h4><p data-i18n="w3_p">Pay off, restructure or leverage — depending on rate, term and what your balance sheet needs.</p></div>
-      <div class="pillar"><div class="n">04</div><h4 data-i18n="w4_t">Tax Planning</h4><p data-i18n="w4_p">Legal, structural strategies for individuals, families and Sdn Bhd owners.</p></div>
-      <div class="pillar"><div class="n">05</div><h4 data-i18n="w5_t">Estate Planning</h4><p data-i18n="w5_p">Wasiat, hibah and trusts so what you've built reaches the people you built it for.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============== INSIGHTS ============== -->
 <section class="insights" id="insights">
   <div class="wrap">
     <div class="sec-head reveal">
       <div><div class="kicker" data-i18n="i_kicker">Our views</div><h2 data-i18n-html="i_title">See how we think — <span class="y">in public.</span></h2></div>
-      <p class="lead" data-i18n="i_sub">Market commentary on TV, a newspaper column and our own YouTube shows. The same plain-language thinking goes into every client plan.</p>
+      <div class="tabs" role="tablist" aria-label="Media" data-tabs="ins"><button type="button" role="tab" aria-selected="true" data-tab="0">8TV</button><button type="button" role="tab" aria-selected="false" data-tab="1">南洋商报</button><button type="button" role="tab" aria-selected="false" data-tab="2">YouTube</button></div>
     </div>
-    <div class="ins-grid swipe reveal">
-      <article class="ins">
+    <div class="ins-grid tabbed reveal" data-panels="ins">
+      <article class="ins" role="tabpanel">
         <div class="media"><span class="badge">8TV</span><img src="assets/home/still-8tv-geo.jpg" alt="BBBwealth on 8TV discussing geopolitical shifts in asset markets" loading="lazy" width="960" height="540" style="width:100%;height:100%;object-fit:cover" /></div>
         <div class="body">
           <div class="src" data-i18n="i1_src">8TV · Morning news</div>
@@ -549,7 +560,7 @@ footer a:hover{color:#fff}
           <div class="col-all"><a href="https://www.youtube.com/results?search_query=%E8%B0%AD%E5%87%AF%E4%BF%8A+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_all">More from 谭凯俊 →</a><a href="https://www.youtube.com/results?search_query=%E9%A6%99%E6%B8%85%E5%8F%91+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_co_all">More from 香清发 →</a></div>
         </div>
       </article>
-      <article class="ins np">
+      <article class="ins np" role="tabpanel" hidden>
         <div class="media"><span class="badge">南洋商报</span><span class="glyph">南洋商报<br>股势先机</span></div>
         <div class="body">
           <div class="src" data-i18n="i2_src">Nanyang Siang Pau · 股势先机</div>
@@ -562,7 +573,7 @@ footer a:hover{color:#fff}
           <div class="col-all"><a href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener" data-i18n="i2_all">All by 谭凯俊 →</a><a href="https://www.enanyang.my/tag/%E9%A6%99%E6%B8%85%E5%8F%91" target="_blank" rel="noopener" data-i18n="i2_co_all">All by 香清发 →</a></div>
         </div>
       </article>
-      <article class="ins">
+      <article class="ins" role="tabpanel" hidden>
         <a class="media" href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener" aria-label="Watch on YouTube"><span class="badge">YouTube</span><img src="https://i.ytimg.com/vi/-u2ngmGUkts/hqdefault.jpg" alt="AirAsia亚航又陷危机 — BBBwealth YouTube" loading="lazy" width="480" height="360" style="width:100%;height:100%;object-fit:cover" /><span class="play" aria-hidden="true"></span></a>
         <div class="body">
           <div class="src" data-i18n="i3_src">BBBwealth · YouTube</div>
@@ -576,7 +587,6 @@ footer a:hover{color:#fff}
         </div>
       </article>
     </div>
-    <p class="swipe-hint" style="color:#ffffff99" data-i18n="swipe">Swipe for more →</p>
   </div>
 </section>
 
@@ -609,38 +619,11 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
 })();
 </script>
 
-<!-- ============== TRAINING ============== -->
-<section id="training">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div><div class="kicker" data-i18n="t_kicker">Corporate training</div><h2 data-i18n-html="t_title">HRD-claimable.<br>Workforce-<span class="y">ready.</span></h2></div>
-      <p class="lead" data-i18n="t_sub">Financial stress quietly drains productivity. Our programmes give your team practical tools — and the confidence — to handle money well.</p>
-    </div>
-    <div class="train-grid swipe reveal">
-      <div class="card">
-        <div class="pills"><span class="pill" data-i18n="tr1_dur">4 hours · Half-day</span><span class="pill hrd" data-i18n="tr_hrd">HRD claimable</span></div>
-        <h3 data-i18n="tr1_t">Investment Fundamentals</h3>
-        <div class="subtitle" data-i18n="tr1_sub">For teams new to investing</div>
-        <ul class="ticks"><li data-i18n="tr1_l1">Investment types and asset classes</li><li data-i18n="tr1_l2">Risk assessment and diversification</li><li data-i18n="tr1_l3">Reading markets and making decisions</li><li data-i18n="tr1_l4">Building a long-term mindset</li></ul>
-        <a class="btn btn-navy wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="tr_quote">Request a quote →</a>
-      </div>
-      <div class="card">
-        <div class="pills"><span class="pill" data-i18n="tr2_dur">8 hours · Full-day</span><span class="pill hrd" data-i18n="tr_hrd">HRD claimable</span></div>
-        <h3 data-i18n="tr2_t">Financial Wellness Programme</h3>
-        <div class="subtitle" data-i18n="tr2_sub">Holistic personal finance for employees</div>
-        <ul class="ticks"><li data-i18n="tr2_l1">Budgeting and expense management</li><li data-i18n="tr2_l2">Debt management strategies</li><li data-i18n="tr2_l3">Emergency funds and protection needs</li><li data-i18n="tr2_l4">Retirement planning and goal setting</li></ul>
-        <a class="btn btn-navy wa-link" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="tr_quote">Request a quote →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============== TEAM ============== -->
 <section class="team" id="team">
   <div class="wrap">
     <div class="sec-head reveal">
       <div><div class="kicker" data-i18n="tm_kicker">The team</div><h2 data-i18n-html="tm_title">The team behind <span class="y">BBBwealth.</span></h2></div>
-      <p class="lead" data-i18n="tm_sub">Advice, planning and the content you see from us — one small team that owns the outcome.</p>
     </div>
     <div class="team-grid swipe reveal">
       <div class="card member"><img src="assets/home/anson.jpg" alt="Anson Tan" loading="lazy" width="720" height="720" /><div class="info"><h3>Anson Tan</h3><span class="role" data-i18n="tm1_role">Wealth Management</span><p data-i18n="tm1_p">Leads investment, insurance & trust, and the coordinated balance-sheet strategy. 8TV commentator and Nanyang columnist.</p><p class="cert">CFP<sup>CERT™</sup> · CMSRL · FAR</p></div></div>
@@ -651,27 +634,28 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
   </div>
 </section>
 
-<!-- ============== FREE RESOURCES ============== -->
-<section id="resources">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div><div class="kicker" data-i18n="fr_kicker">Free resources</div><h2 data-i18n-html="fr_title">Practical tools.<br>Clearer <span class="y">money decisions.</span></h2></div>
-      <p class="lead" data-i18n="fr_sub">Guides and calculators in one place. Find the resource from our social posts, or start with the topic that matters to you.</p>
-    </div>
-    <div class="res-grid swipe reveal">
-      <a class="card res" href="calculator/retirement/"><div class="cover"><span class="idx">01</span><span class="hook" data-i18n="rh0">Will your money last?</span></div><div class="rb"><div class="type" data-i18n="fr_calc">Calculator</div><h3 data-i18n="fr1_t">Retirement Calculator</h3><p data-i18n="fr1_p">Explore your retirement gap with EPF, savings and inflation assumptions.</p><span class="more" data-i18n="rcta0">Calculate my gap →</span></div></a>
-      <a class="card res" href="resources/cash/"><div class="cover"><span class="idx">02</span><span class="hook" data-i18n="rh1">Put idle cash to work</span></div><div class="rb"><div class="type" data-i18n="fr_guide">Guide</div><h3 data-i18n="fr2_t">2026 Cash & Savings Guide</h3><p data-i18n="fr2_p">Compare savings and cash-management choices for money you may need soon.</p><span class="more" data-i18n="rcta1">Compare cash options →</span></div></a>
-      <a class="card res" href="fd-november-2026/"><div class="cover"><span class="idx">03</span><span class="hook" data-i18n="rh2">Make your savings count</span></div><div class="rb"><div class="type" data-i18n="fr_guide">Guide</div><h3 data-i18n="fr3_t">November 2026 Fixed Deposits</h3><p data-i18n="fr3_p">Review the November 2026 guide. Check the dates and bank terms before acting.</p><span class="more" data-i18n="rcta2">Explore fixed deposits →</span></div></a>
-      <a class="card res" href="taxrelief2026/"><div class="cover"><span class="idx">04</span><span class="hook" data-i18n="rh3">Plan relief, not last-minute</span></div><div class="rb"><div class="type" data-i18n="fr_guide">Guide</div><h3 data-i18n="fr4_t">2026 Tax Relief Guide</h3><p data-i18n="fr4_p">A practical checklist and calculator for tax relief and PRS contributions.</p><span class="more" data-i18n="rcta3">Plan my tax relief →</span></div></a>
-      <a class="card res" href="resources/credit-card-guide/"><div class="cover"><span class="idx">05</span><span class="hook" data-i18n="rh4">Know your card. Avoid surprises.</span></div><div class="rb"><div class="type" data-i18n="fr_guide">Guide</div><h3 data-i18n="fr5_t">Credit Card Guide</h3><p data-i18n="fr5_p">Understand your statement, compare repayment choices and learn how to choose a card.</p><span class="more" data-i18n="rcta4">Read the card guide →</span></div></a>
-      <a class="card res" href="calculator/critical-illness/"><div class="cover"><span class="idx">06</span><span class="hook" data-i18n="rh5">How much cover is enough?</span></div><div class="rb"><div class="type" data-i18n="fr_calc">Calculator</div><h3 data-i18n="fr6_t">Critical Illness Coverage Needs</h3><p data-i18n="fr6_p">Start with 36 months of financial commitments, then deduct existing CI cover.</p><span class="more" data-i18n="rcta5">Check my cover gap →</span></div></a>
-      <a class="card res" href="calculator/term-coverage/"><div class="cover"><span class="idx">07</span><span class="hook" data-i18n="rh7">Who depends on your income?</span></div><div class="rb"><div class="type" data-i18n="fr_calc">Calculator</div><h3 data-i18n="fr8_t">Term Life Coverage Needs</h3><p data-i18n="fr8_p">Start from an income-based benchmark, then compare it with your existing life cover.</p><span class="more" data-i18n="rcta7">Check my life cover →</span></div></a>
-    </div>
-    <p class="swipe-hint" data-i18n="swipe">Swipe for more →</p>
-    <div class="center"><a class="btn btn-yellow" href="resources/" data-i18n="fr_all">View all free resources →</a></div>
-    <p class="note" data-i18n="fr_note">For general information and education. Check each resource's date, assumptions and terms. These tools do not replace advice based on your circumstances.</p>
-  </div>
-</section>
+
+<script>
+/* tabs: [data-tabs=X] buttons switch [data-panels=X] > [role=tabpanel] */
+(()=>{
+  function activate(key,i){
+    const tabs=[...document.querySelectorAll('[data-tabs="'+key+'"] [role=tab]')],panels=[...document.querySelectorAll('[data-panels="'+key+'"] > [role=tabpanel]')];
+    tabs.forEach((t,n)=>t.setAttribute('aria-selected',String(n===i)));panels.forEach((p,n)=>p.hidden=n!==i);
+    if(key==='pz')setPz();
+  }
+  document.querySelectorAll('[data-tabs]').forEach(g=>{const key=g.dataset.tabs;g.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>activate(key,+b.dataset.tab)));
+    g.addEventListener('keydown',e=>{if(!/Arrow(Left|Right)/.test(e.key))return;const bs=[...g.querySelectorAll('[role=tab]')],c=bs.findIndex(b=>b.getAttribute('aria-selected')==='true');const n=(c+(e.key==='ArrowRight'?1:bs.length-1))%bs.length;activate(key,n);bs[n].focus()})});
+  // nav / footer links to #planning #wealth #training open the matching service tab
+  const map={'#planning':0,'#wealth':1,'#training':2};
+  function goSvc(h){if(!(h in map))return false;activate('svc',map[h]);document.getElementById('services').scrollIntoView({behavior:'smooth'});return true}
+  document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a&&goSvc(a.getAttribute('href')))e.preventDefault()});
+  if(location.hash in map)setTimeout(()=>goSvc(location.hash),300);
+  // persona WhatsApp draft follows the selected persona and language
+  function setPz(){const b=document.getElementById('pzWa');if(!b)return;const sel=document.querySelector('[data-tabs="pz"] [aria-selected=true]');const who=sel?sel.textContent.trim():'';const zh=document.documentElement.lang.startsWith('zh');
+    const msg=zh?'你好 BBBwealth，我是'+who+'，想聊聊我的理财情况。':"Hi BBBwealth, I'm in the "+who+" group and would like to talk about my finances.";b.href='https://wa.me/601156281541?text='+encodeURIComponent(msg)}
+  setPz();let last=document.documentElement.lang;new MutationObserver(()=>{if(document.documentElement.lang!==last){last=document.documentElement.lang;setPz()}}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+})();
+</script>
 
 <!-- ============== NEWSLETTER ============== -->
 <section id="newsletter" style="padding-top:0">
@@ -773,7 +757,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
     h_cta:"Talk to us on WhatsApp",h_cta2:"Free guides & calculators",
     h_note:"No obligation. We listen first, then agree the scope before any fee.",
     h_media:"BBBwealth market commentary on 8TV",
-    m_label:"As seen on",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"@BBBwealth · 19.9K subscribers",m_pov:"Money education community",br_kicker:"Our brands",br_title:"Two brands, <span class=\"y\">one mission.</span>",br_sub:"Follow along for market views, money tips and new free tools.",br_bbb_t:"Financial planning & wealth",br_bbb_p:"Market views on TV, in print and on YouTube, plus planning and wealth management.",br_pov_t:"Money education",br_pov_p:"Everyday money topics explained in plain language: saving, cards, tax, investing.",
+    m_label:"As seen on",g_kicker:"Start here",g_title:"What do you want to sort out first?",g1:"Will my retirement money last?",g2:"Is my family protected?",g3:"Could I cope with a serious illness?",g4:"Where should spare cash go?",g5:"How can I pay less tax legally?",g6:"Which credit card suits me?",g_calc:"Calculator",g_guide:"Guide",g_all:"All free resources →",pz_t:"Or tell us who you are",pz_btn:"Talk about my situation",pt_label:"Brands we've worked with",pt_count:"30+ financial brands",m_8tv:"Morning news market commentary",m_np:"《股势先机》 market column",m_pod:"@BBBwealth · 19.9K subscribers",m_pov:"Money education community",br_kicker:"Our brands",br_title:"Two brands, <span class=\"y\">one mission.</span>",br_sub:"Follow along for market views, money tips and new free tools.",br_bbb_t:"Financial planning & wealth",br_bbb_p:"Market views on TV, in print and on YouTube, plus planning and wealth management.",br_pov_t:"Money education",br_pov_p:"Everyday money topics explained in plain language: saving, cards, tax, investing.",
     todo_fans:"Follower count — to fill",todo_reg:"Company registration no. — to fill",
     s_kicker:"What we do",s_title:'Three services.<br>One <span class="y">philosophy.</span>',
     s_sub:"Whether you're starting out, building wealth or training a team, we work the same way: understand first, explain plainly, then plan.",
@@ -858,7 +842,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
     h_cta:"WhatsApp 跟我们聊聊",h_cta2:"免费指南与计算器",
     h_note:"没有义务。我们先聆听，确认服务范围后才谈费用。",
     h_media:"BBBwealth 团队 · 八度空间早晨新闻市场评论",
-    m_label:"媒体曝光",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"@BBBwealth · 1.99万订阅",m_pov:"理财教育社群",br_kicker:"我们的品牌",br_title:"两个品牌，<span class=\"y\">同一个目标。</span>",br_sub:"关注我们，看市场观点、理财小知识和新的免费工具。",br_bbb_t:"理财规划与财富管理",br_bbb_p:"在电视、报章和 YouTube 分享市场观点，提供理财规划与财富管理服务。",br_pov_t:"理财教育",br_pov_p:"用白话讲清楚日常的钱事：储蓄、信用卡、税务、投资。",
+    m_label:"媒体曝光",g_kicker:"从这里开始",g_title:"你想先解决哪一件事？",g1:"退休的钱够不够？",g2:"家人的保障够吗？",g3:"生病了撑得住吗？",g4:"闲钱放哪里？",g5:"怎样合法省税？",g6:"信用卡怎么选？",g_calc:"计算器",g_guide:"指南",g_all:"全部免费资源 →",pz_t:"或者，告诉我们你是谁",pz_btn:"聊聊我的情况",pt_label:"合作过的品牌",pt_count:"30+ 个金融品牌",m_8tv:"早晨新闻 · 市场评论",m_np:"《股势先机》市场专栏",m_pod:"@BBBwealth · 1.99万订阅",m_pov:"理财教育社群",br_kicker:"我们的品牌",br_title:"两个品牌，<span class=\"y\">同一个目标。</span>",br_sub:"关注我们，看市场观点、理财小知识和新的免费工具。",br_bbb_t:"理财规划与财富管理",br_bbb_p:"在电视、报章和 YouTube 分享市场观点，提供理财规划与财富管理服务。",br_pov_t:"理财教育",br_pov_p:"用白话讲清楚日常的钱事：储蓄、信用卡、税务、投资。",
     todo_fans:"粉丝人数 — 待填",todo_reg:"公司注册编号 — 待填",
     s_kicker:"我们的服务",s_title:'三项服务，<br>同一个<span class="y">出发点。</span>',
     s_sub:"无论你刚开始理财、正在累积财富，还是想为团队安排培训，我们的做法都一样：先了解，再用白话讲清楚，然后才规划。",
@@ -960,12 +944,12 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
     document.title=t('doc_title');
     document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{el.innerHTML=t(el.dataset.i18nHtml)});
-    document.querySelectorAll('#langToggle [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+    document.querySelectorAll('.lang [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
     const nl=document.getElementById('nlLang');if(nl)nl.value=lang;
     try{localStorage.setItem('bbbwealth-language',lang);const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u.href)}catch(e){}
     syncLinks();
   }
-  document.querySelectorAll('#langToggle [data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;apply()}));
+  document.querySelectorAll('.lang [data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;apply()}));
   apply();
 
   // ---- nav ----
