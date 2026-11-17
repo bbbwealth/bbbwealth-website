@@ -4,6 +4,8 @@
  */
 (()=>{
   const box=document.getElementById('bbbSiteLinks');if(!box)return;
+  // pill style for the Free-resources item; injected here so every page gets it (most pages inline their header CSS)
+  if(!document.getElementById('bbb-nav-res-style')){const st=document.createElement('style');st.id='bbb-nav-res-style';st.textContent='html body .bbb-site-header .bbb-site-links a.bbb-site-res{display:inline-flex!important;align-items:center;gap:5px;padding:7px 13px!important;border-radius:999px!important;background:#fff3cc!important;border:1.5px solid #f5d36b!important;color:#122650!important;font-weight:800!important;text-decoration:none!important;box-shadow:none!important}html body .bbb-site-header .bbb-site-links a.bbb-site-res:hover{background:#f5b800!important}html body .bbb-site-header .bbb-site-links a.bbb-site-res::after,html body .bbb-site-header .bbb-site-links a.bbb-site-res::before{display:none!important}@media (max-width:1024px){html body .bbb-site-header .bbb-site-links a.bbb-site-res{display:flex!important;border-radius:12px!important;margin:6px 0!important}}';document.head.append(st)}
   const brand=document.querySelector('.bbb-site-brand');
   const root=(brand&&brand.getAttribute('href')||'index.html').replace(/index\.html.*$/,'');
   const here=location.pathname;

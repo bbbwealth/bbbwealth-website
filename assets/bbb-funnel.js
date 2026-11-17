@@ -80,7 +80,8 @@ let result=null;
 /* ---------- C: result CTA ---------- */
 function cardHTML(d,cta){
   const next=cfg.next?cfg.next():null;
-  return `<div class="bbb-result-cta__label">${d.label}</div>${d.value?`<div class="bbb-result-cta__value" aria-live="polite">${d.value}</div>`:''}<h3>${d.h}</h3><p>${d.p}</p><div class="bbb-actions">${waBtn(d.btn,d.msg,cta)}${next?`<a class="bbb-link" href="${next[0]}?lang=${zh()?'zh':'en'}" data-cta="${PAGE}-result-next">${next[1]}</a>`:''}</div><p class="bbb-cta-micro">${MICRO()}</p><p class="bbb-cta-risk">${LEGAL()}</p>`;
+  // two zones that sit side by side when the card is wide and stack when it is narrow
+  return `<div class="rc-body"><div class="bbb-result-cta__label">${d.label}</div>${d.value?`<div class="bbb-result-cta__value" aria-live="polite">${d.value}</div>`:''}<h3>${d.h}</h3><p>${d.p}</p><p class="bbb-cta-risk">${LEGAL()}</p></div><div class="rc-side"><div class="bbb-actions">${waBtn(d.btn,d.msg,cta)}${next?`<a class="bbb-link" href="${next[0]}?lang=${zh()?'zh':'en'}" data-cta="${PAGE}-result-next">${next[1]}</a>`:''}</div><p class="bbb-cta-micro">${MICRO()}</p></div>`;
 }
 let calls=[];
 function placeResult(){
