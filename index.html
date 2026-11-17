@@ -66,7 +66,6 @@ nav.scrolled{border-color:var(--line);box-shadow:0 4px 18px #0f17290d}
 .lang button{border:0;background:none;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted)}
 .lang button[aria-pressed=true]{background:var(--navy);color:#fff}
 .lang-m{display:none}
-.nav-quick{display:none}
 .nav-cta{padding:10px 18px;min-height:42px;font-size:14px}
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;font-size:20px;color:var(--navy)}
 
@@ -353,14 +352,6 @@ footer a:hover{color:#fff}
   .lang-m{flex-shrink:0}
   .lang-m button{min-height:36px;padding:6px 10px;font-size:13px;white-space:nowrap}
   .menu-toggle{flex-shrink:0}
-  .nav-quick{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 var(--gutter) 10px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
-  .nav-quick::-webkit-scrollbar{display:none}
-  .nav-quick a{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:700;color:var(--navy-deep);text-decoration:none;white-space:nowrap}
-  .nav-quick a.q-res{background:var(--yellow-soft);border-color:#f5d36b}
-  .nav-quick a:last-child{margin-right:24px}
-  .nav-links{top:114px}
-  html{scroll-padding-top:124px}
-  .hero{padding-top:140px}
   .nav-links a.nav-res{display:flex;margin:10px 0 2px;border-radius:12px;padding:12px 14px}
   .nav-links a.nav-res .nav-badge{position:static;margin-left:auto}
   .nav-links a.nav-cta{display:flex;justify-content:center;padding:14px 18px;border-bottom:0;color:var(--navy-deep)}
@@ -383,8 +374,8 @@ footer a:hover{color:#fff}
   .lang-m{margin-right:6px}.lang-m button{padding:6px 9px}
   .brand{flex-shrink:1;min-width:0}.brand img{max-width:100%}
   .nav-inner{padding-top:10px;padding-bottom:10px}
-  .nav-links{top:108px}
-  .hero{padding-top:136px}
+  .nav-links{top:64px}
+  .hero{padding-top:96px}
   .hero-actions .btn{flex:1 1 100%;justify-content:center}
   .hero-media .frame{border-radius:16px}
   .media-tag{right:10px;top:-20px}
@@ -412,6 +403,28 @@ footer a:hover{color:#fff}
   .wa-float{width:52px;height:52px;right:14px;bottom:14px}
 }
 @media (max-width:360px){.brand img.bbb{height:18px}.brand img.pov{height:15px}.brand .div{height:16px}.brand{gap:6px}.lang-m button{padding:6px 7px}}
+
+/* ---------- phone side tab → resources drawer ---------- */
+.side-tab,.side-drawer,.side-dim{display:none}
+@media (max-width:900px){
+  .side-tab{display:flex;position:fixed;right:0;top:46%;z-index:90;flex-direction:column;align-items:center;gap:6px;width:40px;padding:12px 0;border:1.5px solid #f5d36b;border-right:0;border-radius:14px 0 0 14px;background:var(--yellow-soft);color:var(--navy-deep);font-weight:800;font-size:13px;box-shadow:-4px 6px 18px #0f17291f;transition:transform .2s}
+  .side-tab .st-txt{writing-mode:vertical-rl;letter-spacing:.08em;white-space:nowrap}
+  html[lang^="en"] .side-tab .st-txt{letter-spacing:.02em}
+  .side-tab[aria-expanded="true"]{transform:translateX(100%)}
+  .side-dim{display:block;position:fixed;inset:0;z-index:110;background:#0b173066;opacity:0;pointer-events:none;transition:opacity .2s}
+  .side-dim.on{opacity:1;pointer-events:auto}
+  .side-drawer{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:120;width:min(320px,86vw);background:#fff;box-shadow:-12px 0 30px #0f172933;transform:translateX(105%);transition:transform .25s ease;padding:18px 16px 22px;overflow-y:auto;visibility:hidden}
+  .side-drawer.on{transform:none;visibility:visible}
+  .sd-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .sd-head b{font-size:17px;color:var(--navy-deep)}
+  .sd-x{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:20px;color:var(--navy)}
+  .sd-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .sd-list a{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 12px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--navy-deep);font-size:14px;font-weight:700;line-height:1.3}
+  .sd-list a .i{flex:0 0 34px;height:34px;border-radius:10px;background:var(--yellow-soft);display:grid;place-items:center;font-size:18px}
+  .sd-list a small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+  .side-drawer .btn{margin-top:14px;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.side-drawer,.side-dim,.side-tab{transition:none}}
 </style>
 </head>
 <body>
@@ -435,8 +448,16 @@ footer a:hover{color:#fff}
     <div class="lang lang-m" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></div>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
-  <div class="nav-quick" aria-label="Quick links"><a href="resources/" class="q-res"><span aria-hidden="true">🎁</span><span data-i18n="n_resources">Free resources</span></a><a href="calculator/"><span aria-hidden="true">🧮</span><span data-i18n="n_calc">Calculators</span></a><a href="#services" data-i18n="n_services">Services</a><a href="#insights" data-i18n="n_insights">Insights</a><a href="#team" data-i18n="n_team">Team</a></div>
 </nav>
+
+<!-- phone side tab → resources drawer -->
+<button type="button" class="side-tab" id="sideTab" aria-controls="sideDrawer" aria-expanded="false"><span aria-hidden="true">🎁</span><span class="st-txt" data-i18n="n_resources">Free resources</span></button>
+<div class="side-dim" id="sideDim"></div>
+<aside class="side-drawer" id="sideDrawer" aria-label="Free resources" aria-hidden="true">
+  <div class="sd-head"><b><span aria-hidden="true">🎁 </span><span data-i18n="n_resources">Free resources</span></b><button type="button" class="sd-x" id="sideX" aria-label="Close">✕</button></div>
+  <ul class="sd-list"><li><a href="calculator/retirement/"><span class="i" aria-hidden="true">🏖</span><span><span data-i18n="g1">Will my retirement money last?</span><small data-i18n="g_calc">Calculator</small></span></a></li><li><a href="calculator/term-coverage/"><span class="i" aria-hidden="true">🛡️</span><span><span data-i18n="g2">Is my family protected?</span><small data-i18n="g_calc">Calculator</small></span></a></li><li><a href="calculator/critical-illness/"><span class="i" aria-hidden="true">🩺</span><span><span data-i18n="g3">Could I cope with a serious illness?</span><small data-i18n="g_calc">Calculator</small></span></a></li><li><a href="resources/cash/"><span class="i" aria-hidden="true">💰</span><span><span data-i18n="g4">Where should spare cash go?</span><small data-i18n="g_guide">Guide</small></span></a></li><li><a href="taxrelief2026/"><span class="i" aria-hidden="true">🧾</span><span><span data-i18n="g5">How can I pay less tax legally?</span><small data-i18n="g_guide">Guide</small></span></a></li><li><a href="resources/credit-card-guide/"><span class="i" aria-hidden="true">💳</span><span><span data-i18n="g6">Which credit card suits me?</span><small data-i18n="g_guide">Guide</small></span></a></li></ul>
+  <a class="btn btn-yellow" href="resources/" data-i18n="g_all">All free resources →</a>
+</aside>
 
 <main id="top">
 
@@ -998,6 +1019,17 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
         .finally(()=>{btn.disabled=false});
     });
   }
+})();
+</script>
+
+<script>
+(()=>{const t=document.getElementById('sideTab'),d=document.getElementById('sideDrawer'),m=document.getElementById('sideDim'),x=document.getElementById('sideX');if(!t)return;
+  const set=o=>{d.classList.toggle('on',o);m.classList.toggle('on',o);t.setAttribute('aria-expanded',String(o));d.setAttribute('aria-hidden',String(!o));if(o)x.focus();else if(document.activeElement&&d.contains(document.activeElement))t.focus()};
+  t.addEventListener('click',()=>set(true));x.addEventListener('click',()=>set(false));m.addEventListener('click',()=>set(false));
+  d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.classList.contains('on'))set(false)});
+  // stay out of the way while the menu is open
+  const tog=document.getElementById('menuToggle');if(tog)tog.addEventListener('click',()=>set(false));
 })();
 </script>
 </body>
