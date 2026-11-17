@@ -69,12 +69,80 @@ h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
 .wm-grid article{background:#ffffff0f;border:1px solid #ffffff21;border-radius:16px;padding:18px}
 .wm-grid h3{color:#fff;font-size:17px;margin:6px 0 6px}
 .wm-grid p{margin:0;font-size:14px;color:#ffffffc4}
+.wm-ico{font-size:24px;display:block}
 .wm-n{font-size:12px;font-weight:800;color:var(--yellow);letter-spacing:.1em}
 .wm-risk{margin:16px 0 0;font-size:13px;color:#ffe9a6;background:#ffffff12;border-radius:10px;padding:10px 14px}
 .why-mmf .btn-text{color:#fff}
 .type-pick{position:relative;border:2px solid var(--yellow)!important;box-shadow:0 10px 26px #f5b80026}
 .pick{position:absolute;top:-12px;left:18px;background:var(--yellow);color:var(--navy-deep);font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px}
 @media(max-width:900px){.rate-compare{grid-template-columns:1fr}.rc-vs{display:none}.wm-grid{grid-template-columns:1fr}}
+/* promo-code strip */
+.code-strip{padding:14px 0;background:var(--yellow-soft);border-block:1px solid #f5d36b}
+.cs-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cs-label{font-weight:800;color:var(--navy-deep);font-size:15px}
+.cs-chips{display:flex;gap:8px;flex-wrap:wrap}
+.cs-chip,.pc-code{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:6px 12px;border:1.5px dashed #e0a800;background:#fff;border-radius:12px;font:800 14px/1 inherit;color:var(--navy-deep);cursor:pointer;letter-spacing:.03em}
+.cs-chip img{height:18px;width:auto;max-width:64px;object-fit:contain}
+/* Webull's logo is white-on-transparent: give it a dark backing everywhere */
+.cs-chip img[src*="webull"]{background:#0b1b3a;padding:3px 6px;border-radius:6px;height:22px}
+.pc-logo.img:has(img[src*="webull"]){background:#0b1b3a}
+.pcard img[src*="webull"]{background:#0b1b3a;padding:6px 10px;border-radius:8px;box-sizing:content-box}
+.cs-chip.done,.pc-code.done{background:#e6f5ed;border-color:#1c7a3e;color:#1c7a3e}
+.cs-more{margin-left:auto;font-size:13px;font-weight:700;color:var(--navy);text-decoration:none}
+@media(max-width:700px){.cs-inner{gap:8px}.cs-chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none}.cs-chips::-webkit-scrollbar{display:none}.cs-chip{flex:0 0 auto}.cs-more{margin-left:0}}
+/* compact comparison cards */
+.ptable.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.pc.has-code{border-color:#f5d36b;box-shadow:inset 0 0 0 1px #f5d36b}
+.pc-top{display:flex;align-items:center;gap:10px;min-width:0}
+.pc-logo{flex:0 0 auto;min-width:40px;height:40px;padding:0 6px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px}
+.pc-logo.img{background:#f4f6fa;width:72px;padding:6px}
+.pc-logo.img img{max-width:100%;max-height:26px;object-fit:contain}
+.pc-name{min-width:0}.pc-name b{display:block;font-size:15px;line-height:1.2}
+.pc-name small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-rate{font-size:26px;font-weight:800;color:var(--navy-deep);line-height:1.05}
+.pc-rate small{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-top:4px}
+.pc-short{margin:0;font-size:13px;color:var(--soft)}
+.pc-act{display:flex;gap:6px;margin-top:auto}
+.pc-code{flex:1;font-size:13px}
+.pc-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px;border:1.5px solid #c9d3e6;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;color:var(--navy)}
+.pc:not(.has-code) .pc-link{flex:1}
+.pc-more summary{font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none}
+.pc-more summary::after{content:' ▾'}.pc-more[open] summary::after{content:' ▴'}
+.pc-more p{margin:6px 0 0;font-size:12.5px;color:var(--soft)}
+@media(max-width:560px){
+  .ptable.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .pc{padding:12px;gap:5px;position:relative}
+  .pc-top{flex-direction:column;align-items:flex-start;gap:6px;padding-right:34px}
+  .pc-logo.img{width:56px;height:34px}.pc-logo{min-width:34px;height:34px;font-size:13px}
+  .pc-name b{font-size:14px}.pc-name small{white-space:normal;font-size:11.5px}
+  .pc-rate{font-size:20px}.pc-rate small{font-size:11.5px}
+  .pc-short{font-size:12px}
+  .pc.has-code .pc-link{position:absolute;top:10px;right:10px;min-height:34px;min-width:34px;padding:0;border-radius:10px}
+  .pc-code{font-size:12.5px;letter-spacing:0;padding:6px 4px;width:100%}
+}
+/* three types: scorecard */
+.ty-ico{font-size:28px;display:block;margin-bottom:6px}
+.ty-m{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.ty-m li{background:var(--cream);border-radius:12px;padding:10px 4px}
+.ty-m span{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.ty-m b{display:block;font-size:16px;font-weight:800;color:var(--navy-deep);margin-top:2px}
+.ty-m b.ok{color:#1c7a3e}.ty-m b.no{color:#9aa3b2}
+.type-pick .ty-m li{background:var(--yellow-soft)}
+/* money flow diagram */
+.flow2{display:grid;gap:14px;margin-top:22px}
+.fl-line{border:1px solid var(--line);border-radius:18px;padding:16px;background:#fff}
+.fl-line.mmf{border-color:#f5d36b;background:#fffbea}
+.fl-tag{display:inline-block;font-size:12px;font-weight:800;color:var(--navy);background:var(--cream);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.fl-line.mmf .fl-tag{background:var(--yellow);color:var(--navy-deep)}
+.fl-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:6px}
+.fl-step{text-align:center;background:var(--cream);border-radius:14px;padding:12px 6px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.fl-line.mmf .fl-step{background:#fff}
+.fl-step.hi{background:var(--yellow)!important}
+.fl-step i{font-style:normal;font-size:26px;line-height:1}
+.fl-step span{font-size:13px;font-weight:600;color:var(--navy-deep);margin-top:6px}
+.fl-arr{color:#9aa3b2;font-size:18px}
+@media(max-width:560px){.fl-steps{grid-template-columns:1fr auto 1fr;row-gap:8px}.fl-steps .fl-arr:nth-of-type(2){display:none}.fl-step i{font-size:22px}.fl-step span{font-size:12px}}
 /* three types */
 .types{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
 .type{border:1px solid var(--line);border-radius:18px;padding:22px;background:#fff}
@@ -177,20 +245,33 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
   </div>
 </section>
 
+<section class="code-strip" aria-label="Promo codes">
+  <div class="wrap cs-inner">
+    <span class="cs-label" data-i18n="cs_label">🎟 我们的开户优惠码</span>
+    <div class="cs-chips">
+      <button type="button" class="cs-chip" data-chip-copy="MAD6"><img src="../../assets/brand/moomoo.svg" alt="moomoo"><b>MAD6</b></button>
+      <button type="button" class="cs-chip" data-chip-copy="VERSAMAD"><img src="../../assets/brand/versa.png" alt="Versa"><b>VERSAMAD</b></button>
+      <button type="button" class="cs-chip" data-chip-copy="BBB1234"><img src="../../assets/brand/webull.svg" alt="Webull"><b>BBB1234</b></button>
+      <button type="button" class="cs-chip" data-chip-copy="WELCOME"><img src="../../assets/brand/fsmone.png" alt="FSMOne"><b>WELCOME</b></button>
+    </div>
+    <a class="cs-more" href="#partners" data-i18n="cs_more">点一下复制 · 条件 ↓</a>
+  </div>
+</section>
+
 <section id="why-mmf" class="why-mmf">
   <div class="wrap">
     <div class="kicker" data-i18n="wm_kicker">我们的看法</div>
     <h2 data-i18n="wm_title">短期闲钱，我们通常首选 MMF。</h2>
-    <p class="lead" data-i18n="wm_sub">很多人以为 MMF 是“高风险投资”。其实它的钱主要也是放在银行定存和短期货币市场工具里，只是由基金以机构身份去存，所以能拿到比零售定存牌告利率更好的利率。</p>
+    <p class="lead" data-i18n="wm_sub">MMF 的钱其实也放在银行定存和货币市场，只是用机构利率去存。</p>
     <div class="rate-compare" role="group" aria-label="Rate comparison">
       <div class="rc-item fd"><span class="rc-label" data-i18n="wm_fd_l">银行定存牌告利率（12 个月）</span><b>1.80%</b><small data-i18n="wm_fd_s">Maybank，2026 年 10 月 20 日起</small></div>
       <div class="rc-vs" aria-hidden="true">vs</div>
       <div class="rc-item mmf"><span class="rc-label" data-i18n="wm_mmf_l">MMF 历史年化收益</span><b>~3.2%</b><small data-i18n="wm_mmf_s">例：Versa Cash 3.22%、Cash-i 3.28%（2026 年 9 月）</small></div>
     </div>
     <div class="wm-grid">
-      <article><span class="wm-n">01</span><h3 data-i18n="wm1_t">回酬通常比定存牌告高</h3><p data-i18n="wm1_p">底层同样是银行存款，但以批发利率存放，历来收益通常高于银行定存牌告利率。定存优惠利率虽然更高，但多数要新资金、有最低金额和锁定期，到期后也会按牌告利率续存。</p></article>
-      <article><span class="wm-n">02</span><h3 data-i18n="wm2_t">要用钱，1–2 个工作日到账</h3><p data-i18n="wm2_p">一般申请赎回后 1–2 个工作日回到银行户口，部分产品截单前申请当天到账。利息每天计算，提早拿出来也不会像定存那样损失已累积的利息。</p></article>
-      <article><span class="wm-n">03</span><h3 data-i18n="wm3_t">小额就能开始</h3><p data-i18n="wm3_p">RM0.01 到 RM100 就能起投，没有锁定期，也不需要一次放一大笔。</p></article>
+      <article><span class="wm-ico" aria-hidden="true">📈</span><h3 data-i18n="wm1_t">回酬通常比定存牌告高</h3><p data-i18n="wm1_p">底层也是银行存款，用批发利率去存。</p></article>
+      <article><span class="wm-ico" aria-hidden="true">⚡</span><h3 data-i18n="wm2_t">要用钱，1–2 个工作日到账</h3><p data-i18n="wm2_p">利息每天算，提早拿也不亏已赚的利息。</p></article>
+      <article><span class="wm-ico" aria-hidden="true">🪙</span><h3 data-i18n="wm3_t">小额就能开始</h3><p data-i18n="wm3_p">RM0.01–RM100 起，没有锁定期。</p></article>
     </div>
     <p class="wm-risk" data-i18n="wm_risk">要锁定确定利率、或需要 PIDM 保障的钱，定存仍是合适的选择。</p>
     <div class="hero-actions" style="margin-top:20px"><a class="btn btn-yellow" href="#partners" data-i18n="wm_cta" data-cta="cash-whymmf-partners">看 MMF 平台与优惠码 ↓</a><a class="btn-text" href="#compare" data-i18n="wm_cta2" data-cta="cash-whymmf-compare">先比较全部 11 个选择 →</a></div>
@@ -201,13 +282,13 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
   <div class="wrap">
     <div class="kicker" data-i18n="t_kicker">先分清三类</div>
     <h2 data-i18n="t_title">同样是“放闲钱”，本质不一样。</h2>
-    <p class="lead" data-i18n="t_sub">先想清楚：这笔钱什么时候要用？需要多确定的收益？能不能接受本金有风险？</p>
+    <p class="lead" data-i18n="t_sub">看三样就够：回酬、取用时间、保障。</p>
     <div class="types">
-      <article class="type"><h3 data-i18n="ty1_t">储蓄户口 / 储蓄袋</h3><div class="sub" data-i18n="ty1_s">数字银行、银行储蓄</div><dl><dt data-i18n="k_ret">回酬</dt><dd data-i18n="ty1_ret">按银行利率，常有分段与上限</dd><dt data-i18n="k_acc">取用</dt><dd class="good" data-i18n="ty1_acc">一般随时可用</dd><dt>PIDM</dt><dd class="good" data-i18n="ty1_pidm">合资格存款受保障</dd></dl></article>
-      <article class="type type-pick"><span class="pick" data-i18n="ty2_pick">BBBwealth 首选</span><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><div class="sub" data-i18n="ty2_s">Moomoo、Versa、Webull、FSMOne、GO+ 等</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="good" data-i18n="ty2_ret">通常高于定存牌告利率，每天计算</dd><dt data-i18n="k_acc">取用</dt><dd data-i18n="ty2_acc">赎回需看截止时间，通常 0–3 个工作日</dd><dt>PIDM</dt><dd class="warn" data-i18n="ty2_pidm">不受 PIDM 保障</dd></dl></article>
-      <article class="type"><h3 data-i18n="ty3_t">定期存款（FD）</h3><div class="sub" data-i18n="ty3_s">银行定存，约定期限</div><dl><dt data-i18n="k_ret">回酬</dt><dd class="good" data-i18n="ty3_ret">约定利率，到期领取</dd><dt data-i18n="k_acc">取用</dt><dd class="warn" data-i18n="ty3_acc">提早取出可能少拿或没有利息</dd><dt>PIDM</dt><dd class="good" data-i18n="ty3_pidm">合资格存款受保障</dd></dl></article>
+      <article class="type"><span class="ty-ico" aria-hidden="true">🏦</span><h3 data-i18n="ty1_t">储蓄户口 / 储蓄袋</h3><ul class="ty-m"><li><span data-i18n="k_ret">回酬</span><b>2–4%</b></li><li><span data-i18n="k_acc">取用</span><b data-i18n="ty1_acc_s">随时</b></li><li><span>PIDM</span><b class="ok">✓</b></li></ul></article>
+      <article class="type type-pick"><span class="pick" data-i18n="ty2_pick">BBBwealth 首选</span><span class="ty-ico" aria-hidden="true">🪙</span><h3 data-i18n="ty2_t">货币市场基金（MMF）</h3><ul class="ty-m"><li><span data-i18n="k_ret">回酬</span><b>~3.2%</b></li><li><span data-i18n="k_acc">取用</span><b data-i18n="ty2_acc_s">1–2 天</b></li><li><span>PIDM</span><b class="no">—</b></li></ul></article>
+      <article class="type"><span class="ty-ico" aria-hidden="true">🔒</span><h3 data-i18n="ty3_t">定期存款（FD）</h3><ul class="ty-m"><li><span data-i18n="k_ret">回酬</span><b data-i18n="ty3_ret_s">1.80% 牌告</b></li><li><span data-i18n="k_acc">取用</span><b data-i18n="ty3_acc_s">锁定期限</b></li><li><span>PIDM</span><b class="ok">✓</b></li></ul></article>
     </div>
-    <p class="note" style="margin-top:14px" data-i18n="t_note">PIDM 保障：每位存款人、每家成员银行最高 RM250,000，须符合相关条件。想看各家银行的定存利率，请看我们的定存指南。</p>
+    <p class="note" style="margin-top:14px" data-i18n="t_note">PIDM：每人每家银行最高 RM250,000。</p>
     <p style="margin-top:10px"><a href="../../fd-november-2026/index.html" data-i18n="t_fd">查看 11 月定存指南 →</a></p>
   </div>
 </section>
@@ -218,7 +299,7 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <h2 data-i18n="c_title">11 个选择，一眼看懂。</h2>
     <p class="checked" data-checked="2026-11-12" data-stale-days="21"><span data-i18n="c_checked">资料核对：2026 年 11 月 12 日。</span></p>
     <div class="filters" role="group" aria-label="Filter"><button type="button" data-filter="all" aria-pressed="true" data-i18n="f_all">全部</button><button type="button" data-filter="bank" aria-pressed="false" data-i18n="f_bank">储蓄（受 PIDM 保障）</button><button type="button" data-filter="fund" aria-pressed="false" data-i18n="f_fund">基金 / MMF</button><button type="button" data-filter="wallet" aria-pressed="false" data-i18n="f_wallet">电子钱包</button></div>
-    <div class="ptable" id="ptable"></div>
+    <div class="ptable cards" id="ptable"></div>
     <p class="table-note" data-i18n="c_note">年化百分比；活动加码和基金收益可能随时调整。并非每个平台都每天派息。开户前请到官方页面确认最新条款。</p>
   </div>
 </section>
@@ -248,9 +329,11 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
   <div class="wrap">
     <div class="kicker" data-i18n="fl_kicker">钱怎么流动</div>
     <h2 data-i18n="fl_title">定存和 MMF，钱去了哪里？</h2>
-    <div class="flow">
-      <article><h3 data-i18n="fl_fd">定期存款</h3><ol><li data-i18n="fl_fd1">选好金额和期限，把钱存进银行。</li><li data-i18n="fl_fd2">银行按约定利率计息，期限内钱放着不动。</li><li data-i18n="fl_fd3">到期领回本金加利息，或按指示续存。</li></ol><span class="pill ok" data-i18n="fl_fd_p">合资格存款受 PIDM 保障</span></article>
-      <article><h3 data-i18n="fl_mmf">货币市场基金</h3><ol><li data-i18n="fl_mmf1">你的钱买入基金单位，不是存进银行。</li><li data-i18n="fl_mmf2">基金经理把大家的钱投资短期存款和货币市场工具。</li><li data-i18n="fl_mmf3">申请赎回后结算，钱回到你的银行户口，须看截止时间和工作日。</li></ol><span class="pill ok" data-i18n="fl_mmf_p">回酬通常高于定存牌告 · 每天计算收益</span></article>
+    <div class="flow2">
+      <div class="fl-line"><span class="fl-tag" data-i18n="fl_fd">定期存款</span>
+        <div class="fl-steps"><div class="fl-step"><i>💰</i><span data-i18n="fs_money">你的钱</span></div><b class="fl-arr">→</b><div class="fl-step"><i>🏦</i><span data-i18n="fs_bank">存进银行</span></div><b class="fl-arr">→</b><div class="fl-step"><i>🔒</i><span data-i18n="fs_lock">锁定期限</span></div><b class="fl-arr">→</b><div class="fl-step"><i>📅</i><span data-i18n="fs_mature">到期拿回本金 + 利息</span></div></div></div>
+      <div class="fl-line mmf"><span class="fl-tag" data-i18n="fl_mmf">货币市场基金</span>
+        <div class="fl-steps"><div class="fl-step"><i>💰</i><span data-i18n="fs_money">你的钱</span></div><b class="fl-arr">→</b><div class="fl-step"><i>📊</i><span data-i18n="fs_units">买基金单位</span></div><b class="fl-arr">→</b><div class="fl-step"><i>🏦</i><span data-i18n="fs_pool">基金存银行 / 货币市场</span></div><b class="fl-arr">→</b><div class="fl-step hi"><i>⚡</i><span data-i18n="fs_back">1–2 天回到户口 · 利息每天算</span></div></div></div>
     </div>
   </div>
 </section>
@@ -290,37 +373,38 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
 <script>
 (()=>{
 const P=[
- {name:'Ryt Bank',type:['Save Pocket','Save Pocket'],kind:'bank',rate:'4%',rnote:['first 30 days','首 30 天'],desc:['New users earn 4% on the first RM20,000 for 30 days; afterwards complete set tasks to extend.','新用户首 30 天，首 RM20,000 享 4%；之后完成指定任务续期。'],url:'https://www.rytbank.my/zh/savings-account'},
- {name:'KAF Digital Bank',type:['Basic Plus savings','Basic Plus 储蓄账户'],kind:'bank',rate:'5% / 3%',rnote:['historical hibah','历史 Hibah'],desc:['5% on the first RM2,000 and 3% above that, paid weekly; future rates not guaranteed.','首 RM2,000 为 5%，超过的部分为 3%；按周派发，未来不保证。'],url:'https://www.kafdigitalbank.com.my/produk'},
- {name:'Boost Bank',type:['Unlimited Jar','Unlimited Jar'],kind:'bank',rate:'up to 3.3%',rnote:['daily payout','每日派息'],desc:['Campaign until 31 Dec 2026 while the total campaign quota lasts.','活动至 2026 年 12 月 31 日，活动总额度有限。'],url:'https://myboostbank.co/promotion/terms-and-conditions/unlimited-jar-campaign',expires:'2026-12-31'},
- {name:'AEON Bank',type:['Savings Pot','Savings Pot'],kind:'bank',rate:'3%',rnote:['credited month-end','月底入账'],desc:['Calculated daily, credited at month-end; promotional rate until 28 Feb 2027.','每日计算，月底入账；优惠至 2027 年 2 月 28 日。'],url:'https://www.aeonbank.com.my/deposit',expires:'2027-02-28'},
- {name:'GXBank',type:['Savings Pocket','Savings Pocket'],kind:'bank',rate:'2%',rnote:['daily payout','每日派息'],desc:['Paid daily, no lock-in, withdraw any time.','每日派息，无锁定期，随时取用。'],url:'https://www.gxbank.my/savings-account'},
- {name:'moomoo',type:['Cash Plus','Cash Plus'],kind:'fund',rate:'6%',rnote:['up to 30 days','最长 30 天'],desc:['For eligible users, single subscriptions above RM500, up to RM30,000; includes fund return plus a platform subsidy.','符合资格者单笔认购超过 RM500，最高 RM30,000；收益包括基金收益与平台补贴。'],url:'https://www.moomoo.com/my/promotion/cashplus',code:'MAD6'},
- {name:'Versa',type:['Cash / Cash-i','Cash / Cash-i'],kind:'fund',rate:'3.22% / 3.28%',rnote:['Sep 2026 historical','2026 年 9 月历史收益'],desc:['New users who register with a referral code and invest at least RM100 in one go may receive RM10 in fund units. Returns vary.','新用户注册使用推荐码，首次单笔投入至少 RM100，可获 RM10 基金单位。收益浮动。'],url:'https://versa.com.my/save/',code:'VERSAMAD'},
- {name:'Webull',type:['Moneybull','Moneybull'],kind:'fund',rate:'~3.1%+',rnote:['variable, see app','收益浮动，以 App 为准'],desc:['Invests in AHAM Aiiman Enhanced i-Profit Fund; one redemption a day, same-day processing if requested by 8am on a working day.','投资 AHAM Aiiman Enhanced i-Profit Fund；每天可赎回一次，工作日上午 8 点前申请通常当天处理。'],url:'https://www.webull.com.my/moneybull',code:'BBB1234'},
- {name:'FSMOne',type:['Cash Solutions','Cash Solutions'],kind:'fund',rate:['variable','浮动'],rnote:['account-opening option','额外开户选择'],desc:['MYR Auto-Sweep with variable returns; enter the code at sign-up and check the latest offer terms.','MYR Auto-Sweep 收益浮动；开户时可输入代码，优惠以平台最新条款为准。'],url:'https://www.fsmone.com.my/referral/welcome',code:'WELCOME'},
- {name:'ShopeePay',type:['Money+','Money+'],kind:'wallet',rate:'up to 5%',rnote:['includes variable fund return','含浮动基金收益'],desc:['Balance of at least RM200; campaign boost on the first RM10,000. The 5% includes a variable fund return.','余额至少 RM200，首 RM10,000 享活动加码；5% 包含浮动基金收益。'],url:'https://help.shopee.com.my/portal/4/article/205326'},
- {name:"Touch 'n Go",type:['GO+','GO+'],kind:'wallet',rate:'~3.1%+',rnote:['historical, variable','历史参考，收益浮动'],desc:['From RM10, balance up to RM20,000; about 3.18% historically (28 Oct 2026). Actual returns shown in the app.','RM10 起，余额最高 RM20,000；历史参考约 3.18%（2026 年 10 月 28 日），实际收益以 App 为准。'],url:'https://www.touchngo.com.my/ewallet/'}
+ {name:'Ryt Bank',short:['New users · first RM20k','新户 · 首 RM20,000'],mark:['R','#5b2bd6'],type:['Save Pocket','Save Pocket'],kind:'bank',rate:'4%',rnote:['first 30 days','首 30 天'],desc:['New users earn 4% on the first RM20,000 for 30 days; afterwards complete set tasks to extend.','新用户首 30 天，首 RM20,000 享 4%；之后完成指定任务续期。'],url:'https://www.rytbank.my/zh/savings-account'},
+ {name:'KAF Digital Bank',short:['5% first RM2k, 3% above','首 RM2k 5%，其余 3%'],mark:['K','#00857c'],type:['Basic Plus savings','Basic Plus 储蓄账户'],kind:'bank',rate:'5% / 3%',rnote:['historical hibah','历史 Hibah'],desc:['5% on the first RM2,000 and 3% above that, paid weekly; future rates not guaranteed.','首 RM2,000 为 5%，超过的部分为 3%；按周派发，未来不保证。'],url:'https://www.kafdigitalbank.com.my/produk'},
+ {name:'Boost Bank',short:['Until 31 Dec 2026','活动至 2026/12/31'],mark:['B','#e4002b'],type:['Unlimited Jar','Unlimited Jar'],kind:'bank',rate:'up to 3.3%',rnote:['daily payout','每日派息'],desc:['Campaign until 31 Dec 2026 while the total campaign quota lasts.','活动至 2026 年 12 月 31 日，活动总额度有限。'],url:'https://myboostbank.co/promotion/terms-and-conditions/unlimited-jar-campaign',expires:'2026-12-31'},
+ {name:'AEON Bank',short:['Until 28 Feb 2027','优惠至 2027/2/28'],mark:['A','#b6007a'],type:['Savings Pot','Savings Pot'],kind:'bank',rate:'3%',rnote:['credited month-end','月底入账'],desc:['Calculated daily, credited at month-end; promotional rate until 28 Feb 2027.','每日计算，月底入账；优惠至 2027 年 2 月 28 日。'],url:'https://www.aeonbank.com.my/deposit',expires:'2027-02-28'},
+ {name:'GXBank',short:['No lock-in, any time','无锁定，随时取'],mark:['GX','#3d2bd9'],type:['Savings Pocket','Savings Pocket'],kind:'bank',rate:'2%',rnote:['daily payout','每日派息'],desc:['Paid daily, no lock-in, withdraw any time.','每日派息，无锁定期，随时取用。'],url:'https://www.gxbank.my/savings-account'},
+ {name:'moomoo',short:['Above RM500, up to 30 days','单笔 >RM500，最长 30 天'],logo:'../../assets/brand/moomoo.svg',type:['Cash Plus','Cash Plus'],kind:'fund',rate:'6%',rnote:['up to 30 days','最长 30 天'],desc:['For eligible users, single subscriptions above RM500, up to RM30,000; includes fund return plus a platform subsidy.','符合资格者单笔认购超过 RM500，最高 RM30,000；收益包括基金收益与平台补贴。'],url:'https://www.moomoo.com/my/promotion/cashplus',code:'MAD6'},
+ {name:'Versa',short:['From RM10 · Cash-i same day','RM10 起 · Cash-i 当天到账'],logo:'../../assets/brand/versa.png',type:['Cash / Cash-i','Cash / Cash-i'],kind:'fund',rate:'3.22% / 3.28%',rnote:['Sep 2026 historical','2026 年 9 月历史收益'],desc:['New users who register with a referral code and invest at least RM100 in one go may receive RM10 in fund units. Returns vary.','新用户注册使用推荐码，首次单笔投入至少 RM100，可获 RM10 基金单位。收益浮动。'],url:'https://versa.com.my/save/',code:'VERSAMAD'},
+ {name:'Webull',short:['From RM0.01 · auto-sweep','RM0.01 起 · 闲钱自动转入'],logo:'../../assets/brand/webull.svg',type:['Moneybull','Moneybull'],kind:'fund',rate:'~3.1%+',rnote:['variable, see app','收益浮动，以 App 为准'],desc:['Invests in AHAM Aiiman Enhanced i-Profit Fund; one redemption a day, same-day processing if requested by 8am on a working day.','投资 AHAM Aiiman Enhanced i-Profit Fund；每天可赎回一次，工作日上午 8 点前申请通常当天处理。'],url:'https://www.webull.com.my/moneybull',code:'BBB1234'},
+ {name:'FSMOne',short:['From RM100','RM100 起'],logo:'../../assets/brand/fsmone.png',type:['Cash Solutions','Cash Solutions'],kind:'fund',rate:['variable','浮动'],rnote:['account-opening option','额外开户选择'],desc:['MYR Auto-Sweep with variable returns; enter the code at sign-up and check the latest offer terms.','MYR Auto-Sweep 收益浮动；开户时可输入代码，优惠以平台最新条款为准。'],url:'https://www.fsmone.com.my/referral/welcome',code:'WELCOME'},
+ {name:'ShopeePay',short:['Balance ≥RM200, first RM10k','余额 ≥RM200，首 RM10k'],mark:['S','#ee4d2d'],type:['Money+','Money+'],kind:'wallet',rate:'up to 5%',rnote:['includes variable fund return','含浮动基金收益'],desc:['Balance of at least RM200; campaign boost on the first RM10,000. The 5% includes a variable fund return.','余额至少 RM200，首 RM10,000 享活动加码；5% 包含浮动基金收益。'],url:'https://help.shopee.com.my/portal/4/article/205326'},
+ {name:"Touch 'n Go",short:['From RM10, up to RM20k','RM10 起，最高 RM20k'],mark:['TNG','#1a5eab'],type:['GO+','GO+'],kind:'wallet',rate:'~3.1%+',rnote:['historical, variable','历史参考，收益浮动'],desc:['From RM10, balance up to RM20,000; about 3.18% historically (28 Oct 2026). Actual returns shown in the app.','RM10 起，余额最高 RM20,000；历史参考约 3.18%（2026 年 10 月 28 日），实际收益以 App 为准。'],url:'https://www.touchngo.com.my/ewallet/'}
 ];
 const T={
  en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_why:'Why MMFs',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
+  cs_label:'🎟 Our account-opening codes',cs_more:'Tap to copy · terms ↓',cond:'Conditions',copiedShort:'Copied',ty1_acc_s:'Any time',ty2_acc_s:'1–2 days',ty3_ret_s:'1.80% board',ty3_acc_s:'Locked tenure',fs_money:'Your money',fs_bank:'Deposit at a bank',fs_lock:'Locked for the tenure',fs_mature:'Principal + interest at maturity',fs_units:'Buy fund units',fs_pool:'Fund places it in bank deposits / money markets',fs_back:'Back in 1–2 days · interest daily',
   hc_k:'RM10,000 for a year: roughly how much could it earn?',hc_fd:'Bank FD board rate 1.80%',hc_mmf:'MMF historical ~3.2% a year',hc_diff:'About <b>RM140</b> more a year, with returns calculated daily and money you can take out any time.',hc_note:'Simple estimate using the Maybank 12-month board rate (from 20 October 2026) and Versa Cash’s September 2026 historical annualised return.',hc_cta:'Try my own amount ↓',
-  wm_kicker:'Our view',wm_title:'For short-term cash, we usually start with an MMF.',wm_sub:'Many people think of MMFs as risky investments. In fact their money also sits mainly in bank deposits and short-term money-market instruments; the fund simply places it as an institution, at better rates than retail board rates.',
+  wm_kicker:'Our view',wm_title:'For short-term cash, we usually start with an MMF.',wm_sub:'MMF money also sits in bank deposits and money markets, placed at institutional rates.',
   wm_fd_l:'Bank FD board rate (12 months)',wm_fd_s:'Maybank, from 20 October 2026',wm_mmf_l:'MMF historical annualised return',wm_mmf_s:'e.g. Versa Cash 3.22%, Cash-i 3.28% (September 2026)',
-  wm1_t:'Usually above FD board rates',wm1_p:'The underlying is still bank deposits, placed at wholesale rates, so returns have historically been above FD board rates. Promotional FD rates can be higher, but most need fresh funds, a minimum amount and a lock-in, and renew at the board rate on maturity.',
-  wm2_t:'Need the money? 1–2 working days',wm2_p:'Redemptions usually reach your bank account in 1–2 working days, and some products pay out the same day if you request before the cut-off. Returns are calculated every day, so taking money out early does not cost you interest already earned, unlike breaking an FD.',
-  wm3_t:'Start small',wm3_p:'Start from RM0.01 to RM100, with no lock-in period and no need to put in a large sum at once.',
+  wm1_t:'Usually above FD board rates',wm1_p:'The underlying is still bank deposits, placed at wholesale rates.',
+  wm2_t:'Need the money? 1–2 working days',wm2_p:'Returns are calculated daily, so taking money out early costs nothing already earned.',
+  wm3_t:'Start small',wm3_p:'From RM0.01–RM100, no lock-in.',
   wm_risk:'For money that needs a fixed rate or PIDM protection, a fixed deposit is still the right choice.',
   wm_cta:'See MMF platforms & promo codes ↓',wm_cta2:'Compare all 11 options first →',ty2_pick:'BBBwealth pick',
   h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Find where my spare cash fits ↓',h_cta2:'Skip to platforms & codes →',h_risk:'MMF returns are usually above bank FD board rates · returns accrue daily',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
-  t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Ask yourself: when will you need this money, how certain must the return be, and can you accept any risk to the capital?',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Usually above FD board rates, calculated daily',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM protection: up to RM250,000 per depositor per member bank, subject to conditions. For bank-by-bank FD rates, see our fixed deposit guide.',t_fd:'See the November FD guide →',
+  t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Three things are enough: return, access time and protection.',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Usually above FD board rates, calculated daily',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM: up to RM250,000 per depositor per bank.',t_fd:'See the November FD guide →',
   c_kicker:'Compare your options',c_title:'11 options at a glance.',c_checked:'Information checked: 12 November 2026.',f_all:'All',f_bank:'Savings (PIDM-protected)',f_fund:'Funds / MMF',f_wallet:'E-wallets',c_note:'Rates are annualised. Campaign boosts and fund returns can change at any time. Not every platform pays daily. Check the official page for the latest terms before opening an account.',open:'Official page ↗',copy:'Copy',copyCode:'Copy code',tag_bank:'Bank savings',tag_fund:'Fund',tag_wallet:'E-wallet',
   k_kicker:'Quick estimate',k_title:'What could your spare cash earn?',k_sub:'Enter the amount, annual return and number of days. Formula: amount × annual return ÷ 365 × days.',k_amt:'Amount',k_rate:'Annual return',k_days:'Days',k_daysu:'days',k_res:'Estimated earnings',k_res_note:'A simple estimate: excludes compounding, fees and sign-up rewards, and ignores promotion periods, tiered rates and caps. Actual returns depend on the provider.',k_cta:'Not sure where to put it? WhatsApp us',
   fl_kicker:'How the money moves',fl_title:'Fixed deposit vs MMF: where does the money go?',fl_fd:'Fixed deposit',fl_fd1:'Choose an amount and tenure and deposit it with the bank.',fl_fd2:'The bank pays the agreed rate; the money stays put for the tenure.',fl_fd3:'At maturity you receive principal plus interest, or renew as instructed.',fl_fd_p:'Eligible deposits PIDM-protected',fl_mmf:'Money market fund',fl_mmf1:'Your money buys fund units; it is not a bank deposit.',fl_mmf2:'The fund manager invests pooled money in short-term deposits and money-market instruments.',fl_mmf3:'After you redeem, settlement returns the money to your bank account, subject to cut-offs and working days.',fl_mmf_p:'Usually above FD board rates · returns calculated daily',
   p_kicker:'Open an account',p_title:'Ready to open an account? Copy the code, then go to the official page.',p_sub:'Compare access time, eligibility and risk before looking at sign-up offers. Do not let a referral reward decide where your money goes.',pm_min:'From RM0.01; several money market funds available. Ringgit transfers to your bank usually take 1–3 working days.',pv_min:'From RM10, minimum withdrawal RM50; Cash-i requests before 10am on a working day usually arrive the same day.',pw_min:'From RM0.01; optional auto-sweep of idle ringgit, one redemption a day.',pf_min:'RHB Cash Management Fund 2 (RM class): RM100 initial, RM100 top-up.',p_more:'Platform details ↗',pf_more:'Open via referral link ↗',copied:'Copied {c}. Enter it when you sign up and check the eligible offer.',copyFail:'Please copy manually: {c}',d_t:'Partner disclosure:',d_p:'If you sign up with a referral code or link, BBBwealth may receive a commission or referral reward. A code does not guarantee a current reward; rewards, eligibility and eligible products follow the platform’s terms at the time. Apart from the dedicated FSMOne referral link, these are product pages that do not apply the code automatically, so enter it manually. Past performance does not indicate future returns; MMFs are not PIDM-protected.',
   fn_title:'Still not sure?',fn_sub:'Tell us roughly how much it is and when you will need it, and we will help you sort out the options. No obligation, and no product push.',fn_cta:'WhatsApp us',r_kicker:'Keep exploring',r1_t:'November FD guide',r1_p:'Fixed-deposit offers from 8 banks, with an interest estimator.',r2_t:'2026 tax relief guide',r2_p:'22 reliefs and a PRS tax-saving calculator.',r3_t:'Retirement calculator',r3_p:'See how far you are from your retirement target.',r_all:'View all free resources →',foot:'For general information and education only; not personal investment advice. © 2026 BBBwealth.',
   wa:'Hi BBBwealth, I read your short-term cash guide and would like help deciding where to keep my money.',waCalc:'Hi BBBwealth, I have about RM{a} of spare cash for around {d} days. Could you help me compare where to keep it?'},
- zh:{doc:'短期闲钱放哪里：储蓄、MMF 与定存 | BBBwealth',copy:'复制',copyCode:'复制代码',open:'官方页面 ↗',tag_bank:'银行储蓄',tag_fund:'基金',tag_wallet:'电子钱包',copied:'已复制 {c}。注册时记得填写，并确认适用优惠。',copyFail:'请手动复制：{c}',wa:'你好 BBBwealth，我看了短期闲钱指南，想请你们帮我看看钱放哪里比较适合。',waCalc:'你好 BBBwealth，我有大约 RM{a} 闲钱，大概放 {d} 天，可以帮我比较放哪里比较好吗？'}
+ zh:{doc:'短期闲钱放哪里：储蓄、MMF 与定存 | BBBwealth',cond:'条件',copiedShort:'已复制',copy:'复制',copyCode:'复制代码',open:'官方页面 ↗',tag_bank:'银行储蓄',tag_fund:'基金',tag_wallet:'电子钱包',copied:'已复制 {c}。注册时记得填写，并确认适用优惠。',copyFail:'请手动复制：{c}',wa:'你好 BBBwealth，我看了短期闲钱指南，想请你们帮我看看钱放哪里比较适合。',waCalc:'你好 BBBwealth，我有大约 RM{a} 闲钱，大概放 {d} 天，可以帮我比较放哪里比较好吗？'}
 };
 const zhDefaults={};document.querySelectorAll('[data-i18n]').forEach(e=>zhDefaults[e.dataset.i18n]=e.textContent);document.querySelectorAll('[data-i18n-html]').forEach(e=>zhDefaults[e.dataset.i18nHtml]=e.innerHTML);
 let lang='zh';try{const q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('bbbwealth-language');lang=['en','zh'].includes(q)?q:(['en','zh'].includes(s)?s:'zh')}catch(e){}
@@ -328,9 +412,18 @@ const t=k=>lang==='en'?(T.en[k]??zhDefaults[k]??k):(T.zh[k]??zhDefaults[k]??k);
 const i=()=>lang==='en'?0:1;
 let filter='all';
 function rows(){
-  document.getElementById('ptable').innerHTML=P.filter(p=>filter==='all'||p.kind===filter).map(p=>{
+  // platforms with our promo codes first, so the codes are the first thing people see
+  document.getElementById('ptable').innerHTML=P.filter(p=>filter==='all'||p.kind===filter).sort((a,b)=>(b.code?1:0)-(a.code?1:0)).map(p=>{
     const rate=Array.isArray(p.rate)?p.rate[i()]:p.rate;
-    return `<div class="prow"${p.expires?` data-expires="${p.expires}"`:''}><div class="name" data-expiry-slot><b>${p.name}</b><span>${p.type[i()]}</span><br><span class="tag ${p.kind}">${t('tag_'+p.kind)}</span></div><div class="rate">${rate}<small>${p.rnote[i()]}</small></div><div class="desc">${p.desc[i()]}</div><div class="go"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${t('open')}</a>${p.code?`<button type="button" data-copy="${p.code}">${t('copyCode')} ${p.code}</button>`:''}</div></div>`}).join('');
+    const logo=p.logo?`<span class="pc-logo img"><img src="${p.logo}" alt="${p.name}" loading="lazy"></span>`:`<span class="pc-logo" style="background:${p.mark[1]}" aria-hidden="true">${p.mark[0]}</span>`;
+    const code=p.code?`<button type="button" class="pc-code" data-chip-copy="${p.code}" aria-label="${t('copyCode')} ${p.code}">🎟 ${p.code}</button>`:'';
+    return `<article class="pc${p.code?' has-code':''}"${p.expires?` data-expires="${p.expires}"`:''}>
+      <div class="pc-top" data-expiry-slot>${logo}<div class="pc-name"><b>${p.name}</b><small>${p.type[i()]} · ${t('tag_'+p.kind)}</small></div></div>
+      <div class="pc-rate">${rate}<small>${p.rnote[i()]}</small></div>
+      <p class="pc-short">${p.short[i()]}</p>
+      <div class="pc-act">${code}<a class="pc-link" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="${p.name} ${t('open')}">${p.code?'↗':t('open')}</a></div>
+      <details class="pc-more"><summary>${t('cond')}</summary><p>${p.desc[i()]}</p></details>
+    </article>`}).join('');
   window.dispatchEvent(new Event('bbb-rows'));
 }
 function calc(){
@@ -352,6 +445,7 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));rows()}));
 ['cAmt','cRate','cDays'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const c=b.dataset.copy,out=document.getElementById('copied');try{await navigator.clipboard.writeText(c);out.textContent=t('copied').replace('{c}',c)}catch{out.textContent=t('copyFail').replace('{c}',c)}if(!b.closest('#partners'))b.textContent='✓ '+c});
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-chip-copy]');if(!b)return;const c=b.dataset.chipCopy;try{await navigator.clipboard.writeText(c)}catch{}const old=b.dataset.label||b.innerHTML;b.dataset.label=old;b.innerHTML='✓ '+t('copiedShort');b.classList.add('done');clearTimeout(b._t);b._t=setTimeout(()=>{b.innerHTML=old;b.classList.remove('done')},1800)});
 const menu=document.querySelector('.bbb-site-menu'),links=document.getElementById('bbbSiteLinks');
 menu.addEventListener('click',()=>{const o=links.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(o))});
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('is-open');menu.setAttribute('aria-expanded','false')}));
