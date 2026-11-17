@@ -36,6 +36,8 @@ h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
 .hero h1 span{display:block;color:var(--yellow)}
 .hero .lead{font-size:clamp(16px,1.7vw,18px);margin-bottom:24px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn-text{display:inline-flex;align-items:center;min-height:50px;font-weight:700;color:var(--navy);text-underline-offset:4px}
+.hero-risk{display:inline-block;margin:16px 0 0;font-size:13px;font-weight:600;color:#7a4b00;background:var(--yellow-soft);border-radius:8px;padding:6px 12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .chip{font-size:13px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--navy-deep)}
 /* three types */
@@ -120,9 +122,10 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <h1 data-i18n-html="h_title">闲钱放哪里？<span>储蓄、MMF 与定存，一页比较。</span></h1>
     <p class="lead" data-i18n="h_sub">数字银行储蓄、电子钱包理财、货币市场基金和定存，各有不同的回酬、取用时间和保障。先看清楚，再决定这笔钱放哪里。</p>
     <div class="hero-actions">
-      <a class="btn btn-yellow" href="#compare" data-i18n="h_cta">比较 11 个选择 ↓</a>
-      <a class="btn btn-ghost" href="#calculator" data-i18n="h_cta2">算算能赚多少</a>
+      <a class="btn btn-yellow" href="#types" data-i18n="h_cta" data-cta="cash-hero-start">看看我的闲钱适合放哪里 ↓</a>
+      <a class="btn-text" href="#partners" data-i18n="h_cta2" data-cta="cash-hero-partners">直接看平台与推荐码 →</a>
     </div>
+    <p class="hero-risk" data-i18n="h_risk">MMF：回酬浮动 · 本金不保证 · 不受 PIDM 保障</p>
     <div class="chips"><span class="chip" data-i18n="chip1">数字银行</span><span class="chip" data-i18n="chip2">电子钱包</span><span class="chip" data-i18n="chip3">货币市场基金</span><span class="chip" data-i18n="chip4">定期存款</span></div>
   </div>
 </section>
@@ -201,15 +204,8 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
   </div>
 </section>
 
-<section class="final">
-  <div class="wrap">
-    <h2 data-i18n="fn_title">还是拿不定主意？</h2>
-    <p data-i18n="fn_sub">告诉我们这笔钱大约多少、什么时候要用，我们帮你把选择理清楚。没有义务，也不会推你买任何产品。</p>
-    <a class="btn btn-yellow" id="finalWa" href="https://wa.me/601156281541" target="_blank" rel="noopener" data-i18n="fn_cta">WhatsApp 跟我们聊聊</a>
-  </div>
-</section>
 
-<section>
+<section id="related">
   <div class="wrap">
     <div class="kicker" data-i18n="r_kicker">继续看看</div>
     <div class="related">
@@ -241,7 +237,7 @@ const P=[
 ];
 const T={
  en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
-  h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Compare 11 options ↓',h_cta2:'Estimate your return',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
+  h_kicker:'BBBwealth · Short-term cash guide',h_title:'Where should your spare cash go?<span>Savings, MMFs and fixed deposits on one page.</span>',h_sub:'Digital-bank savings, e-wallet funds, money market funds and fixed deposits differ in return, access time and protection. Compare them first, then decide where this money belongs.',h_cta:'Find where my spare cash fits ↓',h_cta2:'Skip to platforms & codes →',h_risk:'MMF: variable returns · capital not guaranteed · not PIDM-protected',chip1:'Digital banks',chip2:'E-wallets',chip3:'Money market funds',chip4:'Fixed deposits',
   t_kicker:'Know the three types',t_title:'“Spare cash” can mean very different things.',t_sub:'Ask yourself: when will you need this money, how certain must the return be, and can you accept any risk to the capital?',ty1_t:'Savings accounts / pockets',ty1_s:'Digital banks, bank savings',k_ret:'Return',k_acc:'Access',ty1_ret:'Bank rate, often tiered and capped',ty1_acc:'Usually any time',ty1_pidm:'Eligible deposits protected',ty2_t:'Money market funds (MMF)',ty2_s:'moomoo, Versa, Webull, FSMOne, GO+ and more',ty2_ret:'Variable; capital not guaranteed',ty2_acc:'Redemption cut-offs apply, usually 0–3 working days',ty2_pidm:'Not PIDM-protected',ty3_t:'Fixed deposits (FD)',ty3_s:'Bank deposit for an agreed tenure',ty3_ret:'Agreed rate, paid at maturity',ty3_acc:'Early withdrawal may reduce or forfeit interest',ty3_pidm:'Eligible deposits protected',t_note:'PIDM protection: up to RM250,000 per depositor per member bank, subject to conditions. For bank-by-bank FD rates, see our fixed deposit guide.',t_fd:'See the November FD guide →',
   c_kicker:'Compare your options',c_title:'11 options at a glance.',c_checked:'Information checked: 12 November 2026.',f_all:'All',f_bank:'Savings (PIDM-protected)',f_fund:'Funds / MMF',f_wallet:'E-wallets',c_note:'Rates are annualised. Campaign boosts and fund returns can change at any time; fund returns and capital are not guaranteed. Not every platform pays daily. Check the official page for the latest terms before opening an account.',open:'Official page ↗',copy:'Copy',copyCode:'Copy code',tag_bank:'Bank savings',tag_fund:'Fund',tag_wallet:'E-wallet',
   k_kicker:'Quick estimate',k_title:'What could your spare cash earn?',k_sub:'Enter the amount, annual return and number of days. Formula: amount × annual return ÷ 365 × days.',k_amt:'Amount',k_rate:'Annual return',k_days:'Days',k_daysu:'days',k_res:'Estimated earnings',k_res_note:'A simple estimate: excludes compounding, fees and sign-up rewards, and ignores promotion periods, tiered rates and caps. Actual returns depend on the provider.',k_cta:'Not sure where to put it? WhatsApp us',
@@ -273,8 +269,6 @@ function apply(){
   document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=t(e.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=t(e.dataset.i18nHtml));
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
-  document.getElementById('finalWa').href='https://wa.me/601156281541?text='+encodeURIComponent(t('wa'));
-  document.querySelector('.bbb-site-consult').href=document.getElementById('finalWa').href;
   document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(!h||h.startsWith('#')||/^(https?:|mailto:|tel:)/.test(h))return;const[pq,hash]=h.split('#');const[path,qs]=pq.split('?');const q=new URLSearchParams(qs||'');q.set('lang',lang);a.setAttribute('href',path+'?'+q+(hash?'#'+hash:''))});
   try{localStorage.setItem('bbbwealth-language',lang);const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u)}catch(e){}
   rows();calc();
@@ -291,5 +285,5 @@ window.addEventListener('bbb-rows',()=>{});
 })();
 </script>
 <script src="../../assets/sticky-headers.js"></script>
-<script src="../../assets/shared-header/nav.js"></script></body>
+<script src="../../assets/shared-header/nav.js"></script><script src="../../assets/bbb-funnel.js" data-funnel="cash" data-root="../../"></script></body>
 </html>

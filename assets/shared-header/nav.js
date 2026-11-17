@@ -26,6 +26,7 @@
   }
   // close the mobile menu after a tap on any rebuilt link
   box.addEventListener('click',e=>{if(!e.target.closest('a'))return;box.classList.remove('is-open');const m=document.querySelector('.bbb-site-menu');if(m)m.setAttribute('aria-expanded','false')});
-  new MutationObserver(()=>{last=null;build()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  // act only on a real language change: some pages rewrite <html lang> with the same value after every DOM change
+  new MutationObserver(()=>{const l=document.documentElement.lang.startsWith('zh')?'zh':'en';if(l!==last)build()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   build();
 })();

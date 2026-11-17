@@ -15,7 +15,7 @@
       let badge=el.querySelector(':scope .offer-ended');
       if(ended){
         if(!badge){badge=document.createElement('span');badge.className='offer-ended';(el.querySelector('[data-expiry-slot]')||el).prepend(badge)}
-        badge.textContent=zh()?'优惠已结束':'Offer ended';
+        const bt=zh()?'优惠已结束':'Offer ended';if(badge.textContent!==bt)badge.textContent=bt;
       }else if(badge)badge.remove();
     });
     document.querySelectorAll('[data-checked]').forEach(el=>{
@@ -23,7 +23,7 @@
       let note=el.querySelector(':scope > .data-stale');
       if(age>limit){
         if(!note){note=document.createElement('span');note.className='data-stale';el.append(note)}
-        note.textContent=zh()?` 资料已超过 ${age} 天，可能已更新，请以官方最新资料为准。`:` This information is ${age} days old and may have changed; check the provider's latest terms.`;
+        const nt=zh()?` 资料已超过 ${age} 天，可能已更新，请以官方最新资料为准。`:` This information is ${age} days old and may have changed; check the provider's latest terms.`;if(note.textContent!==nt)note.textContent=nt;
       }else if(note)note.remove();
     });
   }
@@ -31,6 +31,7 @@
   style.textContent='.is-expired{opacity:.55}.is-expired a,.is-expired button{pointer-events:none}.offer-ended{display:inline-block;margin:0 8px 4px 0;padding:2px 8px;border-radius:999px;background:#fde8e8;color:#9b1c1c;font-size:11px;font-weight:700;letter-spacing:.02em;opacity:1}.data-stale{color:#9b1c1c;font-weight:600}';
   document.head.append(style);
   window.addEventListener('bbb-rows',run);   // pages that re-render lists dispatch this
-  new MutationObserver(run).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  let lastLang=null;
+  new MutationObserver(()=>{const l=zh();if(l!==lastLang){lastLang=l;run()}}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();
