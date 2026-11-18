@@ -14,8 +14,10 @@ const waHref=msg=>'https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
 const num=t=>{const m=String(t||'').replace(/,/g,'').match(/-?\d+(\.\d+)?/);return m?+m[0]:null};
 const rm=n=>'RM'+Math.round(n).toLocaleString('en-MY');
 const WA_ICON='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>';
+const CODE_LEGAL=()=>L('Returns vary and are not guaranteed. BBBwealth may earn a commission when you use our code.','回酬浮动、不保证。使用我们的推荐码，BBBwealth 可能获得佣金。');
 const MICRO=()=>L('Opens WhatsApp with a draft message. You can edit it before sending.','会打开 WhatsApp 并预先填好讯息，你可以修改后再发送。');
 const LEGAL=()=>L("General information only, not personal advice. We'll need to understand your situation first.",'以上为一般资讯，不构成个人建议。我们需要先了解你的情况。');
+const codeBtn=(label,target,cta)=>`<a class="bbb-btn bbb-btn--wa bbb-btn--codes" href="${target==='offer'?'#bbb-affiliate-details':target}" data-code-target="${target}" data-cta="${cta}"><span aria-hidden="true">🎟</span><span>${label}</span></a>`;
 const waBtn=(label,msg,cta,cls='bbb-btn bbb-btn--wa')=>`<a class="${cls}" href="${waHref(msg)}" target="_blank" rel="noopener" data-cta="${cta}">${WA_ICON}<span>${label}</span></a>`;
 
 /* ---------- per-page copy & config ---------- */
@@ -53,9 +55,10 @@ const C={
  fd:{hero:'.hero .intro a.button, .hero a.button',cover:['#list .table-wrap','section.calc','.bbb-affiliate'],
   read:()=>{const i=num($('#interest')?.textContent),a=num($('#amount')?.value);if(!i||!a)return null;return{value:i,amount:a,state:'ok'}},
   anchor:()=>$('section.calc'),
-  card:r=>({label:L('Estimated interest','预计利息'),value:'RM'+r.value.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2}),h:L(`On ${rm(r.amount)}. Not sure whether this money should be in an FD or something more flexible?`,`存 ${rm(r.amount)}。不确定这笔钱该放定存，还是更灵活的地方？`),p:L('Ask us before you lock it in.','锁定之前，先问问我们。'),btn:L('Ask about FD vs MMF','问问定存还是 MMF'),msg:L(`Hi BBBwealth, I'm comparing November FD offers for about ${rm(r.amount)}. Could you help me think through FD vs MMF for this money?`,`你好 BBBwealth，我在比较 11 月定存优惠，金额大约 ${rm(r.amount)}。想请你们帮我想想，这笔钱放定存还是 MMF 比较好。`)}),
+  card:r=>({label:L('Estimated interest','预计利息'),value:'RM'+r.value.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2}),h:L(`On ${rm(r.amount)}. Not sure whether this money should be in an FD or something more flexible?`,`存 ${rm(r.amount)}。不确定这笔钱该放定存，还是更灵活的地方？`),p:L('An MMF usually pays more than FD board rates, and you can withdraw any time. Use our code when you open an account.','MMF 回酬通常比定存牌告高，而且随时可取。开户时填我们的推荐码就好。'),btn:L('Ask about FD vs MMF','问问定存还是 MMF'),msg:L(`Hi BBBwealth, I'm comparing November FD offers for about ${rm(r.amount)}. Could you help me think through FD vs MMF for this money?`,`你好 BBBwealth，我在比较 11 月定存优惠，金额大约 ${rm(r.amount)}。想请你们帮我想想，这笔钱放定存还是 MMF 比较好。`)}),
   next:()=>[ROOT+'resources/cash/index.html',L('Compare savings, MMFs and FDs →','比较储蓄、MMF 与定存 →')],
   ctx:()=>[L('MMF & codes','MMF 与代码'),'offer'],
+  codes:()=>[L('Get our MMF promo codes','领取 MMF 优惠码'),'offer'],
   msg:()=>L("Hi BBBwealth, I'm comparing November FD offers. Could you help me think through FD vs MMF?",'你好 BBBwealth，我在比较 11 月定存优惠，想请你们帮我想想定存还是 MMF 比较好。')},
  tax:{hero:'.hero a.button.primary',cover:['.offer','.bbb-affiliate','#calculator details[open]'],
   read:()=>{const v=num($('#mobile-saving')?.textContent);if(!v)return null;return{value:v,state:'ok'}},
@@ -71,6 +74,7 @@ const C={
   read:()=>{const a=num($('#cAmt')?.value),v=num($('#cOut')?.textContent),d=num($('#cDays')?.value);if(!a||v===null)return null;return{value:v,amount:a,days:d,state:'ok'}},
   readout:r=>[L('≈ earnings','预计收益'),'RM'+r.value.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2})],
   ctx:()=>[L('Platforms ↓','平台 ↓'),'#partners'],
+  codes:()=>[L('Get our promo codes ↓','领取我们的优惠码 ↓'),'#partners'],
   finalBefore:'#related',
   msg:()=>L("Hi BBBwealth, I'm deciding where to keep my short-term cash (savings, MMF or FD). Can you help me think it through?",'你好 BBBwealth，我在考虑短期闲钱放储蓄、MMF 还是定存，想请你们帮我想清楚。')}
 };
@@ -81,7 +85,7 @@ let result=null;
 function cardHTML(d,cta){
   const next=cfg.next?cfg.next():null;
   // two zones that sit side by side when the card is wide and stack when it is narrow
-  return `<div class="rc-body"><div class="bbb-result-cta__label">${d.label}</div>${d.value?`<div class="bbb-result-cta__value" aria-live="polite">${d.value}</div>`:''}<h3>${d.h}</h3><p>${d.p}</p><p class="bbb-cta-risk">${LEGAL()}</p></div><div class="rc-side"><div class="bbb-actions">${waBtn(d.btn,d.msg,cta)}${next?`<a class="bbb-link" href="${next[0]}?lang=${zh()?'zh':'en'}" data-cta="${PAGE}-result-next">${next[1]}</a>`:''}</div><p class="bbb-cta-micro">${MICRO()}</p></div>`;
+  return `<div class="rc-body"><div class="bbb-result-cta__label">${d.label}</div>${d.value?`<div class="bbb-result-cta__value" aria-live="polite">${d.value}</div>`:''}<h3>${d.h}</h3><p>${d.p}</p><p class="bbb-cta-risk">${cfg.codes?CODE_LEGAL():LEGAL()}</p></div><div class="rc-side"><div class="bbb-actions">${cfg.codes?codeBtn(cfg.codes()[0],cfg.codes()[1],PAGE+'-result-codes'):waBtn(d.btn,d.msg,cta)}${next?`<a class="bbb-link" href="${next[0]}?lang=${zh()?'zh':'en'}" data-cta="${PAGE}-result-next">${next[1]}</a>`:''}</div>${cfg.codes?'':`<p class="bbb-cta-micro">${MICRO()}</p>`}</div>`;
 }
 let calls=[];
 function placeResult(){
@@ -117,8 +121,9 @@ function placeFinal(){
    <span class="item"><b>8TV</b><small>${L('Morning Express market commentary','早晨新闻 · 市场评论')}</small></span>
    <a href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener" data-cta="${PAGE}-proof-np"><b>南洋商报</b><small>${L('《股势先机》 market column','《股势先机》市场专栏')}</small></a>
    <a href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener" data-cta="${PAGE}-proof-yt"><b>YouTube</b><small>${L('@BBBwealth · 19.9K subscribers','@BBBwealth · 1.99万订阅')}</small></a></div>
-   <div class="bbb-final-cta"><div><h2>${L('Not sure what this means for you?','看完了，还是不确定怎么做？')}</h2><p>${L('Send us your question on WhatsApp. The BBBwealth team will reply and help you think it through.','在 WhatsApp 把问题发给我们，BBBwealth 团队会回复你，陪你把下一步想清楚。')}</p><p class="bbb-cta-legal">${LEGAL()}</p></div>
-   <div class="bbb-actions">${waBtn(L('Ask us on WhatsApp','WhatsApp 问我们'),currentMsg(),PAGE+'-final-wa')}<a class="bbb-btn bbb-btn--on-dark" href="${ROOT}index.html?lang=${lang}#newsletter" data-cta="${PAGE}-final-newsletter">${L('Get new guides by email →','新指南出炉，电邮通知我 →')}</a>${PAGE==='hub'?`<a class="bbb-link" href="${ROOT}calculator/index.html?lang=${lang}" data-cta="hub-final-calcs">${L('Browse calculators →','浏览全部计算器 →')}</a>`:''}<p class="bbb-cta-micro">${MICRO()}</p></div></div>`;
+   ${cfg.codes?`<div class="bbb-final-cta"><div><h2>${L('Want your spare cash to earn more?','想让闲钱多赚一点？')}</h2><p>${L('Money market funds usually pay more than FD board rates, with no lock-in. Copy our code and open an account in a few minutes.','货币市场基金回酬通常比定存牌告高，也没有锁定期。复制我们的推荐码，几分钟就能开户。')}</p><p class="bbb-cta-legal">${CODE_LEGAL()}</p></div>
+   <div class="bbb-actions">${codeBtn(cfg.codes()[0],cfg.codes()[1],PAGE+'-final-codes')}${PAGE==='fd'?`<a class="bbb-btn bbb-btn--on-dark" href="${ROOT}resources/cash/index.html?lang=${lang}" data-cta="fd-final-compare">${L('Compare savings, MMFs & FDs →','比较储蓄、MMF 与定存 →')}</a>`:`<a class="bbb-btn bbb-btn--on-dark" href="${ROOT}index.html?lang=${lang}#newsletter" data-cta="${PAGE}-final-newsletter">${L('Get new guides by email →','新指南出炉，电邮通知我 →')}</a>`}</div></div>`:`<div class="bbb-final-cta"><div><h2>${L('Not sure what this means for you?','看完了，还是不确定怎么做？')}</h2><p>${L('Send us your question on WhatsApp. The BBBwealth team will reply and help you think it through.','在 WhatsApp 把问题发给我们，BBBwealth 团队会回复你，陪你把下一步想清楚。')}</p><p class="bbb-cta-legal">${LEGAL()}</p></div>
+   <div class="bbb-actions">${waBtn(L('Ask us on WhatsApp','WhatsApp 问我们'),currentMsg(),PAGE+'-final-wa')}<a class="bbb-btn bbb-btn--on-dark" href="${ROOT}index.html?lang=${lang}#newsletter" data-cta="${PAGE}-final-newsletter">${L('Get new guides by email →','新指南出炉，电邮通知我 →')}</a>${PAGE==='hub'?`<a class="bbb-link" href="${ROOT}calculator/index.html?lang=${lang}" data-cta="hub-final-calcs">${L('Browse calculators →','浏览全部计算器 →')}</a>`:''}<p class="bbb-cta-micro">${MICRO()}</p></div></div>`}`;
   if(wrap.dataset.sig!==html){wrap.innerHTML=html;wrap.dataset.sig=html}
 }
 function currentMsg(){
@@ -152,6 +157,9 @@ function pageTweaks(){
       n.textContent=L("Apply on the bank's official page; check the annual fee and terms first.",'申请请到银行官网，先看清年费与条款。');}
   }
 }
+
+/* code buttons: open the offer sheet or scroll to the codes */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-code-target]');if(!b)return;const tg=b.dataset.codeTarget;e.preventDefault();if(tg==='offer'){if(!(typeof window.bbbOpenOffer==='function'&&window.bbbOpenOffer())){const d=$('#bbb-affiliate-details')||$('.bbb-affiliate');if(d)d.scrollIntoView({behavior:'smooth'})}return}const d=$(tg);if(d)d.scrollIntoView({behavior:'smooth',block:'start'})});
 
 /* ---------- P1-6: copy confirmation inside the tapped card ---------- */
 document.addEventListener('click',e=>{
