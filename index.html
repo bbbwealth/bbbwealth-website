@@ -45,6 +45,7 @@ section{padding:clamp(64px,9vw,112px) 0}
 .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid #c9d3e6}
 .btn svg{width:20px;height:20px;flex-shrink:0}
 /* Placeholder: content the owner must supply before launch */
+.todo[hidden]{display:none!important}
 .todo{display:inline-block;border:2px dashed #e0a800;background:#fff8dc;color:#7a5a00;border-radius:8px;padding:2px 8px;font-size:.9em;font-weight:600}
 
 /* ---------- NAV ---------- */
@@ -755,7 +756,7 @@ const fillSoc=()=>document.querySelectorAll('.soc[data-brand]').forEach(box=>{co
       </div>
     </div>
     <div class="legal">
-      <div><b style="color:#fff">BBB Advisory Sdn Bhd</b> · <span class="todo" data-i18n="todo_reg">Company registration no. — to fill</span></div>
+      <div><b style="color:#fff">BBB Advisory Sdn Bhd</b><span class="todo" data-i18n="todo_reg" hidden> · Company registration no. — to fill</span></div>
       <p data-i18n="f_disc">Disclaimer: Content on this website, including guides, calculators, commentary and media appearances, is for general information and education only. It does not take into account your objectives, financial situation or needs, and is not a recommendation to buy or sell any product. Past performance is not indicative of future results. Investments involve risk, including possible loss of principal. Please seek advice based on your own circumstances before acting.</p>
       <div class="bottom"><span data-i18n="f_copy">© 2026 BBBwealth. All rights reserved.</span><span>Money POV × BBBwealth</span></div>
     </div>
