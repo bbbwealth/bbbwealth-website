@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>申请 Hong Leong 信用卡 | BBBwealth</title>
+<meta name="description" content="留下名字和电话，Hong Leong Bank 银行专员会联系你，协助确认资格和办理信用卡申请。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/shared-header/header.css">
+<link rel="stylesheet" href="../../assets/sticky-headers.css">
+<link rel="stylesheet" href="../../assets/phone-brand-fix.css">
+<style>
+:root{--navy:#17438f;--navy-deep:#122650;--yellow:#f5b800;--yellow-soft:#fff6d6;--cream:#f7f9fc;--line:#dfe6f1;--ink:#0f1729;--muted:#5b6b85;--green:#25d366;--wrap:1120px;--gutter:24px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+a{color:var(--navy)}
+.y{color:var(--yellow)}
+/* hero */
+.hero{background:var(--navy-deep);color:#fff;padding:120px 0 48px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-140px;top:-120px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,#2f5cab55,transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:1}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#ffffffc7}
+.kicker:before{content:"";width:22px;height:3px;border-radius:3px;background:var(--yellow)}
+.lang{display:flex;border:1px solid #ffffff33;border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:#ffffffb3;font:inherit;font-size:13px;font-weight:700;min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--navy-deep)}
+h1{font-size:clamp(30px,4.4vw,48px);line-height:1.12;letter-spacing:-.025em;margin:0 0 14px}
+.sub{font-size:17px;color:#ffffffc7;margin:0 0 24px;max-width:540px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px}
+.steps li{background:#ffffff12;border:1px solid #ffffff24;border-radius:14px;padding:12px;font-size:13px;font-weight:700;color:#fff;display:flex;flex-direction:column;gap:6px}
+.steps li b{width:28px;height:28px;border-radius:50%;background:var(--yellow);color:var(--navy-deep);display:grid;place-items:center;font-size:14px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border-radius:14px;font:inherit;font-weight:800;font-size:15px;text-decoration:none;border:0;cursor:pointer}
+.btn-yellow{background:var(--yellow);color:var(--navy-deep);box-shadow:0 10px 24px #f5b80040}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid #ffffff4d}
+/* card stack visual (generic, not bank artwork) */
+.stack{position:relative;height:300px}
+.cc{position:absolute;width:300px;max-width:78%;aspect-ratio:1.586;border-radius:18px;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 24px 48px #0008}
+.cc small{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.cc strong{font-size:20px;letter-spacing:-.01em}
+.cc .chip{width:40px;height:30px;border-radius:6px;background:linear-gradient(135deg,#f6d77a,#c9a23f)}
+.cc1{left:0;top:30px;background:linear-gradient(135deg,#0b0b0f,#3a3a46);transform:rotate(-8deg)}
+.cc2{left:22%;top:0;background:linear-gradient(135deg,#7a1b2b,#c23a4f);transform:rotate(3deg)}
+.cc3{left:12%;top:120px;background:linear-gradient(135deg,#0f5b5b,#1c9b8a);transform:rotate(-2deg)}
+/* main */
+main{padding:40px 0 64px}
+.layout{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.panel h2{font-size:22px;margin:0 0 6px;color:var(--navy-deep);letter-spacing:-.01em}
+.panel .hint{font-size:14px;color:var(--muted);margin:0 0 18px}
+.cards{display:grid;gap:10px}
+.pick{position:relative;display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer;min-height:72px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.pick input{position:absolute;opacity:0;pointer-events:none}
+.pick .mini{flex:0 0 64px;aspect-ratio:1.586;border-radius:8px}
+.pick .m1{background:linear-gradient(135deg,#0b0b0f,#3a3a46)}.pick .m2{background:linear-gradient(135deg,#7a1b2b,#c23a4f)}.pick .m3{background:linear-gradient(135deg,#0f5b5b,#1c9b8a)}
+.pick b{display:block;font-size:16px;color:var(--navy-deep)}
+.pick span.t{font-size:13px;color:var(--muted)}
+.pick .tick{margin-left:auto;width:26px;height:26px;border-radius:8px;border:2px solid #c5d0e3;display:grid;place-items:center;color:#fff;font-size:15px;font-weight:900;flex:0 0 26px}
+.pick:has(input:checked){border-color:var(--navy);box-shadow:0 0 0 3px #17438f1f}
+.pick:has(input:checked) .tick{background:var(--navy);border-color:var(--navy)}
+.pick:has(input:focus-visible){outline:3px solid #f5b80099;outline-offset:2px}
+.guide-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;margin-top:8px}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-size:14px;font-weight:700;color:var(--navy-deep)}
+.field label em{font-style:normal;font-weight:600;color:var(--muted)}
+.field input{font:inherit;font-size:16px;min-height:50px;padding:0 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px #17438f1f}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#34425c;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px;margin:4px 0 16px;cursor:pointer}
+.consent input{width:20px;height:20px;flex:0 0 20px;margin:1px 0 0;accent-color:var(--navy)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.err{display:none;color:#b42318;font-size:13px;font-weight:600;margin:-6px 0 12px}
+.err.on{display:block}
+form .btn{width:100%}
+.btn[disabled]{opacity:.6;cursor:wait}
+.note{font-size:12px;color:var(--muted);margin:12px 0 0}
+.done{display:none;text-align:center;padding:12px 4px}
+.done.on{display:block}
+.done .ok{width:64px;height:64px;border-radius:50%;background:#e7f8ee;color:#12873f;display:grid;place-items:center;font-size:32px;font-weight:900;margin:0 auto 12px}
+.done h2{margin-bottom:8px}
+.done p{color:var(--muted);margin:0 0 18px}
+.btn-wa{background:var(--green);color:#fff}
+.disclose{max-width:var(--wrap);margin:28px auto 0;padding:0 var(--gutter);font-size:12px;color:var(--muted)}
+.disclose p{margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+@media(max-width:900px){
+  .hero{padding:88px 0 36px}
+  .hero-grid,.layout{grid-template-columns:1fr}
+  .stack{display:none}
+}
+@media(max-width:560px){
+  :root{--gutter:16px}
+  .steps{gap:8px}.steps li{padding:10px;font-size:12px}
+  .cta-row .btn{flex:1 1 100%}
+  .panel{padding:18px}
+}
+</style>
+</head>
+<body class="bbb-resource-page">
+<header class="bbb-site-header"><a class="bbb-site-brand" href="../../index.html" aria-label="BBBwealth and Money POV home"><span class="bbb-site-logo"><img src="../../assets/shared-header/bbbwealth.png" alt="BBBwealth"></span><span class="bbb-site-divider" aria-hidden="true"></span><span class="bbb-site-money"><img src="../../assets/shared-header/money-pov.png" alt="Money POV"></span></a><div id="bbbSiteLinks" class="bbb-site-links" role="navigation" aria-label="Main navigation"></div><button class="bbb-site-menu" aria-label="Open navigation" aria-controls="bbbSiteLinks" aria-expanded="false" type="button">☰</button></header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="top-row"><span class="kicker" data-i18n="kicker">合作伙伴 · Hong Leong Bank</span>
+        <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="zh" aria-pressed="true">中文</button></div></div>
+      <h1 data-i18n-html="h1">申请 Hong Leong 信用卡，<span class="y">我们帮你对接银行专员。</span></h1>
+      <p class="sub" data-i18n="sub">留下名字和电话，HLB 银行专员会联系你，帮你确认资格、办好申请。</p>
+      <ol class="steps">
+        <li><b>1</b><span data-i18n="st1">填表，约 30 秒</span></li>
+        <li><b>2</b><span data-i18n="st2">银行专员联系你</span></li>
+        <li><b>3</b><span data-i18n="st3">专员协助你申请</span></li>
+      </ol>
+      <div class="cta-row"><a class="btn btn-yellow" href="#apply" data-i18n="cta">开始申请 ↓</a><a class="btn btn-ghost" href="../credit-card-guide/" data-i18n="cta2">先看信用卡指南</a></div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="cc cc1"><small>Hong Leong</small><span class="chip"></span><strong>Visa Infinite</strong></div>
+      <div class="cc cc2"><small>Hong Leong</small><span class="chip"></span><strong>Sutera Platinum</strong></div>
+      <div class="cc cc3"><small>Hong Leong</small><span class="chip"></span><strong>WISE</strong></div>
+    </div>
+  </div>
+</section>
+
+<main id="apply">
+  <div class="wrap">
+    <form class="layout" name="hlb-card-enquiry" method="POST" action="./?sent=1" data-netlify="true" netlify-honeypot="website" novalidate>
+      <input type="hidden" name="form-name" value="hlb-card-enquiry">
+      <p class="hp"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+
+      <div class="panel">
+        <h2 data-i18n="p1_t">1. 你想申请哪一张？</h2>
+        <p class="hint" data-i18n="p1_h">可以多选。不确定的话全选，专员会帮你比较。</p>
+        <div class="cards">
+          <label class="pick"><input type="checkbox" name="cards" value="infinite"><span class="mini m1" aria-hidden="true"></span><span><b>Visa Infinite</b><span class="t" data-i18n="c1">高端卡</span></span><span class="tick" aria-hidden="true">✓</span></label>
+          <label class="pick"><input type="checkbox" name="cards" value="sutera"><span class="mini m2" aria-hidden="true"></span><span><b>Sutera Platinum</b><span class="t" data-i18n="c2">白金卡</span></span><span class="tick" aria-hidden="true">✓</span></label>
+          <label class="pick"><input type="checkbox" name="cards" value="wise"><span class="mini m3" aria-hidden="true"></span><span><b>WISE</b><span class="t" data-i18n="c3">日常消费卡</span></span><span class="tick" aria-hidden="true">✓</span></label>
+        </div>
+        <a class="guide-link" href="../credit-card-guide/" data-i18n="guide">不知道怎么选？看我们的信用卡指南 →</a>
+      </div>
+
+      <div class="panel">
+        <div class="fill">
+          <h2 data-i18n="p2_t">2. 留下联系方式</h2>
+          <p class="hint" data-i18n="p2_h">资料只用于这次信用卡申请的联系。</p>
+          <div class="field"><label for="fullName" data-i18n="f_name">姓名（与 IC 相同）</label><input id="fullName" name="fullName" autocomplete="name" required maxlength="120"></div>
+          <div class="field"><label for="phone" data-i18n="f_phone">手机号码</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="012-345 6789" required maxlength="30"></div>
+          <div class="field"><label for="email"><span data-i18n="f_email">Email</span> <em data-i18n="opt">（可选）</em></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254"></div>
+          <label class="consent"><input type="checkbox" name="acknowledgement" value="yes" required><span data-i18n="consent">我同意 BBBwealth 把我的姓名、电话和 email 转交给 Hong Leong Bank 银行专员，以便联系我办理信用卡申请。</span></label>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn btn-yellow" type="submit" id="send" data-i18n="send">提交，让专员联系我</button>
+          <p class="note" data-i18n="note">提交不等于申请成功。信用卡批核由银行决定。</p>
+        </div>
+        <div class="done" id="done" role="status" tabindex="-1">
+          <div class="ok" aria-hidden="true">✓</div>
+          <h2 data-i18n="ok_t">已收到！</h2>
+          <p data-i18n="ok_p">Hong Leong Bank 银行专员会尽快打电话或 WhatsApp 联系你。</p>
+          <a class="btn btn-wa" href="https://wa.me/601156281541" target="_blank" rel="noopener" id="waBtn" data-i18n="ok_wa">有问题？WhatsApp 我们</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="disclose"><p data-i18n="disc">合作披露：BBBwealth 与 Hong Leong Bank 有客户转介安排，若你经我们转介申请，我们可能获得佣金。信用卡批核、年费与优惠以银行最新条款为准。</p></div>
+</main>
+
+<script>
+(()=>{
+const T={
+ zh:{kicker:"合作伙伴 · Hong Leong Bank",h1:'申请 Hong Leong 信用卡，<span class="y">我们帮你对接银行专员。</span>',sub:"留下名字和电话，HLB 银行专员会联系你，帮你确认资格、办好申请。",st1:"填表，约 30 秒",st2:"银行专员联系你",st3:"专员协助你申请",cta:"开始申请 ↓",cta2:"先看信用卡指南",p1_t:"1. 你想申请哪一张？",p1_h:"可以多选。不确定的话全选，专员会帮你比较。",c1:"高端卡",c2:"白金卡",c3:"日常消费卡",guide:"不知道怎么选？看我们的信用卡指南 →",p2_t:"2. 留下联系方式",p2_h:"资料只用于这次信用卡申请的联系。",f_name:"姓名（与 IC 相同）",f_phone:"手机号码",f_email:"Email",opt:"（可选）",consent:"我同意 BBBwealth 把我的姓名、电话和 email 转交给 Hong Leong Bank 银行专员，以便联系我办理信用卡申请。",send:"提交，让专员联系我",sending:"提交中…",note:"提交不等于申请成功。信用卡批核由银行决定。",ok_t:"已收到！",ok_p:"Hong Leong Bank 银行专员会尽快打电话或 WhatsApp 联系你。",ok_wa:"有问题？WhatsApp 我们",disc:"合作披露：BBBwealth 与 Hong Leong Bank 有客户转介安排，若你经我们转介申请，我们可能获得佣金。信用卡批核、年费与优惠以银行最新条款为准。",
+  e_name:"请填写姓名。",e_phone:"请填写正确的手机号码。",e_consent:"请勾选同意，专员才能联系你。",e_net:"提交失败，请检查网络后再试，或直接 WhatsApp 我们。",title:"申请 Hong Leong 信用卡 | BBBwealth",wa:"你好 BBBwealth，我刚提交了 Hong Leong 信用卡申请，想问一些问题。"},
+ en:{kicker:"Partner · Hong Leong Bank",h1:'Apply for a Hong Leong credit card — <span class="y">we connect you with the banker.</span>',sub:"Leave your name and phone number. An HLB banker will contact you to check eligibility and help you apply.",st1:"Fill in the form, about 30 seconds",st2:"A banker contacts you",st3:"They help you apply",cta:"Start applying ↓",cta2:"Read the card guide first",p1_t:"1. Which card do you want?",p1_h:"Pick one or more. Not sure? Pick all and the banker will help you compare.",c1:"Premium card",c2:"Platinum card",c3:"Everyday spending card",guide:"Not sure which? Read our credit card guide →",p2_t:"2. Your contact details",p2_h:"Used only to contact you about this card application.",f_name:"Full name (as in IC)",f_phone:"Mobile number",f_email:"Email",opt:"(optional)",consent:"I agree that BBBwealth may pass my name, phone number and email to a Hong Leong Bank banker so they can contact me about a credit card application.",send:"Submit — have a banker contact me",sending:"Submitting…",note:"Submitting is not an approval. The bank decides on every application.",ok_t:"Got it!",ok_p:"A Hong Leong Bank banker will call or WhatsApp you soon.",ok_wa:"Questions? WhatsApp us",disc:"Partner disclosure: BBBwealth has a client referral arrangement with Hong Leong Bank and may receive a commission if you apply through our referral. Approval, annual fees and promotions follow the bank's latest terms.",
+  e_name:"Please enter your name.",e_phone:"Please enter a valid mobile number.",e_consent:"Please tick the consent box so the banker can contact you.",e_net:"Couldn't submit. Check your connection and try again, or WhatsApp us.",title:"Apply for a Hong Leong credit card | BBBwealth",wa:"Hi BBBwealth, I just submitted a Hong Leong credit card enquiry and have a question."}
+};
+const q=new URLSearchParams(location.search);let lang=q.get('lang')==='en'?'en':'zh';
+try{const s=localStorage.getItem('bbb-lang');if(!q.get('lang')&&(s==='en'||s==='zh'))lang=s}catch(e){}
+const t=k=>T[lang][k]||T.zh[k];
+function apply(){
+  document.documentElement.lang=lang==='zh'?'zh-Hans':'en';document.title=t('title');
+  document.querySelectorAll('[data-i18n]').forEach(e=>{const v=t(e.dataset.i18n);if(e.textContent!==v)e.textContent=v});
+  document.querySelectorAll('[data-i18n-html]').forEach(e=>{const v=t(e.dataset.i18nHtml);if(e.innerHTML!==v)e.innerHTML=v});
+  document.querySelectorAll('.lang [data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  document.getElementById('waBtn').href='https://wa.me/601156281541?text='+encodeURIComponent(t('wa'));
+  const brand=document.querySelector('.bbb-site-brand');if(brand)brand.href='../../index.html?lang='+lang;
+}
+document.querySelectorAll('.lang [data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('bbb-lang',lang)}catch(e){}apply()}));
+apply();
+
+const f=document.querySelector('form[name="hlb-card-enquiry"]'),err=document.getElementById('err'),send=document.getElementById('send'),fill=f.querySelector('.fill'),done=document.getElementById('done');
+function showDone(){fill.style.display='none';done.classList.add('on');done.focus();done.scrollIntoView({block:'center',behavior:'smooth'})}
+if(q.get('sent')==='1')showDone();
+function fail(k,el){err.textContent=t(k);err.classList.add('on');if(el)el.focus()}
+f.addEventListener('submit',async e=>{
+  e.preventDefault();err.classList.remove('on');
+  const name=f.fullName.value.trim(),phone=f.phone.value.trim(),digits=phone.replace(/\D/g,'');
+  if(!name)return fail('e_name',f.fullName);
+  if(digits.length<9||digits.length>15)return fail('e_phone',f.phone);
+  if(!f.acknowledgement.checked)return fail('e_consent',f.acknowledgement);
+  send.disabled=true;send.textContent=t('sending');
+  try{
+    const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()});
+    if(!r.ok)throw new Error(r.status);
+    showDone();
+  }catch(x){fail('e_net')}
+  finally{send.disabled=false;send.textContent=t('send')}
+});
+
+const menu=document.querySelector('.bbb-site-menu'),links=document.getElementById('bbbSiteLinks');
+menu.addEventListener('click',()=>{const o=links.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(o))});
+})();
+</script>
+<script src="../../assets/sticky-headers.js"></script>
+<script src="../../assets/shared-header/nav.js"></script>
+</body>
+</html>
