@@ -313,7 +313,7 @@ const q=new URLSearchParams(location.search);let lang=q.get('lang')==='en'?'en':
 try{const s=localStorage.getItem('bbb-lang');if(!q.get('lang')&&(s==='en'||s==='zh'))lang=s}catch(e){}
 const t=k=>T[lang][k]||T.zh[k];
 // HLB banker's WhatsApp (digits only, with 60). Empty = fall back to BBBwealth's line.
-const BANKER_WA='';
+const BANKER_WA='60138180690';
 let sent={name:'',cards:[]};
 const CARDN={infinite:'Visa Infinite',sutera:'Sutera Platinum',wise:'WISE'};
 function bankerLink(){const cards=sent.cards.map(c=>CARDN[c]).join(', ');const msg=lang==='zh'?('你好，我在 BBBwealth 网站看过了，有兴趣申请 Hong Leong Bank 信用卡'+(cards?'（'+cards+'）':'')+'。'+(sent.name?'我是 '+sent.name+'。':'')):('Hi, I saw BBBwealth\'s page and I\'m interested in applying for a Hong Leong Bank credit card'+(cards?' ('+cards+')':'')+'.'+(sent.name?' My name is '+sent.name+'.':''));return 'https://wa.me/'+(BANKER_WA||'601156281541')+'?text='+encodeURIComponent(msg)}
