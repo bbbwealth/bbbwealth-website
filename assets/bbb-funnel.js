@@ -176,7 +176,7 @@ const bar=(()=>{
     ci:()=>[L('Start calculating ↓','开始计算 ↓'),'#calc'],
     term:()=>[L('Start calculating ↓','开始计算 ↓'),'#calc'],
     fd:()=>[L('Get our MMF promo codes','领取 MMF 优惠码'),'offer'],
-    tax:()=>[L('Get our PRS promo codes ↓','领取 PRS 优惠码 ↓'),'#prs-offers'],
+    tax:()=>[L('Get our PRS promo codes ↓','领取 PRS 优惠码 ↓'),'#prs-open'],
     cards:()=>[L('Compare 9 cards ↓','比较 9 张卡 ↓'),'#card-list'],
     cash:()=>[L('Get our promo codes ↓','领取我们的优惠码 ↓'),'#partners']
   };
