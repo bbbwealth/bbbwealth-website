@@ -11,7 +11,7 @@
   const here=location.pathname;
   const items=[
     ['index.html#services','Services','服务'],
-    ['index.html#insights','Insights','观点'],
+    ['index.html#insights','Media','媒体'],
     ['calculator/index.html','Calculators','计算器',/\/calculator\//],
     ['index.html#training','Training','企业培训'],
     ['index.html#team','Team','团队'],
