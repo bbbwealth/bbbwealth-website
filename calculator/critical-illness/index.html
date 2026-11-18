@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/shared-header/header.css">
 <link rel="stylesheet" href="../../assets/sticky-headers.css">
+<link rel="stylesheet" href="../../assets/calc-story.css">
 <link rel="stylesheet" href="../../assets/phone-brand-fix.css">
 <link rel="stylesheet" href="../../assets/calc-pro.css">
 <link rel="stylesheet" href="../../assets/bbb-funnel.css">
@@ -34,6 +35,7 @@
 
 <main>
 <section class="hero">
+  <div class="wrap"><figure class="calc-story" style="--pos:center 55%"><img src="../../assets/calc-photos/critical-illness.jpg" alt="病床边，家人握着戴着医院手环的手" width="1200" height="800" fetchpriority="high"><figcaption><span class="cs-k" data-i18n="st_k">躺在病床上的时候</span><strong data-i18n="st_t">医药费有人付，家用呢？</strong><span class="cs-p" data-i18n="st_p">治疗和康复那几年，收入可能停了，开销却一样不少。</span></figcaption></figure></div>
   <div class="wrap hero-grid">
     <div>
       <div class="kicker" data-i18n="h_kicker">BBBwealth · 保障计算器</div>
@@ -173,7 +175,7 @@
 <script>
 (()=>{
 const T={en:{doc:'How much critical illness cover do you need? | BBBwealth',ctx_title:'Critical illness calculator',ctx_calc:'Calculate',ctx_vs:'Medical card vs CI',ctx_review:'Review policies',ctx_faq:'FAQ',
- h_kicker:'BBBwealth · Protection calculator',h_title:'How much critical illness cover?<span>Plan for the years you might be ill.</span>',h_sub:'A medical card pays the hospital. But during treatment and recovery the home loan, car loan and household bills keep coming, while your income may stop. A critical illness payout is what carries you through.',h_cta:'Start calculating ↓',h_cta2:'See an example first',chip1:'🏠 Loan still due',chip2:'🛒 Bills still due',chip3:'⏸ Income may stop',chip4:'💊 Out-of-pocket care',
+ h_kicker:'BBBwealth · Protection calculator',h_title:'How much critical illness cover?<span>Plan for the years you might be ill.</span>',st_k:'When you’re in a hospital bed',st_t:'The hospital bill is covered. What about home?',st_p:'During treatment and recovery your income may stop, but the bills don’t.',h_sub:'A medical card pays the hospital. But during treatment and recovery the home loan, car loan and household bills keep coming, while your income may stop. A critical illness payout is what carries you through.',h_cta:'Start calculating ↓',h_cta2:'See an example first',chip1:'🏠 Loan still due',chip2:'🛒 Bills still due',chip3:'⏸ Income may stop',chip4:'💊 Out-of-pocket care',
  hc_k:'After a diagnosis, where does the money go?',hc_s:'Example: RM5,000 a month in commitments, planned for 36 months',j1:'Diagnosis',j1s:'Lump sum paid',j2:'Treatment',j2s:'May stop work',j3:'Recovery',j3s:'Bills continue',j4:'Back to work',j4s:'Income resumes',hc_total:'RM5,000 × 36 months',hc_gap:'Existing CI RM80,000, still short',
  c_kicker:'Three steps to your number',c_title:'How much to set aside for the years you are ill?',c_sub:'Enter 0 for anything that does not apply. Everything is calculated on your device; nothing is sent to us.',
  s1_t:'What you must pay each month',s1_s:'These do not stop when you are ill',f_m1:'Home loan / rent',f_m2:'Car loan & transport',f_m3:'Household & living costs',f_m4:'Children & parents',f_m5:'Insurance premiums',f_m6:'Other loans & costs',f_msum:'Monthly total',
