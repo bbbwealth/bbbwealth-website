@@ -95,7 +95,9 @@ html[lang=zh] .hero h1{font-size:clamp(34px,4.1vw,54px);line-height:1.15;letter-
 a.media-item:hover b{color:var(--yellow)}
 .media-item:last-child{border-right:0}
 .media-item b{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em}
-.media-item span{display:block;font-size:13px;color:#ffffffb3;margin-top:2px}
+.media-item span{display:block;font-size:13px;color:#ffffffb3;margin-top:8px}
+.media-item .m-logo{display:inline-flex;align-items:center;justify-content:center;height:46px;min-width:112px;padding:0 14px;margin:0;background:#fff;border-radius:10px}
+.m-logo img{display:block;height:28px;width:auto;max-width:120px}.m-logo img.sq{height:38px}
 .media-item .todo{font-size:12px;margin-top:6px;color:#7a5a00;display:inline-block}
 
 /* ---------- SERVICES ---------- */
@@ -237,6 +239,8 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px #12265018;border-
 .ins a.media .play:after{content:'';position:absolute;left:25px;top:12px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
 .ins a.media:hover .play{transform:scale(1.08)}
 .ins .media .badge{position:absolute;left:14px;top:14px;background:#000000a6;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:4px 8px;z-index:1}
+.ins .media .badge.logo{background:#fff;padding:5px 9px;border-radius:8px;display:flex;align-items:center;height:34px}
+.ins .media .badge.logo img{height:20px;width:auto;display:block}.ins .media .badge.logo img.sq{height:26px}.ins .media .badge.logo img.yt{height:14px}
 .ins .media .glyph{font-size:44px;font-weight:800;letter-spacing:-.03em;color:#ffffff2e;text-align:center;line-height:1.1;padding:0 12px}
 .ins.np .media{background:linear-gradient(135deg,#f5b800,#ffd659)}
 .ins.np .media .glyph{color:#12265040}
@@ -362,7 +366,7 @@ footer a:hover{color:#fff}
   .hero-media{max-width:620px;margin-bottom:22px}
   .f-grid{grid-template-columns:1fr 1fr}
   /* swipeable card rows */
-  .swipe{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:min(78%,340px);overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(-1 * var(--gutter));padding:4px var(--gutter) 14px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .swipe{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:min(78%,340px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);gap:14px;margin:0 calc(-1 * var(--gutter));padding:4px var(--gutter) 14px;scrollbar-width:none;overscroll-behavior-x:contain}
   .swipe::-webkit-scrollbar{display:none}
   .swipe>*{scroll-snap-align:start}
   .swipe-hint{display:block!important}
@@ -393,6 +397,8 @@ footer a:hover{color:#fff}
   .media-item:last-child{border-right:0;padding-right:0}
   .media-item b{font-size:15px}
   .media-item span{font-size:12px}
+  .media-item .m-logo{height:40px;min-width:0;width:100%;padding:0 8px}
+  .m-logo img{height:22px;max-width:100%}.m-logo img.sq{height:32px}
   .segments{grid-template-columns:1fr 1fr}
   .pillars{grid-template-columns:1fr 1fr}
   .card{padding:24px}
@@ -438,7 +444,7 @@ footer a:hover{color:#fff}
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#services" data-i18n="n_services">Services</a>
-      <a href="#insights" data-i18n="n_insights">Insights</a>
+      <a href="#insights" data-i18n="n_insights">Media</a>
       <a href="#training" class="hide-md" data-i18n="n_training">Training</a>
       <a href="#team" class="hide-md" data-i18n="n_team">Team</a>
       <a href="resources/" class="nav-res"><span aria-hidden="true">🎁</span><span data-i18n="n_resources">Free resources</span></a>
@@ -490,9 +496,9 @@ footer a:hover{color:#fff}
 <section class="media-bar" aria-label="As featured on">
   <div class="wrap media-inner">
     <div class="media-label" data-i18n="m_label">As seen on</div>
-    <a class="media-item" href="#insights"><b>8TV</b><span data-i18n="m_8tv">Morning news market commentary</span></a>
-    <a class="media-item" href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener"><b>南洋商报</b><span data-i18n="m_np">《股势先机》 market column</span></a>
-    <a class="media-item" href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener"><b>YouTube</b><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></a>
+    <a class="media-item" href="#insights"><span class="m-logo"><img src="assets/media/8tv.svg" alt="8TV 八度空间" class="sq" height="34"></span><span data-i18n="m_8tv">Morning news market commentary</span></a>
+    <a class="media-item" href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener"><span class="m-logo"><img src="assets/media/nanyang.png" alt="南洋商报 e南洋" height="30"></span><span data-i18n="m_np">《股势先机》 market column</span></a>
+    <a class="media-item" href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener"><span class="m-logo"><img src="assets/media/youtube.svg" alt="YouTube" height="20"></span><span data-i18n="m_pod">@BBBwealth · 19.9K subscribers</span></a>
   </div>
   <div class="wrap partners" aria-label="Brands we have worked with">
     <div class="partners-label"><span data-i18n="pt_label">Brands we've worked with</span><b data-i18n="pt_count">30+ financial brands</b></div>
@@ -569,45 +575,38 @@ footer a:hover{color:#fff}
 <section class="insights" id="insights">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="kicker" data-i18n="i_kicker">Our views</div><h2 data-i18n-html="i_title">See how we think — <span class="y">in public.</span></h2></div>
-      <div class="tabs" role="tablist" aria-label="Media" data-tabs="ins"><button type="button" role="tab" aria-selected="true" data-tab="0">8TV</button><button type="button" role="tab" aria-selected="false" data-tab="1">南洋商报</button><button type="button" role="tab" aria-selected="false" data-tab="2">YouTube</button></div>
+      <div><div class="kicker" data-i18n="i_kicker">Media &amp; credibility</div><h2 data-i18n-html="i_title">On TV, in print, <span class="y">on YouTube.</span></h2></div>
     </div>
-    <div class="ins-grid tabbed reveal" data-panels="ins">
-      <article class="ins" role="tabpanel">
-        <div class="media"><span class="badge">8TV</span><img src="assets/home/still-8tv-geo.jpg" alt="BBBwealth on 8TV discussing geopolitical shifts in asset markets" loading="lazy" width="960" height="540" style="width:100%;height:100%;object-fit:cover" /></div>
+    <div class="ins-grid swipe reveal">
+      <article class="ins">
+        <div class="media"><span class="badge logo"><img src="assets/media/8tv.svg" alt="8TV" class="sq"></span><img src="assets/home/still-8tv-geo.jpg" alt="BBBwealth on 8TV discussing geopolitical shifts in asset markets" loading="lazy" width="960" height="540" style="width:100%;height:100%;object-fit:cover" /></div>
         <div class="body">
-          <div class="src" data-i18n="i1_src">8TV · Morning news</div>
           <h3 data-i18n="i1_t">Recent 8TV appearances</h3>
           <ul class="col-list">
             <li><a href="https://www.youtube.com/watch?v=LR3KXxTqs6s" target="_blank" rel="noopener">个人所得税减免提高 纳税人能省多少</a><span>谭凯俊 · 14 Oct 2026</span></li>
             <li><a href="https://www.youtube.com/watch?v=pRRr7LCDlZI" target="_blank" rel="noopener">摩根大通调降两行评级 金融股领跌拖累马股重创</a><span>香清发 · 8 Oct 2026</span></li>
-            <li><a href="https://www.youtube.com/watch?v=XI9G328bxqc" target="_blank" rel="noopener">中东战事冲击精品市场 各名牌业绩不如预期</a><span>谭凯俊 · 17 Apr 2026</span></li>
           </ul>
           <div class="col-all"><a href="https://www.youtube.com/results?search_query=%E8%B0%AD%E5%87%AF%E4%BF%8A+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_all">More from 谭凯俊 →</a><a href="https://www.youtube.com/results?search_query=%E9%A6%99%E6%B8%85%E5%8F%91+%E5%85%AB%E5%BA%A6%E7%A9%BA%E9%97%B4" target="_blank" rel="noopener" data-i18n="i1_co_all">More from 香清发 →</a></div>
         </div>
       </article>
-      <article class="ins np" role="tabpanel" hidden>
-        <div class="media"><span class="badge">南洋商报</span><span class="glyph">南洋商报<br>股势先机</span></div>
+      <article class="ins np">
+        <div class="media"><span class="badge logo"><img src="assets/media/nanyang.png" alt="南洋商报"></span><span class="glyph">南洋商报<br>股势先机</span></div>
         <div class="body">
-          <div class="src" data-i18n="i2_src">Nanyang Siang Pau · 股势先机</div>
           <h3 data-i18n="i2_t">Latest from our 《股势先机》 columns</h3>
           <ul class="col-list">
             <li><a href="https://www.enanyang.my/news/20261105/NYPLUS/1438828" target="_blank" rel="noopener">投资AI不仅看资本支出</a><span>谭凯俊 · 5 Nov 2026</span></li>
             <li><a href="https://www.enanyang.my/news/20261008/NYPLUS/1406282" target="_blank" rel="noopener">预算案派糖前 先问谁来买单</a><span>谭凯俊 · 8 Oct 2026</span></li>
-            <li><a href="https://www.enanyang.my/news/20260924/NYPLUS/1390586" target="_blank" rel="noopener">政府救亚航 散户就有救？</a><span>香清发 · 24 Sep 2026</span></li>
           </ul>
           <div class="col-all"><a href="https://www.enanyang.my/tag/%E8%B0%AD%E5%87%AF%E4%BF%8A" target="_blank" rel="noopener" data-i18n="i2_all">All by 谭凯俊 →</a><a href="https://www.enanyang.my/tag/%E9%A6%99%E6%B8%85%E5%8F%91" target="_blank" rel="noopener" data-i18n="i2_co_all">All by 香清发 →</a></div>
         </div>
       </article>
-      <article class="ins" role="tabpanel" hidden>
-        <a class="media" href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener" aria-label="Watch on YouTube"><span class="badge">YouTube</span><img src="https://i.ytimg.com/vi/-u2ngmGUkts/hqdefault.jpg" alt="AirAsia亚航又陷危机 — BBBwealth YouTube" loading="lazy" width="480" height="360" style="width:100%;height:100%;object-fit:cover" /><span class="play" aria-hidden="true"></span></a>
+      <article class="ins">
+        <a class="media" href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener" aria-label="Watch on YouTube"><span class="badge logo"><img src="assets/media/youtube.svg" alt="YouTube" class="yt"></span><img src="https://i.ytimg.com/vi/-u2ngmGUkts/hqdefault.jpg" alt="AirAsia亚航又陷危机 — BBBwealth YouTube" loading="lazy" width="480" height="360" style="width:100%;height:100%;object-fit:cover" /><span class="play" aria-hidden="true"></span></a>
         <div class="body">
-          <div class="src" data-i18n="i3_src">BBBwealth · YouTube</div>
           <h3 data-i18n="i3_t">Most-watched on our channel</h3>
           <ul class="col-list">
             <li><a href="https://www.youtube.com/watch?v=-u2ngmGUkts" target="_blank" rel="noopener">AirAsia亚航又陷危机！赚钱股东分，亏钱谁来扛？</a><span data-i18n="i3_v1">48K views</span></li>
             <li><a href="https://www.youtube.com/watch?v=NWcTB6fv8lg" target="_blank" rel="noopener">全世界股息都在涨，为什么偏偏马来西亚没有？【钱线追击 EP4】</a><span data-i18n="i3_v2">6.1K views</span></li>
-            <li><a href="https://www.youtube.com/watch?v=UurVWA-Q6Sc" target="_blank" rel="noopener">马币跌，到底是谁的锅？【钱线追击 EP02】</a><span data-i18n="i3_v3">3.7K views</span></li>
           </ul>
           <div class="col-all"><a href="https://www.youtube.com/@BBBwealth?sub_confirmation=1" target="_blank" rel="noopener" data-i18n="i3_all">Subscribe on YouTube →</a></div>
         </div>
@@ -771,7 +770,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
   en:{
     doc_title:"BBBwealth — Financial Planning, Wealth Management & Training",
     wa_msg:"Hi BBBwealth, I'd like to arrange a conversation about my finances.",
-    n_services:"Services",n_insights:"Insights",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_calc:"Calculators",n_free:"FREE",n_book:"WhatsApp us",
+    n_services:"Services",n_insights:"Media",n_training:"Training",n_team:"Team",n_resources:"Free resources",n_calc:"Calculators",n_free:"FREE",n_book:"WhatsApp us",
     h_kicker:"Malaysia · Financial advisory",
     h_title:'We don\'t sell products.<span class="y">We build clarity.</span>',
     h_sub:"Before any product, we help you see your whole financial picture clearly — cash flow, protection, investing, retirement, tax and estate — then plan the next step with you.",
@@ -813,7 +812,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
     w3_t:"Debt Management",w3_p:"Pay off, restructure or leverage — depending on rate, term and what your balance sheet needs.",
     w4_t:"Tax Planning",w4_p:"Legal, structural strategies for individuals, families and Sdn Bhd owners.",
     w5_t:"Estate Planning",w5_p:"Wasiat, hibah and trusts so what you've built reaches the people you built it for.",
-    i_kicker:"Our views",i_title:'See how we think — <span class="y">in public.</span>',
+    i_kicker:"Media & credibility",i_title:'On TV, in print, <span class="y">on YouTube.</span>',
     i_sub:"Market commentary on TV, a newspaper column and our own YouTube shows. The same plain-language thinking goes into every client plan.",
     i1_src:"8TV · Morning news",i1_t:"Recent 8TV appearances",i1_all:"More from 谭凯俊 →",i1_co_all:"More from 香清发 →",
     i2_src:"Nanyang Siang Pau · 股势先机",i2_t:"Latest from our 《股势先机》 columns",i2_all:"All by 谭凯俊 →",i2_co_all:"All by 香清发 →",
@@ -856,7 +855,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
   zh:{
     doc_title:"BBBwealth — 财务规划、财富管理与培训",
     wa_msg:"你好 BBBwealth，我想约个时间聊聊我的财务规划。",
-    n_services:"服务",n_insights:"观点",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_calc:"计算器",n_free:"免费",n_book:"WhatsApp 联系",
+    n_services:"服务",n_insights:"媒体",n_training:"培训",n_team:"团队",n_resources:"免费资源",n_calc:"计算器",n_free:"免费",n_book:"WhatsApp 联系",
     h_kicker:"马来西亚 · 财务咨询",
     h_title:'不卖产品，<span class="y">只帮你把钱看清楚。</span>',
     h_sub:"在谈任何产品之前，我们先陪你把整体财务看清楚：现金流、保障、投资、退休、税务与传承，再一起规划下一步。",
@@ -898,7 +897,7 @@ document.querySelectorAll('.soc[data-brand]').forEach(box=>{const s=SOCIAL[box.d
     w3_t:"债务管理",w3_p:"该先还债、调整贷款，还是适度运用借贷？看利率、期限和你的整体财务而定。",
     w4_t:"税务规划",w4_p:"在合法范围内做好税务安排，适用于个人、家庭和 Sdn Bhd 股东。",
     w5_t:"遗产规划",w5_p:"通过遗嘱（Wasiat）、赠予（Hibah）和信托，把财富有条理地传给你在意的人。",
-    i_kicker:"我们的观点",i_title:'我们怎么思考，<span class="y">都公开给你看。</span>',
+    i_kicker:"媒体曝光",i_title:'上电视、写专栏，<span class="y" style="white-space:nowrap">做节目。</span>',
     i_sub:"电视上的市场评论、报章专栏，以及我们自己的 YouTube 节目。同样的白话思考，也用在每一份客户规划里。",
     i1_src:"8TV · 早晨新闻",i1_t:"近期 8TV 访谈",i1_all:"更多谭凯俊访谈 →",i1_co_all:"更多香清发访谈 →",
     i2_src:"南洋商报 · 股势先机",i2_t:"《股势先机》最新专栏",i2_all:"谭凯俊所有专栏 →",i2_co_all:"香清发所有专栏 →",
