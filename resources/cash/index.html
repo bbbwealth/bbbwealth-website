@@ -212,6 +212,42 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
   .prow{grid-template-columns:1fr auto;grid-template-areas:"name rate" "desc desc" "go go"}
   .prow .name{grid-area:name}.prow .rate{grid-area:rate;text-align:right}.prow .desc{grid-area:desc}.prow .go{grid-area:go;flex-direction:row}.prow .go>*{flex:1}}
 @media(max-width:560px){.pgrid{grid-template-columns:1fr}.hero-actions .btn{flex:1 1 100%}}
+/* hero rate board */
+.hero-grid{grid-template-columns:.95fr 1.05fr}
+.board{position:relative;overflow:hidden;border-radius:24px;padding:clamp(18px,2.4vw,26px);color:#fff;background:
+ radial-gradient(120% 70% at 105% -10%,#ff3d8b66,transparent 55%),
+ radial-gradient(90% 60% at -10% 110%,#14b8a666,transparent 55%),
+ radial-gradient(60% 50% at 70% 120%,#f5b80055,transparent 60%),
+ linear-gradient(150deg,#1b2f6b,#0d1a3f);box-shadow:0 24px 50px #12265040}
+.bd-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ffd75e}
+.bd-t{font-size:clamp(22px,2.6vw,28px);font-weight:800;margin:6px 0 16px;color:#fff;letter-spacing:-.02em}
+.bd-t em{font-style:normal;color:#ffd75e}
+.bd-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bd-row{--c:#7d8db0;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border-radius:14px;background:#ffffff0d;border:1px solid #ffffff14}
+.bd-row.aff{background:#ffffff1f;border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:inset 4px 0 0 var(--c)}
+.bd-logo{width:52px;height:36px;border-radius:9px;background:#fff;display:grid;place-items:center;padding:5px}
+.bd-logo img{max-width:100%;max-height:24px;object-fit:contain}
+.bd-logo:has(img[src*="webull"]){background:#0b1b3a}.bd-logo:has(img[src*="aeon."]){background:#b6007a}
+.bd-mid{min-width:0;display:grid;gap:2px}
+.bd-name{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.bd-name b{font-size:15px}
+.bd-mid>small{font-size:12px;color:#ffffffb3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bd-code{border:0;border-radius:999px;background:var(--c);color:#fff;font-size:11px;font-weight:800;padding:2px 9px;cursor:pointer;letter-spacing:.02em}
+.bd-code.done{background:#22c55e}
+.bd-bar{position:relative;height:8px;border-radius:99px;background:#ffffff1a;margin-top:5px}
+.bd-bar i{position:absolute;inset:0 auto 0 0;width:calc(var(--r) / 6.4 * 100%);border-radius:99px;background:linear-gradient(90deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c))}
+.bd-bar:after{content:'';position:absolute;top:-4px;bottom:-4px;left:calc(1.8 / 6.4 * 100%);border-left:2px dashed #ffffffb3}
+.bd-row:not(.aff) .bd-bar i{background:#7d8db0}
+.bd-rate{text-align:right;font-size:clamp(22px,2.4vw,28px);font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.bd-row.aff .bd-rate{color:#ffd75e}
+.bd-row:not(.aff) .bd-rate{color:#c5cee0;font-size:clamp(19px,2vw,23px)}
+.bd-rate small{display:block;font-size:10.5px;font-weight:600;color:#ffffff99;margin-top:5px;letter-spacing:0}
+.bd-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:12px;font-weight:600;color:#ffffffcc}
+.bd-legend .lg.fd:before{content:'';display:inline-block;width:0;height:12px;border-left:2px dashed #ffffffb3;margin-right:7px;vertical-align:-2px}
+.bd-note{margin:8px 0 0;font-size:11px;line-height:1.5;color:#ffffff8c}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero .chips,.hero .hero-risk{display:none}.hero .lead{margin-bottom:18px}.hero-copy .hero-actions{display:none}.board+.hero-actions{display:flex}}
+@media(min-width:901px){.board+.hero-actions{display:none}}
+@media(max-width:560px){.bd-mid>small{white-space:normal;line-height:1.35}.bd-rate small{max-width:84px;margin-left:auto;line-height:1.3}}
+@media(max-width:420px){.bd-row{grid-template-columns:44px minmax(0,1fr) auto;gap:9px;padding:9px 10px}.bd-logo{width:44px;height:32px}.bd-name b{font-size:14px}}
 </style>
 </head>
 <body class="bbb-resource-page">
@@ -232,16 +268,21 @@ footer.mini{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;
     <p class="hero-risk" data-i18n="h_risk">MMF 回酬通常比银行定存牌告利率高 · 每天计算收益</p>
     <div class="chips"><span class="chip" data-i18n="chip1">数字银行</span><span class="chip" data-i18n="chip2">电子钱包</span><span class="chip" data-i18n="chip3">货币市场基金</span><span class="chip" data-i18n="chip4">定期存款</span></div>
    </div>
-   <aside class="hero-card" aria-label="RM10,000 for one year">
-    <div class="hc-k" data-i18n="hc_k">放 RM10,000 一年，大约能赚多少？</div>
-    <div class="hc-row"><span data-i18n="hc_fd">银行定存牌告利率 1.80%</span><b>≈ RM180</b></div>
-    <div class="hc-bar"><i style="width:56%"></i></div>
-    <div class="hc-row mmf"><span data-i18n="hc_mmf">MMF 历史年化约 3.2%</span><b>≈ RM320</b></div>
-    <div class="hc-bar mmf"><i style="width:100%"></i></div>
-    <p class="hc-diff" data-i18n-html="hc_diff">一年大约多赚 <b>RM140</b>，而且利息每天计算、随时可以拿回。</p>
-    <p class="hc-note" data-i18n="hc_note">按 Maybank 12 个月牌告利率（2026 年 10 月 20 日起）和 Versa Cash 2026 年 9 月历史年化简单估算。</p>
-    <a class="btn btn-navy" href="#calculator" data-i18n="hc_cta" data-cta="cash-hero-calc">用我的金额算一算 ↓</a>
+   <aside class="board" aria-labelledby="bdT">
+    <div class="bd-k" data-i18n="bd_k">年化回酬一览 · 2026 年 11 月</div>
+    <h2 class="bd-t" id="bdT" data-i18n-html="bd_t">6 个热门选择，<em>谁给得最多？</em></h2>
+    <ol class="bd-list">
+    <li class="bd-row aff" style="--r:6.0;--c:#ff7a1a"><span class="bd-logo"><img src="../../assets/brand/moomoo.svg" alt="moomoo"></span><span class="bd-mid"><span class="bd-name"><b>moomoo</b><button type="button" class="bd-code" data-chip-copy="MAD6" aria-label="Copy MAD6">🎟 MAD6</button></span><small data-i18n="bd_moo">Cash Plus · 新户，最长 30 天</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">6%<small data-i18n="bd_moo_r">含平台补贴</small></span></li>
+    <li class="bd-row aff" style="--r:3.28;--c:#ff3d8b"><span class="bd-logo"><img src="../../assets/brand/versa.png" alt="Versa"></span><span class="bd-mid"><span class="bd-name"><b>Versa</b><button type="button" class="bd-code" data-chip-copy="VERSAMAD" aria-label="Copy VERSAMAD">🎟 VERSAMAD</button></span><small data-i18n="bd_ver">Cash-i · RM10 起</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">3.28%<small data-i18n="bd_ver_r">2026 年 9 月</small></span></li>
+    <li class="bd-row aff" style="--r:3.26;--c:#8b5cf6"><span class="bd-logo"><img src="../../assets/brand/fsmone.png" alt="FSMOne"></span><span class="bd-mid"><span class="bd-name"><b>FSMOne</b><button type="button" class="bd-code" data-chip-copy="WELCOME" aria-label="Copy WELCOME">🎟 WELCOME</button></span><small data-i18n="bd_fsm">Cash Solutions · RM100 起</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">3.26%<small data-i18n="bd_fsm_r">RHB CMF 2 过去 1 年</small></span></li>
+    <li class="bd-row aff" style="--r:3.1;--c:#14b8a6"><span class="bd-logo"><img src="../../assets/brand/webull.svg" alt="Webull"></span><span class="bd-mid"><span class="bd-name"><b>Webull</b><button type="button" class="bd-code" data-chip-copy="bbb1234" aria-label="Copy bbb1234">🎟 bbb1234</button></span><small data-i18n="bd_web">Moneybull · RM0.01 起</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">~3.1%<small data-i18n="bd_web_r">收益浮动</small></span></li>
+    <li class="bd-row" style="--r:3.0"><span class="bd-logo"><img src="../../assets/brand/aeon.png" alt="AEON Bank"></span><span class="bd-mid"><span class="bd-name"><b>AEON Bank</b></span><small data-i18n="bd_aeon">Savings Pot · 优惠至 2027/2/28</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">3%<small data-i18n="bd_aeon_r">数字银行</small></span></li>
+    <li class="bd-row" style="--r:2.0"><span class="bd-logo"><img src="../../assets/brand/gx.png" alt="GXBank"></span><span class="bd-mid"><span class="bd-name"><b>GXBank</b></span><small data-i18n="bd_gx">Savings Pocket · 随时取</small><span class="bd-bar"><i></i></span></span><span class="bd-rate">2%<small data-i18n="bd_gx_r">数字银行</small></span></li>
+    </ol>
+    <div class="bd-legend"><span class="lg aff" data-i18n="bd_lg1">🎟 有我们的推荐码</span><span class="lg fd" data-i18n="bd_lg2">虚线 = 银行定存牌告 1.80%</span></div>
+    <p class="bd-note" data-i18n="bd_note">历史或活动年化，不保证；moomoo 6% 只限新户、单笔 RM500–RM30,000、最长 30 天。定存：Maybank 12 个月牌告。资料核对 2026 年 11 月 18 日。</p>
    </aside>
+   <div class="hero-actions m-cta"><a class="btn btn-yellow" href="#partners" data-i18n="h_cta2b" data-cta="cash-board-partners">复制推荐码，去开户 ↓</a><a class="btn-text" href="#compare" data-i18n="h_cta3" data-cta="cash-board-compare">看全部 11 个选择 →</a></div>
   </div>
 </section>
 
@@ -373,7 +414,7 @@ const P=[
  {name:"Touch 'n Go",short:['From RM10, up to RM20k','RM10 起，最高 RM20k'],logo:'../../assets/brand/tng.svg',type:['GO+','GO+'],kind:'wallet',rate:'~3.1%+',rnote:['historical, variable','历史参考，收益浮动'],desc:['From RM10, balance up to RM20,000; about 3.18% historically (28 Oct 2026). Actual returns shown in the app.','RM10 起，余额最高 RM20,000；历史参考约 3.18%（2026 年 10 月 28 日），实际收益以 App 为准。'],url:'https://www.touchngo.com.my/ewallet/'}
 ];
 const T={
- en:{doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_why:'Why MMFs',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
+ en:{h_cta2b:'Copy a code and open an account ↓',h_cta3:'See all 11 options →',bd_k:'Annual returns at a glance · Nov 2026',bd_t:'6 popular choices: <em>who pays the most?</em>',bd_moo:'Cash Plus · new users, up to 30 days',bd_moo_r:'incl. platform subsidy',bd_ver:'Cash-i · from RM10',bd_ver_r:'Sep 2026',bd_fsm:'Cash Solutions · from RM100',bd_fsm_r:'RHB CMF 2, past 1 yr',bd_web:'Moneybull · from RM0.01',bd_web_r:'variable',bd_aeon:'Savings Pot · promo to 28 Feb 2027',bd_aeon_r:'digital bank',bd_gx:'Savings Pocket · withdraw any time',bd_gx_r:'digital bank',bd_lg1:'🎟 Has our referral code',bd_lg2:'Dashed line = bank FD board rate 1.80%',bd_note:'Historical or campaign annualised returns, not guaranteed. moomoo 6% is for new users only, single subscriptions RM500–RM30,000, up to 30 days. FD: Maybank 12-month board rate. Checked 18 Nov 2026.',doc:'Where to keep short-term cash: savings, MMFs & fixed deposits | BBBwealth',nav_services:'Services',nav_insights:'Insights',nav_calc:'Calculators',nav_training:'Training',nav_team:'Team',nav_res:'Free resources',nav_wa:'WhatsApp us',ctx_title:'Where to keep short-term cash',ctx_why:'Why MMFs',ctx_types:'Three types',ctx_compare:'11 options',ctx_calc:'Calculator',ctx_partners:'Promo codes',
   cs_label:'🎟 Our account-opening codes',cs_more:'Tap to copy · terms ↓',cond:'Conditions',copiedShort:'Copied',ty1_acc_s:'Any time',ty2_acc_s:'1–2 days',ty3_ret_s:'1.80% board',ty3_acc_s:'Locked tenure',fs_money:'Your money',fs_bank:'Deposit at a bank',fs_lock:'Locked for the tenure',fs_mature:'Principal + interest at maturity',fs_units:'Buy fund units',fs_pool:'Fund places it in bank deposits / money markets',fs_back:'Back in 1–2 days · interest daily',
   hc_k:'RM10,000 for a year: roughly how much could it earn?',hc_fd:'Bank FD board rate 1.80%',hc_mmf:'MMF historical ~3.2% a year',hc_diff:'About <b>RM140</b> more a year, with returns calculated daily and money you can take out any time.',hc_note:'Simple estimate using the Maybank 12-month board rate (from 20 October 2026) and Versa Cash’s September 2026 historical annualised return.',hc_cta:'Try my own amount ↓',
   wm_kicker:'Our view',wm_title:'For short-term cash, we usually start with an MMF.',wm_sub:'MMF money also sits in bank deposits and money markets, placed at institutional rates.',
