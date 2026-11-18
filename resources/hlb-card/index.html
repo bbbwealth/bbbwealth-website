@@ -95,6 +95,66 @@ h1{font-size:clamp(30px,4.4vw,48px);line-height:1.12;letter-spacing:-.025em;marg
 .cname{margin:12px 2px 0;font-size:18px;color:var(--navy-deep);letter-spacing:-.01em}
 .fit{margin-top:6px}
 .pick img.mini{flex:0 0 64px;width:64px;height:auto;aspect-ratio:255/160;border-radius:6px;display:block}
+
+/* card details dialog */
+.infobtn{margin-top:12px;width:100%;background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.infobtn+.pickbtn{margin-top:8px}
+.cdlg{border:0;padding:0;width:min(760px,calc(100vw - 32px));max-height:min(88vh,860px);border-radius:22px;box-shadow:0 30px 80px #0b173066;color:var(--ink);background:#fff;overflow:hidden}
+.cdlg::backdrop{background:#0b1730a6;backdrop-filter:blur(3px)}
+.cd-wrap{display:flex;flex-direction:column;max-height:inherit}
+.cd-head{display:flex;gap:16px;align-items:center;padding:20px 20px 14px;background:linear-gradient(160deg,#eef3fb,#fff);position:relative}
+.cd-head img{width:150px;height:auto;border-radius:10px;filter:drop-shadow(0 10px 18px #12265040);flex:0 0 auto}
+.cd-hd{min-width:0;padding-right:40px}
+.cd-tag{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:var(--navy-deep);border-radius:999px;padding:3px 10px}
+.cd-hd h2{margin:6px 0 4px;font-size:24px;color:var(--navy-deep);letter-spacing:-.02em}
+.cd-hd p{margin:0;color:var(--muted);font-size:14px}
+.cd-x{position:absolute;right:14px;top:14px;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:18px;color:var(--navy);cursor:pointer}
+.cd-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:0 20px 14px}
+.cd-stat{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:10px}
+.cd-stat small{display:block;font-size:12px;font-weight:700;color:var(--muted)}
+.cd-stat b{display:block;font-size:16px;color:var(--navy-deep);margin-top:2px;line-height:1.25}
+.cd-tabs{display:flex;gap:6px;padding:0 20px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.cd-tabs button{font:inherit;font-size:14px;font-weight:800;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;min-height:44px;padding:0 12px;cursor:pointer;white-space:nowrap}
+.cd-tabs button[aria-selected="true"]{color:var(--navy-deep);border-bottom-color:var(--yellow)}
+.cd-body{padding:18px 20px;overflow-y:auto;flex:1}
+.cd-body h3{font-size:16px;color:var(--navy-deep);margin:0 0 10px}
+.cd-body p{margin:0 0 12px;font-size:15px;color:#2b3a55}
+.pc2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.pc2 div{border-radius:14px;padding:12px 14px}
+.pc2 .pro{background:#ecf8f0;border:1px solid #bfe6cc}.pc2 .con{background:#fff6e8;border:1px solid #f5d9a8}
+.pc2 b{display:block;font-size:13px;margin-bottom:6px}.pc2 .pro b{color:#12733a}.pc2 .con b{color:#9a5b00}
+.pc2 ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+.etab{width:100%;border-collapse:collapse;font-size:14px}
+.etab th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:8px;border-bottom:1px solid var(--line)}
+.etab td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.etab td b{color:var(--navy-deep)}
+.etab:not(.ftab) td:first-child{min-width:5.5em}
+@media(max-width:640px){.etab{font-size:13px}.etab td{padding:9px 6px}.etab .rate{white-space:normal;min-width:4.5em}}
+.etab .rate{font-weight:800;color:var(--navy-deep);white-space:nowrap}
+.cd-note{font-size:12px;color:var(--muted);margin-top:10px}
+.calc{display:grid;gap:10px}
+.calc label{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#2b3a55}
+.calc input{font:inherit;font-size:16px;min-height:44px;padding:0 10px;border:1.5px solid var(--line);border-radius:10px;text-align:right;width:100%}
+.calc-out{margin-top:6px;background:var(--navy-deep);color:#fff;border-radius:16px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calc-out small{display:block;font-size:12px;color:#ffffffb3;font-weight:700}
+.calc-out b{display:block;font-size:24px;color:var(--yellow);letter-spacing:-.01em}
+.calc-out p{grid-column:1/-1;margin:0;font-size:12px;color:#ffffffb3}
+.ftab td:first-child{color:var(--muted);font-size:13px;width:38%}
+.cd-foot{display:flex;align-items:center;gap:12px;padding:12px 20px;border-top:1px solid var(--line);background:#fff}
+.cd-head,.cd-stats,.cd-tabs,.cd-foot{flex-shrink:0}
+.cd-body{min-height:0}
+.cd-src{flex:1;margin:0;font-size:12px;color:var(--muted)}
+.cd-foot .btn{flex:0 0 auto}
+@media(max-width:640px){
+  .cdlg{width:100vw;max-width:100vw;max-height:100dvh;height:100dvh;border-radius:0;margin:0}
+  .cd-head{padding:16px 16px 12px}.cd-head img{width:104px}.cd-hd h2{font-size:20px}
+  .cd-stats{grid-template-columns:1fr 1fr;padding:0 16px 12px}
+  .cd-tabs{padding:0 12px}.cd-body{padding:16px}
+  .pc2{grid-template-columns:1fr}
+  .calc label{grid-template-columns:1fr 112px}
+  .cd-foot{flex-direction:column;align-items:stretch;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+  .cd-foot .btn{width:100%}
+}
 /* main */
 main{padding:40px 0 64px}
 .layout{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:start}
@@ -169,8 +229,27 @@ form .btn{width:100%}
   </div>
 </section>
 
-<section class="cmp" id="compare"><div class="wrap"><div class="cmp-head"><div><span class="kick2" data-i18n="cmp_k">3 张卡对比</span><h2 data-i18n="cmp_t">哪一张适合你？</h2></div></div><div class="cgrid"><article class="ccol" data-card="infinite"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/infinite.png" alt="HLB Visa Infinite" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k1_tag"></span></div><h3 class="cname">Visa Infinite</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k1_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k1_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k1_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k1_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k1_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k1_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k1_min"></dd></div></dl><button type="button" class="btn pickbtn" data-pick="infinite" data-i18n="pick">选这张 →</button></article><article class="ccol" data-card="sutera"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/sutera.png" alt="HLB Sutera Platinum" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k2_tag"></span></div><h3 class="cname">Sutera Platinum</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k2_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k2_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k2_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k2_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k2_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k2_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k2_min"></dd></div></dl><button type="button" class="btn pickbtn" data-pick="sutera" data-i18n="pick">选这张 →</button></article><article class="ccol" data-card="wise"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/wise.png" alt="HLB WISE" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k3_tag"></span></div><h3 class="cname">WISE</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k3_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k3_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k3_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k3_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k3_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k3_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k3_min"></dd></div></dl><button type="button" class="btn pickbtn" data-pick="wise" data-i18n="pick">选这张 →</button></article></div><p class="cnote" data-i18n="cmp_note"></p></div></section>
+<section class="cmp" id="compare"><div class="wrap"><div class="cmp-head"><div><span class="kick2" data-i18n="cmp_k">3 张卡对比</span><h2 data-i18n="cmp_t">哪一张适合你？</h2></div></div><div class="cgrid"><article class="ccol" data-card="infinite"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/infinite.png" alt="HLB Visa Infinite" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k1_tag"></span></div><h3 class="cname">Visa Infinite</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k1_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k1_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k1_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k1_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k1_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k1_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k1_min"></dd></div></dl><button type="button" class="btn infobtn" data-info="infinite" data-i18n="info">查看详情</button><button type="button" class="btn pickbtn" data-pick="infinite" data-i18n="pick">选这张 →</button></article><article class="ccol" data-card="sutera"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/sutera.png" alt="HLB Sutera Platinum" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k2_tag"></span></div><h3 class="cname">Sutera Platinum</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k2_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k2_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k2_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k2_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k2_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k2_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k2_min"></dd></div></dl><button type="button" class="btn infobtn" data-info="sutera" data-i18n="info">查看详情</button><button type="button" class="btn pickbtn" data-pick="sutera" data-i18n="pick">选这张 →</button></article><article class="ccol" data-card="wise"><span class="best" data-i18n="best">最适合你</span><div class="ctop real"><img src="../../assets/hlb/wise.png" alt="HLB WISE" width="255" height="160" loading="lazy"><span class="tag" data-i18n="k3_tag"></span></div><h3 class="cname">WISE</h3><p class="fit"><span data-i18n="r_fit">适合</span> <b data-i18n="k3_fit"></b></p><dl><div class="row"><dt data-i18n="r_earn">earn</dt><dd data-i18n="k3_earn"></dd></div><div class="row"><dt data-i18n="r_b1">b1</dt><dd data-i18n="k3_b1"></dd></div><div class="row"><dt data-i18n="r_b2">b2</dt><dd data-i18n="k3_b2"></dd></div><div class="row"><dt data-i18n="r_fee">fee</dt><dd data-i18n="k3_fee"></dd></div><div class="row"><dt data-i18n="r_inc">inc</dt><dd data-i18n="k3_inc"></dd></div><div class="row"><dt data-i18n="r_min">min</dt><dd data-i18n="k3_min"></dd></div></dl><button type="button" class="btn infobtn" data-info="wise" data-i18n="info">查看详情</button><button type="button" class="btn pickbtn" data-pick="wise" data-i18n="pick">选这张 →</button></article></div><p class="cnote" data-i18n="cmp_note"></p></div></section>
 
+
+<dialog class="cdlg" id="cardDlg" aria-labelledby="cdTitle">
+  <div class="cd-wrap">
+    <header class="cd-head">
+      <img id="cdImg" src="" alt="" width="255" height="160">
+      <div class="cd-hd"><span class="cd-tag" id="cdTag"></span><h2 id="cdTitle"></h2><p id="cdOne"></p></div>
+      <button type="button" class="cd-x" id="cdX" aria-label="Close">✕</button>
+    </header>
+    <div class="cd-stats" id="cdStats"></div>
+    <nav class="cd-tabs" role="tablist" id="cdTabs">
+      <button type="button" role="tab" data-t="ov" data-i18n="t_ov">重点</button>
+      <button type="button" role="tab" data-t="earn" data-i18n="t_earn">怎么赚</button>
+      <button type="button" role="tab" data-t="calc" data-i18n="t_calc">算一算</button>
+      <button type="button" role="tab" data-t="fees" data-i18n="t_fees">费用与条件</button>
+    </nav>
+    <div class="cd-body" id="cdBody"></div>
+    <footer class="cd-foot"><p class="cd-src" data-i18n="cd_src"></p><button type="button" class="btn btn-yellow" id="cdApply" data-i18n="cd_apply">申请这张卡 →</button></footer>
+  </div>
+</dialog>
 <main id="apply">
   <div class="wrap">
     <form class="layout" name="hlb-card-enquiry" method="POST" action="./?sent=1" data-netlify="true" netlify-honeypot="website" novalidate>
@@ -216,9 +295,9 @@ form .btn{width:100%}
 (()=>{
 const T={
  zh:{kicker:"合作伙伴 · Hong Leong Bank",h1:'申请 Hong Leong 信用卡，<span class="y">我们帮你对接银行专员。</span>',sub:"留下名字和电话，HLB 银行专员会联系你，帮你确认资格、办好申请。",st1:"填表，约 30 秒",st2:"银行专员联系你",st3:"专员协助你申请",cta:"开始申请 ↓",cta2:"先比较 3 张卡",p1_t:"1. 你想申请哪一张？",p1_h:"可以多选。不确定的话全选，专员会帮你比较。",c1:"高端卡",c2:"白金卡",c3:"日常消费卡",guide:"不知道怎么选？看我们的信用卡指南 →",p2_t:"2. 留下联系方式",p2_h:"资料只用于这次信用卡申请的联系。",f_name:"姓名（与 IC 相同）",f_phone:"手机号码",f_email:"Email",opt:"（可选）",consent:"我同意 BBBwealth 把我的姓名、电话和 email 转交给 Hong Leong Bank 银行专员，以便联系我办理信用卡申请。",send:"提交，让专员联系我",sending:"提交中…",note:"提交不等于申请成功。信用卡批核由银行决定。",ok_t:"已收到！",ok_p:"Hong Leong Bank 银行专员会尽快打电话或 WhatsApp 联系你。",ok_wa:"有问题？WhatsApp 我们",disc:"合作披露：BBBwealth 与 Hong Leong Bank 有客户转介安排，若你经我们转介申请，我们可能获得佣金。信用卡批核、年费与优惠以银行最新条款为准。",
-  e_name:"请填写姓名。",e_phone:"请填写正确的手机号码。",e_consent:"请勾选同意，专员才能联系你。",e_net:"提交失败，请检查网络后再试，或直接 WhatsApp 我们。",title:"申请 Hong Leong 信用卡 | BBBwealth",cmp_k:"3 张卡对比",cmp_t:"哪一张适合你？",q_l:"你的钱最常花在哪里？",q1:"✈️ 旅行、吃好的",q2:"🛍️ 网购、外卖、e-wallet",q3:"🛒 日常餐饮、杂货、油费",best:"最适合你",pick:"选这张 →",picked:"✓ 已选，填资料 ↓",r_fit:"适合",r_earn:"赚什么",r_b1:"主要好处",r_b2:"还有",r_fee:"年费",r_inc:"年收入",r_min:"消费门槛",k1_tag:"旅行",k1_fit:"常旅行、想换机票",k1_earn:"Enrich Points（可换 Enrich 机票）",k1_b1:"餐饮 RM1 = 1 Enrich Point，无上限",k1_b2:"每年 4 次 Plaza Premium 贵宾室",k1_fee:"终身免年费",k1_inc:"RM100,000 起",k1_min:"没有每月门槛",k2_tag:"积分",k2_fit:"网购、外卖、日常消费",k2_earn:"HLB Reward Points（可换里程、礼券）",k2_b1:"网购、外卖、e-wallet 充值、杂货、餐饮、海外 8X 积分",k2_b2:"用 Apple / Google / Samsung Pay 最高 12X（活动至 2026 年 11 月 30 日）",k2_fee:"首年可豁免（依银行条款）",k2_inc:"RM36,000 起，或定存抵押 RM3,000",k2_min:"没有每月门槛",k3_tag:"回扣",k3_fit:"餐饮、杂货、油费，想直接拿回扣",k3_earn:"现金回扣",k3_b1:"餐饮、杂货药房、油费、网购最高 15% 回扣（各类每月有上限）",k3_b2:"其他消费（包括海外、保险）0.2% 无上限",k3_fee:"首年可豁免（依银行条款）",k3_inc:"RM24,000 起，或定存抵押 RM2,000",k3_min:"每月消费满 RM1,000 才有高回扣",cmp_note:"资料核对：2026 年 11 月 18 日，来源 Hong Leong Bank 官网。奖励、年费与门槛以银行最新条款为准。",wa:"你好 BBBwealth，我刚提交了 Hong Leong 信用卡申请，想问一些问题。"},
+  e_name:"请填写姓名。",e_phone:"请填写正确的手机号码。",e_consent:"请勾选同意，专员才能联系你。",e_net:"提交失败，请检查网络后再试，或直接 WhatsApp 我们。",title:"申请 Hong Leong 信用卡 | BBBwealth",info:"查看详情",t_ov:"重点",t_earn:"怎么赚",t_calc:"算一算",t_fees:"费用与条件",cd_apply:"申请这张卡 →",cd_src:"资料来源：Hong Leong Bank 官网与产品披露表（PDS，2026 年 10 月版），2026 年 11 月 18 日核对。",cmp_k:"3 张卡对比",cmp_t:"哪一张适合你？",q_l:"你的钱最常花在哪里？",q1:"✈️ 旅行、吃好的",q2:"🛍️ 网购、外卖、e-wallet",q3:"🛒 日常餐饮、杂货、油费",best:"最适合你",pick:"选这张 →",picked:"✓ 已选，填资料 ↓",r_fit:"适合",r_earn:"赚什么",r_b1:"主要好处",r_b2:"还有",r_fee:"年费",r_inc:"年收入",r_min:"消费门槛",k1_tag:"旅行",k1_fit:"常旅行、想换机票",k1_earn:"Enrich Points（可换 Enrich 机票）",k1_b1:"餐饮 RM1 = 1 Enrich Point，无上限",k1_b2:"每年 4 次 Plaza Premium 贵宾室",k1_fee:"终身免年费",k1_inc:"RM100,000 起",k1_min:"没有每月门槛",k2_tag:"积分",k2_fit:"网购、外卖、日常消费",k2_earn:"HLB Reward Points（可换里程、礼券）",k2_b1:"网购、外卖、e-wallet 充值、杂货、餐饮、海外 8X 积分",k2_b2:"用 Apple / Google / Samsung Pay 最高 12X（活动至 2026 年 11 月 30 日）",k2_fee:"首年可豁免（依银行条款）",k2_inc:"RM36,000 起，或定存抵押 RM3,000",k2_min:"没有每月门槛",k3_tag:"回扣",k3_fit:"餐饮、杂货、油费，想直接拿回扣",k3_earn:"现金回扣",k3_b1:"周末餐饮 15%、周末杂货与油费 10%、网购 1%（各类每月有上限，平日 0.5%）",k3_b2:"其他消费（包括海外、保险）0.2% 无上限",k3_fee:"首年可豁免（依银行条款）",k3_inc:"RM24,000 起，或定存抵押 RM2,000",k3_min:"每月消费满 RM1,000 才有高回扣",cmp_note:"资料核对：2026 年 11 月 18 日，来源 Hong Leong Bank 官网。奖励、年费与门槛以银行最新条款为准。",wa:"你好 BBBwealth，我刚提交了 Hong Leong 信用卡申请，想问一些问题。"},
  en:{kicker:"Partner · Hong Leong Bank",h1:'Apply for a Hong Leong credit card — <span class="y">we connect you with the banker.</span>',sub:"Leave your name and phone number. An HLB banker will contact you to check eligibility and help you apply.",st1:"Fill in the form, about 30 seconds",st2:"A banker contacts you",st3:"They help you apply",cta:"Start applying ↓",cta2:"Compare the 3 cards first",p1_t:"1. Which card do you want?",p1_h:"Pick one or more. Not sure? Pick all and the banker will help you compare.",c1:"Premium card",c2:"Platinum card",c3:"Everyday spending card",guide:"Not sure which? Read our credit card guide →",p2_t:"2. Your contact details",p2_h:"Used only to contact you about this card application.",f_name:"Full name (as in IC)",f_phone:"Mobile number",f_email:"Email",opt:"(optional)",consent:"I agree that BBBwealth may pass my name, phone number and email to a Hong Leong Bank banker so they can contact me about a credit card application.",send:"Submit — have a banker contact me",sending:"Submitting…",note:"Submitting is not an approval. The bank decides on every application.",ok_t:"Got it!",ok_p:"A Hong Leong Bank banker will call or WhatsApp you soon.",ok_wa:"Questions? WhatsApp us",disc:"Partner disclosure: BBBwealth has a client referral arrangement with Hong Leong Bank and may receive a commission if you apply through our referral. Approval, annual fees and promotions follow the bank's latest terms.",
-  e_name:"Please enter your name.",e_phone:"Please enter a valid mobile number.",e_consent:"Please tick the consent box so the banker can contact you.",e_net:"Couldn't submit. Check your connection and try again, or WhatsApp us.",title:"Apply for a Hong Leong credit card | BBBwealth",cmp_k:"3 cards compared",cmp_t:"Which one suits you?",q_l:"Where does most of your money go?",q1:"✈️ Travel and dining out",q2:"🛍️ Online shopping, food delivery, e-wallets",q3:"🛒 Everyday dining, groceries, petrol",best:"Best fit for you",pick:"Choose this card →",picked:"✓ Chosen — fill in below ↓",r_fit:"Best for",r_earn:"You earn",r_b1:"Main perk",r_b2:"Also",r_fee:"Annual fee",r_inc:"Income",r_min:"Spend rule",k1_tag:"Travel",k1_fit:"Frequent travellers who want flights",k1_earn:"Enrich Points (redeem Enrich flights)",k1_b1:"Dining RM1 = 1 Enrich Point, no cap",k1_b2:"4 Plaza Premium lounge visits a year",k1_fee:"Free for life",k1_inc:"From RM100,000",k1_min:"No monthly minimum",k2_tag:"Points",k2_fit:"Online shopping, delivery, daily spend",k2_earn:"HLB Reward Points (miles, vouchers)",k2_b1:"8X points on online, delivery, e-wallet reload, groceries, dining and overseas",k2_b2:"Up to 12X with Apple / Google / Samsung Pay (campaign until 30 Nov 2026)",k2_fee:"First year can be waived (bank terms)",k2_inc:"From RM36,000, or RM3,000 FD pledged",k2_min:"No monthly minimum",k3_tag:"Cash back",k3_fit:"Dining, groceries, petrol — straight cash back",k3_earn:"Cash back",k3_b1:"Up to 15% back on dining, groceries & pharmacies, petrol and online (monthly caps per category)",k3_b2:"0.2% unlimited on other spend, incl. overseas and insurance",k3_fee:"First year can be waived (bank terms)",k3_inc:"From RM24,000, or RM2,000 FD pledged",k3_min:"Spend RM1,000 a month for the higher rates",cmp_note:"Checked 18 Nov 2026 against Hong Leong Bank's website. Rewards, fees and requirements follow the bank's latest terms.",wa:"Hi BBBwealth, I just submitted a Hong Leong credit card enquiry and have a question."}
+  e_name:"Please enter your name.",e_phone:"Please enter a valid mobile number.",e_consent:"Please tick the consent box so the banker can contact you.",e_net:"Couldn't submit. Check your connection and try again, or WhatsApp us.",title:"Apply for a Hong Leong credit card | BBBwealth",info:"View details",t_ov:"Highlights",t_earn:"How you earn",t_calc:"Estimate",t_fees:"Fees & eligibility",cd_apply:"Apply for this card →",cd_src:"Source: Hong Leong Bank website and Product Disclosure Sheet (Oct 2026 version), checked 18 Nov 2026.",cmp_k:"3 cards compared",cmp_t:"Which one suits you?",q_l:"Where does most of your money go?",q1:"✈️ Travel and dining out",q2:"🛍️ Online shopping, food delivery, e-wallets",q3:"🛒 Everyday dining, groceries, petrol",best:"Best fit for you",pick:"Choose this card →",picked:"✓ Chosen — fill in below ↓",r_fit:"Best for",r_earn:"You earn",r_b1:"Main perk",r_b2:"Also",r_fee:"Annual fee",r_inc:"Income",r_min:"Spend rule",k1_tag:"Travel",k1_fit:"Frequent travellers who want flights",k1_earn:"Enrich Points (redeem Enrich flights)",k1_b1:"Dining RM1 = 1 Enrich Point, no cap",k1_b2:"4 Plaza Premium lounge visits a year",k1_fee:"Free for life",k1_inc:"From RM100,000",k1_min:"No monthly minimum",k2_tag:"Points",k2_fit:"Online shopping, delivery, daily spend",k2_earn:"HLB Reward Points (miles, vouchers)",k2_b1:"8X points on online, delivery, e-wallet reload, groceries, dining and overseas",k2_b2:"Up to 12X with Apple / Google / Samsung Pay (campaign until 30 Nov 2026)",k2_fee:"First year can be waived (bank terms)",k2_inc:"From RM36,000, or RM3,000 FD pledged",k2_min:"No monthly minimum",k3_tag:"Cash back",k3_fit:"Dining, groceries, petrol — straight cash back",k3_earn:"Cash back",k3_b1:"Weekend dining 15%, weekend groceries & petrol 10%, online 1% (monthly caps; weekdays 0.5%)",k3_b2:"0.2% unlimited on other spend, incl. overseas and insurance",k3_fee:"First year can be waived (bank terms)",k3_inc:"From RM24,000, or RM2,000 FD pledged",k3_min:"Spend RM1,000 a month for the higher rates",cmp_note:"Checked 18 Nov 2026 against Hong Leong Bank's website. Rewards, fees and requirements follow the bank's latest terms.",wa:"Hi BBBwealth, I just submitted a Hong Leong credit card enquiry and have a question."}
 };
 const q=new URLSearchParams(location.search);let lang=q.get('lang')==='en'?'en':'zh';
 try{const s=localStorage.getItem('bbb-lang');if(!q.get('lang')&&(s==='en'||s==='zh'))lang=s}catch(e){}
@@ -264,6 +343,83 @@ document.querySelectorAll('.pickbtn').forEach(b=>b.addEventListener('click',()=>
 f.querySelectorAll('input[name="cards"]').forEach(i=>i.addEventListener('change',syncPicks));
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setTimeout(syncPicks)));
 syncPicks();
+
+// ---------- card details dialog ----------
+const L=(zh,en)=>lang==='zh'?zh:en;
+const FEES=()=>[
+ [L('利息（零售消费）','Interest on purchases'),L('15% / 17% / 18% 年利率，依过去 12 个月的准时还款纪录','15% / 17% / 18% p.a., based on your last 12 months of on-time minimum payments')],
+ [L('每月最低还款','Minimum monthly payment'),L('结欠的 5% 或 RM50，取较高者','5% of the outstanding balance or RM50, whichever is higher')],
+ [L('迟还款费','Late payment charge'),L('结欠的 1%，最低 RM10、最高 RM100','1% of the outstanding balance, min RM10, max RM100')],
+ [L('预借现金','Cash advance'),L('提款额 5% 或 RM20（取较高者），另加 18% 年利率按日计算','5% of the amount or RM20, whichever is higher, plus 18% p.a. charged daily')],
+ [L('补发卡费','Card replacement'),L('每张 RM50','RM50 per card')],
+ [L('政府税','Government tax'),L('年费另加政府税（如适用）；费用另加 8% SST','Annual fee subject to government tax where applicable; fees subject to 8% SST')]
+];
+const C={
+ infinite:{img:'infinite',name:'Visa Infinite',
+  tag:()=>L('旅行 · 积分','Travel · Points'),
+  one:()=>L('用餐赚 Enrich Points 换 MAS 机票，终身免年费。','Earn Enrich Points on dining for Malaysia Airlines flights, free for life.'),
+  stats:()=>[[L('奖励','Rewards'),'Enrich Points'],[L('最佳回报','Best rate'),L('餐饮 RM1 = 1 点','Dining RM1 = 1 pt')],[L('年费','Annual fee'),L('终身免','Free for life')],[L('年收入','Min income'),'RM100,000']],
+  ov:()=>[L('这张卡把奖励直接存成 Enrich Points（Malaysia Airlines 的积分），不用再从银行积分转换。最划算的是用餐：本地和海外餐饮每 RM1 都赚 1 点，而且没有每月上限。其他消费的赚率比较低，所以最适合把它当成“吃饭专用卡”，再配一张日常卡。','Rewards go straight into Enrich Points (Malaysia Airlines), with no bank-point conversion. Dining is the sweet spot: RM1 = 1 point locally and overseas, with no monthly cap. Other spend earns less, so it works best as a dining card paired with an everyday card.'),
+    [L('餐饮 RM1 = 1 Enrich Point，无上限','Dining RM1 = 1 Enrich Point, no cap'),L('终身免年费（正卡与附属卡）','Annual fee waived for life (principal and supplementary)'),L('每年 4 次 Plaza Premium 贵宾室，不需最低消费','4 Plaza Premium lounge visits a year, no minimum spend'),L('Visa Digital Concierge 礼宾服务','Visa Digital Concierge')],
+    [L('年收入门槛 RM100,000','Requires RM100,000 annual income'),L('非餐饮消费 RM4–RM6 才 1 点','Non-dining spend earns 1 point per RM4–RM6'),L('积分只适合常用 Enrich 换票的人','Best only if you redeem with Enrich')]],
+  earn:()=>[[L('餐饮','Dining'),L('餐厅、咖啡店、快餐（本地和海外）','Restaurants, cafés, fast food (local & overseas)'),'RM1 = 1'],[L('旅行','Travel'),L('航空、酒店、旅行社','Airlines, hotels, travel agencies'),'RM4 = 1'],[L('零售购物','Retail shopping'),L('服装、配件、百货公司','Clothing, accessories, department stores'),'RM4 = 1'],[L('其他','Others'),L('其他合资格消费','Other eligible spend'),'RM6 = 1']],
+  earnHead:()=>[L('类别','Category'),L('包括','Includes'),L('Enrich Points','Enrich Points')],
+  earnNote:()=>L('每月无上限。政府、JomPAY、FPX、预借现金等交易不计。','No monthly cap. Government, JomPAY, FPX, cash advances and similar transactions excluded.'),
+  calc:{fields:[['d',L('每月餐饮','Dining per month'),800],['t',L('每月旅行','Travel per month'),300],['r',L('每月零售购物','Retail shopping per month'),300],['o',L('其他消费','Other spend'),600]],
+   run:v=>{const m=v.d+v.t/4+v.r/4+v.o/6;return [[L('每月 Enrich Points','Enrich Points / month'),Math.floor(m).toLocaleString()],[L('一年约','About a year'),Math.floor(m*12).toLocaleString()],L('按 HLB 公布的赚率估算，实际以银行入账为准。','Estimated from HLB\'s published earn rates; actual points follow the bank\'s posting.')]}},
+  fee:()=>[[L('年费','Annual fee'),L('终身免年费（正卡与附属卡）','Free for life (principal & supplementary)')],[L('年龄','Age'),L('正卡 21–70 岁；附属卡 18 岁起','Principal 21–70; supplementary from 18')],[L('最低年收入','Minimum annual income'),'RM100,000']]},
+ sutera:{img:'sutera',name:'Sutera Platinum',
+  tag:()=>L('积分','Points'),
+  one:()=>L('网购、外卖、杂货、餐饮、海外都赚 8X 积分。','8X points on online, delivery, groceries, dining and overseas.'),
+  stats:()=>[[L('奖励','Rewards'),'HLB Reward Points'],[L('最佳回报','Best rate'),L('8X（钱包付款最高 12X）','8X (up to 12X via wallets)')],[L('年费','Annual fee'),L('RM120，首年可免','RM120, 1st year waivable')],[L('年收入','Min income'),'RM36,000']],
+  ov:()=>[L('一张覆盖面很广的积分卡：网购和外卖（Lazada、Shopee、Grab、Foodpanda、Touch \'n Go 充值等）、杂货药房、餐饮和海外消费都是 8X。积分可换礼品、酒店餐饮礼券、航空里程，也能抵年费。门槛低，适合想用一张卡包办日常消费的人。','A broad points card: online and delivery (Lazada, Shopee, Grab, Foodpanda, Touch \'n Go reloads and more), groceries and pharmacies, dining and overseas spend all earn 8X. Points go to gifts, hotel and dining vouchers, air miles or your annual fee. Low entry bar; good as one card for daily spend.'),
+    [L('5 大日常类别 8X 积分，无上限','8X points on five everyday categories, no cap'),L('用 Apple / Google / Samsung Pay 最高 12X（活动至 2026 年 11 月 30 日）','Up to 12X with Apple / Google / Samsung Pay (campaign until 30 Nov 2026)'),L('积分可换里程、礼券或抵年费','Redeem for miles, vouchers or annual fee'),L('首年年费：60 天内刷 1 次即免','1st-year fee waived with 1 purchase in 60 days')],
+    [L('年费 RM120（附属卡 RM60）','Annual fee RM120 (supplementary RM60)'),L('其他消费只有 1X','Other spend earns only 1X'),L('积分价值视兑换项目而定','Point value depends on what you redeem')]],
+  earn:()=>[[L('网购与外卖','Online & delivery'),L('Lazada、Shopee、Grab、Foodpanda、TNG、MYEG、Spotify、Netflix 等','Lazada, Shopee, Grab, Foodpanda, TNG, MYEG, Spotify, Netflix and more'),'8X'],[L('杂货与药房','Groceries & pharmacies'),L('超市、药房、MyNews、7-Eleven','Supermarkets, pharmacies, MyNews, 7-Eleven'),L('8X（钱包 10X）','8X (wallet 10X)')],[L('餐饮','Dining'),L('餐厅、快餐','Restaurants, fast food'),L('8X（钱包 10X）','8X (wallet 10X)')],[L('海外','Overseas'),L('任何非马币消费','Any non-MYR retail spend'),L('8X（钱包 12X）','8X (wallet 12X)')],[L('其他','Others'),L('其他合资格消费','Other eligible spend'),L('1X（钱包 2X）','1X (wallet 2X)')]],
+  earnHead:()=>[L('类别','Category'),L('包括','Includes'),L('积分','Points')],
+  earnNote:()=>L('“钱包”指用 Apple Pay、Google Pay 或 Samsung Pay 付款的加码，活动期至 2026 年 11 月 30 日。','"Wallet" rates apply to Apple Pay, Google Pay or Samsung Pay under a campaign ending 30 Nov 2026.'),
+  calc:{fields:[['on',L('每月网购与外卖','Online & delivery per month'),400],['g',L('每月杂货与药房','Groceries & pharmacy per month'),500],['d',L('每月餐饮','Dining per month'),500],['ov',L('每月海外消费','Overseas per month'),0],['o',L('其他消费','Other spend'),600]],
+   run:v=>{const m=(v.on+v.g+v.d+v.ov)*8+v.o;return [[L('每月积分','Points / month'),Math.floor(m).toLocaleString()],[L('一年约','About a year'),Math.floor(m*12).toLocaleString()],L('以基本 8X / 1X 估算，未计钱包加码。','Estimated at base 8X / 1X, before wallet bonuses.')]}},
+  fee:()=>[[L('年费','Annual fee'),L('RM120（附属卡 RM60）；批卡后 60 天内刷 1 次即免首年','RM120 (supplementary RM60); 1st year waived with 1 purchase within 60 days of approval')],[L('年龄','Age'),L('正卡 21–65 岁；附属卡 18 岁起','Principal 21–65; supplementary from 18')],[L('最低年收入','Minimum annual income'),L('RM36,000，或定存抵押 RM3,000','RM36,000, or RM3,000 fixed deposit pledged')]]},
+ wise:{img:'wise',name:'WISE',
+  tag:()=>L('现金回扣','Cash back'),
+  one:()=>L('周末吃饭 15%、杂货油费 10%，直接回扣现金。','15% back on weekend dining, 10% on weekend groceries and petrol.'),
+  stats:()=>[[L('奖励','Rewards'),L('现金回扣','Cash back')],[L('最高回扣','Best rate'),L('周末餐饮 15%','Weekend dining 15%')],[L('年费','Annual fee'),L('RM98，首年可免','RM98, 1st year waivable')],[L('年收入','Min income'),'RM24,000']],
+  ov:()=>[L('回扣最直接的一张。每月刷满 RM1,000 后，周末餐饮有 15%、周末杂货药房和油费 10%、指定网购与 e-wallet 充值 1%。每类都有每月上限，加起来每月最多约 RM65，加上其他消费 0.2% 无上限。适合周末才大采购、外出用餐的家庭。','The most straightforward card. Once you spend RM1,000 in a month: 15% on weekend dining, 10% on weekend groceries & pharmacies and petrol, 1% on listed online merchants and e-wallet reloads. Each category is capped, about RM65 a month in total, plus 0.2% unlimited on other spend. Good for families who shop and eat out on weekends.'),
+    [L('周末餐饮 15%，周末杂货与油费 10%','15% weekend dining, 10% weekend groceries & petrol'),L('回扣是现金，不用研究兑换','Cash back, nothing to redeem'),L('门槛最低：年收入 RM24,000','Lowest entry: RM24,000 income'),L('首年年费：60 天内刷 1 次即免','1st-year fee waived with 1 purchase in 60 days')],
+    [L('每月要刷满 RM1,000，否则只有 0.2%（最多 RM2）','Needs RM1,000 a month, otherwise 0.2% (max RM2)'),L('平日餐饮、杂货、油费只有 0.5%','Weekday dining, groceries and petrol earn only 0.5%'),L('每类有上限，每月最多约 RM65','Category caps, about RM65 a month max')]],
+  earn:()=>[[L('餐饮','Dining'),L('平日 0.5% · 周末 15%','Weekdays 0.5% · weekends 15%'),L('每月最多 RM20','Max RM20/month')],[L('杂货与日用','Groceries & essentials'),L('平日 0.5% · 周末 10%','Weekdays 0.5% · weekends 10%'),L('每月最多 RM15','Max RM15/month')],[L('油费','Petrol'),L('平日 0.5% · 周末 10%','Weekdays 0.5% · weekends 10%'),L('每月最多 RM15','Max RM15/month')],[L('网购','Online'),L('Lazada、Shopee、Grab、Foodpanda、TNG 等 1%','Lazada, Shopee, Grab, Foodpanda, TNG etc. 1%'),L('每月最多 RM15','Max RM15/month')],[L('其他（含海外）','Others (incl. overseas)'),'0.2%',L('无上限','Unlimited')]],
+  earnHead:()=>[L('类别','Category'),L('回扣','Cash back'),L('上限','Cap')],
+  earnNote:()=>L('以上需当月入账消费满 RM1,000；未满则所有消费 0.2%，每月最多 RM2。油费仅限加油站自助加油机。','All rates need RM1,000 of posted spend in the month; below that, everything earns 0.2%, max RM2. Petrol means self-service pumps.'),
+  calc:{fields:[['d',L('周末餐饮','Weekend dining'),300],['g',L('周末杂货与药房','Weekend groceries & pharmacy'),300],['p',L('周末油费','Weekend petrol'),200],['on',L('网购与 e-wallet 充值','Online & e-wallet reload'),300],['o',L('其他消费（含平日）','Other spend (incl. weekdays)'),400]],
+   run:v=>{const tot=v.d+v.g+v.p+v.on+v.o;let cb;if(tot<1000){cb=Math.min(tot*0.002,2)}else{cb=Math.min(v.d*.15,20)+Math.min(v.g*.10,15)+Math.min(v.p*.10,15)+Math.min(v.on*.01,15)+v.o*.002}
+    return [[L('每月回扣约','Cash back / month'),'RM'+cb.toFixed(2)],[L('一年约','About a year'),'RM'+(cb*12).toFixed(0)],tot<1000?L('本月消费 RM'+tot.toLocaleString()+'，未满 RM1,000，只有 0.2%。','RM'+tot.toLocaleString()+' this month is under RM1,000, so only 0.2% applies.'):L('总消费 RM'+tot.toLocaleString()+'，已达 RM1,000 门槛。其他消费以 0.2% 估算。','Total RM'+tot.toLocaleString()+' meets the RM1,000 minimum. Other spend estimated at 0.2%.')]}},
+  fee:()=>[[L('年费','Annual fee'),L('RM98（附属卡 RM48）；批卡后 60 天内刷 1 次即免首年','RM98 (supplementary RM48); 1st year waived with 1 purchase within 60 days of approval')],[L('年龄','Age'),L('正卡 21–65 岁；附属卡 18 岁起','Principal 21–65; supplementary from 18')],[L('最低年收入','Minimum annual income'),L('RM24,000，或定存抵押 RM2,000','RM24,000, or RM2,000 fixed deposit pledged')]]}
+};
+const dlg=document.getElementById('cardDlg'),body=document.getElementById('cdBody');let cur=null,tab='ov',calcVals={};
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderTab(){const c=C[cur];document.querySelectorAll('#cdTabs [data-t]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===tab)));
+ if(tab==='ov'){const [txt,pros,cons]=c.ov();body.innerHTML=`<h3>${esc(L('我们怎么看','Our take'))}</h3><p>${esc(txt)}</p><div class="pc2"><div class="pro"><b>${esc(L('优点','Pros'))}</b><ul>${pros.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="con"><b>${esc(L('要注意','Watch out'))}</b><ul>${cons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`}
+ else if(tab==='earn'){const h=c.earnHead();body.innerHTML=`<table class="etab"><thead><tr>${h.map(x=>`<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>${c.earn().map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="rate">${esc(r[2])}</td></tr>`).join('')}</tbody></table><p class="cd-note">${esc(c.earnNote())}</p>`}
+ else if(tab==='calc'){const f=c.calc.fields;const v=calcVals[cur]||(calcVals[cur]=Object.fromEntries(f.map(x=>[x[0],x[2]])));
+  body.innerHTML=`<h3>${esc(L('输入每月大约花多少','Enter your rough monthly spend'))}</h3><div class="calc">${f.map(x=>`<label>${esc(x[1])}<input type="number" inputmode="numeric" min="0" step="50" data-k="${x[0]}" value="${v[x[0]]}"></label>`).join('')}</div><div class="calc-out" id="calcOut"></div>`;
+  const out=()=>{const r=c.calc.run(v);document.getElementById('calcOut').innerHTML=`<div><small>${esc(r[0][0])}</small><b>${esc(r[0][1])}</b></div><div><small>${esc(r[1][0])}</small><b>${esc(r[1][1])}</b></div><p>${esc(r[2])}</p>`};
+  body.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{v[i.dataset.k]=Math.max(0,+i.value||0);out()}));out()}
+ else{body.innerHTML=`<h3>${esc(L('申请条件','Eligibility'))}</h3><table class="etab ftab"><tbody>${c.fee().map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table><h3 style="margin-top:18px">${esc(L('费用与利息','Fees & interest'))}</h3><table class="etab ftab"><tbody>${FEES().map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>`}
+ body.scrollTop=0}
+function renderDlg(){if(!cur)return;const c=C[cur];document.getElementById('cdImg').src='../../assets/hlb/'+c.img+'.png';document.getElementById('cdImg').alt='HLB '+c.name;document.getElementById('cdTag').textContent=c.tag();document.getElementById('cdTitle').textContent='HLB '+c.name;document.getElementById('cdOne').textContent=c.one();
+ document.getElementById('cdStats').innerHTML=c.stats().map(x=>`<div class="cd-stat"><small>${esc(x[0])}</small><b>${esc(x[1])}</b></div>`).join('');document.getElementById('cdX').setAttribute('aria-label',L('关闭','Close'));renderTab()}
+function openDlg(k){cur=k;tab='ov';renderDlg();if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');document.body.style.overflow='hidden'}
+function closeDlg(){if(dlg.open)dlg.close();document.body.style.overflow=''}
+dlg.addEventListener('close',()=>{document.body.style.overflow=''});
+document.querySelectorAll('.infobtn').forEach(b=>b.addEventListener('click',()=>openDlg(b.dataset.info)));
+document.getElementById('cdX').addEventListener('click',closeDlg);
+dlg.addEventListener('click',e=>{if(e.target===dlg)closeDlg()});
+document.querySelectorAll('#cdTabs [data-t]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.t;renderTab()}));
+document.getElementById('cdApply').addEventListener('click',()=>{const box=f.querySelector('input[name="cards"][value="'+cur+'"]');box.checked=true;hl(cur);syncPicks();closeDlg();setTimeout(()=>document.getElementById('apply').scrollIntoView({behavior:'smooth'}),50)});
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setTimeout(renderDlg)));
+// deep link: ?card=wise opens that card's details
+const qc=q.get('card');if(qc&&C[qc])setTimeout(()=>openDlg(qc),300);
 const menu=document.querySelector('.bbb-site-menu'),links=document.getElementById('bbbSiteLinks');
 menu.addEventListener('click',()=>{const o=links.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(o))});
 })();
